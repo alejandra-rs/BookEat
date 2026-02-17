@@ -1,0 +1,25 @@
+.date-selector {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px;
+    cursor: pointer;
+    position: relative;
+}
+
+.date-selector > input {
+    border: none;
+    outline: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.calendar-icon, .dropdown-arrow {
+    width: 1em;
+    height: 1em;
+    pointer-events: none;
+}
+
+.dropdown-arrow:hover {
+    cursor: pointer;
+}
