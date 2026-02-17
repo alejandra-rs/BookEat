@@ -1,0 +1,15 @@
+.hour-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: inherit;
+    cursor: pointer;
+
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border: none;
+    border-radius: 8px;
+}
+
+.hour-button:hover {
+    background-color: var(--shadow);
+}
