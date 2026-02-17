@@ -15,6 +15,7 @@
     --shadow: rgba(0, 0, 0, 0.1);
     --primary-color: #ff6b6b;
     --primary-hover: #ff5252;
+    --border-padding: 20px;
 }
 
 /*Modo oscuro*/
