@@ -1,0 +1,22 @@
+.insert-image-container {
+    display: inline-flex;
+    font-size: inherit;
+    gap: 0.5em;
+    padding: 0.2em 0.8em;
+    border-radius: 30px;
+    align-items: center;
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+    border: 2px solid var(--text-primary);
+}
+
+.insert-image-container:active {
+    background-color: var(--shadow);
+}
+
+
+.insert-image-container img {
+    width: 2em;
+    height: 2em;
+    color: var(--text-primary);
+}
