@@ -3,6 +3,7 @@
     color: var(--text-primary);
     padding: 1rem 2rem;
     display: flex;
+    width: 100%;
     justify-content: space-between;
     align-items: center;
     border-radius: 0 0 10px 10px;
@@ -47,9 +48,35 @@
     height: 1.6em;
 }
 .button-icon > img {
-    width: 100%;
     height: 100%;
     align-items: center;
+}
+
+.button-icon#profileButton {
+    display: flex;
+    width: 100%;
+    gap: 1rem;
+    align-items: center;
+}
+.button-icon#profileButton > img {
+    display: none;
+}
+
+.button-icon#profileButton > .loginButton,
+.button-icon#profileButton > .registerButton {
+    display: block;
+    border: 1.5px solid var(--border-color);
+    border-radius: 10px;
+    padding: 0.5rem;
+}
+
+.button-icon#profileButton > .loginButton {
+    color: var(--text-primary);
+}
+
+.button-icon#profileButton > .registerButton {
+    background-color: var(--border-color);
+    color: var(--text-quaternary);
 }
 
 .header-search,
@@ -64,7 +91,8 @@
     margin: 0 1rem 0 1rem;
 }
 
-.header-search > .search > button {
+.header-search > .search > button,
+.button-icon > button {
     background: none;
     border: none;
     padding: 0;
