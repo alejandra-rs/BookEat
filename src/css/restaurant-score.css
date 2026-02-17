@@ -1,0 +1,18 @@
+.score {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.1em;
+    font-size: inherit;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.score-number {
+    font-size: inherit;
+}
+
+.star-icon {
+    width: 1em;
+    height: 1em;
+}
