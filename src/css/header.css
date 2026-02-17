@@ -1,0 +1,138 @@
+.main-header {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    padding: 1rem 2rem;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 2px 4px var(--shadow);
+}
+
+.logo a img {
+    width: 1em;
+    height: 1em;
+}
+
+.header-icons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.header-icons > p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    transition: color 0.3s;
+    cursor: default;
+}
+
+.button-icon,
+.logo {
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    align-content: center;
+}
+
+.button-icon#darkModeToggle,
+.button-icon#languageButton {
+    width: 1.6em;
+    height: 1.4em;
+}
+
+.button-icon#profileButton {
+    margin-left: 1em;
+    width: 1.6em;
+    height: 1.6em;
+}
+.button-icon > img {
+    height: 100%;
+    align-items: center;
+}
+
+.button-icon#profileButton {
+    display: flex;
+    width: 100%;
+    gap: 1rem;
+    align-items: center;
+}
+.button-icon#profileButton > img {
+    display: none;
+}
+
+.button-icon#profileButton > .loginButton,
+.button-icon#profileButton > .registerButton {
+    display: block;
+    border: 1.5px solid var(--border-color);
+    border-radius: 10px;
+    padding: 0.5rem;
+}
+
+.button-icon#profileButton > .loginButton {
+    color: var(--text-primary);
+}
+
+.button-icon#profileButton > .registerButton {
+    background-color: var(--border-color);
+    color: var(--text-quaternary);
+}
+
+.header-search,
+.header-search-components {
+    display: flex;
+    align-items: center;
+    border: 1.5px solid var(--border-color);
+    border-radius: 100px;
+    padding: 0.5rem;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    margin: 0 1rem 0 1rem;
+}
+
+.header-search > .search > button,
+.button-icon > button {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit; /* Opcional: hereda la fuente del texto */
+    cursor: pointer; /* Mantiene el puntero de mano */
+    outline: none; /* Elimina el borde al hacer click */
+}
+.header-search > .search > button > img {
+    height: 1.5em;
+    margin-right: 0.5em;
+    margin-top: 0.1em;
+}
+
+.header-search > .search > input {
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    color: var(--text-primary);
+    background-color: transparent;
+}
+
+.header-search > .search {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+/* Modo oscuro */
+body.dark-mode .main-header {
+    background-color: var(--bg-secondary);
+    box-shadow: 0 2px 10px var(--shadow);
+}
+
+body.dark-mode .header-icons > p {
+    color: var(--text-primary);
+}
+
+body.dark-mode .header-icons .button-icon > img,
+body.dark-mode .logo a img,
+body.dark-mode .header-search > .search > button > img {
+    filter: invert(1) sepia(1) grayscale(1) brightness(0.9);
+}
