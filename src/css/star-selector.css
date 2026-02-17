@@ -1,0 +1,14 @@
+.star-checkbox {
+    display: none;
+}
+
+.star-button {
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    background-image: url("../assets/icons/star.svg");
+}
+
+.star-checkbox:checked + .star-button {
+    background-image: url("../assets/icons/star-filled.svg");
+}
