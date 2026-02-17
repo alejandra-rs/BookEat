@@ -3,7 +3,7 @@
     flex-direction: column;
     overflow: hidden;
     position: relative;
-    background-color: var(--bg-primary);
+    background-color: var(--bg-secondary);
     border-radius: 16px;
     width: 280px;
     box-shadow: 0 4px 20px var(--shadow);
@@ -11,14 +11,13 @@
 }
 
 .restaurant-preview:hover {
-    transform: translateY(-4px);
+    transform: translateY(-2px);
     box-shadow: 0 8px 32px var(--shadow);
 }
 
 .restaurant-preview > .restaurant-img {
     width: 100%;
-    background-color: var(--bg-primary);
-    border-bottom: 1px solid var(--bg-secondary);
+    background-color: var(--bg-secondary);
     position: relative;
     overflow: hidden;
 }
