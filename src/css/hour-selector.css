@@ -1,10 +1,36 @@
 .hour-wrapper {
     position: relative;
-    display: inline-flex;
+    display: inline-block;
     align-items: center;
+    font-size: inherit;
     border: none;
     cursor: pointer;
     background-color: var(--bg-secondary);
+}
+
+.hour-placeholder {
+    display: flex;
+    align-items: center;
+    gap: 0.8em;
+    padding: 0.3em;
+}
+
+.hour-dropdown {
+    display: none;
+    position: absolute;
+    top: 110%;
+    left: 0;
+    background-color: var(--bg-secondary);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.hour-dropdown.open {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2em;
+    max-height: 20px;
 }
 
 .icon {
@@ -12,17 +38,6 @@
     height: 1.2em;
     flex-shrink: 0;
     pointer-events: none;
-}
-
-.hour-dropdown {
-    appearance: none;
-    -webkit-appearance: none;
-    padding: 1em;
-    border: none;
-    flex-grow: 1;
-    text-align: center;
-    background: transparent;
-    cursor: pointer;
 }
 
 body.dark-mode .icon > button > img {
