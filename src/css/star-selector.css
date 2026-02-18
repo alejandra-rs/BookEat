@@ -1,3 +1,11 @@
+.star-selector-container {
+    display: inline-flex;
+    gap: 0.1em;
+    background-color: var(--shadow);
+    padding: 0.2em 0.5em;
+    border-radius: 1em;
+}
+
 .star-checkbox {
     display: none;
 }
@@ -11,4 +19,17 @@
 
 .star-checkbox:checked + .star-button {
     background-image: url("../assets/icons/star-filled.svg");
+}
+
+.star-button:hover,
+.star-button:hover ~ .star-button {
+    background-image: url("../assets/icons/star.svg");
+}
+
+.star-selector-container:hover .star-button {
+    background-image: url("../assets/icons/star-filled.svg");
+}
+
+.star-selector-container:hover .star-button:hover ~ .star-button {
+    background-image: url("../assets/icons/star.svg");
 }
