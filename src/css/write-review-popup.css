@@ -1,0 +1,56 @@
+#review-dialog {
+    display: flex;
+    flex-direction: column;
+    font-size: inherit;
+    background-color: var(--shadow);
+    border: none;
+    gap: 1em;
+    padding: 1.5em;
+    border-radius: 30px;
+}
+
+.review-title {
+    text-align: center;
+}
+
+.review-description {
+    background-color: var(--bg-primary);
+    border-radius: 20px;
+    padding: 0.8em;
+}
+
+.pros-cons-container {
+    display: flex;
+    gap: 1em;
+}
+
+.pros-cons {
+    background-color: var(--bg-primary);
+    border-radius: 20px;
+    padding: 0.8em 1.5em;
+    gap: 1em;
+}
+
+.star-rating > p, .insert-image > p {
+    text-align: center;
+}
+
+.review-footer {
+    text-align: end;
+}
+
+.cancel-button {
+    background-color: var(--bg-primary);
+    border: 0.1em solid #000000;
+    color: var(--text-primary);
+    padding: 0.4em 1em;
+    border-radius: 6px;
+}
+
+.submit-button {
+    background-color: var(--text-primary);
+    border: 0.1em solid #000000;
+    color: var(--bg-primary);
+    padding: 0.4em 1em;
+    border-radius: 6px;
+}
