@@ -8,5 +8,15 @@
 </head>
 <body>
     <button class="hour-button"> 09:00 - 11:00 </button>
+
+    <script>
+        const button = document.querySelector('.hour-button');
+        /* button.classList.add('occupied'); */
+        button.addEventListener('click', () => {
+            if (button.classList.contains('occupied')) return;
+            button.classList.toggle('selected');
+        });
+    </script>
 </body>
+
 </html>

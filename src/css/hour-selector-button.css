@@ -3,6 +3,7 @@
     padding: 10px 20px;
     font-size: inherit;
     cursor: pointer;
+    flex: 1;
 
     background-color: var(--bg-primary);
     color: var(--text-primary);
@@ -12,4 +13,13 @@
 
 .hour-button:hover {
     background-color: var(--shadow);
+}
+
+.hour-button.selected {
+    background-color: var(--shadow);
+}
+
+.hour-button.occupied {
+    color: var(--bg-primary);
+    background-color: var(--text-primary);
 }
