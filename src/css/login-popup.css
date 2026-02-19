@@ -16,10 +16,14 @@ dialog form {
     gap: 5px;
     align-items: center;
 }
+dialog form label{
+    width: 100%;
+}
 
 dialog form input {
     width: 100%;
     background: var(--background-button-color);
+    flex: 1;
     padding: 2px 10px;
     border-radius: 8px;
 }
@@ -28,6 +32,15 @@ button{
     background: none;
     border: none;
 }
+dialog div{
+    display: flex;
+    flex:1;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+}
+
 #login-button {
     background: #2C2C2C; /*todo: ponerlo como variable general para poder hacer el modo oscuro too*/
     color: var(--bg-secondary);
