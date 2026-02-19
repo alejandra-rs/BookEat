@@ -1,25 +1,31 @@
-.date-selector {
+#date-picker {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 10px;
+    gap: 0.5rem;
+    padding: 0.8rem;
+    background-color: transparent;
     cursor: pointer;
-    position: relative;
+    user-select: none;
 }
 
-.date-selector > input {
+#date-picker input,
+#date-picker  input::placeholder,
+#date-picker .flatpickr-input {
+    max-width: 5rem;
     border: none;
     outline: none;
     background: transparent;
+    font-size: 1rem;
     cursor: pointer;
+    color: var(--text-primary);
 }
 
 .calendar-icon, .dropdown-arrow {
-    width: 1em;
-    height: 1em;
-    pointer-events: none;
+    width: 1.2rem;
+    height: 1.2rem;
 }
 
-.dropdown-arrow:hover {
-    cursor: pointer;
+body.dark-mode #date-picker .calendar-icon,
+body.dark-mode #date-picker .dropdown-arrow {
+    filter: invert(1) sepia(1) grayscale(1) brightness(0.9);
 }
