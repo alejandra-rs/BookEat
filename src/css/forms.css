@@ -50,3 +50,10 @@ dialog div{
 #register-button {
     color: #757575; /*todo: ponerlo como variable general para poder hacer el modo oscuro too*/
 }
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+    min-height: 30px;
+}
