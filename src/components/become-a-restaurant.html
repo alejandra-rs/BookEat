@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Popup</title>
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../css/forms.css">
+</head>
+<dialog id="login-popup" class="SinginForm" open>
+  <h3>Become an Affiliate</h3>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vel sem dui. Lorem ipsum dolor sit amet,
+      consectetur adipiscing elit. Aliquam blandit viverra scelerisque. Aliquam et vehicula nibh, vulputate tincidunt
+      velit. Phasellus elementum laoreet ante sit amet aliquam. Integer vel ante enim. Nam aliquet pharetra libero
+      porttitor faucibus. Curabitur ut leo non odio placerat elementum. Vestibulum commodo ipsum a auctor pretium.
+      Integer sagittis et orci et sagittis.</p>
+  <form>
+      <div>
+        <label>
+          <input type="text" placeholder="Name" required>
+        </label>
+        <label>
+            <input type="text" placeholder="Surname" required>
+        </label>
+        <label>
+            <input type="tel" placeholder="phone number" required>
+        </label>
+      </div>
+        <label>
+            <input type="email" placeholder="Email" required>
+        </label>
+      <div>
+        <label>
+            <input type="text" placeholder="Restaurant Name" required>
+        </label>
+        <label>
+            <input list="tagsList" placeholder="Restaurant tags" required>
+        </label>
+      </div>
+        <datalist id="tagsList">
+            <option value="sushi"></option>
+            <option value="pizza"></option>
+            <option value="pasta"></option>
+        </datalist>
+        <label>
+            <input type="text" placeholder="Restaurant address (line 1)" required>
+        </label>
+        <label>
+            <input type="text" placeholder="Restaurant address (line 2)">
+        </label>
+      <div>
+        <label>
+            <input type="text" placeholder="city" required>
+        </label>
+        <label>
+            <input type="text" placeholder="Province" required>
+        </label>
+        <label>
+            <input type="text" placeholder="Postal Code" required>
+        </label>
+      </div>
+    <button id="login-button" type="submit">Register</button>
+  </form>
+    <button id="register-button">Login</button>
+</dialog>
+</html>
