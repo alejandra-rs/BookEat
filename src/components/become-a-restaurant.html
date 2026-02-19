@@ -32,15 +32,43 @@
         <label>
             <input type="text" placeholder="Restaurant Name" required>
         </label>
-        <label>
-            <input list="tagsList" placeholder="Restaurant tags" required>
-        </label>
+          <label class="campo">
+              <div>
+                  <input list="tagsList" id="tag-input" placeholder="add a tag">
+              </div>
+              <datalist id="tagsList">
+                  <option value="Italiana">
+                  <option value="Mexicana">
+                  <option value="Vegana">
+              </datalist>
+          </label>
       </div>
-        <datalist id="tagsList">
-            <option value="sushi"></option>
-            <option value="pizza"></option>
-            <option value="pasta"></option>
-        </datalist>
+      <div class="tags-container" id="tags-container"></div>
+      <script>
+          const tagInput = document.getElementById('tag-input');
+          const tagsContainer = document.getElementById('tags-container');
+
+          function crearTag(texto) {
+              if (texto.trim() === '') return;
+
+              const tagDiv = document.createElement('div');
+              tagDiv.className = 'tag';
+
+              tagDiv.innerHTML = `${texto} <span onclick="this.parentElement.remove()">×</span>`;
+
+              tagsContainer.appendChild(tagDiv);
+
+              tagInput.value = '';
+          }
+
+          tagInput.addEventListener('keydown', function(event) {
+              if (event.key === 'Enter') {
+                  event.preventDefault();
+                  crearTag(this.value);
+              }
+          });
+      </script>
+
         <label>
             <input type="text" placeholder="Restaurant address (line 1)" required>
         </label>
