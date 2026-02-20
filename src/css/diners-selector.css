@@ -26,3 +26,7 @@
     align-items: center;
     background-color: var(--background-button-color);
 }
+img{
+    height: 2em;
+    width: 2em;
+}
