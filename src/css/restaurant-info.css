@@ -9,10 +9,18 @@
 .restaurantInfo {
     display: flex;
     flex-direction: row;
-    flex-flow: row nowrap;
-    justify-content: space-evenly;
-    align-items: center;
     gap: 16px;
+}
+.restaurantImage{
+    width: 35%;
+    height: 35%;
+    border-radius: 4%;
+}
+
+.restaurantInformationText{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .restaurantInfo header {
@@ -21,11 +29,27 @@
     justify-content: space-between;
     align-items: center;
 }
+
 .restaurantInfo .buttonContainer {
     display: flex;
     flex-direction: row-reverse;
     gap: 8px;
+    padding: 16px;
 }
+#cart-image{
+    background-color: #e1e1e1;
+    height: fit-content;
+    border: none;
+    padding: 0;
+    display: flex;
+}
+
+#cart-image img {
+    with: 3rem;
+    height: 3rem;
+    display: block;
+}
+
 .restaurantInfo .buttonContainer button {
     color: var(--text-button-color);
     padding: var(--sds-size-space-300);
@@ -38,7 +62,3 @@
     background: var(--background-button-color);
 }
 
-.restaurantImage {
-    width: 100%;
-    border-radius: 4%;
-}
