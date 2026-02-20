@@ -1,3 +1,14 @@
+
+footer{
+    background: #D9D9D9;
+    color: #000;
+}
+
+footer img{
+    width: 5em;
+    height: auto;
+}
+
 .site-footer {
     display: flex;
     justify-content: space-between;
@@ -8,7 +19,7 @@
 
 .footer-column{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-direction: column;
     align-content: center;
     align-items: center;
