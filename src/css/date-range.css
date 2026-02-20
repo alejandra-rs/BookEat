@@ -1,0 +1,51 @@
+.date-group{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+
+.date-group > .date-wrapper{
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    box-shadow: 0 2px 4px var(--shadow);
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0.2rem;
+}
+
+.date-wrapper > button#calendar-range-button{
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit; /* Opcional: hereda la fuente del texto */
+    cursor: pointer; /* Mantiene el puntero de mano */
+    outline: none; /* Elimina el borde al hacer click */
+}
+
+
+.date-wrapper > button#calendar-range-button > img{
+    width: 1em;
+    height: 1em;
+}
+
+
+.date-wrapper > input#calendar-range-input {
+   background: transparent !important;
+    border: none !important;
+    padding: 0.2rem !important;
+    width: auto !important;
+    min-width: 0 !important;
+}
+
+.date-wrapper > input#calendar-range-input:focus{
+    outline: none;
+    box-shadow: none;
+    border: none;
+}
+
+.body.dark-mode >.button#calendar-range-button > img{
+    filter: invert(1) brightness(0.9) sepia(1) grayscale(1);
+}
