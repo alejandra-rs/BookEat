@@ -1,31 +1,34 @@
-// import flatpickr from "flatpickr";
-// import "flatpickr/dist/flatpickr.min.css";
+const calendarRangeButton = document.getElementById('calendar-range-button');
+const input = document.getElementById('calendar-range-input');
+
+function adjustWidth() {
+    if(input.value.length > 0) {
+        input.size = input.value.length - 4;
+    }else {
+        input.size = input.placeholder.length - 5;
+    }
+}
+
+const fromPicker = flatpickr('#calendar-range-input', {
+    dateFormat: 'd.m.Y',
+    clickOutside: false,
+    mode: "range",
+    onReady: adjustWidth,
+    onChange: adjustWidth,
+    onClose(selectedDates) {
+        switch (selectedDates.length) {
+            case 1:
+                fromPicker.setDate([selectedDates[0], selectedDates[0]]);
+                adjustWidth();
+                break;
+            case 0:
+                fromPicker.clear();
+                adjustWidth();
+                break;
+        }
+    },
+});
+
 document.addEventListener('DOMContentLoaded', () => {
-
-    const fromButton = document.getElementById('from-button');
-    const toButton = document.getElementById('to-button');
-
-    const fromPicker = flatpickr('#from-input', {
-        dateFormat: 'd.m.Y',
-        clickOutside: false,
-        onChange(selectedDates) {
-            if (selectedDates[0]) {
-                toPicker.set('minDate', selectedDates[0]);
-            }
-        }
-    });
-
-    const toPicker = flatpickr('#to-input', {
-        dateFormat: 'd.m.Y',
-        clickOutside: false,
-        onChange(selectedDates) {
-            if (selectedDates[0]) {
-                fromPicker.set('maxDate', selectedDates[0]);
-            }
-        }
-    });
-
-    fromButton.addEventListener('click', () => fromPicker.open());
-    toButton.addEventListener('click', () => toButton.open());
-    console.log("cargando js");
+    calendarRangeButton.addEventListener('click', () => fromPicker.open());
 })
