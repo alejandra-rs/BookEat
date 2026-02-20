@@ -1,0 +1,40 @@
+.user-review {
+    display: inline-flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+    background: var(--shadow);
+    border-radius: 2rem;
+}
+
+.user-image, .review-image {
+    width: 5rem;
+    height: 5rem;
+}
+
+.pros-cons {
+    display: inline-flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 0.5rem;
+}
+
+.review-header {
+    display: inline-flex;
+    gap: 1rem;
+}
+
+.review-metadata {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+}
+
+.review-value {
+    font-size: 2rem;
+}
+
+.review-images {
+    display: inline-flex;
+    gap: 1rem;
+}
