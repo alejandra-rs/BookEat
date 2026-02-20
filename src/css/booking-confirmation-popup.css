@@ -1,16 +1,20 @@
 dialog {
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background: #e1e1e1;
     border: 1px solid #ccc;
     border-radius: 0.25em;
+    padding: 2rem;
+    gap: 1rem;
 }
 section{
     display: flex;
     flex-direction: column;
     background: var(--bg-primary);
     padding: 1rem;
+    border-radius: 0.25em;
 }
 .details-content{
     display: flex;
@@ -44,4 +48,23 @@ img{
     justify-content: left;
     align-items: center;
     gap: 3px;
+}
+
+
+button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    img {
+        width: 2rem;
+        height: 2rem;
+        color: var(--text-primary);
+    }
+    padding: 1rem;
+    border-radius: 0.5em;
+}
+
+button:active{
+        background-color: var(--shadow);
 }
