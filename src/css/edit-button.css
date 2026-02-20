@@ -1,0 +1,16 @@
+.edit-button {
+    display: inline-flex;
+    padding: 0.2rem;
+    font-size: inherit;
+    background-color: var(--shadow);
+    border: none;
+    border-radius: 0.3rem;
+}
+
+.edit-image {
+    height: 1.2rem;
+}
+
+body.dark-mode .edit-button > .edit-image {
+    filter: invert(1) sepia(1) grayscale(1) brightness(0.9);
+}
