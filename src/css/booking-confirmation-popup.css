@@ -50,21 +50,8 @@ img{
     gap: 3px;
 }
 
-
-button{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    img {
-        width: 2rem;
-        height: 2rem;
-        color: var(--text-primary);
-    }
-    padding: 1rem;
-    border-radius: 0.5em;
-}
-
-button:active{
-        background-color: var(--shadow);
+button > img {
+    width: 2rem;
+    height: 2rem;
+    color: var(--text-primary);
 }
