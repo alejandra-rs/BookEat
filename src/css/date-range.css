@@ -20,9 +20,9 @@
     background: none;
     border: none;
     padding: 0;
-    font: inherit; /* Opcional: hereda la fuente del texto */
-    cursor: pointer; /* Mantiene el puntero de mano */
-    outline: none; /* Elimina el borde al hacer click */
+    font: inherit;
+    cursor: pointer;
+    outline: none;
 }
 
 
