@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../../styles.css">
     <link rel="stylesheet" href="../css/forms.css">
 </head>
-<dialog id="login-popup" class="SinginForm" open>
+<dialog id="become-restaurant-popup" open>
   <h3>Become an Affiliate</h3>
   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vel sem dui. Lorem ipsum dolor sit amet,
       consectetur adipiscing elit. Aliquam blandit viverra scelerisque. Aliquam et vehicula nibh, vulputate tincidunt
@@ -29,17 +29,15 @@
             <input type="email" placeholder="Email" required>
         </label>
       <div>
-        <label>
-            <input type="text" placeholder="Restaurant Name" required>
-        </label>
+          <label>
+              <input type="text" placeholder="Restaurant Name" required>
+          </label>
           <label class="campo">
-              <div>
-                  <input list="tagsList" id="tag-input" placeholder="Add a tag">
-              </div>
+              <input list="tagsList" id="tag-input" placeholder="Add a tag">
               <datalist id="tagsList">
-                  <option value="Italiana">
-                  <option value="Mexicana">
-                  <option value="Vegana">
+                  <option value="Italian">
+                  <option value="Mexican">
+                  <option value="Vegan">
               </datalist>
           </label>
       </div>
@@ -65,8 +63,8 @@
             <input type="text" placeholder="Postal Code" required>
         </label>
       </div>
-    <button id="register-button" class="primary-button" type="submit">Register</button>
+    <button class="primary-button" type="submit">Register</button>
   </form>
-    <button id="login-button" class="secondary-button">Login</button>
+    <button class="secondary-button">Login</button>
 </dialog>
 </html>

@@ -1,8 +1,5 @@
 .edit-button {
-    display: inline-flex;
     padding: 0.2rem;
-    font-size: inherit;
-    background-color: var(--shadow);
     border: none;
     border-radius: 0.3rem;
 }

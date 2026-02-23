@@ -18,19 +18,3 @@
 .popup-footer {
     text-align: end;
 }
-
-.cancel-button {
-    background-color: var(--bg-primary);
-    border: 0.1em solid #000000;
-    color: var(--text-primary);
-    padding: 0.4em 1em;
-    border-radius: 6px;
-}
-
-.save-button {
-    background-color: var(--text-primary);
-    border: 0.1em solid #000000;
-    color: var(--bg-primary);
-    padding: 0.4em 1em;
-    border-radius: 6px;
-}

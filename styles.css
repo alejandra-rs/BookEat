@@ -33,15 +33,15 @@ body.dark-mode {
 }
 
 button {
+    display: inline-flex;
+    align-items: center;
     border-radius: 12px;
     gap: 0.5rem;
     padding: 0.3rem 1rem;
-    display: inline-flex;
-    align-items: center;
     cursor: pointer;
 }
 
-.secondary-button{
+.secondary-button {
     color: var(--text-primary);
     background-color: var(--button-primary);
     border: solid 0.1em var(--text-primary);
@@ -54,7 +54,7 @@ button {
 .primary-button{
     color: var(--text-quaternary);
     background-color: var(--button-secondary);
-    border: none;
+    border: solid 0.1em var(--button-secondary);
 }
 
 .primary-button:active{
