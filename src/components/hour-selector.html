@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Hour Selector</title>
-    <link rel="stylesheet" href="/src/css/hour-selector.css">
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../css/hour-selector.css">
+    <script src="../js/xlu-include-file.js"></script>
 </head>
 <body>
     <div class="hour-wrapper">
@@ -13,15 +15,16 @@
             <img src="../assets/icons/down-arrow.svg" alt="Down-arrow" class="icon">
         </button>
         <div class="hour-dropdown">
-            <button class="hour-button"> 09:00 - 11:00 </button>
-            <button class="hour-button"> 09:00 - 11:00 </button>
-            <button class="hour-button"> 09:00 - 11:00 </button>
-            <button class="hour-button"> 09:00 - 11:00 </button>
-            <button class="hour-button"> 09:00 - 11:00 </button>
-            <button class="hour-button"> 09:00 - 11:00 </button>
+            <div xlu-include-file="hour-selector-button.html"></div>
+            <div xlu-include-file="hour-selector-button.html"></div>
+            <div xlu-include-file="hour-selector-button.html"></div>
+            <div xlu-include-file="hour-selector-button.html"></div>
+            <div xlu-include-file="hour-selector-button.html"></div>
+            <div xlu-include-file="hour-selector-button.html"></div>
+            <div xlu-include-file="hour-selector-button.html"></div>
         </div>
     </div>
-
     <script src="/src/js/hour-selector.js"></script>
+    <script>xLuIncludeFile()</script>
 </body>
 </html>
