@@ -1,5 +1,3 @@
-
-
 async function xLuIncludeFile() {
     let z = document.getElementsByTagName("*");
 
@@ -7,7 +5,6 @@ async function xLuIncludeFile() {
         if (z[i].getAttribute("xlu-include-file")) {
             let a = z[i].cloneNode(false);
             let file = z[i].getAttribute("xlu-include-file");
-
             try {
                 let response = await fetch(file);
                 if (response.ok) {

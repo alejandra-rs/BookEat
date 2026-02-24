@@ -4,15 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <title>BookEat</title>
-    <script type="module" src="/src/js/initialComponents.js"></script>
+    <script src="/src/js/xlu-include-file.js"></script>
     <link rel="icon" type="image/svg+xml" href="/src/assets/icons/logo.svg">
     <link rel="stylesheet" href="/styles.css">
 </head>
 
 <body>
-    <div id="header"></div>
+    <div xlu-include-file="/src/components/header.html"></div>
     <h1>BookEat testing</h1>
     <p>hello world</p>
 </body>
+
+<script>xLuIncludeFile()</script>
 
 </html>
