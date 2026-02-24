@@ -6,15 +6,22 @@
     <link rel="stylesheet" href="/src/css/hour-selector.css">
 </head>
 <body>
-    <label class="hour-wrapper">
-        <img src="../assets/icons/clock.svg" alt="Clock" class="icon">
-        <select class="hour-dropdown">
-            <option value="" disabled selected hidden>Time</option>
-            <option value="1">Hour 1</option>
-            <option value="2">Hour 2</option>
-            <option value="3">Hour 3</option>
-        </select>
-        <img src="../assets/icons/down-arrow.svg" alt="Down-arrow" class="icon">
-    </label>
+    <div class="hour-wrapper">
+        <button class="hour-placeholder">
+            <img src="../assets/icons/clock.svg" alt="Clock" class="icon">
+            <span class="placeholder">Time</span>
+            <img src="../assets/icons/down-arrow.svg" alt="Down-arrow" class="icon">
+        </button>
+        <div class="hour-dropdown">
+            <button class="hour-button"> 09:00 - 11:00 </button>
+            <button class="hour-button"> 09:00 - 11:00 </button>
+            <button class="hour-button"> 09:00 - 11:00 </button>
+            <button class="hour-button"> 09:00 - 11:00 </button>
+            <button class="hour-button"> 09:00 - 11:00 </button>
+            <button class="hour-button"> 09:00 - 11:00 </button>
+        </div>
+    </div>
+
+    <script src="/src/js/hour-selector.js"></script>
 </body>
 </html>
