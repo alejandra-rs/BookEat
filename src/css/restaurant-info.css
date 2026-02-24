@@ -1,15 +1,9 @@
-:root {
-    --sds-size-space-300: 12px;
-    --sds-size-space-200: 8px;
-    --sds-size-radius-200: 12%;
-    --background-button-color: #2c2c2c;
-    --text-button-color: #ffffff;
-}
-
 .restaurantInfo {
     display: flex;
-    flex-direction: row;
-    gap: 16px;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: var(--bg-secondary);
 }
 .restaurantImage{
     width: 35%;
@@ -25,7 +19,6 @@
 
 .restaurantInfo header {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
@@ -36,29 +29,15 @@
     gap: 8px;
     padding: 16px;
 }
-#cart-image{
-    background-color: #e1e1e1;
+
+#menu-image{
     height: fit-content;
-    border: none;
-    padding: 0;
     display: flex;
+    padding: 0.5rem;
+    border: none;
 }
 
-#cart-image img {
-    with: 3rem;
-    height: 3rem;
-    display: block;
+#menu-image img {
+    width: 2rem;
+    height: 2rem;
 }
-
-.restaurantInfo .buttonContainer button {
-    color: var(--text-button-color);
-    padding: var(--sds-size-space-300);
-    justify-content: center;
-    align-items: center;
-    gap: var(--sds-size-space-200);
-    align-self: stretch;
-    border-radius: var(--sds-size-radius-200);
-    border: 1px solid var(--background-button-color);
-    background: var(--background-button-color);
-}
-
