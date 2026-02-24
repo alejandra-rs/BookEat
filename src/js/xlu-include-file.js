@@ -17,11 +17,21 @@ async function xLuIncludeFile() {
 
                     }
 
-
-
                     a.removeAttribute("xlu-include-file");
                     a.innerHTML = content;
                     z[i].parentNode.replaceChild(a, z[i]);
+
+                    let scripts = a.querySelectorAll("script");
+                    scripts.forEach(oldScript => {
+                        let newScript = document.createElement("script");
+                        Array.from(oldScript.attributes).forEach(attr => {
+                            newScript.setAttribute(attr.name, attr.value);
+                        });
+                        newScript.textContent = oldScript.textContent;
+                        document.body.appendChild(newScript);
+                        oldScript.remove();
+                    });
+
                     xLuIncludeFile();
                 }
             } catch (error) {
