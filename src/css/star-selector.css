@@ -1,9 +1,9 @@
 .star-selector-container {
     display: inline-flex;
-    gap: 0.1em;
+    gap: 0.1rem;
     background-color: var(--shadow);
-    padding: 0.2em 0.5em;
-    border-radius: 1em;
+    padding: 0.4rem 1rem;
+    border-radius: 2rem;
 }
 
 .star-checkbox {
@@ -11,8 +11,8 @@
 }
 
 .star-button {
-    width: 1em;
-    height: 1em;
+    width: 1.75rem;
+    height: 1.75rem;
     display: inline-block;
     background-image: url("../assets/icons/star.svg");
 }
