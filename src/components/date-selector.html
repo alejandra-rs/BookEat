@@ -3,22 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Date Selector</title>
+    <link rel="stylesheet" href="/styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
-    <link rel="stylesheet" href="../../styles.css">
-    <link rel="stylesheet" href="../css/date-selector.css">
+    <link rel="stylesheet" href="/src/css/date-selector.css">
+    <script type="module" src="/src/js/date-selector.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
 
 <body>
     <div id="date-picker" class="flatpickr">
-        <img src="../assets/icons/calendar.svg" alt="Calendar Icon" class="calendar-icon" data-toggle>
+        <img id="calendar-icon" src="/src/assets/icons/calendar.svg" alt="Calendar Icon" class="calendar-icon">
         <label>
-            <input type="text" placeholder="Date" data-input>
+            <input type="text" placeholder="Date">
         </label>
-        <img src="../assets/icons/down-arrow.svg" alt="Down Arrow" class="dropdown-arrow" data-toggle>
+        <img id="dropdown-arrow" src="/src/assets/icons/down-arrow.svg" alt="Down Arrow" class="dropdown-arrow">
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="../js/date-selector.js"></script>
 </body>
 </html>
