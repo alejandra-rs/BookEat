@@ -5,6 +5,7 @@
     <title>Edit Property</title>
     <link rel="stylesheet" href="../../styles.css">
     <link rel="stylesheet" href="../css/edit-property.css">
+    <script src="../js/xlu-include-file.js"></script>
 </head>
 <body>
     <div class="edit-property">
@@ -12,8 +13,9 @@
         <label for="property"> Property </label>
         <div class="edit-field">
             <input type="text" id="property" value="Lorem Ipsum" readonly>
-            <button>Edit</button>
+            <div xlu-include-file="edit-button.html"></div>
         </div>
     </div>
+    <script>xLuIncludeFile()</script>
   </body>
 </html>

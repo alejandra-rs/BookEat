@@ -11,6 +11,7 @@
 }
 
 .edit-field {
+    display: inline-flex;
     border: var(--text-primary) solid 1px;
     padding: 0.2rem;
     border-radius: 0.2rem;

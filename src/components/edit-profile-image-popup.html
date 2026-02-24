@@ -5,15 +5,17 @@
     <title>Edit Profile Image Popup</title>
     <link rel="stylesheet" href="../../styles.css">
     <link rel="stylesheet" href="../css/edit-profile-image-popup.css">
+    <script src="../js/xlu-include-file.js"></script>
 </head>
 <dialog id="edit-profile-image-dialog">
   <section class="popup-content">
     <h2>Edit your profile image</h2>
-    <p>Insert Image</p>
+    <div xlu-include-file="insert-image.html"></div>
   </section>
   <footer class="popup-footer">
     <button class="cancel-button secondary-button">Cancel</button>
     <button class="save-button primary-button">Save</button>
   </footer>
+  <script>xLuIncludeFile()</script>
 </dialog>
 </html>
