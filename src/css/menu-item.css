@@ -2,7 +2,7 @@
     display: flex;
     align-items: stretch;
     font-size: inherit;
-    background-color: var(--shadow);
+    background-color: var(--bg-secondary);
     border-radius: 30px;
     padding: 1rem 2rem;
     gap: 1rem;

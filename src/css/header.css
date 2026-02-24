@@ -58,32 +58,16 @@
     gap: 1rem;
     align-items: center;
 }
+
 .button-icon#profileButton > img {
     display: none;
-}
-
-.button-icon#profileButton > .loginButton,
-.button-icon#profileButton > .registerButton {
-    display: block;
-    border: 1.5px solid var(--border-color);
-    border-radius: 10px;
-    padding: 0.5rem;
-}
-
-.button-icon#profileButton > .loginButton {
-    color: var(--text-primary);
-}
-
-.button-icon#profileButton > .registerButton {
-    background-color: var(--border-color);
-    color: var(--text-quaternary);
 }
 
 .header-search,
 .header-search-components {
     display: flex;
     align-items: center;
-    border: 1.5px solid var(--border-color);
+    border: 0.1rem solid var(--border-color);
     border-radius: 100px;
     padding: 0.5rem;
     background-color: var(--bg-secondary);
@@ -91,15 +75,13 @@
     margin: 0 1rem 0 1rem;
 }
 
-.header-search > .search > button,
-.button-icon > button {
+.header-search > .search > button {
     background: none;
     border: none;
     padding: 0;
-    font: inherit;
     cursor: pointer;
-    outline: none;
 }
+
 .header-search > .search > button > img {
     height: 1.5em;
     margin-right: 0.5em;
@@ -121,7 +103,6 @@
     justify-content: center;
 }
 
-/* Modo oscuro */
 body.dark-mode .main-header {
     background-color: var(--bg-secondary);
     box-shadow: 0 2px 10px var(--shadow);
