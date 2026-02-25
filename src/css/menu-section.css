@@ -7,6 +7,10 @@
     background: transparent;
 }
 
+.menu-section-header {
+    color: var(--text-primary);
+}
+
 .menu-section h2 {
     font-size: 1.5rem;
 }

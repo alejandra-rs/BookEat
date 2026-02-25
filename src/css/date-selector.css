@@ -24,8 +24,3 @@
     width: 1.2rem;
     height: 1.2rem;
 }
-
-body.dark-mode #date-picker .calendar-icon,
-body.dark-mode #date-picker .dropdown-arrow {
-    filter: invert(1) sepia(1) grayscale(1) brightness(0.9);
-}

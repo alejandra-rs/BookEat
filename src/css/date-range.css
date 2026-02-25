@@ -14,6 +14,7 @@
     align-items: center;
     justify-content: center;
     padding: 0.2rem;
+    background-color: var(--bg-primary);
 }
 
 .date-wrapper > button#calendar-range-button{
@@ -33,14 +34,11 @@
     padding: 0.2rem !important;
     width: auto !important;
     min-width: 0 !important;
+    color: var(--text-primary);
 }
 
 .date-wrapper > input#calendar-range-input:focus{
     outline: none;
     box-shadow: none;
     border: none;
-}
-
-.body.dark-mode >.button#calendar-range-button > img{
-    filter: invert(1) brightness(0.9) sepia(1) grayscale(1);
 }

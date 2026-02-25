@@ -3,11 +3,12 @@ dialog {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: #e1e1e1;
-    border: 1px solid #ccc;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
     border-radius: 0.25em;
     padding: 2rem;
     gap: 1rem;
+    color: var(--text-primary);
 }
 section{
     display: flex;
@@ -29,8 +30,9 @@ figure{
     align-items: center;
     margin: 2rem;
 }
-img{
-    width: 24rem;
+.map__image{
+    width: 24em;
+    height: 24em;
 }
 
 .info-container{

@@ -12,7 +12,7 @@
     border-radius: 2rem;
 }
 
-img {
+.diners-counter > img {
     height: 2em;
     width: 2em;
 }

@@ -1,17 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>overview</title>
-    <link rel="stylesheet" href="../../styles.css">
-    <link rel="stylesheet" href="../css/overview.css">
-</head>
+<link rel="stylesheet" href="/src/css/overview.css">
+
 <article class="overview restaurantCard">
-    <img src="../assets/img/restaurant-item.png" alt="a restaurant image" class="restaurantImage">
+    <img src="/src/assets/img/restaurant-item.png" alt="a restaurant image" class="restaurantImage icon_img">
     <div>
         <header>
             <h1>Restaurant Name</h1>
-            <span>5⭐</span>
+            <span xlu-include-file="/src/components/user-score.html"></span>
         </header>
         <p>
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
@@ -25,7 +19,7 @@
 <article class="overview reservationCard">
     <div>
         <header>
-            <img src="../assets/img/restaurant-item.png" alt="user image" class="profileImage">
+            <img src="/src/assets/img/restaurant-item.png" alt="user image" class="profileImage icon_img">
             <h1>Restaurant Name</h1>
             <time>10/2/2021  19:21</time>
         </header>
@@ -39,7 +33,7 @@
 </article>
 
     <article class="overview restaurantReservationCardCurrent">
-    <img src="../assets/img/restaurant-item.png" alt="a restaurant image" class="restaurantImage">
+    <img src="/src/assets/img/restaurant-item.png" alt="a restaurant image" class="restaurantImage icon_img">
         <div>
         <header>
             <h1>Restaurant Name</h1>
@@ -55,4 +49,3 @@
         </div>
     </div>
 </article>
-</html>

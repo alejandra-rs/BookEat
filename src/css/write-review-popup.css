@@ -9,8 +9,13 @@
     border-radius: 30px;
 }
 
-h1 { font-size: 2rem; }
-h2 { font-size: 1.25rem; }
+#review-dialog > header >h1 {
+    font-size: 2rem; 
+    color: var(--text-primary);
+}
+#review-dialog > header > h2 { font-size: 1.25rem;
+color: var(--text-secondary);
+}
 
 .review-content {
     background-color: var(--bg-secondary);
@@ -18,6 +23,7 @@ h2 { font-size: 1.25rem; }
     padding: 0.8em 1.5em;
     gap: 1em;
     flex: 1;
+    color: var(--text-secondary);
 }
 
 .pros-cons-container {

@@ -103,17 +103,3 @@
     justify-content: center;
 }
 
-body.dark-mode .main-header {
-    background-color: var(--bg-secondary);
-    box-shadow: 0 2px 10px var(--shadow);
-}
-
-body.dark-mode .header-icons > p {
-    color: var(--text-primary);
-}
-
-body.dark-mode .header-icons .button-icon > img,
-body.dark-mode .logo a img,
-body.dark-mode .header-search > .search > button > img {
-    filter: invert(1) sepia(1) grayscale(1) brightness(0.9);
-}

@@ -16,7 +16,7 @@
     justify-content: space-evenly;
     align-items: center;
     gap: 16px;
-    background-color: #f3f3f3;
+    background-color: var(--bg-primary);
     box-shadow: 0.1em 0  1em grey;
 }
 
@@ -26,7 +26,10 @@
     justify-content: space-between;
     align-items: center;
     padding: 16px;
-
+    color: var(--text-primary);
+}
+.overview > div > p{
+    color: var(--text-primary);
 }
 
 .overview .buttonContainer{
@@ -36,7 +39,7 @@
 }
 
 .overview .buttonContainer button{
-    color: var(--text-button-color);
+    color: var(--text-primary);
     padding: var(--button-padding);
     justify-content: center;
     align-items: center;
@@ -44,7 +47,7 @@
     align-self: stretch;
     border-radius: var(--button-radius);
     border: 1px solid black;
-    background: var(--background-button-color);
+    background: var(--button-primary);
 }
 .restaurantImage{
     width: 50%;

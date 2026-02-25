@@ -21,6 +21,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color: var(--text-primary);
+}
+
+.restaurantInformationText > p {
+    color: var(--text-secondary);
 }
 
 .restaurantInfo .buttonContainer {
@@ -37,7 +42,7 @@
     border: none;
 }
 
-#menu-image img {
+#menu-image > img {
     width: 2rem;
     height: 2rem;
 }

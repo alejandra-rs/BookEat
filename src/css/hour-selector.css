@@ -12,6 +12,8 @@
     align-items: center;
     gap: 0.8em;
     padding: 0.3em;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
 }
 
 .hour-dropdown {
@@ -39,10 +41,6 @@
     height: 1.2em;
     flex-shrink: 0;
     pointer-events: none;
-}
-
-body.dark-mode .icon {
-    filter: invert(1) sepia(1) grayscale(1) brightness(0.9);
 }
 
 .hour-button {
