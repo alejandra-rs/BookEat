@@ -16,3 +16,7 @@
     width: 1em;
     height: 1em;
 }
+
+body.dark-mode .star-icon {
+    filter: invert(1) sepia(1) grayscale(1) brightness(0.9);
+}

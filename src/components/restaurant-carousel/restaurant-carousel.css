@@ -4,6 +4,7 @@
     overflow: hidden;
     position: relative;
     user-select: none;
+    background:var(--bg-primary) ;
 }
 
 .restaurant-carousel-container h1 {
