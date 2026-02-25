@@ -4,8 +4,9 @@
     padding: 2.5rem;
     border-radius: 20px;
     border: none;
-    background-color: var(--shadow);
+    background-color: var(--bg-tertiary);
     gap: 2rem;
+    color: var(--text-primary);
 }
 
 h2 {

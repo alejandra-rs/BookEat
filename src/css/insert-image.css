@@ -3,3 +3,7 @@
     height: 2em;
     color: var(--text-primary);
 }
+
+body.dark-mode .insert-image-container img {
+    filter: invert(1) sepia(1) grayscale(1) brightness(0.9);
+}

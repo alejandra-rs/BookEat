@@ -8,6 +8,7 @@
 :root {
     --bg-primary: #f5f5f5;
     --bg-secondary: #f8f9fa;
+    --bg-tertiary: #eaeaea;
     --text-primary: #333;
     --text-secondary: #555;
     --text-tertiary: #666;
@@ -22,6 +23,7 @@
 body.dark-mode {
     --bg-primary: #1a1a1a;
     --bg-secondary: #2d2d2d;
+    --bg-tertiary: #454545;
     --text-primary: #e0e0e0;
     --text-secondary: #b0b0b0;
     --text-tertiary: #909090;
