@@ -1,22 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Date Selector</title>
-    <link rel="stylesheet" href="/styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="/src/css/date-selector.css">
     <script type="module" src="/src/js/date-selector.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-</head>
 
-<body>
     <div id="date-picker" class="flatpickr">
-        <img id="calendar-icon" src="/src/assets/icons/calendar.svg" alt="Calendar Icon" class="calendar-icon">
+        <img id="calendar-icon" src="/src/assets/icons/calendar.svg" alt="Calendar Icon" class="calendar-icon" data-toggle>
         <label>
-            <input type="text" placeholder="Date">
+            <input type="text" placeholder="Date" data-input>
         </label>
-        <img id="dropdown-arrow" src="/src/assets/icons/down-arrow.svg" alt="Down Arrow" class="dropdown-arrow">
+        <img id="dropdown-arrow" src="/src/assets/icons/down-arrow.svg" alt="Down Arrow" class="dropdown-arrow" data-toggle>
     </div>
-</body>
-</html>
