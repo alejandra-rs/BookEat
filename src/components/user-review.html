@@ -1,47 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>User Review</title>
-    <link rel="stylesheet" href="../../styles.css">
-    <link rel="stylesheet" href="../css/user-review.css">
-    <script src="../js/xlu-include-file.js"></script>
-</head>
-<body>
-  <article class="user-review">
-    <header class="review-header">
-      <img class="user-image" src="../assets/img/restaurant-item.png" alt="">
-      <div class="review-metadata">
-        <div>
-          <h2>User Name</h2>
-          <h3>3 days ago</h3>
-        </div>
-        <div class="review-value" xlu-include-file="user-score.html"></div>
+<link rel="stylesheet" href="/src/css/user-review.css">
+  
+<article class="user-review">
+  <header class="review-header">
+    <img class="user-image" src="/src/assets/img/restaurant-item.png" alt="">
+    <div class="review-metadata">
+      <div>
+        <h2>User Name</h2>
+        <h3>3 days ago</h3>
       </div>
-    </header>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vel sem dui. Lorem ipsum dolor sit amet,
-       consectetur adipiscing elit. Aliquam blandit viverra scelerisque. Aliquam et vehicula nibh, vulputate
-       tincidunt velit. Phasellus elementum laoreet ante sit amet aliquam. Integer vel ante enim.</p>
-    <div class="pros-cons">
-      <h4><em>Pros</em></h4>
-      <ul>
-        <li>Lorem ipsum dolor sit amet.</li>
-        <li>Lorem ipsum dolor sit amet.</li>
-      </ul>
-      <h4><em>Cons</em></h4>
-      <ul>
-        <li>Lorem ipsum dolor sit amet.</li>
-        <li>Lorem ipsum dolor sit amet.</li>
-      </ul>
+      <div class="review-value" xlu-include-file="/src/components/user-score.html"></div>
     </div>
-    <div class="review-images">
-      <img class="review-image" src="../assets/img/restaurant-item.png" alt="">
-      <img class="review-image" src="../assets/img/restaurant-item.png" alt="">
-      <img class="review-image" src="../assets/img/restaurant-item.png" alt="">
-      <img class="review-image" src="../assets/img/restaurant-item.png" alt="">
-      <img class="review-image" src="../assets/img/restaurant-item.png" alt="">
-    </div>
-  </article>
-  <script>xLuIncludeFile()</script>
-</body>
-</html>
+  </header>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vel sem dui. Lorem ipsum dolor sit amet,
+     consectetur adipiscing elit. Aliquam blandit viverra scelerisque. Aliquam et vehicula nibh, vulputate
+     tincidunt velit. Phasellus elementum laoreet ante sit amet aliquam. Integer vel ante enim.</p>
+  <div class="pros-cons">
+    <h4><em>Pros</em></h4>
+    <ul>
+      <li>Lorem ipsum dolor sit amet.</li>
+      <li>Lorem ipsum dolor sit amet.</li>
+    </ul>
+    <h4><em>Cons</em></h4>
+    <ul>
+      <li>Lorem ipsum dolor sit amet.</li>
+      <li>Lorem ipsum dolor sit amet.</li>
+    </ul>
+  </div>
+  <div class="review-images">
+    <img class="review-image" src="/src/assets/img/restaurant-item.png" alt="">
+    <img class="review-image" src="/src/assets/img/restaurant-item.png" alt="">
+    <img class="review-image" src="/src/assets/img/restaurant-item.png" alt="">
+    <img class="review-image" src="/src/assets/img/restaurant-item.png" alt="">
+    <img class="review-image" src="/src/assets/img/restaurant-item.png" alt="">
+  </div>
+</article>
