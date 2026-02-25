@@ -38,20 +38,16 @@ img{
     flex-direction: column;
     gap: 1rem;
 }
+
 .icon{
     width: 2rem;
     height: 2rem;
 }
+
 .info-container p{
     display: flex;
     flex-direction: row;
     justify-content: left;
     align-items: center;
     gap: 3px;
-}
-
-button > img {
-    width: 2rem;
-    height: 2rem;
-    color: var(--text-primary);
 }
