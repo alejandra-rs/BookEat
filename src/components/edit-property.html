@@ -1,21 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Edit Property</title>
-    <link rel="stylesheet" href="../../styles.css">
-    <link rel="stylesheet" href="../css/edit-property.css">
-    <script src="../js/xlu-include-file.js"></script>
-</head>
-<body>
-    <div class="edit-property">
-        <img class="icon" src="../assets/img/restaurant-item.png" alt="">
-        <label for="property"> Property </label>
-        <div class="edit-field">
-            <input type="text" id="property" value="Lorem Ipsum" readonly>
-            <div xlu-include-file="edit-button.html"></div>
-        </div>
+<link rel="stylesheet" href="/src/css/edit-property.css">
+
+<div class="edit-property">
+    <img class="icon" src="/src/assets/img/restaurant-item.png" alt="">
+    <label for="property"> Property </label>
+    <div class="edit-field">
+        <input type="text" id="property" value="Lorem Ipsum" readonly>
+        <div xlu-include-file="/src/components/edit-button.html"></div>
     </div>
-    <script>xLuIncludeFile()</script>
-  </body>
-</html>
+</div>
