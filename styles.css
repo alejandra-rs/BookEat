@@ -41,6 +41,12 @@ button {
     cursor: pointer;
 }
 
+button img.icon {
+        width: 2em;
+        height: 2em;
+        color: var(--text-primary);
+    }
+
 .secondary-button {
     color: var(--text-primary);
     background-color: var(--button-primary);
