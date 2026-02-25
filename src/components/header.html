@@ -1,16 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <title>Header Template</title>
-    <link rel="stylesheet" href="/styles.css">
     <link rel="stylesheet" href="/src/css/header.css">
-    <script src="/src/js/xlu-include-file.js"></script>
-    <script type="module" src="/src/js/initDarkMode.js"></script>
-</head>
 
-<body>
+
     <header class="main-header">
         <div class="logo">
             <div class="button-icon">
@@ -27,11 +17,11 @@
                 </label>
             </div>
             <div class="header-search-components">
+                <div xlu-include-file="/src/components/date-selector.html"></div>
+                <p>|</p>
                 <div xlu-include-file="/src/components/hour-selector.html"></div>
                 <p>|</p>
                 <div xlu-include-file="/src/components/diners-selector.html"></div>
-                <p>|</p>
-                <div xlu-include-file="/src/components/date-selector.html"></div>
             </div>
         </div>
         <div class="header-icons">
@@ -49,7 +39,6 @@
             </div>
         </div>
     </header>
-    <script>xLuIncludeFile()</script>
-</body>
 
-</html>
+    <script type="module" src="/src/js/initDarkMode.js"></script>
+
