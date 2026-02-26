@@ -35,7 +35,7 @@ funcionalidades en los usuarios registrados y restaurante:
 ### Mockups
 Hemos desarrollado un prototipo que simula la navegación real de la aplicación, desde la búsqueda inicial 
 hasta la confirmación de la mesa, pasando por la gestión del restaurante.<br></br>
-[![Pagina principal Figma](/doc/figma.png)](https://www.figma.com/proto/Ele6klzfFfdvQzFIwlkU7Q/Trabajo-de-PWM?node-id=95-1205&t=bd29kPqtCef37EQB-1)
+[![Pagina principal Figma](/doc/images/figma.png)](https://www.figma.com/proto/Ele6klzfFfdvQzFIwlkU7Q/Trabajo-de-PWM?node-id=95-1205&t=bd29kPqtCef37EQB-1)
 <sub>*[Acceder al Prototipo Interactivo en Figma ↑](https://www.figma.com/proto/Ele6klzfFfdvQzFIwlkU7Q/Trabajo-de-PWM?node-id=95-1205&t=bd29kPqtCef37EQB-1)*</sub>
 
 ### Storyboard
@@ -74,6 +74,7 @@ Representación visual del flujo de uso de la aplicación, desde la necesidad de
 ## Páginas e identificación de *templates*
 
 La aplicación se compone de 8 páginas principales, construidas mediante el ensamblaje de *templates*:
+
 - [**`index.html` (Landing Page)**](/doc/pages/landing-page.md): Puerta de acceso a **BookEat**. 
 - [**`searcher-page.html` (Exploración)**](/doc/pages/searcher-page.md): Motor de búsqueda de restaurantes con distintos filtros.
 - [**`restaurant-page.html` (Perfil del local)**](/doc/pages/restaurant-page.md): Vista detallada de un establecimiento, incluyendo servicios, carta y galería de imágenes.
