@@ -34,6 +34,9 @@
     gap: 8px;
     padding: 16px;
 }
+a button {
+    height: 100%;
+}
 
 #menu-image{
     height: fit-content;
