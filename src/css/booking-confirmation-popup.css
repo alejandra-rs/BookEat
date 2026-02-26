@@ -41,10 +41,6 @@ figure{
     gap: 1rem;
 }
 
-.icon{
-    width: 2rem;
-    height: 2rem;
-}
 
 .info-container p{
     display: flex;
