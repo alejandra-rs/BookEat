@@ -1,46 +1,44 @@
-    <link rel="stylesheet" href="/src/templates/header/header.css">
-    <script type="module" src="/src/js/initDarkMode.js"></script>
-    <script type="module" src="/src/js/authMode.js"></script>
+<link rel="stylesheet" href="/src/templates/header/header.css">
+<script type="module" src="/src/js/initDarkMode.js"></script>
+<script type="module" src="/src/js/authMode.js"></script>
 
-
-    <header class="main-header">
-        <div class="logo">
-            <div class="button-icon">
-                <a href="/BookEat/index.html">
-                    <img src="/src/assets/icons/logo.svg" alt="BookEat Logo" class="icon icon_img">
-                </a>
-            </div>
+<header class="main-header">
+    <div class="logo">
+        <div class="button-icon">
+            <a href="/BookEat/index.html">
+                <img src="/src/assets/icons/logo.svg" alt="BookEat Logo" class="icon icon_img">
+            </a>
         </div>
-        <div class="header-search">
-            <div class="search">
-                <button><img src="/src/assets/icons/search.svg" alt="Search" class="icon_img"></button>
-                <label>
-                    <input type="text" placeholder="Search...">
-                </label>
-            </div>
-            <div class="header-search-components">
-                <div xlu-include-file="/src/templates/date-selector/date-selector.html"></div>
-                <p>|</p>
-                <div xlu-include-file="/src/templates/hour-selector/hour-selector.html"></div>
-                <p>|</p>
-                <div xlu-include-file="/src/templates/diners-selector/diners-selector.html"></div>
-            </div>
+    </div>
+    <div class="header-search">
+        <div class="search">
+            <button><img src="/src/assets/icons/search.svg" alt="Search" class="icon_img"></button>
+            <label>
+                <input type="text" placeholder="Search...">
+            </label>
         </div>
-        <div class="header-icons">
-            <div class="button-icon" id="darkModeToggle" title="change the theme">
-                <img src="/src/assets/icons/dark-mode.svg" alt="Light Mode" id="darkModeIcon" class="icon_img">
-            </div>
+        <div class="header-search-components">
+            <div xlu-include-file="/src/templates/date-selector/date-selector.html"></div>
             <p>|</p>
-            <div class="button-icon" id="languageButton" title="change the language">
-                <img src="/src/assets/icons/language.svg" alt="Language" class="icon_img">
-            </div>
-            <div class="button-icon" id="profileButton" title="profile">
-                <img id="userButton" src="/src/assets/icons/user-profile.svg" alt="Profile" class="icon_img">
-                <button class="secondary-button" id="loginButton" onclick="popupMode('login-popup-main',null)">Sign in</button>
-                <button class="primary-button" id="registerButton" onclick="popupMode('register-popup-main',null)">Register</button>
-            </div>
+            <div xlu-include-file="/src/templates/hour-selector/hour-selector.html"></div>
+            <p>|</p>
+            <div xlu-include-file="/src/templates/diners-selector/diners-selector.html"></div>
         </div>
-    </header>
-    <div id="login-popup-main" onclick="closeLoginPopup('login-popup-main',null)" class="blur-effect" xlu-include-file="/src/templates/login-popup/login-popup.html"></div>
-    <div id="register-popup-main" onclick="closeLoginPopup('register-popup-main',null)" class="blur-effect" xlu-include-file="/src/templates/create-an-account/create-an-account.html"></div>
-
+    </div>
+    <div class="header-icons">
+        <div class="button-icon" id="darkModeToggle" title="change the theme">
+            <img src="/src/assets/icons/dark-mode.svg" alt="Light Mode" id="darkModeIcon" class="icon_img">
+        </div>
+        <p>|</p>
+        <div class="button-icon" id="languageButton" title="change the language">
+            <img src="/src/assets/icons/language.svg" alt="Language" class="icon_img">
+        </div>
+        <div class="button-icon" id="profileButton" title="profile">
+            <img id="userButton" src="/src/assets/icons/user-profile.svg" alt="Profile" class="icon_img">
+            <button class="secondary-button" id="loginButton" onclick="popupMode('login-popup-main',null)">Sign in</button>
+            <button class="primary-button" id="registerButton" onclick="popupMode('register-popup-main',null)">Register</button>
+        </div>
+    </div>
+</header>
+<div id="login-popup-main" onclick="closeLoginPopup('login-popup-main',null)" class="blur-effect" xlu-include-file="/src/templates/login-popup/login-popup.html"></div>
+<div id="register-popup-main" onclick="closeLoginPopup('register-popup-main',null)" class="blur-effect" xlu-include-file="/src/templates/create-an-account/create-an-account.html"></div>
