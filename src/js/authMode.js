@@ -30,9 +30,10 @@ function popupMode(id1, id_disable){
 
 
 function closeLoginPopup(id, buttonID) {
+    document.body.style.overflow = 'scroll';
+    document.getElementById(id).style.display = 'none';
     const btn = document.getElementById(buttonID) ;
     if(btn != null){
         btn.addEventListener('click', authMode)
     }
-    document.getElementById(id).style.display = 'none';
 }

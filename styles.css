@@ -83,7 +83,9 @@ button img.icon {
     z-index: 1000;
     display: none;
 }
-.block-scroll {overflow:hidden;}
+.block-scroll {
+    overflow:hidden;
+}
 
 body.dark-mode .icon_img{
     filter: invert(1) sepia(1) grayscale(1) brightness(0.9);
