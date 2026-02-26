@@ -1,4 +1,5 @@
 .restaurant-preview {
+    text-decoration: none;
     display: flex;
     flex-direction: column;
     overflow: hidden;
