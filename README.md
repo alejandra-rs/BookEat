@@ -48,10 +48,10 @@ Representación visual del flujo de uso de la aplicación, desde la necesidad de
 |                     Usuario Temporal                     |                      Usuario Registrado                      |                      Usuario Restaurante                       |
 |:--------------------------------------------------------:|:------------------------------------------------------------:|:--------------------------------------------------------------:|
 | ![Temporal](/doc/images/storyboard/usuario_temporal.png) | ![Registrado](/doc/images/storyboard/usuario_registrado.png) | ![Restaurante](/doc/images/storyboard/usuario_restaurante.png) |
+
 <sub>*[Acceder al storyboard ↑](/doc/images/storyboard)*</sub>
 
 ---
-
 ## Estructura del proyecto
 
 ```bash
