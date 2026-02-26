@@ -5,6 +5,10 @@
     font-size: inherit;
 }
 
+body {
+    background-color: var(--bg-primary);
+}
+
 :root {
     --bg-primary: #f5f5f5;
     --bg-secondary: #f8f9fa;
