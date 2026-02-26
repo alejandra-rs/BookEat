@@ -9,6 +9,8 @@
 > 
 > En definitiva, BookEat unifica en una sola interfaz intuitiva todas las herramientas necesarias para que el cliente disfrute de su reserva y el restaurante optimice su flujo diario de trabajo.
 
+---
+
 ## Funcionalidad del proyecto - Requisitos
 
 Hay 3 tipos de usuarios, temporal, registrado y restaurante. Usuario temporal es el base, al que se le añaden
@@ -31,6 +33,8 @@ funcionalidades en los usuarios registrados y restaurante:
 > Para más información acerca de la funcionalidad y el alcance del proyecto, así como la lista completa de requisitos,
 > consulta nuestro [Documento de Requisitos](/doc/BookEat_Requisitos.pdf).
 
+---
+
 ## Diseño
 ### Mockups
 Hemos desarrollado un prototipo que simula la navegación real de la aplicación, desde la búsqueda inicial 
@@ -41,10 +45,13 @@ hasta la confirmación de la mesa, pasando por la gestión del restaurante.<br><
 ### Storyboard
 Representación visual del flujo de uso de la aplicación, desde la necesidad del cliente hasta su resolución.
 
-|                 Usuario Temporal                  |                  Usuario Registrado                   |                   Usuario Restaurante                   |
-|:-------------------------------------------------:|:-----------------------------------------------------:|:-------------------------------------------------------:|
+|                     Usuario Temporal                     |                      Usuario Registrado                      |                      Usuario Restaurante                       |
+|:--------------------------------------------------------:|:------------------------------------------------------------:|:--------------------------------------------------------------:|
 | ![Temporal](/doc/images/storyboard/usuario_temporal.png) | ![Registrado](/doc/images/storyboard/usuario_registrado.png) | ![Restaurante](/doc/images/storyboard/usuario_restaurante.png) |
+
 <sub>*[Acceder al storyboard ↑](/doc/images/storyboard)*</sub>
+
+---
 
 ## Estructura del proyecto
 
@@ -71,6 +78,8 @@ Representación visual del flujo de uso de la aplicación, desde la necesidad de
 - `pages/`: Páginas, archivos HTML finales. Ensamblan los distintos *templates* para conformar las distintas vistas.
 - `css/` y `js/`: Lógica de comportamiento y estilos que afectan a toda la aplicación
 
+---
+
 ## Páginas e identificación de *templates*
 
 La aplicación se compone de 8 páginas principales, construidas mediante el ensamblaje de *templates*:
@@ -87,10 +96,14 @@ La aplicación se compone de 8 páginas principales, construidas mediante el ens
 > **Arquitectura de *Templates***: Cada una de estas páginas está construida utilizando *templates*. Para consultar
 > el desglose técnico de cada uno de estos, consulta nuestra [Guía Detallada de Templates](/doc/templates.md).
 
+---
+
 ## Consideraciones técnicas
 
 - **Calendarios**: Utilizamos la api de [*FlatPickr*](https://github.com/flatpickr/flatpickr) para proporcionar una selección de fechas ligera y personalizable.
 - **JavaScript**: numerosos componentes usan javascript a modo de animación (ir a templates para chequear)
+
+---
 
 ## Otros
 [Icons](https://www.svgrepo.com/collection/smoothie-line-icons/2)
