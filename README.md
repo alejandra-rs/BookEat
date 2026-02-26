@@ -93,6 +93,9 @@ La aplicación se compone de 8 páginas principales, construidas mediante el ens
 - [**`modify-profile-page.html` (Ajustes de Perfil)**](/doc/pages/modify-profile-page.md): Gestión de datos personales, preferencias, seguridad de la cuenta.
 - [**`become-an-affiliate-page.html` (Portal Afiliado)**](/doc/pages/become-an-affiliate-page.md): Página de registro y captación de nuevos restaurantes.
 
+El sitio web incluye igualmente una serie de *popups*, cuya estructura y descripción se puede consultar en la 
+[Especificación de los *Popups*](/doc/popups.md). 
+
 > **Arquitectura de *Templates***: Cada una de estas páginas está construida utilizando *templates*. Para consultar
 > el desglose técnico de cada uno de estos, consulta nuestra [Guía Detallada de Templates](/doc/templates.md).
 
