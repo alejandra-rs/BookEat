@@ -1,4 +1,4 @@
-import { authMode } from './authMode.js';
+import './authMode.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     authMode();

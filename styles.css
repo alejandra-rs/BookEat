@@ -73,6 +73,18 @@ button img.icon {
     background-color: var(--shadow);
 }
 
+.blur-effect{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: none;
+}
+.block-scroll {overflow:hidden;}
+
 body.dark-mode .icon_img{
     filter: invert(1) sepia(1) grayscale(1) brightness(0.9);
 }

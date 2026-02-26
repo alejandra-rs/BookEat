@@ -9,6 +9,7 @@ dialog {
     border: none;
     box-shadow: 0 4px 10px var(--shadow);
     color: var(--text-primary);
+    z-index: 1;
 }
 
 dialog p {
@@ -56,4 +57,11 @@ dialog div{
 }
 .tags-container.visible {
     display: flex;
+}
+
+.loginForm,
+.registerForm{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

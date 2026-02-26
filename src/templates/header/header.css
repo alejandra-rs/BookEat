@@ -73,6 +73,7 @@
     background-color: var(--bg-secondary);
     color: var(--text-primary);
     margin: 0 1rem 0 1rem;
+    z-index: 999;
 }
 
 .header-search > .search > button {

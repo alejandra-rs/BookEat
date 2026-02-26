@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="/src/css/forms.css">
 
-<dialog id="login-popup" class="SinginForm" open>
+<dialog id="login-popup" class="loginForm">
   <h3>Login or create an account</h3>
   <p>Log in with your BookEat account to access all of our services and privileges.</p>
   <form>
@@ -10,7 +10,9 @@
     <label>
       <input type="password" placeholder="Password" required>
     </label>
-    <button class="primary-button">Login</button>
+    <button class="primary-button" id="loginBtn" onclick="closeLoginPopup('login-popup-main', 'loginBtn')">Login</button>
   </form>
-    <button class="secondary-button">Register</button>
+    <button class="secondary-button" onclick="popupMode('register-popup-main', 'login-popup-main')">Register</button>
 </dialog>
+
+<script src="/src/js/authMode.js"></script>
