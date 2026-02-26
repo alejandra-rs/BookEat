@@ -10,6 +10,6 @@ function popupMode(id1, id_disable){
 
 
 function closeLoginPopup(id) {
-    document.body.style.overflow = 'scroll';
+    document.body.style.overflow = 'auto';
     document.getElementById(id).style.display = 'none';
 }
