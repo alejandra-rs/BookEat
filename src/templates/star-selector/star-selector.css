@@ -14,22 +14,22 @@
     width: 1.75rem;
     height: 1.75rem;
     display: inline-block;
-    background-image: url("../assets/icons/star.svg");
+    background-image: url("../../assets/icons/star.svg");
 }
 
 .star-checkbox:checked + .star-button {
-    background-image: url("../assets/icons/star-filled.svg");
+    background-image: url("../../assets/icons/star-filled.svg");
 }
 
 .star-button:hover,
 .star-button:hover ~ .star-button {
-    background-image: url("../assets/icons/star.svg");
+    background-image: url("../../assets/icons/star.svg");
 }
 
 .star-selector-container:hover .star-button {
-    background-image: url("../assets/icons/star-filled.svg");
+    background-image: url("../../assets/icons/star-filled.svg");
 }
 
 .star-selector-container:hover .star-button:hover ~ .star-button {
-    background-image: url("../assets/icons/star.svg");
+    background-image: url("../../assets/icons/star.svg");
 }
