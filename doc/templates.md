@@ -1,23 +1,39 @@
 # Guía Detallada de *Templates*
 
+Acto seguido se detallan todos los _templates_ desarrollados para ensamblar los _popups_ y páginas web.
+
+---
+
 ## Header y Footer
-Todas las páginas utilizan tanto el header como el footer
+Estos dos _templates_ se utilizan en todas las páginas y permiten enmarcar el contenido principal.
 
 ### Header
+En el _header_, o cabecera de la página, se puede buscar un restaurante con distintos filtros. También incluye opciones
+como el cambio a modo oscuro, o los botones para iniciar sesión y crear una cuenta.
+<br></br>
 ![header.png](images/templates/header.png)
+
 ### Footer
+En el _footer_, o pie de la página, se ubicarán enlaces e información de contacto. También se incluye el enlace
+al formulario de registro de afiliados.
+<br></br>
+
 ![footer.png](images/templates/footer.png)
+
+---
+
 ## Inventario de *Templates*
 
-Los templates mencionados en esta tabla se utilizan con menos frecuencia que el header y footer.
+En la siguiente tabla se describen *templates* que se utilizan con menos frecuencia que los ya mencionados. Nótese que
+la tabla cuenta con las siguientes columnas:
 
-- *Nombre:* Al clicar en el nombre del template le redigirá al codigo fuente del template
-- *Descripcion:* explica la función del template 
-- *Usado en:* Indica en que página o template se utiliza
-- *Interactivo:* 
-  - ✅-> significa que tiene un código JavaScript asociado a ese template para que tenga una lógica 
-  - ❌-> significa que es un template que carece de lógica individual
-- *Imagen:* Al clicar en la imagen del template le redigirá al a la imagen del template para poderla ver con más detalle
+- **Nombre:** Nombre del *template*. Al hacer clic en él, se le redirigirá al código fuente del *template*.
+- **Descripción:** Descripción del *template*. Explica las funciones principales del mismo. 
+- **Usado en:** Valor y utilización del *template*. Indica qué otras páginas o *templates* lo utilizan.
+- **Interactivo:** Información acerca del dinamismo del _template_.
+  - ✅ → El *template* tiene un código JavaScript asociado que le aporta una lógica adicional. 
+  - ❌ → El *template* carece de lógica propia.
+- **Imagen:** Representación (en *Figma*) del *template*. Al hacer clic en la imagen, se le redirigirá a la imagen ampliada, para poderla ver con más detalle.
 
 | Nombre                                                        | Descripción                                                                                                                     | Usado en                                                                       | Interactivo | Imagen                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 |:--------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------|:-----------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
