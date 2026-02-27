@@ -6,5 +6,5 @@ async function setupCards(type) {
             x.classList.remove('default', 'incoming', 'past', 'restaurant-past', 'restaurant-incoming');
             x.classList.add(type);
         }
-    },100)
+    },200)
 }

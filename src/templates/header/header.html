@@ -12,9 +12,9 @@
     </div>
     <div class="header-search">
         <div class="search">
-            <button><img src="/src/assets/icons/search.svg" alt="Search" class="icon_img"></button>
+            <button id="searchSubmitBtn"><img src="/src/assets/icons/search.svg" alt="Search" class="icon_img"></button>
             <label>
-                <input type="text" placeholder="Search...">
+                <input type="text" placeholder="Search..." onchange="search()">
             </label>
         </div>
         <div class="header-search-components">
@@ -42,3 +42,11 @@
 </header>
 <div id="login-popup-main" onclick="closeLoginPopup('login-popup-main',null)" class="blur-effect" xlu-include-file="/src/templates/login-popup/login-popup.html"></div>
 <div id="register-popup-main" onclick="closeLoginPopup('register-popup-main',null)" class="blur-effect" xlu-include-file="/src/templates/create-an-account/create-an-account.html"></div>
+<script>
+    function search() {
+            window.location.href = "/BookEat/src/pages/searcher-page/searcher-page.html";
+    }
+    document.getElementById('searchSubmitBtn').addEventListener('click', () => {
+        search();
+    });
+</script>
