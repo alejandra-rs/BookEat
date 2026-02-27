@@ -1,63 +1,130 @@
-:root {
-    --button-padding: 12px;
-    --button-gap: 8px;
-    --button-radius: 12% 12% 12% 12%;
-    --background-button-color: #e1e1e1;
-    --text-button-color: #191a1c;
-    --profile-image-size: 100px;
+.overview {
+    background-color: var(--bg-secondary);
+    border-radius: 8px;
+    padding: 20px;
+    box-sizing: border-box;
+    max-width: 1000px;
+    margin: 20px auto;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+
 }
 
-.overview{
+.overview h1, .overview p, .overview div {
+    margin: 0;
+}
+
+.overview.restaurantCardCurrent {
     display: flex;
-    border-radius: 5%;
-    padding: 16px;
-    flex-direction: row;
-    flex-flow: row nowrap;
-    justify-content: space-evenly;
-    align-items: center;
-    gap: 16px;
-    background-color: var(--bg-primary);
-    box-shadow: 0.1em 0  1em grey;
+    gap: 20px;
+    align-items: flex-start;
 }
 
-.overview header{
+.overview.restaurantCardCurrent .card-media {
+    flex: 0 0 auto;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px;
-    color: var(--text-primary);
-}
-.overview > div > p{
-    color: var(--text-primary);
-}
-
-.overview .buttonContainer{
-    display: flex;
-    flex-direction: row-reverse;
-    gap: var(--button-gap);
-}
-
-.overview .buttonContainer button{
-    color: var(--text-primary);
-    padding: var(--button-padding);
     justify-content: center;
     align-items: center;
-    gap: var(--button-gap);
-    align-self: stretch;
-    border-radius: var(--button-radius);
-    border: 1px solid black;
-    background: var(--button-primary);
 }
-.restaurantImage{
-    width: 50%;
-    border-radius: 20px 20px 20px 20px;
+.profileImage {
+    max-width: 100px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
 }
 
+.overview.restaurantCardCurrent .restaurantImage {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    box-sizing: border-box;
+}
+
+.overview.restaurantCardCurrent .card-content {
+    flex: 1 1 auto;
+    gap: 15px;
+}
+
+.overview.restaurantCardCurrent header .title-bar {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+}
+
+.overview.restaurantCardCurrent h1 {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    font-weight: bold;
+}
+
+.overview.restaurantCardCurrent .date {
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    font-weight: normal;
+}
+
+.overview.restaurantCardCurrent .description {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.overview.restaurantCardCurrent .buttonContainer {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.overview.restaurantCardCurrent button {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+
+.restaurantUser_overview,
+.restaurantUser_overview_past,
+.restaurantUser_overview_incoming,
+.date,
+.incoming-reservation,
+.past-reservation,
+.restaurant-btn,
+.restaurantImage,
 .profileImage{
-    width: var(--profile-image-size);
-    height: var(--profile-image-size);
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #ddd;
+    display: none !important;
+}
+
+/*(Default)*/
+.overview.default .date,
+.overview.default .restaurant-btn,
+.overview.default .restaurantImage{
+    display: inline-block !important;
+}
+
+/* (Incoming) */
+.overview.incoming .restaurantImage,
+.overview.incoming .date,
+.overview.incoming .incoming-reservation {
+    display: inline-block !important;
+}
+
+/* (Past) */
+.overview.past .restaurantImage,
+.overview.past .restaurantUser_overview_past,
+.overview.past .past-reservation {
+    display: inline-block !important;
+}
+
+/* (Restaurant incoming) */
+.overview.restaurant-incoming .profileImage,
+.overview.restaurant-incoming .restaurantUser_overview_incoming,
+.overview.restaurant-incoming .restaurantUser_overview{
+    display: inline-block !important;
+}
+
+/*(Restaurant past)*/
+.overview.restaurant-past .profileImage,
+.overview.restaurant-past .restaurantUser_overview_past,
+.overview.restaurant-past .restaurantUser_overview{
+    display: inline-block !important;
 }

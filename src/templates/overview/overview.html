@@ -1,51 +1,35 @@
 <link rel="stylesheet" href="/src/templates/overview/overview.css">
+<link rel="stylesheet" href="/styles.css">
 
-<article class="overview restaurantCard">
-    <img src="/src/assets/img/restaurant-item.png" alt="a restaurant image" class="restaurantImage icon_img">
-    <div>
-        <header>
-            <h1>Restaurant Name</h1>
-            <span xlu-include-file="/src/templates/user-score/user-score.html"></span>
-        </header>
-        <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-        </p>
-        <div class="buttonContainer">
-            <button>go</button>
-        </div>
+<article class="overview restaurantCardCurrent">
+    <div class="card-media">
+        <img src="/src/assets/img/restaurant-item.png" alt="a restaurant image" class="restaurantImage icon_img">
+        <img src="/src/assets/icons/account-user.svg" alt="user image" class="profileImage icon_img restaurantUser_overview">
     </div>
-</article>
 
-<article class="overview reservationCard">
-    <div>
+    <div class="card-content">
         <header>
-            <img src="/src/assets/img/restaurant-item.png" alt="user image" class="profileImage icon_img">
-            <h1>Restaurant Name</h1>
-            <time>10/2/2021  19:21</time>
+            <div class="title-bar">
+                <h1>Lorem ipsum</h1>
+                <span class="date">01/01/2026</span>
+                <span class="restaurantUser_overview_past">2 days ago</span>
+                <span class="restaurantUser_overview_incoming">10/2/2021  19:21</span>
+            </div>
+            <div class="meta-score" style="display: none;">
+                <span xlu-include-file="/src/templates/user-score/user-score.html"></span>
+            </div>
         </header>
-        <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-        </p>
-        <div class="buttonContainer">
-            <button>booked tables</button>
-        </div>
-    </div>
-</article>
 
-    <article class="overview restaurantReservationCardCurrent">
-    <img src="/src/assets/img/restaurant-item.png" alt="a restaurant image" class="restaurantImage icon_img">
-        <div>
-        <header>
-            <h1>Restaurant Name</h1>
-            <span>01/01/2027</span>
-        </header>
-        <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+        <p class="description">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis elementum ligula, et convallis felis. Donec porttitor turpis vel arcu suscipit aliquam. Sed et interdum eros. Phasellus ut vehicula mi, in condimentum erat.
         </p>
+
         <div class="buttonContainer">
-            <button>Read Review</button>
-            <button>Cancel Reservation</button>
-            <button>write a Review</button>
+            <button class="secondary-button incoming-reservation" >Cancel Reservation</button>
+            <button class="secondary-button past-reservation">Write a Review</button>
+            <button class="secondary-button incoming-reservation past-reservation">Read Reviews</button>
+            <button class="secondary-button restaurantUser_overview">Booked tables</button>
+            <button class="secondary-button restaurant-btn">Go</button>
         </div>
     </div>
 </article>

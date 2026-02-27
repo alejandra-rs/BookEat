@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Searcher Page</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="icon" type="image/svg+xml" href="/src/assets/icons/logo.svg">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/src/templates/overview/overview.css">
+    <link rel="stylesheet" href="/src/pages/searcher-page/searcher-page.css">
+    <script src="/src/templates/overview/setupCards.js"></script>
+    <script src="/src/js/xlu-include-file.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+</head>
+<body>
+<div xlu-include-file="/src/templates/header/header.html"></div>
+<div class="search-container">
+<aside class="filters-sidebar">
+    <h3>Price</h3>
+    <div class="range-slider">
+        <div class="line"></div>
+        <div class="dot left"><span>0</span></div>
+        <div class="dot right"><span>100</span></div>
+    </div>
+
+    <ul class="filter-list">
+        <li>
+            <label>
+            <input type="checkbox">
+            </label> Lorem ipsum
+        </li>
+        <li><label>
+            <input type="checkbox">
+            </label> Lorem ipsum
+        </li>
+        <li>
+            <label>
+            <input type="checkbox" checked>
+            </label> Lorem ipsum
+        </li>
+    </ul>
+</aside>
+    <section class="results-layout">
+        <div xlu-include-file="/src/templates/overview/overview.html"></div>
+        <div xlu-include-file="/src/templates/overview/overview.html"></div>
+        <div xlu-include-file="/src/templates/overview/overview.html"></div>
+        <div xlu-include-file="/src/templates/overview/overview.html"></div>
+        <div xlu-include-file="/src/templates/overview/overview.html"></div>
+        <div xlu-include-file="/src/templates/overview/overview.html"></div>
+        <div xlu-include-file="/src/templates/overview/overview.html"></div>
+    </section>
+
+</div>
+<div xlu-include-file="/src/templates/footer/footer.html"></div>
+<script>xLuIncludeFile();</script>
+<script>setupCards("default");</script>
+</body>
+</html>
