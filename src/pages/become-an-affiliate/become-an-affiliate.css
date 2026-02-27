@@ -1,5 +1,6 @@
 .form.affiliate-form {
     background-color: var(--bg-primary);
+    padding: 0.5rem 20rem;
 }
 
 .affiliate-form__title {

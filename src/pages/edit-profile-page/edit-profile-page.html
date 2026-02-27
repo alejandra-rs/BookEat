@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Profile Page</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="icon" type="image/svg+xml" href="/src/assets/icons/logo.svg">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/src/pages/edit-profile-page/edit-profile-page.css">
+  <script src="/src/js/xlu-include-file.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+</head>
+
+<body>
+<header xlu-include-file="/src/templates/header/header.html"></header>
+<main class="edit-profile-page">
+  <section class="edit-profile-page__public">
+    <div class="edit-profile-page__public__image">
+      <img src="/src/assets/img/user-image.png" alt="" class="restaurant-logo">
+      <div xlu-include-file="/src/templates/edit-button/edit-button.html"></div>
+    </div>
+    <div class="edit-profile-page__public__name">
+      <p>Lorem Ipsum Dolor</p>
+      <div xlu-include-file="/src/templates/edit-button/edit-button.html"></div>
+    </div>
+  </section>
+  <section class="edit-profile-page__account-management">
+    <h2>Account Management</h2>
+    <div xlu-include-file="/src/templates/edit-property/edit-property.html"></div>
+    <div xlu-include-file="/src/templates/edit-property/edit-property.html"></div>
+    <div xlu-include-file="/src/templates/edit-property/edit-property.html"></div>
+    <div xlu-include-file="/src/templates/edit-property/edit-property.html"></div>
+  </section>
+</main>
+<footer xlu-include-file="/src/templates/footer/footer.html"></footer>
+
+</body>
+<script> xLuIncludeFile() </script>

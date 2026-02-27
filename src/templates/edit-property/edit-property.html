@@ -1,10 +1,12 @@
 <link rel="stylesheet" href="/src/templates/edit-property/edit-property.css">
 
 <div class="edit-property">
-    <img class="icon icon_img" src="/src/assets/img/restaurant-item.png" alt="">
-    <label for="property"> Property </label>
-    <div class="edit-field">
-        <input type="text" id="property" value="Lorem Ipsum" readonly>
-        <div xlu-include-file="/src/components/edit-button.html"></div>
-    </div>
+    <img class="edit-property__icon icon_img" src="/src/assets/img/restaurant-item.png" alt="">
+    <label class="edit-property__label">
+        <span>Property</span>
+        <span class="edit-property__label__field">
+            <input type="text" class="edit-property__field__input" value="Lorem Ipsum" readonly>
+            <span xlu-include-file="/src/templates/edit-button/edit-button.html"></span>
+        </span>
+    </label>
 </div>

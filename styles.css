@@ -13,9 +13,8 @@ body {
     margin: 0;
 }
 
-main {
-    flex: 1;
-}
+header, footer {flex-shrink: 0;}
+main { flex: 1; }
 
 :root {
     --bg-primary: #fafafa;
@@ -59,10 +58,10 @@ a > button {
 }
 
 button img.icon {
-        width: 2em;
-        height: 2em;
-        color: var(--text-primary);
-    }
+    width: 2em;
+    height: 2em;
+    color: var(--text-primary);
+}
 
 .secondary-button {
     color: var(--text-primary);

@@ -4,6 +4,7 @@
     background: var(--bg-secondary);
     align-items: center;
     text-align: center;
+    justify-content: center;
     gap: 1rem;
     padding: 2rem;
     border-radius: 8px;
