@@ -16,10 +16,13 @@
 
 ## PopUps de acceso restringido
 
+### enter password
 <img alt="Enter password.png" height="500" src="images/popups/Enter%20password.png" width="317"/>
 
 * **Propósito:** Capa de autenticación,se utilizará para acceder a datos sencibles en cuentas de restaurante, de forma que solo puedan acceder a esos datos los usuarios autoriados
 * **Acciones:** Confirmación de la contraseña (`Enter`).
+
+### Confirmation
 
 <img alt="Booking Confirmed.png" height="649" src="images/popups/Booking%20Confirmed.png" width="633"/>
 
