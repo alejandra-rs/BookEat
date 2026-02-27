@@ -1,4 +1,4 @@
-dialog {
+.form {
     display: flex;
     flex-direction: column;
     background: var(--bg-secondary);
@@ -9,24 +9,23 @@ dialog {
     border: none;
     box-shadow: 0 4px 10px var(--shadow);
     color: var(--text-primary);
-    z-index: 1;
 }
 
-dialog p {
+.form p {
     text-align: center;
 }
 
-dialog form {
+.form form {
     display: flex;
     flex-direction: column;
     gap: 5px;
     align-items: center;
 }
-dialog form label{
+.form form label{
     width: 100%;
 }
 
-dialog form input {
+.form form input {
     width: 100%;
     background: white;
     flex: 1;
@@ -34,7 +33,7 @@ dialog form input {
     border-radius: 8px;
 }
 
-dialog div{
+.form div{
     display: flex;
     flex:1;
     flex-direction: row;
@@ -43,7 +42,7 @@ dialog div{
     width: 100%;
 }
 
-.secondary-button {
+.form .secondary-button {
     border: none;
     background: none;
 }
@@ -59,8 +58,8 @@ dialog div{
     display: flex;
 }
 
-.loginForm,
-.registerForm{
+.login-form,
+.register-form{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);

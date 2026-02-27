@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Become an affiliate</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="icon" type="image/svg+xml" href="/src/assets/icons/logo.svg">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/src/css/forms.css">
+    <link rel="stylesheet" href="/src/pages/become-an-affiliate/become-an-affiliate.css">
+    <script src="/src/js/xlu-include-file.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+</head>
+
+<body>
+    <header xlu-include-file="/src/templates/header/header.html"></header>
+    <main class="affiliate-form form">
+      <h1 class="affiliate-form__title">Become an Affiliate</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vel sem dui. Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit. Aliquam blandit viverra scelerisque. Aliquam et vehicula nibh, vulputate tincidunt
+          velit. Phasellus elementum laoreet ante sit amet aliquam. Integer vel ante enim. Nam aliquet pharetra libero
+          porttitor faucibus. Curabitur ut leo non odio placerat elementum. Vestibulum commodo ipsum a auctor pretium.
+          Integer sagittis et orci et sagittis.</p>
+      <form>
+          <div>
+            <label> <input type="text" placeholder="Name" required> </label>
+            <label> <input type="text" placeholder="Surname" required> </label>
+            <label> <input type="tel" placeholder="Phone number" required> </label>
+          </div>
+          <label> <input type="email" placeholder="Email" required> </label>
+          <div>
+              <label> <input type="text" placeholder="Restaurant Name" required> </label>
+              <label class="campo">
+                  <input list="tagsList" id="tag-input" placeholder="Add a tag">
+                  <datalist id="tagsList">
+                      <option value="Italian">
+                      <option value="Mexican">
+                      <option value="Vegan">
+                  </datalist>
+              </label>
+          </div>
+          <div class="tags-container" id="tags-container"></div>
+          <script src="/src/pages/become-an-affiliate/become-an-affiliate.js"></script>
+
+          <label> <input type="text" placeholder="Restaurant address (line 1)" required> </label>
+          <label> <input type="text" placeholder="Restaurant address (line 2)"> </label>
+          <div>
+            <label> <input type="text" placeholder="City" required> </label>
+            <label> <input type="text" placeholder="Province" required> </label>
+            <label> <input type="text" placeholder="Postal Code" required> </label>
+          </div>
+        <button class="primary-button" type="submit">Register</button>
+      </form>
+    </main>
+    <footer xlu-include-file="/src/templates/footer/footer.html"></footer>
+
+    <script> xLuIncludeFile() </script>
+</body>
