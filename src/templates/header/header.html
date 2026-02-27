@@ -1,52 +1,43 @@
 <link rel="stylesheet" href="/src/templates/header/header.css">
-<script type="module" src="/src/js/initDarkMode.js"></script>
-<script type="module" src="/src/js/authMode.js"></script>
+<script type="module" src="/src/js/init-dark-mode.js"></script>
+<script type="module" src="/src/js/auth-mode.js"></script>
 
-<header class="main-header">
-    <div class="logo">
-        <div class="button-icon">
-            <a href="/BookEat/index.html">
-                <img src="/src/assets/icons/logo.svg" alt="BookEat Logo" class="edit-property__icon icon_img">
-            </a>
+<header class="header">
+
+    <a href="/BookEat/index.html" class="header__logo">
+        <img src="/src/assets/icons/logo.svg" alt="BookEat Logo" class="icon">
+    </a>
+
+    <div class="header__search">
+        <div class="header__search__field">
+            <button id="search-button"> <img src="/src/assets/icons/search.svg" alt="Search" class="icon"> </button>
+            <label> <input type="text" placeholder="Search..." class="header__search__field__input" onchange="search()"> </label>
         </div>
-    </div>
-    <div class="header-search">
-        <div class="search">
-            <button id="searchSubmitBtn"><img src="/src/assets/icons/search.svg" alt="Search" class="icon_img"></button>
-            <label>
-                <input type="text" placeholder="Search..." onchange="search()">
-            </label>
-        </div>
-        <div class="header-search-components">
+        <div class="header__search__selectors">
             <div xlu-include-file="/src/templates/date-selector/date-selector.html"></div>
-            <p>|</p>
             <div xlu-include-file="/src/templates/hour-selector/hour-selector.html"></div>
-            <p>|</p>
             <div xlu-include-file="/src/templates/diners-selector/diners-selector.html"></div>
         </div>
     </div>
-    <div class="header-icons">
-        <div class="button-icon" id="darkModeToggle" title="change the theme">
-            <img src="/src/assets/icons/dark-mode.svg" alt="Light Mode" id="darkModeIcon" class="icon_img">
+
+    <div class="header__buttons">
+        <div class="header__buttons__toggles">
+            <button id="dark-mode-toggle"> <img src="/src/assets/icons/dark-mode.svg" alt="Light Mode" id="dark-mode-icon" class="icon"> </button>
+            <button id="language-button"> <img src="/src/assets/icons/language.svg" alt="Language" class="icon">  </button>
         </div>
-        <p>|</p>
-        <div class="button-icon" id="languageButton" title="change the language">
-            <img src="/src/assets/icons/language.svg" alt="Language" class="icon_img">
-        </div>
-        <div class="button-icon" id="profileButton" title="profile">
-            <img id="userButton" src="/src/assets/icons/user-profile.svg" alt="Profile" class="icon_img">
+
+        <div class="header__buttons__account" title="profile">
+            <img id="user-icon" src="/src/assets/icons/user-profile.svg" alt="Profile" class="icon">
             <button class="secondary-button" id="loginButton" onclick="popupMode('login-popup-main',null)">Sign in</button>
             <button class="primary-button" id="registerButton" onclick="popupMode('register-popup-main',null)">Register</button>
         </div>
     </div>
 </header>
+
 <div id="login-popup-main" onclick="closeLoginPopup('login-popup-main',null)" class="blur-effect" xlu-include-file="/src/templates/login-popup/login-popup.html"></div>
 <div id="register-popup-main" onclick="closeLoginPopup('register-popup-main',null)" class="blur-effect" xlu-include-file="/src/templates/create-an-account/create-an-account.html"></div>
+
 <script>
-    function search() {
-            window.location.href = "/BookEat/src/pages/searcher-page/searcher-page.html";
-    }
-    document.getElementById('searchSubmitBtn').addEventListener('click', () => {
-        search();
-    });
+    document.getElementById('search-button').addEventListener('click', () => {
+        window.location.href = "/BookEat/src/pages/searcher-page/searcher-page.html";});
 </script>

@@ -1,22 +1,22 @@
-.hour-wrapper {
+.hour-selector {
     position: relative;
     display: inline-block;
     align-items: center;
-    font-size: inherit;
     border: none;
     cursor: pointer;
 }
 
-.hour-placeholder {
+.hour-selector__placeholder {
     display: flex;
     align-items: center;
     gap: 0.8em;
     padding: 0.3em;
-    background-color: var(--bg-secondary);
     color: var(--text-primary);
+    background: none;
+    border: none;
 }
 
-.hour-dropdown {
+.hour-selector__dropdown {
     display: none;
     position: absolute;
     top: 110%;
@@ -27,7 +27,7 @@
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-.hour-dropdown.open {
+.hour-selector__dropdown.open {
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -36,16 +36,18 @@
     overflow-y: scroll;
 }
 
-.edit-property__icon {
-    width: 1.2em;
-    height: 1.2em;
-    flex-shrink: 0;
+.hour-selector__placeholder__icon {
+    width: 1.2em !important;
+    height: 1.2em !important;
     pointer-events: none;
 }
 
 .hour-button {
+    display: flex;
     padding: 0.5rem;
     border: none;
+    justify-content: center;
+    width: 100%;
 }
 
 .hour-button:hover {

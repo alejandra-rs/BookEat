@@ -31,8 +31,8 @@ main { flex: 1; }
 }
 
 body.dark-mode {
-    --bg-primary: #1a1a1a;
-    --bg-secondary: #2d2d2d;
+    --bg-primary:  #2d2d2d;
+    --bg-secondary: #1a1a1a;
     --text-primary: #e0e0e0;
     --text-secondary: #b0b0b0;
     --text-tertiary: #909090;
@@ -97,6 +97,6 @@ button img.icon {
     overflow:hidden;
 }
 
-body.dark-mode .icon_img{
+body.dark-mode .icon{
     filter: invert(1) sepia(1) grayscale(1) brightness(0.9);
 }

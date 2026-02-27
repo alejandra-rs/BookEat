@@ -40,9 +40,9 @@ let overviews = document.querySelectorAll('.overview');
         buttonContainer.innerHTML = Buttons[type]
         let card = overview.querySelector(".overview__image");
         if (type.includes('restaurant')) {
-            card.innerHTML = '<img src="/src/assets/icons/account-user.svg" alt="user image" class="profileImage icon_img restaurantUser_overview"/>'
+            card.innerHTML = '<img src="/src/assets/icons/account-user.svg" alt="user image" class="profileImage hour-selector__placeholder__icon restaurantUser_overview"/>'
         } else
-        card.innerHTML =`<img src="/src/assets/img/restaurant-item.png" alt="a restaurant image" class="restaurantImage icon_img"/>`
+        card.innerHTML =`<img src="/src/assets/img/restaurant-item.png" alt="a restaurant image" class="restaurantImage hour-selector__placeholder__icon"/>`
     }
 }
 
@@ -58,9 +58,9 @@ async function mix() {
         buttonContainer.innerHTML = Buttons[types[index]]
         let card = overview.querySelector(".overview__image");
         if (types[index].includes('restaurant')) {
-            card.innerHTML = '<img src="/src/assets/icons/account-user.svg" alt="user image" class="profileImage icon_img restaurantUser_overview"/>'
+            card.innerHTML = '<img src="/src/assets/icons/account-user.svg" alt="user image" class="profileImage hour-selector__placeholder__icon restaurantUser_overview"/>'
         } else
-        card.innerHTML =`<img src="/src/assets/img/restaurant-item.png" alt="a restaurant image" class="restaurantImage icon_img"/>`
+        card.innerHTML =`<img src="/src/assets/img/restaurant-item.png" alt="a restaurant image" class="restaurantImage hour-selector__placeholder__icon"/>`
     }
 }
 

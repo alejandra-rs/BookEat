@@ -8,11 +8,11 @@ function updateDisplay() {
     numberDisplay.textContent = dinersCount;
 }
 
-
 btnMore.addEventListener('click', () => {
     dinersCount++;
     updateDisplay();
 });
+
 btnLess.addEventListener('click', () => {
     if (dinersCount > 0) {
         dinersCount--;

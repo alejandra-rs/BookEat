@@ -1,4 +1,4 @@
-#date-picker {
+.date-picker {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
@@ -8,9 +8,9 @@
     user-select: none;
 }
 
-#date-picker input,
-#date-picker  input::placeholder,
-#date-picker .flatpickr-input {
+.date-picker__input,
+.date-picker__input::placeholder,
+.date-picker .flatpickr-input {
     max-width: 5rem;
     border: none;
     outline: none;
@@ -20,7 +20,8 @@
     color: var(--text-primary);
 }
 
-.calendar-icon, .dropdown-arrow {
+.date-picker__calendar,
+.date-picker__arrow {
     width: 1.2rem;
     height: 1.2rem;
 }
