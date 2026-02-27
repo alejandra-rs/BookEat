@@ -95,7 +95,6 @@
 }
 
 /*(Default)*/
-.overview.default .date,
 .overview.default .restaurant-btn,
 .overview.default .restaurantImage{
     display: inline-block !important;
