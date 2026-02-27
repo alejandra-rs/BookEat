@@ -1,26 +1,26 @@
 <link rel="stylesheet" href="/src/templates/restaurant-info/restaurant-info.css">
 
-<article class="restaurantInfo">
-    <img src="/src/assets/img/restaurant-item.png" alt="a restaurant image" class="restaurantImage">
-    <div class ="restaurantInformationText">
-        <header>
+<article class="restaurant-info">
+    <img src="/src/assets/img/restaurant-item.png" alt="A restaurant image" class="restaurant-info__image">
+    <div class ="restaurant-info__content">
+        <header class="restaurant-info__content__header">
             <h1>Restaurant Name</h1>
             <span xlu-include-file="/src/templates/user-score/user-score.html"></span>
         </header>
         <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
-            electronic typesetting, remaining essentially unchanged.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vel sem dui. Lorem ipsum dolor sit amet,
+            consectetur adipiscing elit. Aliquam blandit viverra scelerisque. Aliquam et vehicula nibh, vulputate
+            tincidunt velit. Phasellus elementum laoreet ante sit amet aliquam. Integer vel ante enim. Nam aliquet
+            pharetra libero porttitor faucibus. Curabitur ut leo non odio placerat elementum. Vestibulum commodo ipsum
+            a auctor pretium. Integer sagittis et orci et sagittis. Quisque erat justo, tincidunt vel tristique quis,
+            mollis eget dui.
         </p>
-        <div class="buttonContainer">
-            <button id="menu-image" class="secondary-button">
-                <img src="/src/assets/icons/restaurant-menu.svg" alt="restaurant menu" class="icon_img">
+        <div class="restaurant-info__content__buttons">
+            <button id="menu-icon" class="restaurant-info__content__buttons__menu secondary-button">
+                <img src="/src/assets/icons/restaurant-menu.svg" alt="restaurant menu" class="restaurant-info__content__buttons__menu__icon">
             </button>
-            <a href="./book-table-page.html" style="text-decoration: none;">
-            <button class="primary-button">
-                Book
-            </button>
+            <a href="/BookEat/src/pages/book-table-page/book-table-page.html">
+                <button class="primary-button"> Book </button>
             </a>
         </div>
     </div>

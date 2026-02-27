@@ -8,15 +8,15 @@
     cursor: pointer;
 }
 
-.score-number {
+.score__number {
     font-size: inherit;
 }
 
-.star-icon {
+.score__icon {
     width: 1em;
     height: 1em;
 }
 
-body.dark-mode .star-icon {
+body.dark-mode .score__icon {
     filter: invert(1) sepia(1) grayscale(1) brightness(0.9);
 }
