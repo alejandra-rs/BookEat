@@ -4,7 +4,7 @@
     padding: 2.5rem;
     border-radius: 20px;
     border: none;
-    background-color: var(--bg-tertiary);
+    background-color: var(--bg-secondary);
     gap: 2rem;
     color: var(--text-primary);
 }

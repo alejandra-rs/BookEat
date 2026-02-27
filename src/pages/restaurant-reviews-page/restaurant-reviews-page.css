@@ -1,0 +1,81 @@
+.restaurant-reviews-page {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem 3rem;
+}
+
+.restaurant-reviews-page__image-carousel {
+    display: flex;
+    overflow: auto;
+    gap: 1rem;
+    padding: 0.5rem 1.5rem;
+}
+
+.restaurant-reviews-page__image-carousel img {
+    max-height: 10rem;
+}
+
+.restaurant-reviews-page__summary {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.restaurant-reviews-page__summary__mean,
+.summary-breakdown {
+    background-color: var(--bg-secondary);
+    border-radius: 1rem;
+    padding: 2.5rem 3rem;
+}
+
+.restaurant-reviews-page__summary__mean {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    min-width: 250px;
+}
+
+.restaurant-reviews-page__summary__mean__score {
+    font-size: 4rem;
+}
+
+.restaurant-reviews-page__summary__breakdown {
+    flex-grow: 1;
+    max-width: 500px;
+}
+
+.restaurant-reviews-page__filters {
+    display: flex;
+    justify-content: space-between;
+    gap: 5rem;
+    padding: 0.5rem 8rem;
+}
+
+.restaurant-reviews-page__filters > div {
+    display: flex;
+    font-size: 1.3rem;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.restaurant-reviews-page__filters__buttons {
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.restaurant-reviews-page__filters__sort-by {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.restaurant-reviews-page__reviews {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
