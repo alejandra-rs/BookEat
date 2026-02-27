@@ -7,10 +7,18 @@
 
 body {
     background-color: var(--bg-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+main {
+    flex: 1;
 }
 
 :root {
-    --bg-primary: #f6f7f8;
+    --bg-primary: #fafafa;
     --bg-secondary: #eaeaea;
     --text-primary: #333;
     --text-secondary: #555;

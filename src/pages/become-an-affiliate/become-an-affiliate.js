@@ -13,7 +13,7 @@ function crearTag(texto) {
     if (texto.trim() === '') return;
     const tagDiv = document.createElement('div');
     tagDiv.className = 'tag';
-    tagDiv.innerHTML = `${texto} <span onclick="borrarTag(this)">×</span>`;
+    tagDiv.innerHTML = `${texto} <span class="tag__close" onclick="borrarTag(this)">×</span>`;
     tagsContainer.appendChild(tagDiv);
     tagsContainer.classList.add('visible');
     tagInput.value = '';

@@ -3,6 +3,7 @@
     flex-direction: column;
     background: var(--bg-secondary);
     align-items: center;
+    text-align: center;
     gap: 1rem;
     padding: 2rem;
     border-radius: 8px;
@@ -11,55 +12,49 @@
     color: var(--text-primary);
 }
 
-.form p {
-    text-align: center;
-}
-
-.form form {
+.form > form {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 1.5rem;
     align-items: center;
-}
-.form form label{
     width: 100%;
 }
 
-.form form input {
+.form input {
     width: 100%;
     background: white;
     flex: 1;
-    padding: 2px 10px;
-    border-radius: 8px;
+    padding: 0.5rem;
+    border-radius: 0.8rem;
 }
 
-.form div{
+.form > .secondary-button {
+    border: none;
+    background: none;
+}
+
+.form__fields {
     display: flex;
-    flex:1;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.form__row {
+    display: inline-flex;
     flex-direction: row;
+    flex: 1;
     align-items: center;
     gap: 1rem;
     width: 100%;
 }
 
-.form .secondary-button {
-    border: none;
-    background: none;
-}
-
-.tags-container {
-    display: none;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 10px;
-    min-height: 30px;
-}
-.tags-container.visible {
-    display: flex;
+.form__row > label{
+    width: 100%;
 }
 
 .login-form,
-.register-form{
+.register-form {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);

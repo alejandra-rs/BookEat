@@ -4,13 +4,11 @@
   <h3>Login or create an account</h3>
   <p>Log in with your BookEat account to access all of our services and privileges.</p>
   <form>
-    <label >
-      <input type="email" placeholder="Email" required>
-    </label>
-    <label>
-      <input type="password" placeholder="Password" required>
-    </label>
-    <button class="primary-button" id="loginBtn" onclick="closeLoginPopup('login-popup-main', 'loginBtn')">Login</button>
+    <div class="form__fields">
+      <label class="form__row"> <input type="email" placeholder="Email" required> </label>
+      <label class="form__row"> <input type="password" placeholder="Password" required> </label>
+    </div>
+    <button class="primary-button" id="login-button" onclick="closeLoginPopup('login-popup-main', 'login-button')">Login</button>
   </form>
     <button class="secondary-button" onclick="popupMode('register-popup-main', 'login-popup-main')">Register</button>
 </dialog>
