@@ -6,25 +6,25 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="icon" type="image/svg+xml" href="/src/assets/icons/logo.svg">
     <link rel="stylesheet" href="/styles.css">
-    <link rel="stylesheet" href="/src/templates/header/header.css">
-    <link rel="stylesheet" href="/src/templates/footer/footer.css">
-    <link rel="stylesheet" href="/src/templates/table-map/table-map.css">
+    <link rel="stylesheet" href="/src/pages/book-table-page/book-table-page.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="/src/pages/book-table-page/book-table-page.js"></script>
     <script src="/src/js/xlu-include-file.js"></script>
 </head>
 <body>
 
-<div xlu-include-file="/src/templates/header/header.html"></div>
+<header xlu-include-file="/src/templates/header/header.html"></header>
 
-    <main>
-        <div xlu-include-file="/src/templates/table-map/table-map.html"></div>
-    </main>
+<main class="book-table-page">
+    <div xlu-include-file="/src/templates/hour-table/hour-table.html"></div>
+    <h2 id="hour-table-txt"><em>Please select a date and time to show available tables</em></h2>
+    <div id="hour-table-map" xlu-include-file="/src/templates/table-map/table-map.html"></div>
+    <button id="book-selected" class="primary-button">Book Selected</button>
+</main>
 
 
 
-<div xlu-include-file="/src/templates/footer/footer.html"></div>
-<script>
-    xLuIncludeFile();
-</script>
+<footer xlu-include-file="/src/templates/footer/footer.html"></footer>
+<script> xLuIncludeFile(); </script>
 </body>
 </html>
