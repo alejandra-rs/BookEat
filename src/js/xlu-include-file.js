@@ -26,7 +26,7 @@ async function xLuIncludeFile() {
                 oldScript.remove();
             });
 
-            xLuIncludeFile();
+            await xLuIncludeFile();
         }
     } catch (error) {
         console.error("Error fetching file:", error);

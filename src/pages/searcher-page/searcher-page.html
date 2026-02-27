@@ -52,7 +52,11 @@
 
 </div>
 <div xlu-include-file="/src/templates/footer/footer.html"></div>
-<script>xLuIncludeFile();</script>
-<script>setupCards("default");</script>
+<script>
+    document.addEventListener("DOMContentLoaded", async () => {
+        await xLuIncludeFile();
+        setupCards("default");
+    });
+</script>
 </body>
 </html>
