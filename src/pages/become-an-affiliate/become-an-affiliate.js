@@ -11,16 +11,11 @@ function borrarTag(spanCerrar) {
 
 function crearTag(texto) {
     if (texto.trim() === '') return;
-
     const tagDiv = document.createElement('div');
     tagDiv.className = 'tag';
-
     tagDiv.innerHTML = `${texto} <span onclick="borrarTag(this)">×</span>`;
-
     tagsContainer.appendChild(tagDiv);
-
     tagsContainer.classList.add('visible');
-
     tagInput.value = '';
 }
 
