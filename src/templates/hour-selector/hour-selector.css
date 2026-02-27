@@ -36,7 +36,7 @@
     overflow-y: scroll;
 }
 
-.icon {
+.edit-property__icon {
     width: 1.2em;
     height: 1.2em;
     flex-shrink: 0;
