@@ -10,42 +10,49 @@ dialog {
     gap: 1rem;
     color: var(--text-primary);
 }
-section{
+
+.reservation-details {
     display: flex;
     flex-direction: column;
     background: var(--bg-primary);
     padding: 1rem;
     border-radius: 0.25em;
 }
-.details-content{
+
+.reservation-details__content{
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     padding: 1rem;
 }
+
 figure{
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 2rem;
 }
-.map__image{
+
+.reservation-details__content__media__image{
     width: 24em;
     height: 24em;
 }
 
-.info-container{
+.reservation-details__content__info{
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
-
-.info-container p{
+.reservation-details__content__info p{
     display: flex;
     flex-direction: row;
     justify-content: left;
     align-items: center;
     gap: 3px;
+}
+
+.reservation-details__content__info p .icon{
+    width: 1em;
 }

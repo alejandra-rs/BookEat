@@ -1,11 +1,11 @@
-.date-group{
+.date-range{
     display: flex;
     flex-direction: row;
     justify-content: center;
     width: 100%;
 }
 
-.date-group > .date-wrapper {
+.date-range__wrapper {
     border: 1px solid var(--border-color);
     border-radius: 5px;
     box-shadow: 0 2px 4px var(--shadow);
@@ -17,18 +17,18 @@
     background-color: var(--bg-primary);
 }
 
-.date-wrapper > button#calendar-range-button{
+button#calendar-range-button{
     background: none;
     border: none;
     padding: 0;
 }
 
-.date-wrapper > button#calendar-range-button > img{
+button#calendar-range-button > img{
     width: 1em;
     height: 1em;
 }
 
-.date-wrapper > input#calendar-range-input {
+.date-range__wrapper > input#calendar-range-input {
    background: transparent !important;
     border: none !important;
     padding: 0.2rem !important;
@@ -37,7 +37,7 @@
     color: var(--text-primary);
 }
 
-.date-wrapper > input#calendar-range-input:focus{
+.date-range__wrapper > input#calendar-range-input:focus{
     outline: none;
     box-shadow: none;
     border: none;
