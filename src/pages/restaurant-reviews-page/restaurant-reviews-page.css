@@ -14,6 +14,7 @@
 
 .restaurant-reviews-page__image-carousel img {
     max-height: 10rem;
+    filter: invert(1) sepia(1) grayscale(1) brightness(0.9);
 }
 
 .restaurant-reviews-page__summary {
@@ -40,6 +41,10 @@
 
 .restaurant-reviews-page__summary__mean__score {
     font-size: 4rem;
+    color: var(--text-primary)
+}
+.restaurant-reviews-page__summary__mean__info{
+    color: var(--text-secondary);
 }
 
 .restaurant-reviews-page__summary__breakdown {
@@ -52,6 +57,7 @@
     justify-content: space-between;
     gap: 5rem;
     padding: 0.5rem 8rem;
+    color: var(--text-primary);
 }
 
 .restaurant-reviews-page__filters > div {

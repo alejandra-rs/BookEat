@@ -9,12 +9,13 @@
     align-items: center;
     gap: 0.8rem;
     font-size: 1.5rem;
-    color: #000;
+    color: var(--text-primary);
 }
 
 .summary-breakdown__bar__icon {
     width: 1.8rem;
     height: 1.8rem;
+    filter: invert(1) sepia(1) grayscale(1) brightness(0.9);
 }
 
 .summary-breakdown__bar__container {
@@ -25,7 +26,7 @@
 
 .summary-breakdown__bar__container__fill {
     height: 100%;
-    background-color: #000;
+    background-color: var(--text-primary);
     border-radius: 2px;
 }
 

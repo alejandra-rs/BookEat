@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="/styles.css">
     <link rel="stylesheet" href="/src/pages/restaurant-reviews-page/restaurant-reviews-page.css">
     <script src="/src/js/xlu-include-file.js"></script>
+    <script src="/src/js/init-dark-mode.js"></script>
+    <script src="/src/js/init-components.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
 <body>
@@ -32,7 +34,7 @@
     <section class="restaurant-reviews-page__summary">
         <div class="restaurant-reviews-page__summary__mean">
             <div xlu-include-file="/src/templates/user-score/user-score.html" class="restaurant-reviews-page__summary__mean__score"></div>
-            <p class="total-reviews">999 reviews</p>
+            <p class="restaurant-reviews-page__summary__mean__info">999 reviews</p>
         </div>
         <div class="restaurant-reviews-page__summary__breakdown" xlu-include-file="/src/pages/restaurant-reviews-page/summary-breakdown.html"></div>
     </section>
@@ -73,7 +75,7 @@
 <footer xlu-include-file="/src/templates/footer/footer.html"></footer>
 
 <script>
-    xLuIncludeFile();
+    initComponents();
 </script>
 </body>
 </html>

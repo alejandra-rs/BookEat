@@ -12,6 +12,7 @@
 .edit-property__icon {
     width: 2rem;
     height: 2rem;
+    filter: invert(1) sepia(1) grayscale(1) brightness(0.9);
 }
 
 .edit-property__label {

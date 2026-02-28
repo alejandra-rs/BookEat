@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/src/pages/searcher-page/searcher-page.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="/src/templates/overview/setup-cards.js"></script>
+    <script src="/src/js/init-dark-mode.js"></script>
     <script src="/src/js/xlu-include-file.js"></script>
 </head>
 <body>
@@ -56,6 +57,7 @@
     document.addEventListener("DOMContentLoaded", async () => {
         await xLuIncludeFile();
         setupCards("default");
+        checkDarkMode();
     });
 </script>
 </body>

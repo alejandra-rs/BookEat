@@ -6,4 +6,5 @@
 
 .edit-button__img {
     height: 1.2em;
+    filter: invert(1) sepia(1) grayscale(1) brightness(0.9);
 }

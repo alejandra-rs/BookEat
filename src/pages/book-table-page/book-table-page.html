@@ -10,6 +10,9 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="/src/pages/book-table-page/book-table-page.js"></script>
     <script src="/src/js/xlu-include-file.js"></script>
+    <script src="/src/js/init-dark-mode.js"></script>
+    <script src="/src/js/auth-mode.js"></script>
+    <script src="/src/js/init-components.js"></script>
 </head>
 <body>
 
@@ -26,12 +29,10 @@
     <div xlu-include-file="/src/templates/hour-table/hour-table.html"></div>
     <h2 id="hour-table-txt"><em>Please select a date and time to show available tables</em></h2>
     <div id="hour-table-map" xlu-include-file="/src/templates/table-map/table-map.html"></div>
-    <button id="book-selected" class="primary-button">Book Selected</button>
+    <button id="book-selected" class="primary-button" onclick="popupMode('login-popup-main',null)">Book Selected</button>
 </main>
 
-
-
 <footer xlu-include-file="/src/templates/footer/footer.html"></footer>
-<script> xLuIncludeFile(); </script>
+<script> initComponents(); </script>
 </body>
 </html>
