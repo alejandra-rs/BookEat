@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="/src/templates/restaurant-info/restaurant-info.css">
+<script type="module" src="/src/js/auth-mode.js"></script>
 
 <article class="restaurant-info">
     <img src="/src/assets/img/restaurant-item.png" alt="A restaurant image" class="restaurant-info__image">
@@ -16,7 +17,7 @@
             mollis eget dui.
         </p>
         <div class="restaurant-info__content__buttons">
-            <button id="menu-icon" class="restaurant-info__content__buttons__menu secondary-button">
+            <button id="menu-icon" class="restaurant-info__content__buttons__menu secondary-button" onclick="popupMode('restaurant-menu', null)">
                 <img src="/src/assets/icons/restaurant-menu.svg" alt="restaurant menu" class="restaurant-info__content__buttons__menu__icon">
             </button>
             <a href="/BookEat/src/pages/book-table-page/book-table-page.html">
@@ -24,4 +25,6 @@
             </a>
         </div>
     </div>
+    <div id="restaurant-menu" onclick="closeLoginPopup('restaurant-menu',null)" class="blur-effect" xlu-include-file="/src/templates/menu-popup/menu-popup.html"></div>
+
 </article>

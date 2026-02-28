@@ -13,10 +13,14 @@
     color: var(--text-primary);
 }
 
+h3 {
+    font-size: 1.5rem;
+}
+
 .form > form {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 0.5rem;
     align-items: center;
     width: 100%;
 }
