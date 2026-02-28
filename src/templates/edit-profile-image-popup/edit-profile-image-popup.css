@@ -1,0 +1,25 @@
+#edit-profile-image-dialog {
+    display: inline-flex;
+    flex-direction: column;
+    padding: 2.5rem;
+    border-radius: 20px;
+    border: none;
+    background-color: var(--bg-secondary);
+    gap: 2rem;
+    color: var(--text-primary);
+}
+
+h2 {
+    font-size: 1.8rem;
+}
+
+.popup-content {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.popup-footer {
+    text-align: end;
+}

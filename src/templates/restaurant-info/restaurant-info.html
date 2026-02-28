@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="/src/templates/restaurant-info/restaurant-info.css">
+<script type="module" src="/src/js/auth-mode.js"></script>
+
+<article class="restaurant-info">
+    <img src="/src/assets/img/restaurant-item.png" alt="A restaurant image" class="restaurant-info__image">
+    <div class ="restaurant-info__content">
+        <header class="restaurant-info__content__header">
+            <h1>Restaurant Name</h1>
+            <span xlu-include-file="/src/templates/user-score/user-score.html"></span>
+        </header>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vel sem dui. Lorem ipsum dolor sit amet,
+            consectetur adipiscing elit. Aliquam blandit viverra scelerisque. Aliquam et vehicula nibh, vulputate
+            tincidunt velit. Phasellus elementum laoreet ante sit amet aliquam. Integer vel ante enim. Nam aliquet
+            pharetra libero porttitor faucibus. Curabitur ut leo non odio placerat elementum. Vestibulum commodo ipsum
+            a auctor pretium. Integer sagittis et orci et sagittis. Quisque erat justo, tincidunt vel tristique quis,
+            mollis eget dui.
+        </p>
+        <div class="restaurant-info__content__buttons">
+            <button id="menu-icon" class="restaurant-info__content__buttons__menu secondary-button" onclick="popupMode('restaurant-menu', null)">
+                <img src="/src/assets/icons/restaurant-menu.svg" alt="restaurant menu" class="restaurant-info__content__buttons__menu__icon">
+            </button>
+            <a href="/BookEat/src/pages/book-table-page/book-table-page.html">
+                <button class="primary-button"> Book </button>
+            </a>
+        </div>
+    </div>
+    <div id="restaurant-menu" onclick="closeLoginPopup('restaurant-menu',null)" class="blur-effect" xlu-include-file="/src/templates/menu-popup/menu-popup.html"></div>
+
+</article>

@@ -1,0 +1,27 @@
+.date-picker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem;
+    background-color: transparent;
+    cursor: pointer;
+    user-select: none;
+}
+
+.date-picker__input,
+.date-picker__input::placeholder,
+.date-picker .flatpickr-input {
+    max-width: 5rem;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 1rem;
+    cursor: pointer;
+    color: var(--text-primary);
+}
+
+.date-picker__calendar,
+.date-picker__arrow {
+    width: 1.2rem;
+    height: 1.2rem;
+}

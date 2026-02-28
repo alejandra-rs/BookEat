@@ -1,0 +1,39 @@
+body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.book-table-page {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    align-self: center;
+    gap: 3rem;
+    padding: 2rem;
+}
+
+.back-button {
+    background: none;
+    border: none;
+    align-self: start;
+}
+
+#hour-table-txt {
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+#hour-table-map {
+    display: none;
+    font-size: 2em;
+    justify-content: center;
+}
+
+#book-selected {
+    display: none;
+    font-size: 1.5rem;
+    width: fit-content;
+    padding: 1rem 2rem;
+    align-self: end;
+}

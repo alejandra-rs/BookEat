@@ -1,0 +1,42 @@
+.user-review {
+    display: inline-flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+    background: var(--bg-secondary);
+    border-radius: 2rem;
+    color: var(--text-primary);
+    width: 100%;
+}
+
+.user-review__header__image, .user-review__images > img {
+    width: 5rem;
+    height: 5rem;
+}
+
+.user-review__pros-cons {
+    display: inline-flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 0.5rem;
+}
+
+.user-review__header {
+    display: inline-flex;
+    gap: 1rem;
+}
+
+.user-review__header__metadata {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+}
+
+.user-review__header__metadata__value {
+    font-size: 2.5rem;
+}
+
+.user-review__images {
+    display: inline-flex;
+    gap: 1rem;
+}

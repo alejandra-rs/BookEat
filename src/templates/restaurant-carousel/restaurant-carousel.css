@@ -1,0 +1,31 @@
+.restaurant-carousel {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 2rem;
+    gap: 1.5rem;
+    background: none;
+}
+
+.restaurant-carousel h1 {
+    color: var(--text-primary);
+    font-size: 2em;
+}
+
+.restaurant-carousel__carousel {
+    display: flex;
+    gap: 1.5rem;
+    transition: transform 0.3s ease-out;
+    overflow: auto;
+}
+
+.restaurant-carousel__carousel__item {
+    display: flex;
+    min-width: 200px;
+    height: 100%;
+    background: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    transition: transform 0.3s;
+}

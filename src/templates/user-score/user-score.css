@@ -1,0 +1,22 @@
+.score {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.1em;
+    font-size: inherit;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.score__number {
+    font-size: inherit;
+}
+
+.score__icon {
+    width: 1em;
+    height: 1em;
+}
+
+body.dark-mode .score__icon {
+    filter: invert(1) sepia(1) grayscale(1) brightness(0.9);
+}

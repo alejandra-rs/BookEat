@@ -1,0 +1,64 @@
+.hour-selector {
+    position: relative;
+    display: inline-block;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+}
+
+.hour-selector__placeholder {
+    display: flex;
+    align-items: center;
+    gap: 0.8em;
+    padding: 0.3em;
+    color: var(--text-primary);
+    background: none;
+    border: none;
+}
+
+.hour-selector__dropdown {
+    display: none;
+    position: absolute;
+    top: 110%;
+    left: 0;
+    width: max-content;
+    background-color: var(--bg-secondary);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.hour-selector__dropdown.open {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.2em;
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+.hour-selector__placeholder__icon {
+    width: 1.2em !important;
+    height: 1.2em !important;
+    pointer-events: none;
+}
+
+.hour-button {
+    display: flex;
+    padding: 0.5rem;
+    border: none;
+    justify-content: center;
+    width: 100%;
+}
+
+.hour-button:hover {
+    background-color: var(--shadow);
+}
+
+.hour-button.selected {
+    background-color: var(--shadow);
+}
+
+.hour-button.occupied {
+    color: var(--bg-primary);
+    background-color: var(--text-primary);
+}

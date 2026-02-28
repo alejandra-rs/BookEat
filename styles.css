@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: inherit;
+}
+
+body {
+    background-color: var(--bg-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+header, footer {flex-shrink: 0;}
+main { flex: 1; }
+
+:root {
+    --bg-primary: #fafafa;
+    --bg-secondary: #eaeaea;
+    --text-primary: #333;
+    --text-secondary: #555;
+    --text-tertiary: #666;
+    --text-quaternary: #fff;
+    --border-color: #000;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --border-padding: 20px;
+    --button-primary: #d8d7d7;
+    --button-secondary: #2c2c2c;
+}
+
+body.dark-mode {
+    --bg-primary:  #2d2d2d;
+    --bg-secondary: #1a1a1a;
+    --text-primary: #e0e0e0;
+    --text-secondary: #b0b0b0;
+    --text-tertiary: #909090;
+    --text-quaternary: #000;
+    --border-color: #404040;
+    --shadow: rgba(0, 0, 0, 0.3);
+    --button-primary: #2c2c2c;
+    --button-secondary: #acacac;
+}
+
+button {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 12px;
+    gap: 0.5rem;
+    padding: 0.3rem 1rem;
+    cursor: pointer;
+}
+
+a > button {
+    text-decoration: none;
+    height: 100%;
+}
+
+button img.icon {
+    width: 2em;
+    height: 2em;
+    color: var(--text-primary);
+}
+
+.secondary-button {
+    color: var(--text-primary);
+    background-color: var(--button-primary);
+    border: solid 0.1em var(--text-primary);
+}
+
+.secondary-button:active{
+    background-color: var(--shadow);
+}
+
+.primary-button{
+    color: var(--text-quaternary);
+    background-color: var(--button-secondary);
+    border: solid 0.1em var(--button-secondary);
+}
+
+.primary-button:active{
+    background-color: var(--shadow);
+}
+
+.blur-effect{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: none;
+}
+.block-scroll {
+    overflow:hidden;
+}
+
+body.dark-mode .icon{
+    filter: invert(1) sepia(1) grayscale(1) brightness(0.9);
+}

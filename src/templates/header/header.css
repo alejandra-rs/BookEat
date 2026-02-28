@@ -1,0 +1,107 @@
+.header {
+    display: flex;
+    padding: 1rem 2rem;
+    gap: 5rem;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px var(--shadow);
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    z-index: 999;
+}
+
+.header__logo > img {
+    width: 3em !important;
+    height: 3em !important;
+}
+
+.header__search {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    max-width: 1000px;
+    min-width: 560px;
+    border-radius: 20rem;
+    padding: 0.2rem 0.5rem;
+    background-color: var(--bg-primary);
+    border: 0.1rem solid var(--border-color);
+    color: var(--text-primary);
+}
+
+.header__search__field {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1;
+    min-width: 150px;
+}
+
+.header__search__field > button {
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.header__search__field__input {
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+.header__search__selectors {
+    display: flex;
+    flex: 1 1 0;
+    align-items: center;
+    border: 0.1rem solid var(--text-primary);
+    border-radius: 20rem;
+    max-width: 500px;
+}
+
+.header__search__selectors > div {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header__search__selectors > div:not(:last-child) {
+    border-right: 0.1rem solid var(--text-primary);
+    height: 1.5rem;
+}
+
+.header__buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.5rem;
+}
+
+.header__buttons__toggles {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.header__buttons__toggles > button {
+    background: none;
+    border: none;
+    outline: none;
+    padding: 0;
+}
+
+.header__buttons__toggles button:not(:last-child)::after {
+    content: "";
+    width: 0.1rem;
+    height: 2rem;
+    background-color: var(--text-primary);
+    margin-left: 0.7rem;
+}
+
+.header__buttons__account {
+    display: flex;
+    gap: 0.8rem;
+}
+
+#user-icon {
+    display: none;
+}

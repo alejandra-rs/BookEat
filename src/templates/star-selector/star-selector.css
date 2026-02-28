@@ -1,0 +1,35 @@
+.star-selector-container {
+    display: inline-flex;
+    gap: 0.1rem;
+    background-color: var(--shadow);
+    padding: 0.4rem 1rem;
+    border-radius: 2rem;
+}
+
+.star-checkbox {
+    display: none;
+}
+
+.star-button {
+    width: 1.75rem;
+    height: 1.75rem;
+    display: inline-block;
+    background-image: url("../../assets/icons/star.svg");
+}
+
+.star-checkbox:checked + .star-button {
+    background-image: url("../../assets/icons/star-filled.svg");
+}
+
+.star-button:hover,
+.star-button:hover ~ .star-button {
+    background-image: url("../../assets/icons/star.svg");
+}
+
+.star-selector-container:hover .star-button {
+    background-image: url("../../assets/icons/star-filled.svg");
+}
+
+.star-selector-container:hover .star-button:hover ~ .star-button {
+    background-image: url("../../assets/icons/star.svg");
+}

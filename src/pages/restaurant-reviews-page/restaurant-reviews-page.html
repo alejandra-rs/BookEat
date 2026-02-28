@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Restaurant Reviews Page</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="icon" type="image/svg+xml" href="/src/assets/icons/logo.svg">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/src/pages/restaurant-reviews-page/restaurant-reviews-page.css">
+    <script src="/src/js/xlu-include-file.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+</head>
+<body>
+
+<header xlu-include-file="/src/templates/header/header.html"></header>
+
+<main class="restaurant-reviews-page">
+    <div xlu-include-file="/src/templates/restaurant-info/restaurant-info.html"></div>
+    <div class="restaurant-reviews-page__image-carousel">
+        <img src="/src/assets/img/restaurant-item.png" alt="">
+        <img src="/src/assets/img/restaurant-item.png" alt="">
+        <img src="/src/assets/img/restaurant-item.png" alt="">
+        <img src="/src/assets/img/restaurant-item.png" alt="">
+        <img src="/src/assets/img/restaurant-item.png" alt="">
+        <img src="/src/assets/img/restaurant-item.png" alt="">
+        <img src="/src/assets/img/restaurant-item.png" alt="">
+        <img src="/src/assets/img/restaurant-item.png" alt="">
+        <img src="/src/assets/img/restaurant-item.png" alt="">
+        <img src="/src/assets/img/restaurant-item.png" alt="">
+    </div>
+
+    <section class="restaurant-reviews-page__summary">
+        <div class="restaurant-reviews-page__summary__mean">
+            <div xlu-include-file="/src/templates/user-score/user-score.html" class="restaurant-reviews-page__summary__mean__score"></div>
+            <p class="total-reviews">999 reviews</p>
+        </div>
+        <div class="restaurant-reviews-page__summary__breakdown" xlu-include-file="/src/pages/restaurant-reviews-page/summary-breakdown.html"></div>
+    </section>
+
+    <section class="restaurant-reviews-page__filters">
+        <div>
+            <h2>Filter</h2>
+            <div class="restaurant-reviews-page__filters__buttons">
+                 <button>Lorem Ipsum</button>
+                 <button>Lorem Ipsum</button>
+                 <button>Lorem Ipsum</button>
+                 <button>Lorem Ipsum</button>
+                 <button>Lorem Ipsum</button>
+                 <button>Lorem Ipsum</button>
+                 <button>Lorem Ipsum</button>
+                 <button>Lorem Ipsum</button>
+            </div>
+        </div>
+        <div>
+            <h2>Sort by</h2>
+            <div class="restaurant-reviews-page__filters__sort-by">
+                <label><select name="sort-by"><option>Lorem Ipsum</option></select></label>
+                <label><select name="sort-by"><option>Lorem Ipsum</option></select></label>
+            </div>
+        </div>
+    </section>
+
+    <section class="restaurant-reviews-page__reviews">
+        <div xlu-include-file="/src/templates/user-review/user-review.html"></div>
+        <div xlu-include-file="/src/templates/user-review/user-review.html"></div>
+        <div xlu-include-file="/src/templates/user-review/user-review.html"></div>
+        <div xlu-include-file="/src/templates/user-review/user-review.html"></div>
+        <div xlu-include-file="/src/templates/user-review/user-review.html"></div>
+        <div xlu-include-file="/src/templates/user-review/user-review.html"></div>
+    </section>
+</main>
+
+<footer xlu-include-file="/src/templates/footer/footer.html"></footer>
+
+<script>
+    xLuIncludeFile();
+</script>
+</body>
+</html>

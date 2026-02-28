@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>BookEat</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="icon" type="image/svg+xml" href="/src/assets/icons/logo.svg">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/src/js/xlu-include-file.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
 <body>
-<h1>BookEat testing</h1>
-
-<p>hello world</p>
+        <div xlu-include-file="/BookEat/src/templates/header/header.html"></div>
+    <main>
+        <div xlu-include-file="/BookEat/src/templates/restaurant-carousel/restaurant-carousel.html"></div>
+        <div xlu-include-file="/BookEat/src/templates/restaurant-carousel/restaurant-carousel.html"></div>
+        <div xlu-include-file="/BookEat/src/templates/restaurant-carousel/restaurant-carousel.html"></div>
+    </main>
+        <div xlu-include-file="/BookEat/src/templates/footer/footer.html"></div>
 </body>
+
+<script>xLuIncludeFile()</script>
 </html>

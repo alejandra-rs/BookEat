@@ -1,0 +1,44 @@
+.date-range{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+
+.date-range__wrapper {
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    box-shadow: 0 2px 4px var(--shadow);
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0.2rem;
+    background-color: var(--bg-primary);
+}
+
+button#calendar-range-button{
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+button#calendar-range-button > img{
+    width: 1em;
+    height: 1em;
+}
+
+.date-range__wrapper > input#calendar-range-input {
+   background: transparent !important;
+    border: none !important;
+    padding: 0.2rem !important;
+    width: auto !important;
+    min-width: 0 !important;
+    color: var(--text-primary);
+}
+
+.date-range__wrapper > input#calendar-range-input:focus{
+    outline: none;
+    box-shadow: none;
+    border: none;
+}

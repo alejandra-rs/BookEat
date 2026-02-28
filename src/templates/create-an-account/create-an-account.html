@@ -1,0 +1,22 @@
+<link rel="stylesheet" href="/src/css/forms.css">
+
+<dialog id="create-account-popup" class="register-form form">
+  <h3>Create an account</h3>
+  <p>Create a BookEat account and access all of our services and privileges.</p>
+  <form>
+      <div class="form__row">
+        <label> <input type="text" placeholder="Name" required> </label>
+        <label> <input type="text" placeholder="Surname" required> </label>
+      </div>
+      <div class="form__row">
+        <label> <input type="tel" placeholder="Phone Number" required> </label>
+        <label> <input type="date" placeholder="Birthdate" required> </label>
+      </div>
+        <label class="form__row"> <input type="email" placeholder="Email" required> </label>
+        <label class="form__row"> <input type="password" placeholder="Password" required> </label>
+        <label class="form__row"> <input type="password" placeholder="Confirm Password" required> </label>
+    <button class="primary-button" id="registerBtn" type="submit" onclick="closeLoginPopup('register-popup-main','registerBtn')">Register</button>
+  </form>
+    <button class="secondary-button" onclick="popupMode('login-popup-main', 'register-popup-main')">Login</button>
+</dialog>
+<script src="/src/js/auth-mode.js"></script>

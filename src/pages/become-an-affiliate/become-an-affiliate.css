@@ -1,0 +1,32 @@
+.form.affiliate-form {
+    background-color: var(--bg-primary);
+    width: 80%;
+    align-self: center;
+    box-shadow: none;
+    z-index: -10;
+}
+.affiliate-form__title {
+    font-size: 2rem;
+}
+
+.affiliate-form__form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.tags-container {
+    display: none;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+    min-height: 30px;
+}
+
+.tags-container.visible {
+    display: flex;
+}
+
+.tag__close {
+    cursor: pointer;
+}

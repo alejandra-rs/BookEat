@@ -1,0 +1,44 @@
+.restaurant-info-page {
+    display: flex;
+    flex-direction: column;
+}
+
+.restaurant-info-page__main {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem 3rem;
+}
+
+.restaurant-info-page__main__image-carousel {
+    display: flex;
+    overflow: auto;
+    gap: 1rem;
+    padding: 0.5rem 1.5rem;
+}
+
+.restaurant-info-page__main__image-carousel img {
+    max-height: 10rem;
+}
+
+.restaurant-info-page__main__reviews {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.restaurant-info-page__main__read-more {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.restaurant-info-page__main__read-more a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.restaurant-info-page__main__read-more button {
+    font-size: 1.5rem;
+}

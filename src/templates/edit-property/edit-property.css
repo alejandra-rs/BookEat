@@ -1,0 +1,40 @@
+.edit-property {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    gap: 0.5rem;
+    width: 100%;
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+}
+
+.edit-property__icon {
+    width: 2rem;
+    height: 2rem;
+}
+
+.edit-property__label {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.edit-property__label__field {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    border: var(--text-primary) solid 1px;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.2rem;
+}
+
+.edit-property__field__input {
+    border: none;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    flex-grow: 1;
+    width: 100%;
+}
