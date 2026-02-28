@@ -47,6 +47,7 @@
     border: none;
     outline: none;
     background-color: transparent;
+    color: var(--text-primary);
 }
 
 .header__search__selectors {
