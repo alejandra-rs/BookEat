@@ -1,4 +1,4 @@
-#review-dialog {
+#write-review {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -9,15 +9,17 @@
     border-radius: 30px;
 }
 
-#review-dialog > header >h1 {
+h1 {
     font-size: 2rem; 
     color: var(--text-primary);
 }
-#review-dialog > header > h2 { font-size: 1.25rem;
-color: var(--text-secondary);
+
+h2 {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
 }
 
-.review-content {
+.write-review__content {
     background-color: var(--bg-secondary);
     border-radius: 20px;
     padding: 0.8em 1.5em;
@@ -26,12 +28,12 @@ color: var(--text-secondary);
     color: var(--text-secondary);
 }
 
-.pros-cons-container {
+.write-review__pros-cons {
     display: flex;
     align-self: stretch;
     gap: 1em;
 }
 
-.review-footer {
+.write-review__footer {
     align-self: flex-end;
 }

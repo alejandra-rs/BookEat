@@ -17,14 +17,6 @@
     gap: 2rem;
 }
 
-.table-item__map__table {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    user-select: none;
-    cursor: pointer;
-}
-
 .table-map__map__table__shape {
     width: 5em;
     height: 5em;
@@ -42,6 +34,14 @@
 
 .table-map__map__table__shape-round {
     border-radius: 50%;
+}
+
+.table-item__map__table {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    cursor: pointer;
 }
 
 .table-item__map__table.occupied .table-map__map__table__shape {

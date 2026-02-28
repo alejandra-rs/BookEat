@@ -1,12 +1,10 @@
 <link rel="stylesheet" href="/src/templates/write-review-popup/write-review-popup.css">
 <link rel="stylesheet" href="/styles.css">
 
-<dialog id="review-dialog">
-  <header>
-    <h1 class="review-title">Restaurant Name</h1>
-  </header>
+<dialog id="write-review" class="write-review" open>
+  <header> <h1>Restaurant Name</h1> </header>
 
-  <section class="review-content">
+  <section class="write-review__content">
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis elementum ligula, et convallis felis.
       Donec porttitor turpis vel arcu suscipit aliquam. Sed et interdum eros. Phasellus ut vehicula mi, in condimentum erat.
       Suspendisse potenti. Curabitur quis tellus et nisl tempus rhoncus id vitae mauris. Curabitur ac elit vel magna pretium
@@ -14,21 +12,17 @@
       nibh nec auctor. Phasellus bibendum tellus ac elementum mollis.</p>
   </section>
 
-  <section class="pros-cons-container">
-    <section class="review-content">
-      <header>
-        <h2>Pros</h2>
-      </header>
+  <section class="write-review__pros-cons">
+    <section class="write-review__content">
+      <header> <h2>Pros</h2> </header>
       <ul>
         <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
         <li>Etiam quis elementum ligula.</li>
         <li>Donec porttitor turpis vel arcu suscipit.</li>
       </ul>
     </section>
-    <section class="review-content">
-      <header>
-        <h2>Cons</h2>
-      </header>
+    <section class="write-review__content">
+      <header> <h2>Cons</h2> </header>
       <ul>
         <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
         <li>Etiam quis elementum ligula.</li>
@@ -37,10 +31,10 @@
     </section>
   </section>
 
-  <section class="star-rating" xlu-include-file="star-selector.html"></section>
-  <section class="insert-image" xlu-include-file="insert-image.html"></section>
+  <section xlu-include-file="star-selector.html"></section>
+  <section xlu-include-file="insert-image.html"></section>
 
-  <footer class="review-footer">
+  <footer class="write-review__footer">
     <button class="secondary-button">Cancel</button>
     <button class="primary-button">Submit</button>
   </footer>

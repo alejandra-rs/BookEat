@@ -9,15 +9,15 @@
     color: var(--text-primary);
 }
 
+.menu-item__content {
+    flex: 1;
+}
+
 .menu-item__content__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     color: var(--text-primary);
-}
-
-.menu-item__content {
-    flex: 1;
 }
 
 .menu-item__image {

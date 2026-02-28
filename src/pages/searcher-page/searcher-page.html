@@ -13,34 +13,25 @@
     <script src="/src/js/xlu-include-file.js"></script>
 </head>
 <body>
-<div xlu-include-file="/src/templates/header/header.html"></div>
-<div class="search-container">
-<aside class="filters-sidebar">
-    <h3>Price</h3>
-    <div class="range-slider">
-        <div class="line"></div>
-        <div class="dot left"><span>0</span></div>
-        <div class="dot right"><span>100</span></div>
-    </div>
+<header xlu-include-file="/src/templates/header/header.html"></header>
 
-    <ul class="filter-list">
-        <li>
-            <label>
-            <input type="checkbox">
-            </label> Lorem ipsum
-        </li>
-        <li><label>
-            <input type="checkbox">
-            </label> Lorem ipsum
-        </li>
-        <li>
-            <label>
-            <input type="checkbox" checked>
-            </label> Lorem ipsum
-        </li>
-    </ul>
-</aside>
-    <section class="results-layout">
+<main class="searcher-page">
+    <aside class="searcher-page__filters">
+        <h3>Price</h3>
+        <div class="searcher-page__filters__slider">
+            <div class="searcher-page__filters__slider__line"></div>
+            <div class="searcher-page__filters__slider__dot left"><span>0</span></div>
+            <div class="searcher-page__filters__slider__dot right"><span>100</span></div>
+        </div>
+
+        <ul class="searcher-page__filters__list">
+            <li> <label> <input type="checkbox"> </label> Lorem ipsum </li>
+            <li> <label> <input type="checkbox"> </label> Lorem ipsum </li>
+            <li> <label> <input type="checkbox" checked> </label> Lorem ipsum </li>
+        </ul>
+    </aside>
+
+    <section class="searcher-page__results">
         <div xlu-include-file="/src/templates/overview/overview.html"></div>
         <div xlu-include-file="/src/templates/overview/overview.html"></div>
         <div xlu-include-file="/src/templates/overview/overview.html"></div>
@@ -50,9 +41,11 @@
         <div xlu-include-file="/src/templates/overview/overview.html"></div>
     </section>
 
-</div>
-<div xlu-include-file="/src/templates/footer/footer.html"></div>
+</main>
+
+<footer xlu-include-file="/src/templates/footer/footer.html"></footer>
 <script>
+
     document.addEventListener("DOMContentLoaded", async () => {
         await xLuIncludeFile();
         setupCards("default");

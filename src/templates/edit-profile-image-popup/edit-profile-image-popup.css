@@ -13,13 +13,13 @@ h2 {
     font-size: 1.8rem;
 }
 
-.popup-content {
+.edit-profile-image__content {
     display: inline-flex;
     flex-direction: column;
     align-items: center;
     gap: 1.2rem;
 }
 
-.popup-footer {
+.edit-profile-image__footer {
     text-align: end;
 }
