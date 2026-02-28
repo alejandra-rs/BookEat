@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="/src/templates/header/header.css">
 <script type="module" src="/src/js/init-dark-mode.js"></script>
 <script type="module" src="/src/js/auth-mode.js"></script>
+<link rel="stylesheet" href="/styles.css">
 
 <header class="header">
 
@@ -22,8 +23,8 @@
 
     <div class="header__buttons">
         <div class="header__buttons__toggles">
-            <button id="dark-mode-toggle"> <img src="/src/assets/icons/dark-mode.svg" alt="Light Mode" id="dark-mode-icon" class="icon"> </button>
             <button id="language-button"> <img src="/src/assets/icons/language.svg" alt="Language" class="icon">  </button>
+            <button id="dark-mode-toggle"> <img src="/src/assets/icons/dark-mode.svg" alt="Light Mode" id="dark-mode-icon" class="icon"> </button>
         </div>
 
         <div class="header__buttons__account" title="profile">
@@ -38,6 +39,9 @@
 <div id="register-popup-main" onclick="closeLoginPopup('register-popup-main',null)" class="blur-effect" xlu-include-file="/src/templates/create-an-account/create-an-account.html"></div>
 
 <script>
+    function search(){
+        window.location.href = "/BookEat/src/pages/searcher-page/searcher-page.html";
+    }
     document.getElementById('search-button').addEventListener('click', () => {
         window.location.href = "/BookEat/src/pages/searcher-page/searcher-page.html";});
 </script>

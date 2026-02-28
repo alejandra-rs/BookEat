@@ -1,4 +1,4 @@
-const stars = document.querySelectorAll('.star-checkbox');
+const stars = document.querySelectorAll('.star-checkbox__input');
 
 stars.forEach(star => {
     star.addEventListener('change', () => {
