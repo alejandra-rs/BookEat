@@ -1,35 +1,36 @@
-.star-selector-container {
+.star-checkbox {
     display: inline-flex;
     gap: 0.1rem;
     background-color: var(--shadow);
     padding: 0.4rem 1rem;
     border-radius: 2rem;
+    max-width: 180px;
 }
 
-.star-checkbox {
+.star-checkbox__input {
     display: none;
 }
 
-.star-button {
+.star-checkbox__button {
     width: 1.75rem;
     height: 1.75rem;
     display: inline-block;
-    background-image: url("../../assets/icons/star.svg");
+    background-image: url("/BookEat/src/assets/icons/star.svg");
 }
 
-.star-checkbox:checked + .star-button {
-    background-image: url("../../assets/icons/star-filled.svg");
+.star-checkbox__input:checked + .star-checkbox__button {
+    background-image: url("/BookEat/src/assets/icons/star-filled.svg");
 }
 
-.star-button:hover,
-.star-button:hover ~ .star-button {
-    background-image: url("../../assets/icons/star.svg");
+.star-checkbox__button:hover,
+.star-checkbox__button:hover ~ .star-checkbox__button {
+    background-image: url("/BookEat/src/assets/icons/star.svg");
 }
 
-.star-selector-container:hover .star-button {
-    background-image: url("../../assets/icons/star-filled.svg");
+.star-checkbox:hover .star-checkbox__button {
+    background-image: url("/BookEat/src/assets/icons/star-filled.svg");
 }
 
-.star-selector-container:hover .star-button:hover ~ .star-button {
-    background-image: url("../../assets/icons/star.svg");
+.star-checkbox:hover .star-checkbox__button:hover ~ .star-checkbox__button {
+    background-image: url("/BookEat/src/assets/icons/star.svg");
 }
