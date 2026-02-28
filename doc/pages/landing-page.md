@@ -1,8 +1,9 @@
 [← Volver al README principal](/README.md)
 
-# *Landing Page* (`index.html`)
+# *Landing Page* (`landing-page.html`)
 
-> **Acceso rápido**: [Ver código fuente del archivo](/index.html)
+> **Acceso rápido**: [Ver código fuente del archivo](/src/pages/landing-page/landing-page.html) 
+> ([`index.html`](/index.html) es una redirección a esta página)
 
 ### Descripción detallada
 La ***Landing Page***, primera página accesible al entrar en el sitio, funciona como eje central. Su diseño permite 

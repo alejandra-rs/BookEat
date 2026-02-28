@@ -83,7 +83,7 @@ Representación visual del flujo de uso de la aplicación, desde la necesidad de
 
 La aplicación se compone de 8 páginas principales, construidas mediante el ensamblaje de *templates*:
 
-- [**`index.html` (Landing Page)**](/doc/pages/landing-page.md): Puerta de acceso a **BookEat**. 
+- [**`landing-page.html` (Landing Page)**](/doc/pages/landing-page.md): Puerta de acceso a **BookEat**.
 - [**`searcher-page.html` (Exploración)**](/doc/pages/searcher-page.md): Motor de búsqueda de restaurantes con distintos filtros.
 - [**`restaurant-page.html` (Perfil del local)**](/doc/pages/restaurant-page.md): Vista detallada de un establecimiento, incluyendo servicios, carta y galería de imágenes.
 - [**`restaurant-reviews-page.html` (Reseñas)**](/doc/pages/restaurant-reviews-page.md): Espacio para compartir el *feedback* de los clientes.

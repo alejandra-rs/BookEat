@@ -15,7 +15,6 @@
 .summary-breakdown__bar__icon {
     width: 1.8rem;
     height: 1.8rem;
-    filter: invert(1) sepia(1) grayscale(1) brightness(0.9);
 }
 
 .summary-breakdown__bar__container {
@@ -33,4 +32,8 @@
 .summary-breakdown__bar__count {
     min-width: 35px;
     text-align: right;
+}
+
+body.dark-mode .summary-breakdown__bar__icon {
+    filter: invert(1) sepia(1) grayscale(1) brightness(0.9);
 }

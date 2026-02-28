@@ -14,7 +14,6 @@
 
 .restaurant-reviews-page__image-carousel img {
     max-height: 10rem;
-    filter: invert(1) sepia(1) grayscale(1) brightness(0.9);
 }
 
 .restaurant-reviews-page__summary {
@@ -84,4 +83,8 @@
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+}
+
+body.dark-mode .restaurant-reviews-page__image-carousel img {
+    filter: invert(1) sepia(1) grayscale(1) brightness(0.9);
 }
