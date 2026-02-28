@@ -8,7 +8,7 @@
 La página de ***Mis reservas*** es el panel de control donde se gestiona el flujo de reservas. Los objetivos principales de esta página son:
 - **Filtrado Temporal**: Utilización de un selector de rango de fechas para acotar la búsqueda de reservas.
 - **Interfaz Adaptativa**: El *template* `Overview` se modifica dinámicamente y se adapta según el tipo de usuario (Cliente vs. Restaurante) y el estado de la reserva (Pasada vs. Vigente).
-- **Acciones Contextuales**: Dependiendo del tipo de reserva , se habilitan botones específicos (ej. "Cancelar Reserva" vs. "Escribir Reseña").
+- **Acciones Contextuales**: Dependiendo del tipo de reserva, se habilitan botones específicos (ej. "Cancelar Reserva" vs. "Escribir Reseña").
 
 ---
 
@@ -21,6 +21,9 @@ La página de ***Mis reservas*** es el panel de control donde se gestiona el flu
 
 <sub>*El layout del listado cambia según el tipo de usuario y el estado de las reservas.*</sub>
 
+> Para este _sprint_, puesto que no hemos incluido la lógica de inicio de sesión, se ha creado una página que
+> mezcla los distintos tipos posibles de `overview`. En sprints posteriores, la página se adaptará a la sesión que
+> haya sido iniciada.
 ---
 
 ### Templates Implementados
