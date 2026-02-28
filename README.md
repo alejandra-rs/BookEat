@@ -122,7 +122,6 @@ Acto seguido, detallamos otras consideraciones técnicas que se han tenido en cu
         <a href="https://github.com/devicons/devicon/"><img width=100 src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" /></a>
         <a href="https://github.com/devicons/devicon/"><img width=100 src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg"/></a>
         <a href="https://github.com/devicons/devicon/"><img width=100 src="https://flatpickr.js.org/images/logo.png"/></a>
-        <a href="https://github.com/devicons/devicon/"><img width=100 src="https://flatpickr.js.org/images/logo.png"/></a>
     </div>
 </div>
 <br>
