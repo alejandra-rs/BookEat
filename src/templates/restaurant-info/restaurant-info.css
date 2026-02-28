@@ -1,4 +1,4 @@
-.restaurant-info {
+.restaurant-item__content__info {
     display: flex;
     gap: 2rem;
     padding: 2rem;
@@ -25,7 +25,7 @@
     color: var(--text-primary);
 }
 
-.restaurant-info .restaurant-info__content__buttons {
+.restaurant-item__content__info .restaurant-info__content__buttons {
     display: flex;
     flex-direction: row-reverse;
     gap: 8px;

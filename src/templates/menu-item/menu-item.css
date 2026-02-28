@@ -1,4 +1,4 @@
-.menu-item-wrapper {
+.menu-item {
     display: flex;
     align-items: stretch;
     font-size: inherit;
@@ -9,23 +9,23 @@
     color: var(--text-primary);
 }
 
-.menu-item-header {
+.menu-item__content__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     color: var(--text-primary);
 }
 
-.menu-item-content {
+.menu-item__content {
     flex: 1;
 }
 
-.image-wrapper {
+.menu-item__image {
     display: flex;
     align-items: stretch;
 }
 
-.menu-item-image {
+.menu-item__image > img {
     width: 100%;
     height: auto;
     object-fit: contain;

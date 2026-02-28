@@ -1,60 +1,46 @@
 .overview {
+    display: flex;
     background-color: var(--bg-secondary);
-    border-radius: 8px;
-    padding: 20px;
-    box-sizing: border-box;
+    border-radius: 0.5rem;
+    padding: 1.2rem;
     width: 80%;
     margin: 20px auto;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
+    gap: 1.2rem;
 }
 
-.overview .overview__image {
+.overview__image {
     flex: 0 0 auto;
     display: flex;
+    max-width: 10rem;
     justify-content: center;
     align-items: center;
 }
-.overview__image .profileImage {
-    max-width: 100px;
-    border-radius: 50%;
-    border: 1px solid var(--border-color);
-}
 
-.overview__image .restaurantImage {
-    width: 120px;
-    height: 120px;
-    object-fit: contain;
-    box-sizing: border-box;
-}
-
-.overview .overview__content {
-    flex: 1 1 auto;
+.overview__content {
+    display: flex;
+    flex-direction: column;
     gap: 15px;
 }
 
-.overview header .title-bar {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    align-items: center;
-}
-
-.overview h1 {
+.overview__content h1 {
     font-size: 1.5rem;
     color: var(--text-primary);
     font-weight: bold;
 }
 
-.overview .date {
-    font-size: 0.9rem;
-    color: var(--text-primary);
-    font-weight: normal;
+.overview__content__title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.overview .description {
+.overview__content__title__date {
+    font-size: 0.9rem;
+    color: var(--text-primary);
+}
+
+.overview__content__description {
     color: var(--text-secondary);
     font-size: 0.95rem;
     line-height: 1.5;
@@ -63,12 +49,11 @@
 .overview__content__button-container {
     display: flex;
     flex-direction: row-reverse;
-    gap: 10px;
-    margin-top: 10px;
+    justify-content: flex-end;
+    align-self: end;
+    gap: 0.5rem;
 }
 
-.overview__content__button-container button {
-    padding: 8px 16px;
-    font-size: 0.9rem;
-    cursor: pointer;
+.overview__content__button-container > button {
+    padding: 0.5rem 1rem;
 }

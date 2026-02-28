@@ -1,7 +1,7 @@
 function initCarousel() {
 
-    const container = document.querySelector('.restaurant-carousel-container');
-    const carousel = document.querySelector('.carousel');
+    const container = document.querySelector('.restaurant-carousel');
+    const carousel = document.querySelector('.restaurant-carousel__carousel');
 
     let isHovering = false;
     let prevX = 0;

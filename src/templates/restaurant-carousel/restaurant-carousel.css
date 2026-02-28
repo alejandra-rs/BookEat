@@ -1,51 +1,31 @@
-.restaurant-carousel-container {
+.restaurant-carousel {
+    display: flex;
+    flex-direction: column;
     width: 100%;
-    padding: 1em;
-    overflow: hidden;
-    position: relative;
-    user-select: none;
-    background:var(--bg-primary) ;
+    padding: 2rem;
+    gap: 1.5rem;
+    background: none;
 }
 
-.restaurant-carousel-container h1 {
+.restaurant-carousel h1 {
     color: var(--text-primary);
     font-size: 2em;
-    margin: 0 0.5rem 0.5rem;
 }
 
-.carousel {
+.restaurant-carousel__carousel {
     display: flex;
+    gap: 1.5rem;
     transition: transform 0.3s ease-out;
     overflow: auto;
-    > div {
-        scroll-snap-align: center;
-    }
 }
 
-.carousel-item {
+.restaurant-carousel__carousel__item {
+    display: flex;
     min-width: 200px;
     height: 100%;
-    background: var(--bg-primary);
-    display: flex;
+    background: none;
     align-items: center;
     justify-content: center;
     font-size: 1.2em;
-    margin: 0.5rem;
     transition: transform 0.3s;
-
-}
-
-.carousel-item:hover {
-    transform: scale(1.05);
-}
-
-
-.restaurant-carousel-container::before {
-    left: 0;
-    background: linear-gradient(to right,var(--bg-secondary), transparent);
-}
-
-.restaurant-carousel-container::after {
-    right: 0;
-    background: linear-gradient(to left, var(--bg-secondary), transparent);
 }
