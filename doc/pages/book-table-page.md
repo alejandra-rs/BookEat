@@ -2,7 +2,7 @@
 
 # *Reservar una mesa* (`book-table-page.html`)
 
-> **Acceso rápido**: [Ver código fuente del archivo]()
+> **Acceso rápido**: [Ver código fuente del archivo](/src/pages/book-table-page)
 
 ### Descripción detallada
 La página de ***Reservar una mesa*** es la interfaz final de la lógica de **BookEat**. Los objetivos principales de esta página son:

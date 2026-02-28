@@ -1,27 +1,28 @@
 # Especificación de Popups
 
 En esta sección se detallan todos los _popups_ que han sido desarrollados para este sitio web. Para cada uno de ellos, 
-se proporciona una breve descripción así como los *templates* o páginas que los utilizan.  
+se proporciona una breve descripción así como los *templates* o páginas que los utilizan. Al hacer clic en la imagen,
+se le redirigirá al código fuente del _popup_.
 
 ---
 ## *Popups* de acceso público
 
 ### Inicio de sesión (_Login_)
-<img alt="login.png" src="images/popups/login.png" width="600"/>
+[<img alt="login.png" src="images/popups/login.png" width="600"/>](/src/templates/login-popup)
 
 * **Propósito:** Acceso a cuentas existentes mediante la validación de credenciales.
 * **Acciones:** Envío de credenciales (`Log in`) y redirección a la creación de cuenta (`Create account`).
 * **Usado en:** `Header`
 
 ### Registrar una cuenta (_Create Account_)
-<img alt="create-account.png" src="images/popups/create-account.png" width=600/>
+[<img alt="create-account.png" src="images/popups/create-account.png" width=600/>](/src/templates/create-an-account)
 
 * **Propósito:** Recopilación de datos para la creación y alta de un nuevo perfil de usuario.
 * **Acciones:** Envío de datos de registro (`Create account`) y vuelta al login (`Back to login`).
 * **Usado en:** `Header`
 
 ###  Menu
-<img alt="menu.png" src="images/popups/menu.png" width="600"/>
+[<img alt="menu.png" src="images/popups/menu.png" width="600"/>](/src/templates/menu-popup)
 
 * **Propósito:** Mostrar la información del menú de un establecimiento.
 * **Usado en:** `Restaurant Info Page`, `Restaurant Reviews Page`
@@ -44,7 +45,7 @@ bien como usuario restaurante.
 * **Usado en:** `Header`
 
 ### Introducir contraseña (_Enter password_)
-<img alt="enter-password.png" src="images/popups/enter-password.png" width="600"/>
+[<img alt="enter-password.png" src="images/popups/enter-password.png" width="600"/>](/src/templates/enter-password-popup)
 
 * **Accesible por:** Usuario restaurante
 * **Propósito:** Capa de autenticación,se utilizará para acceder a datos sensibles en cuentas de restaurante. De esta forma, únicamente los usuarios autorizados podrán acceder a modificar esos datos.
@@ -53,7 +54,7 @@ bien como usuario restaurante.
 
 ### Editar foto de perfil (_Edit profile image_)
 
-<img alt="edit-profile-image.png" src="images/popups/edit-profile-image.png" width="600"/>
+[<img alt="edit-profile-image.png" src="images/popups/edit-profile-image.png" width="600"/>](/src/templates/edit-profile-image-popup)
 
 * **Accesible por:** Usuario registrado y usuario restaurante
 * **Propósito:** Como su nombre indica, permite a los usuarios cambiar su foto de perfil.
@@ -62,7 +63,7 @@ bien como usuario restaurante.
 
 ### Confirmación de Reserva (_Booking Confirmation_)
 
-<img alt="booking-confirmation.png" src="images/popups/booking-confirmation.png" width="600"/>
+[<img alt="booking-confirmation.png" src="images/popups/booking-confirmation.png" width="600"/>](/src/templates/booking-confirmation-popup)
 
 * **Accesible por:** Usuario registrado
 * **Propósito:** Confirmación de reserva completada, actuando como justificante digital.
@@ -71,7 +72,7 @@ bien como usuario restaurante.
 
 ### Escribir reseña (_Write Review_)
 
-<img alt="write-review.png" src="images/popups/write-review.png" width="600"/>
+[<img alt="write-review.png" src="images/popups/write-review.png" width="600"/>](/src/templates/write-review-popup)
 
 * **Accesible por:** Usuario registrado
 * **Propósito:** Permitir, una vez un usuario ha completado una reserva, que escriba una reseña sobre ella.
@@ -80,7 +81,7 @@ bien como usuario restaurante.
 
 ### Mesas reservadas (_Booked tables_)
 
-<img alt="booked-tables.png" src="images/popups/booked-tables.png" width="600"/>
+[<img alt="booked-tables.png" src="images/popups/booked-tables.png" width="600"/>](/src/templates/table-map)
 
 * **Accesible por:** Usuario restaurante
 * **Propósito:** Permitir al restaurante acceder a las mesas escogidas por un cliente en una reserva en su local.

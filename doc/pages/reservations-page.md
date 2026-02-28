@@ -2,7 +2,7 @@
 
 # *Mis reservas* (`reservations-page.html`)
 
-> **Acceso rápido**: [Ver código fuente del archivo]()
+> **Acceso rápido**: [Ver código fuente del archivo](/src/pages/reservations-page)
 
 ### Descripción detallada
 La página de ***Mis reservas*** es el panel de control donde se gestiona el flujo de reservas. Los objetivos principales de esta página son:

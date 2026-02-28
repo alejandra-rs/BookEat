@@ -2,7 +2,7 @@
 
 # *Portal Afiliado* (`become-an-affiliate-page.html`)
 
-> **Acceso rápido**: [Ver código fuente del archivo]()
+> **Acceso rápido**: [Ver código fuente del archivo](/src/pages/become-an-affiliate)
 
 ### Descripción detallada
 La página de ***Portal Afiliado*** está orientada exclusivamente a la captación de negocio. Es el punto de entrada para que nuevos establecimientos se unan a la plataforma **BookEat**. Los objetivos principales de esta página son:

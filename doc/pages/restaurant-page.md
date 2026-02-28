@@ -1,8 +1,8 @@
 [← Volver al README principal](/README.md)
 
-# *Perfil del local* (`restaurant-page.html`)
+# *Perfil del local* (`restaurant-info-page.html`)
 
-> **Acceso rápido**: [Ver código fuente del archivo]()
+> **Acceso rápido**: [Ver código fuente del archivo](/src/pages/restaurant-info-page)
 
 ### Descripción detallada
 La página de ***Perfil del local*** es la cara pública de cada establecimiento. Su diseño está pensado para ofrecer toda la información necesaria para que el usuario tome la decisión de reservar. Los objetivos principales de esta página son:

@@ -1,8 +1,8 @@
 [← Volver al README principal](/README.md)
 
-# *Ajustes de Perfil* (`modify-profile-page.html`)
+# *Ajustes de Perfil* (`edit-profile-page.html`)
 
-> **Acceso rápido**: [Ver código fuente del archivo]()
+> **Acceso rápido**: [Ver código fuente del archivo](/src/pages/edit-profile-page)
 
 ### Descripción detallada
 La página de ***Ajustes de Perfil*** es el centro de control de la cuenta. Permite la gestión de datos personales, preferencias y seguridad. Los objetivos principales de esta página son:

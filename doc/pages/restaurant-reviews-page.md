@@ -2,7 +2,7 @@
 
 # *Reseñas del restaurante* (`restaurant-reviews-page.html`)
 
-> **Acceso rápido**: [Ver código fuente del archivo]()
+> **Acceso rápido**: [Ver código fuente del archivo](/src/pages/restaurant-reviews-page)
 
 ### Descripción detallada
 La página de ***Reseñas del Restaurante*** actúa como medio de comunicación entre los clientes. Está dedicada a analizar el *feedback* que estos proporcionan. Los objetivos principales de esta página son:

@@ -2,7 +2,7 @@
 
 # *Búsqueda de restaurantes* (`searcher-page.html`)
 
-> **Acceso rápido**: [Ver código fuente del archivo]()
+> **Acceso rápido**: [Ver código fuente del archivo](/src/pages/searcher-page)
 
 ### Descripción detallada
 La página de ***Búsqueda de restaurantes*** es el motor de exploración principal de la plataforma. Permite a los usuarios acotar sus opciones basándose en sus preferencias exactas. Los objetivos principales de esta página son:

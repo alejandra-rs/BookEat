@@ -72,10 +72,10 @@ Representación visual del flujo de uso de la aplicación, desde la necesidad de
 └── styles.css
 ```
 
-- `assets/`: Repositorio de recursos estáticos. Contiene iconos en SVG (`icons/`) e imágenes (`img/`).
-- `templates/`: El núcleo de la interfaz de usuario. Cada subcarpeta contiene un *template* independiente, permitiendo un desarrollo modular y desacoplado.
-- `pages/`: Páginas, archivos HTML finales. Ensamblan los distintos *templates* para conformar las distintas vistas.
-- `css/` y `js/`: Lógica de comportamiento y estilos que afectan a toda la aplicación
+- [`assets/`](/src/assets): Repositorio de recursos estáticos. Contiene iconos en SVG ([`icons/`](/src/assets/icons)) e imágenes ([`img/`](/src/assets/img)).
+- [`templates/`](/src/templates): El núcleo de la interfaz de usuario. Cada subcarpeta contiene un *template* independiente, permitiendo un desarrollo modular y desacoplado.
+- [`pages/`](/src/pages): Páginas, archivos HTML finales. Ensamblan los distintos *templates* para conformar las distintas vistas.
+- [`css/`](/src/css) y [`js/`](/src/js): Lógica de comportamiento y estilos que afectan a toda la aplicación
 
 ---
 
@@ -114,7 +114,7 @@ Acto seguido, detallamos otras consideraciones técnicas que se han tenido en cu
 ## Tech Stack - Otros
 <br>
 <div align="center">
-    <div style="display: inline-block; background-color: white; padding: 10px; border-radius: 20px; ">
+    <div class="background: white;" style="display: inline-block; padding: 10px; border-radius: 20px; ">
         <img width=100 src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/trello/trello-original.svg" />
         <img width=100 src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg" />
         <img width=100 src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" />
