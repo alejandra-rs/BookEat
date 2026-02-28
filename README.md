@@ -102,12 +102,27 @@ El sitio web incluye igualmente una serie de *popups*, cuya estructura y descrip
 
 ## Consideraciones técnicas
 
-- **Calendarios**: Utilizamos la api de [*FlatPickr*](https://github.com/flatpickr/flatpickr) para proporcionar una selección de fechas ligera y personalizable.
-- **JavaScript**: numerosos componentes usan javascript a modo de animación (ir a templates para chequear)
+Acto seguido, detallamos otras consideraciones técnicas que se han tenido en cuenta en el desarrollo de este _sprint_.
+
+- **Calendario personalizado:** Utilizamos la api de [*FlatPickr*](https://github.com/flatpickr/flatpickr) para proporcionar una selección de fechas ligera y personalizable.
+- **JavaScript:** Numerosos *templates* han sido animados usando JavaScript. Consulta nuestra [Guía Detallada de Templates](/doc/templates.md) para observar qué *templates* son interactivos.
+- **Modo Oscuro:** Todas las páginas han sido desarrolladas para poder elegir entre modo claro o modo oscuro. Esta lógica ha sido desarrollada con JavaScript.
+- **BEM:** Con el fin de desarrollar un código más modular, hemos utilizado _Block Element Modifier_ para nombrar las clases de CSS.
 
 ---
 
-## Otros
-[Icons](https://www.svgrepo.com/collection/smoothie-line-icons/2)
+## Tech Stack - Otros
+<br>
+<div style="display: flex; align-items: center">
+    <img width=14% src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/trello/trello-original.svg" />
+    <img width=14% src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg" />
+    <img width=14% src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" />
+    <img width=14% src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" />
+    <img width=14% src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" />
+    <img width=14% src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" />
+    <img width=14%% src="https://flatpickr.js.org/images/logo.png"/>
+</div>
+<br>
 
-Para instalar los paquetes que usaremos en nuestra app debemos hacer antes un `npm install`.
+- Se debe usar `npm install` para instalar las dependencias de la aplicación (_FlatPickr_).
+- Todos los iconos han sido descargados de [SVGRepo](https://www.svgrepo.com/).
