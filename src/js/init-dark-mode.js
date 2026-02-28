@@ -20,3 +20,12 @@ function initDarkMode() {
 }
 
 initDarkMode();
+
+function checkDarkMode() {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    const themeIcon = document.getElementById('dark-mode-icon');
+    themeIcon.src = savedTheme === "dark" ? sunIcon : moonIcon;
+    if (savedTheme === 'dark') {
+        document.body.classList.toggle('dark-mode');
+    }
+}
