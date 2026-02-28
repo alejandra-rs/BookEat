@@ -36,7 +36,7 @@ document.querySelector('.hour-selector__dropdown').addEventListener('click', (ev
     const button = event.target.closest('.hour-button');
 
     if (button) {
-        document.querySelector('.placeholder').innerText = button.innerText;
+        document.querySelector('.hour-selector__placeholder').innerText = button.innerText;
         document.querySelector('.hour-selector__dropdown').classList.remove('open');
     }
 });
