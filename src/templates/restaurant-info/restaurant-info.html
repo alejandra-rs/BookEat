@@ -1,13 +1,13 @@
-<link rel="stylesheet" href="/src/templates/restaurant-info/restaurant-info.css">
+<link rel="stylesheet" href="../../templates/restaurant-info/restaurant-info.css">
 <link rel="stylesheet" href="/styles.css">
-<script type="module" src="/src/js/auth-mode.js"></script>
+<script type="module" src="../../js/auth-mode.js"></script>
 
 <article class="restaurant-info">
-    <img src="/src/assets/img/restaurant-item.png" alt="A restaurant image" class="restaurant-info__image icon">
+    <img src="../../assets/img/restaurant-item.png" alt="A restaurant image" class="restaurant-info__image icon">
     <div class ="restaurant-info__content">
         <header class="restaurant-info__content__header">
             <h1>Restaurant Name</h1>
-            <span xlu-include-file="/src/templates/user-score/user-score.html"></span>
+            <span xlu-include-file="../../templates/user-score/user-score.html"></span>
         </header>
         <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vel sem dui. Lorem ipsum dolor sit amet,
@@ -19,13 +19,13 @@
         </p>
         <div class="restaurant-info__content__buttons">
             <button id="menu-icon" class="restaurant-info__content__buttons__menu secondary-button" onclick="popupMode('restaurant-menu', null)">
-                <img src="/src/assets/icons/restaurant-menu.svg" alt="restaurant menu" class="restaurant-info__content__buttons__menu__icon icon">
+                <img src="../../assets/icons/restaurant-menu.svg" alt="restaurant menu" class="restaurant-info__content__buttons__menu__icon icon">
             </button>
-            <a href="/BookEat/src/pages/book-table-page/book-table-page.html">
+            <a href="../../pages/book-table-page/book-table-page.html">
                 <button class="primary-button"> Book </button>
             </a>
         </div>
     </div>
-    <div id="restaurant-menu" onclick="closeLoginPopup('restaurant-menu',null)" class="blur-effect" xlu-include-file="/src/templates/menu-popup/menu-popup.html"></div>
+    <div id="restaurant-menu" onclick="closeLoginPopup('restaurant-menu',null)" class="blur-effect" xlu-include-file="../../templates/menu-popup/menu-popup.html"></div>
 
 </article>

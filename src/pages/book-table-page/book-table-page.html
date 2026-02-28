@@ -4,35 +4,35 @@
     <meta charset="UTF-8">
     <title>Book Table</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <link rel="icon" type="image/svg+xml" href="/src/assets/icons/logo.svg">
-    <link rel="stylesheet" href="/styles.css">
-    <link rel="stylesheet" href="/src/pages/book-table-page/book-table-page.css">
+    <link rel="icon" type="image/svg+xml" href="../../assets/icons/logo.svg">
+    <link rel="stylesheet" href="../../../styles.css">
+    <link rel="stylesheet" href="../../pages/book-table-page/book-table-page.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="/src/pages/book-table-page/book-table-page.js"></script>
-    <script src="/src/js/xlu-include-file.js"></script>
-    <script src="/src/js/init-dark-mode.js"></script>
-    <script src="/src/js/auth-mode.js"></script>
-    <script src="/src/js/init-components.js"></script>
+    <script src="../../pages/book-table-page/book-table-page.js"></script>
+    <script src="../../js/xlu-include-file.js"></script>
+    <script src="../../js/init-dark-mode.js"></script>
+    <script src="../../js/auth-mode.js"></script>
+    <script src="../../js/init-components.js"></script>
 </head>
 <body>
 
-<header xlu-include-file="/src/templates/header/header.html"></header>
+<header xlu-include-file="../../templates/header/header.html"></header>
 
-<a href="/BookEat/src/pages/restaurant-info-page/restaurant-info-page.html">
+<a href="../../pages/restaurant-info-page/restaurant-info-page.html">
     <button class="back-button">
-        <img src="/src/assets/icons/back-button.svg" alt="" class="icon"/>
+        <img src="../../assets/icons/back-button.svg" alt="" class="icon"/>
         Currently booking: <strong>Restaurant Name</strong>
     </button>
 </a>
 
 <main class="book-table-page">
-    <div xlu-include-file="/src/templates/hour-table/hour-table.html"></div>
+    <div xlu-include-file="../../templates/hour-table/hour-table.html"></div>
     <h2 id="hour-table-txt"><em>Please select a date and time to show available tables</em></h2>
-    <div id="hour-table-map" xlu-include-file="/src/templates/table-map/table-map.html"></div>
+    <div id="hour-table-map" xlu-include-file="../../templates/table-map/table-map.html"></div>
     <button id="book-selected" class="primary-button" onclick="popupMode('login-popup-main',null)">Book Selected</button>
 </main>
 
-<footer xlu-include-file="/src/templates/footer/footer.html"></footer>
+<footer xlu-include-file="../../templates/footer/footer.html"></footer>
 <script> initComponents(); </script>
 </body>
 </html>

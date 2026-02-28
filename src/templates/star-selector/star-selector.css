@@ -15,22 +15,22 @@
     width: 1.75rem;
     height: 1.75rem;
     display: inline-block;
-    background-image: url("/BookEat/src/assets/icons/star.svg");
+    background-image: url("../../assets/icons/star.svg");
 }
 
 .star-checkbox__input:checked + .star-checkbox__button {
-    background-image: url("/BookEat/src/assets/icons/star-filled.svg");
+    background-image: url("../../assets/icons/star-filled.svg");
 }
 
 .star-checkbox__button:hover,
 .star-checkbox__button:hover ~ .star-checkbox__button {
-    background-image: url("/BookEat/src/assets/icons/star.svg");
+    background-image: url("../../assets/icons/star.svg");
 }
 
 .star-checkbox:hover .star-checkbox__button {
-    background-image: url("/BookEat/src/assets/icons/star-filled.svg");
+    background-image: url("../../assets/icons/star-filled.svg");
 }
 
 .star-checkbox:hover .star-checkbox__button:hover ~ .star-checkbox__button {
-    background-image: url("/BookEat/src/assets/icons/star.svg");
+    background-image: url("../../assets/icons/star.svg");
 }

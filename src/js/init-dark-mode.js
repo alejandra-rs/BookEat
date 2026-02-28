@@ -1,5 +1,5 @@
-const sunIcon = "/src/assets/icons/light-mode.svg";
-const moonIcon = "/src/assets/icons/dark-mode.svg";
+const sunIcon = "../../assets/icons/light-mode.svg";
+const moonIcon = "../../assets/icons/dark-mode.svg";
 
 function initDarkMode() {
     const darkModeToggle = document.getElementById('dark-mode-toggle');
