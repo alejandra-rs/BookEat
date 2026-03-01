@@ -1,9 +1,8 @@
 .form.affiliate-form {
-    background-color: var(--bg-primary);
+    background: none;
     width: 80%;
     align-self: center;
     box-shadow: none;
-    z-index: -10;
 }
 
 .affiliate-form__title {
