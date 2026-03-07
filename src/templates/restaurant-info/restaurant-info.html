@@ -1,13 +1,13 @@
 <link rel="stylesheet" href="../../templates/restaurant-info/restaurant-info.css">
 <link rel="stylesheet" href="/styles.css">
-<script type="module" src="../../js/auth-mode.js"></script>
+<script src="restaurant-reviews.js"></script>
 
 <article class="restaurant-info">
     <img src="../../assets/img/restaurant-item.png" alt="A restaurant image" class="restaurant-info__image icon">
     <div class ="restaurant-info__content">
         <header class="restaurant-info__content__header">
             <h1>Restaurant Name</h1>
-            <span xlu-include-file="../../templates/user-score/user-score.html"></span>
+            <span data-template="user-score"></span>
         </header>
         <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vel sem dui. Lorem ipsum dolor sit amet,
@@ -26,6 +26,14 @@
             </a>
         </div>
     </div>
-    <div id="restaurant-menu" onclick="closeLoginPopup('restaurant-menu',null)" class="blur-effect" xlu-include-file="../../templates/menu-popup/menu-popup.html"></div>
+    <div id="restaurant-menu" onclick="closeLoginPopup('restaurant-menu',null)" class="blur-effect" data-template="menu-popup"></div>
 
 </article>
+<script>
+    document.addEventListener('DOMContentLoaded', async function() {
+        await cargar("restaurant-menu", ["menu-popup"]);
+        initDarkMode();
+        //cargarContenidoDinamico();
+    });
+</script>
+<script src="../../js/auth-mode.js"></script>

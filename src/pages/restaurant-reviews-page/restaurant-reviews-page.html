@@ -7,75 +7,80 @@
     <link rel="icon" type="image/svg+xml" href="../../assets/icons/logo.svg">
     <link rel="stylesheet" href="/styles.css">
     <link rel="stylesheet" href="../../pages/restaurant-reviews-page/restaurant-reviews-page.css">
-    <script src="../../js/xlu-include-file.js"></script>
     <script src="../../js/init-dark-mode.js"></script>
-    <script src="../../js/init-components.js"></script>
+    <script src="../../js/auth-mode.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="restaurant-reviews.js"></script>
 </head>
 <body>
+<div id="restaurant-reviews-page">
+</div>
+<!--&lt;!&ndash;<header xlu-include-file="../../templates/header/header.html"></header>&ndash;&gt;-->
 
-<header xlu-include-file="../../templates/header/header.html"></header>
+<!--<main class="restaurant-reviews-page__main">-->
+<!--    <div xlu-include-file="../../templates/restaurant-info/restaurant-info.html"></div>-->
+<!--    <div class="restaurant-reviews-page__image-carousel">-->
+<!--        <img src="../../assets/img/restaurant-item.png" alt="">-->
+<!--        <img src="../../assets/img/restaurant-item.png" alt="">-->
+<!--        <img src="../../assets/img/restaurant-item.png" alt="">-->
+<!--        <img src="../../assets/img/restaurant-item.png" alt="">-->
+<!--        <img src="../../assets/img/restaurant-item.png" alt="">-->
+<!--        <img src="../../assets/img/restaurant-item.png" alt="">-->
+<!--        <img src="../../assets/img/restaurant-item.png" alt="">-->
+<!--        <img src="../../assets/img/restaurant-item.png" alt="">-->
+<!--        <img src="../../assets/img/restaurant-item.png" alt="">-->
+<!--        <img src="../../assets/img/restaurant-item.png" alt="">-->
+<!--    </div>-->
 
-<main class="restaurant-reviews-page">
-    <div xlu-include-file="../../templates/restaurant-info/restaurant-info.html"></div>
-    <div class="restaurant-reviews-page__image-carousel">
-        <img src="../../assets/img/restaurant-item.png" alt="">
-        <img src="../../assets/img/restaurant-item.png" alt="">
-        <img src="../../assets/img/restaurant-item.png" alt="">
-        <img src="../../assets/img/restaurant-item.png" alt="">
-        <img src="../../assets/img/restaurant-item.png" alt="">
-        <img src="../../assets/img/restaurant-item.png" alt="">
-        <img src="../../assets/img/restaurant-item.png" alt="">
-        <img src="../../assets/img/restaurant-item.png" alt="">
-        <img src="../../assets/img/restaurant-item.png" alt="">
-        <img src="../../assets/img/restaurant-item.png" alt="">
-    </div>
+<!--    <section class="restaurant-reviews-page__summary">-->
+<!--        <div class="restaurant-reviews-page__summary__mean">-->
+<!--            <div xlu-include-file="../../templates/user-score/user-score.html" class="restaurant-reviews-page__summary__mean__score"></div>-->
+<!--            <p class="restaurant-reviews-page__summary__mean__info">999 reviews</p>-->
+<!--        </div>-->
+<!--        <div class="restaurant-reviews-page__summary__breakdown" xlu-include-file="../../pages/restaurant-reviews-page/summary-breakdown.html"></div>-->
+<!--    </section>-->
 
-    <section class="restaurant-reviews-page__summary">
-        <div class="restaurant-reviews-page__summary__mean">
-            <div xlu-include-file="../../templates/user-score/user-score.html" class="restaurant-reviews-page__summary__mean__score"></div>
-            <p class="restaurant-reviews-page__summary__mean__info">999 reviews</p>
-        </div>
-        <div class="restaurant-reviews-page__summary__breakdown" xlu-include-file="../../pages/restaurant-reviews-page/summary-breakdown.html"></div>
-    </section>
+<!--    <section class="restaurant-reviews-page__filters">-->
+<!--        <div>-->
+<!--            <h2>Filter</h2>-->
+<!--            <div class="restaurant-reviews-page__filters__buttons">-->
+<!--                 <button>Lorem Ipsum</button>-->
+<!--                 <button>Lorem Ipsum</button>-->
+<!--                 <button>Lorem Ipsum</button>-->
+<!--                 <button>Lorem Ipsum</button>-->
+<!--                 <button>Lorem Ipsum</button>-->
+<!--                 <button>Lorem Ipsum</button>-->
+<!--                 <button>Lorem Ipsum</button>-->
+<!--                 <button>Lorem Ipsum</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <h2>Sort by</h2>-->
+<!--            <div class="restaurant-reviews-page__filters__sort-by">-->
+<!--                <label><select name="sort-by"><option>Lorem Ipsum</option></select></label>-->
+<!--                <label><select name="sort-by"><option>Lorem Ipsum</option></select></label>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
 
-    <section class="restaurant-reviews-page__filters">
-        <div>
-            <h2>Filter</h2>
-            <div class="restaurant-reviews-page__filters__buttons">
-                 <button>Lorem Ipsum</button>
-                 <button>Lorem Ipsum</button>
-                 <button>Lorem Ipsum</button>
-                 <button>Lorem Ipsum</button>
-                 <button>Lorem Ipsum</button>
-                 <button>Lorem Ipsum</button>
-                 <button>Lorem Ipsum</button>
-                 <button>Lorem Ipsum</button>
-            </div>
-        </div>
-        <div>
-            <h2>Sort by</h2>
-            <div class="restaurant-reviews-page__filters__sort-by">
-                <label><select name="sort-by"><option>Lorem Ipsum</option></select></label>
-                <label><select name="sort-by"><option>Lorem Ipsum</option></select></label>
-            </div>
-        </div>
-    </section>
+<!--    <section class="restaurant-reviews-page__reviews">-->
+<!--        <div xlu-include-file="../../templates/user-review/user-review.html"></div>-->
+<!--        <div xlu-include-file="../../templates/user-review/user-review.html"></div>-->
+<!--        <div xlu-include-file="../../templates/user-review/user-review.html"></div>-->
+<!--        <div xlu-include-file="../../templates/user-review/user-review.html"></div>-->
+<!--        <div xlu-include-file="../../templates/user-review/user-review.html"></div>-->
+<!--        <div xlu-include-file="../../templates/user-review/user-review.html"></div>-->
+<!--    </section>-->
+<!--</main>-->
 
-    <section class="restaurant-reviews-page__reviews">
-        <div xlu-include-file="../../templates/user-review/user-review.html"></div>
-        <div xlu-include-file="../../templates/user-review/user-review.html"></div>
-        <div xlu-include-file="../../templates/user-review/user-review.html"></div>
-        <div xlu-include-file="../../templates/user-review/user-review.html"></div>
-        <div xlu-include-file="../../templates/user-review/user-review.html"></div>
-        <div xlu-include-file="../../templates/user-review/user-review.html"></div>
-    </section>
-</main>
-
-<footer xlu-include-file="../../templates/footer/footer.html"></footer>
+<!--<footer xlu-include-file="../../templates/footer/footer.html"></footer>-->
 
 <script>
-    initComponents();
+    document.addEventListener('DOMContentLoaded', async function() {
+        await cargar("restaurant-reviews-page", ["header",  "restaurant-info", "footer"]);
+        initDarkMode();
+        //cargarContenidoDinamico();
+    });
 </script>
 </body>
 </html>

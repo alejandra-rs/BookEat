@@ -14,10 +14,10 @@
             <button id="search-button"> <img src="../../assets/icons/search.svg" alt="Search" class="icon"> </button>
             <label> <input type="text" placeholder="Search..." class="header__search__field__input" onchange="search()"> </label>
         </div>
-        <div class="header__search__selectors">
-            <div xlu-include-file="../../templates/date-selector/date-selector.html"></div>
-            <div xlu-include-file="../../templates/hour-selector/hour-selector.html"></div>
-            <div xlu-include-file="../../templates/diners-selector/diners-selector.html"></div>
+        <div id="header__search__selectors" class="header__search__selectors">
+            <div data-template="date-selector"></div>
+            <div data-template="hour-selector"></div>
+            <div data-template="diners-selector"></div>
         </div>
     </div>
 
@@ -35,8 +35,8 @@
     </div>
 </header>
 
-<div id="login-popup-main" onclick="closeLoginPopup('login-popup-main',null)" class="blur-effect" xlu-include-file="../../templates/login-popup/login-popup.html"></div>
-<div id="register-popup-main" onclick="closeLoginPopup('register-popup-main',null)" class="blur-effect" xlu-include-file="../../templates/create-an-account/create-an-account.html"></div>
+<div id="login-popup-main" onclick="closeLoginPopup('login-popup-main',null)" class="blur-effect" data-template="login-popup"></div>
+<div id="register-popup-main" onclick="closeLoginPopup('register-popup-main',null)" class="blur-effect" data-template="create-an-account"></div>
 
 <script>
     function search(){
