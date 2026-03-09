@@ -1,10 +1,7 @@
-#menu-dialog {
+#menu-popup {
     overflow: auto;
     max-height: 80vh;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: inline-flex;
+    margin: auto;
     flex-direction: column;
     background: var(--bg-primary);
     padding: 1rem;

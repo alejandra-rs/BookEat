@@ -1,34 +1,33 @@
 document.addEventListener('click', (event) => {
 
-    const loginDialog = document.getElementById('login-popup');
-    const registerDialog = document.getElementById('register-popup');
+    const openBtn = event.target.closest('[data-opens]');
+    if (openBtn) {
+        const dialogId = openBtn.getAttribute('data-opens');
+        const dialog = document.getElementById(dialogId);
 
-    if (event.target.closest('#loginButton')) {
-        if (loginDialog && !loginDialog.open) loginDialog.showModal();
-        if (registerDialog) registerDialog.close();
+        if (dialog) {
+            //document.querySelectorAll('dialog[open]').forEach(dialogs => dialogs.close());
+            dialog.showModal();
+        }
         return;
     }
 
-    if (event.target.closest('#registerButton')) {
-        if (registerDialog && registerDialog.open) registerDialog.close();
-        if (registerDialog) registerDialog.showModal();
-        return;
-    }
+//    const closeBtn = event.target.closest('[data-closes]');
+//    if (closeBtn) {
+//        const dialog = closeBtn.closest('dialog');
+//        if (dialog) dialog.close();
+//        return;
+//    }
 
-    if (loginDialog && loginDialog.open && event.target === loginDialog) {
-        loginDialog.close();
-    }
-
-    if (registerDialog && registerDialog.open && event.target === registerDialog) {
-        registerDialog.close();
+    if (event.target.tagName === 'DIALOG' && event.target.open) {
+        event.target.close();
     }
 });
 
 document.addEventListener('submit', (event) => {
-    if (event.target.id === 'form-login') {
+    if (event.target.id === 'form-login' || event.target.id === 'form-register') {
         event.preventDefault();
-        console.log("Enviando datos de login...");
-        // Aquí harías tu fetch() a la API
-        document.getElementById('login-popup').close();
+        //console.log(`Enviando datos de ${event.target.id}...`);
+        event.target.closest('dialog').close();
     }
 });
