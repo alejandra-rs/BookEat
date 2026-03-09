@@ -1,0 +1,26 @@
+.loader__container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--bg-secondary);
+    position: relative;
+}
+
+.loader__container__loader{
+    width: 100px;
+    height: 100px;
+    border: 5px solid #81c784;
+    border-top: 2px solid #b5e3b5;
+    border-radius: 50%;
+    animation: loader 8s linear infinite;
+}
+
+@keyframes loader {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
