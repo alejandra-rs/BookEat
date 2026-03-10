@@ -1,21 +1,21 @@
-async function xLuIncludeFile(rootContext = document) {
-    let elements = Array.from(rootContext.querySelectorAll('[xlu-include-file]'));
+async function loadTemplate(rootContext = document) {
+    let elements = Array.from(rootContext.querySelectorAll('[load-template]'));
     if (elements.length === 0) return;
 
     await Promise.all(elements.map(async (el) => {
-        let file = el.getAttribute("xlu-include-file");
+        let file = el.getAttribute("load-template");
         try {
-            let response = await fetch(file);
+            let response = await fetch(find(file));
             if (response.ok) {
                 let content = await response.text();
 
                 let tempTemplate = document.createElement('template');
                 tempTemplate.innerHTML = content;
 
-                await xLuIncludeFile(tempTemplate.content);
+                await loadTemplate(tempTemplate.content);
 
                 let a = el.cloneNode(false);
-                a.removeAttribute("xlu-include-file");
+                a.removeAttribute("load-template");
                 a.appendChild(tempTemplate.content);
 
                 if (el.parentNode) {
@@ -41,5 +41,9 @@ async function xLuIncludeFile(rootContext = document) {
             console.error("Error fetching file:", error);
         }
     }));
+}
+
+function find(dato) {
+    return "../../templates/" + dato + "/" + dato + ".html" ;
 }
 

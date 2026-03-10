@@ -7,17 +7,17 @@
     <link rel="icon" type="image/svg+xml" href="../../assets/icons/logo.svg">
     <link rel="stylesheet" href="../../../styles.css">
     <link rel="stylesheet" href="../../pages/restaurant-info-page/restaurant-info-page.css">
-    <script src="../../js/xlu-include-file.js"></script>
+    <script src="../../js/load-template.js"></script>
     <script src="../../js/init-dark-mode.js"></script>
     <script src="../../js/init-components.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
 <body class="restaurant-info-page">
 
-    <header xlu-include-file="../../templates/header/header.html"></header>
+    <header load-template="header"></header>
 
     <main class="restaurant-info-page__main">
-        <div xlu-include-file="../../templates/restaurant-info/restaurant-info.html"></div>
+        <div load-template="restaurant-info"></div>
         <div class="restaurant-info-page__main__image-carousel">
             <img src="../../assets/img/restaurant-item.png" alt="" class="icon">
             <img src="../../assets/img/restaurant-item.png" alt="" class="icon">
@@ -32,9 +32,9 @@
         </div>
 
         <section class="restaurant-info-page__main__reviews">
-            <article xlu-include-file="../../templates/user-review/user-review.html"></article>
-            <article xlu-include-file="../../templates/user-review/user-review.html"></article>
-            <article xlu-include-file="../../templates/user-review/user-review.html"></article>
+            <article load-template="user-review"></article>
+            <article load-template="user-review"></article>
+            <article load-template="user-review"></article>
         </section>
 
         <div class="restaurant-info-page__main__read-more">
@@ -44,7 +44,7 @@
         </div>
     </main>
 
-    <footer xlu-include-file="../../templates/footer/footer.html"></footer>
+    <footer load-template="footer"></footer>
 
     <script> initComponents(); </script>
 

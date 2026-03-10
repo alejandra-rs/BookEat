@@ -1,4 +1,4 @@
 async function initComponents() {
-    await xLuIncludeFile();
+    await loadTemplate();
     checkDarkMode();
 }

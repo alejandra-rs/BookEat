@@ -7,17 +7,17 @@
     <link rel="icon" type="image/svg+xml" href="../../assets/icons/logo.svg">
     <link rel="stylesheet" href="/styles.css">
     <link rel="stylesheet" href="../../pages/restaurant-reviews-page/restaurant-reviews-page.css">
-    <script src="../../js/xlu-include-file.js"></script>
+    <script src="../../js/load-template.js"></script>
     <script src="../../js/init-dark-mode.js"></script>
     <script src="../../js/init-components.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
 <body>
 
-<header xlu-include-file="../../templates/header/header.html"></header>
+<header load-template="header"></header>
 
 <main class="restaurant-reviews-page">
-    <div xlu-include-file="../../templates/restaurant-info/restaurant-info.html"></div>
+    <div load-template="restaurant-info"></div>
     <div class="restaurant-reviews-page__image-carousel">
         <img src="../../assets/img/restaurant-item.png" alt="">
         <img src="../../assets/img/restaurant-item.png" alt="">
@@ -33,7 +33,7 @@
 
     <section class="restaurant-reviews-page__summary">
         <div class="restaurant-reviews-page__summary__mean">
-            <div xlu-include-file="../../templates/user-score/user-score.html" class="restaurant-reviews-page__summary__mean__score"></div>
+            <div load-template="user-score" class="restaurant-reviews-page__summary__mean__score"></div>
             <p class="restaurant-reviews-page__summary__mean__info">999 reviews</p>
         </div>
         <div class="restaurant-reviews-page__summary__breakdown" xlu-include-file="../../pages/restaurant-reviews-page/summary-breakdown.html"></div>
@@ -63,16 +63,16 @@
     </section>
 
     <section class="restaurant-reviews-page__reviews">
-        <div xlu-include-file="../../templates/user-review/user-review.html"></div>
-        <div xlu-include-file="../../templates/user-review/user-review.html"></div>
-        <div xlu-include-file="../../templates/user-review/user-review.html"></div>
-        <div xlu-include-file="../../templates/user-review/user-review.html"></div>
-        <div xlu-include-file="../../templates/user-review/user-review.html"></div>
-        <div xlu-include-file="../../templates/user-review/user-review.html"></div>
+        <div load-template="user-review"></div>
+        <div load-template="user-review"></div>
+        <div load-template="user-review"></div>
+        <div load-template="user-review"></div>
+        <div load-template="user-review"></div>
+        <div load-template="user-review"></div>
     </section>
 </main>
 
-<footer xlu-include-file="../../templates/footer/footer.html"></footer>
+<footer load-template="footer"></footer>
 
 <script>
     initComponents();
