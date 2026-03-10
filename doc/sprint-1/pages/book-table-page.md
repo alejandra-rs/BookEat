@@ -16,7 +16,7 @@ La página de ***Reservar una mesa*** es la interfaz final de la lógica de **Bo
 
 | Sin seleccionar fecha                   | Tras seleccionar fecha                  |
 |:----------------------------------------|:----------------------------------------|
-| ![](/doc/images/pages/book-table-1.jpg) | ![](/doc/images/pages/book-table-2.jpg) | 
+| ![](/doc/sprint-1/images-1/images/pages/book-table-1.jpg) | ![](/doc/sprint-1/images-1/images/pages/book-table-2.jpg) | 
   <sub>*El mapa de mesas (derecha) permanece oculto tras el mensaje instruccional hasta que se interactúa con el selector horario (izquierda).*</sub>
 
 ---
@@ -33,4 +33,4 @@ Para construir esta vista, se han ensamblado los siguientes módulos:
 | `Footer`      | Pie de la página, contendrá enlaces e información de contacto, así como el enlace al formulario de registro de afiliados. |
 
 > **Arquitectura de *Templates***: Esta página está construida utilizando *templates*. Para consultar
-> el desglose técnico de cada uno de estos, consulta nuestra [Guía Detallada de Templates](/doc/templates.md).
+> el desglose técnico de cada uno de estos, consulta nuestra [Guía Detallada de Templates](/doc/sprint-1/templates.md).

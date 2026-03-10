@@ -13,18 +13,18 @@ navegación entre las páginas, resultado de la interacción de los usuarios con
 ## Flujo 1 - Usuario Temporal (Vista Pública)
 *Camino desde que un cliente entra a la **Landing Page** hasta que encuentra el restaurante deseado.*
 
-![Usuario temporal](/doc/images/storyboard/usuario_temporal.png)
+![Usuario temporal](/doc/sprint-1/images-1/images/storyboard/usuario_temporal.png)
 
 ---
 
 ## Flujo 2 - Usuario Registrado
 *Beneficios extra que se aportan al usuario que ha creado una cuenta con **BookEat** y ha iniciado sesión con ella.*
 
-![Usuario registrado](/doc/images/storyboard/usuario_registrado.png)
+![Usuario registrado](/doc/sprint-1/images-1/images/storyboard/usuario_registrado.png)
 
 ---
 
 ## Flujo 3 - Usuario Restaurante
 *Funcionalidades extra que se aportan a restaurantes afiliados en la aplicación.*
 
-![Usuario restaurante](/doc/images/storyboard/usuario_restaurante.png)
+![Usuario restaurante](/doc/sprint-1/images-1/images/storyboard/usuario_restaurante.png)

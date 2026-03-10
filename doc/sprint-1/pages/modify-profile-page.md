@@ -15,7 +15,7 @@ La página de ***Ajustes de Perfil*** es el centro de control de la cuenta. Perm
 
 | Sin seleccionar fecha                     | Tras seleccionar fecha                    |
 |:------------------------------------------|:------------------------------------------|
-| ![](/doc/images/pages/edit-profile-1.jpg) | ![](/doc/images/pages/edit-profile-2.jpg) |
+| ![](/doc/sprint-1/images-1/images/pages/edit-profile-1.jpg) | ![](/doc/sprint-1/images-1/images/pages/edit-profile-2.jpg) |
 <sub>*Izquierda: Vista para un Usuario Cliente. Derecha: Vista para un Restaurante Afiliado.*</sub>
 
 ---
@@ -31,4 +31,4 @@ Para construir esta vista, se han ensamblado los siguientes módulos:
 | `Footer`        | Pie de la página, contendrá enlaces e información de contacto, así como el enlace al formulario de registro de afiliados. |
 
 > **Arquitectura de *Templates***: Esta página está construida utilizando *templates*. Para consultar
-> el desglose técnico de cada uno de estos, consulta nuestra [Guía Detallada de Templates](/doc/templates.md).
+> el desglose técnico de cada uno de estos, consulta nuestra [Guía Detallada de Templates](/doc/sprint-1/templates.md).

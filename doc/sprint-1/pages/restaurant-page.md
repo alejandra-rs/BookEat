@@ -13,7 +13,7 @@ La página de ***Perfil del local*** es la cara pública de cada establecimiento
 ---
 
 ### Vista Previa y Composición
-![Captura del perfil del restaurante](/doc/images/pages/restaurant-page.jpg)
+![Captura del perfil del restaurante](/doc/sprint-1/images-1/images/pages/restaurant-page.jpg)
 
 ---
 
@@ -29,4 +29,4 @@ Para construir esta vista, se han ensamblado los siguientes módulos:
 | `Footer`          | Pie de la página, contendrá enlaces e información de contacto, así como el enlace al formulario de registro de afiliados. |
 
 > **Arquitectura de *Templates***: Esta página está construida utilizando *templates*. Para consultar
-> el desglose técnico de cada uno de estos, consulta nuestra [Guía Detallada de Templates](/doc/templates.md).
+> el desglose técnico de cada uno de estos, consulta nuestra [Guía Detallada de Templates](/doc/sprint-1/templates.md).

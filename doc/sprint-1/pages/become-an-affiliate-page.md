@@ -12,7 +12,7 @@ La página de ***Portal Afiliado*** está orientada exclusivamente a la captaci�
 ---
 
 ### Vista Previa y Composición
-![Captura del portal de afiliados](/doc/images/pages/become-affiliate.jpg)
+![Captura del portal de afiliados](/doc/sprint-1/images-1/images/pages/become-affiliate.jpg)
 
 ---
 
@@ -25,4 +25,4 @@ Para construir esta vista, se han incluido los siguientes módulos:
 | `Footer`              | Pie de la página, contendrá enlaces e información de contacto, así como el enlace al formulario de registro de afiliados. |
 
 > **Arquitectura de *Templates***: Esta página está construida utilizando *templates*. Para consultar
-> el desglose técnico de cada uno de estos, consulta nuestra [Guía Detallada de Templates](/doc/templates.md).
+> el desglose técnico de cada uno de estos, consulta nuestra [Guía Detallada de Templates](/doc/sprint-1/templates.md).

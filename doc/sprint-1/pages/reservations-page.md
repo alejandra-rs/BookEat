@@ -16,8 +16,8 @@ La página de ***Mis reservas*** es el panel de control donde se gestiona el flu
 
 |                   | Usuario Estándar                          | Usuario restaurante                       |
 |:------------------|:------------------------------------------|:------------------------------------------|
-| Reservas pasadas  | ![](/doc/images/pages/reservations-1.jpg) | ![](/doc/images/pages/reservations-3.jpg) |
-| Reservas vigentes | ![](/doc/images/pages/reservations-2.jpg) | ![](/doc/images/pages/reservations-4.jpg) |
+| Reservas pasadas  | ![](/doc/sprint-1/images-1/images/pages/reservations-1.jpg) | ![](/doc/sprint-1/images-1/images/pages/reservations-3.jpg) |
+| Reservas vigentes | ![](/doc/sprint-1/images-1/images/pages/reservations-2.jpg) | ![](/doc/sprint-1/images-1/images/pages/reservations-4.jpg) |
 
 <sub>*El layout del listado cambia según el tipo de usuario y el estado de las reservas.*</sub>
 
@@ -37,4 +37,4 @@ Para construir esta vista, se han ensamblado los siguientes módulos:
 | `Footer`              | Pie de la página, contendrá enlaces e información de contacto, así como el enlace al formulario de registro de afiliados.        |
 
 > **Arquitectura de *Templates***: Esta página está construida utilizando *templates*. Para consultar
-> el desglose técnico de cada uno de estos, consulta nuestra [Guía Detallada de Templates](/doc/templates.md).
+> el desglose técnico de cada uno de estos, consulta nuestra [Guía Detallada de Templates](/doc/sprint-1/templates.md).

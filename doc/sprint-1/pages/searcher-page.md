@@ -12,7 +12,7 @@ La página de ***Búsqueda de restaurantes*** es el motor de exploración princi
 ---
 
 ### Vista Previa y Composición
-![Captura del buscador](/doc/images/pages/searcher.jpg)
+![Captura del buscador](/doc/sprint-1/images-1/images/pages/searcher.jpg)
 
 ---
 
@@ -26,4 +26,4 @@ Para construir esta vista, se han ensamblado los siguientes módulos:
 | `Footer`   | Pie de la página, contendrá enlaces e información de contacto, así como el enlace al formulario de registro de afiliados. |
 
 > **Arquitectura de *Templates***: Esta página está construida utilizando *templates*. Para consultar
-> el desglose técnico de cada uno de estos, consulta nuestra [Guía Detallada de Templates](/doc/templates.md).
+> el desglose técnico de cada uno de estos, consulta nuestra [Guía Detallada de Templates](/doc/sprint-1/templates.md).
