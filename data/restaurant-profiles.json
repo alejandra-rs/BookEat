@@ -1,0 +1,13 @@
+[
+  {
+    "id": 1,
+    "name": "",
+    "surname": "",
+    "account-name": "",
+    "password": "",
+    "email": "",
+    "phone-number": 123,
+    "profile-picture": "",
+    "restaurants": [1]
+  }
+]

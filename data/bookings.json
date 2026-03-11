@@ -1,0 +1,11 @@
+[
+  {
+    "id": 1,
+    "restaurant-id": 1,
+    "user-id": 1,
+    "tables": [1, 2],
+    "datetime": "",
+    "guests": 4,
+    "status": "cancelled"
+  }
+]
