@@ -7,20 +7,19 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="icon" type="image/svg+xml" href="../../assets/icons/logo.svg">
   <link rel="stylesheet" href="../../../styles.css">
-  <script src="../../js/xlu-include-file.js"></script>
+  <script src="../../js/load-template.js"></script>
   <script src="../../js/init-dark-mode.js"></script>
   <script src="../../js/init-components.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
 <body>
-<div xlu-include-file="../../templates/header/header.html"></div>
+<div load-template="header"></div>
 <main>
-  <div xlu-include-file="../../templates/restaurant-carousel/restaurant-carousel.html"></div>
-  <div xlu-include-file="../../templates/restaurant-carousel/restaurant-carousel.html"></div>
-  <div xlu-include-file="../../templates/restaurant-carousel/restaurant-carousel.html"></div>
+  <div load-template="restaurant-carousel"></div>
+  <div load-template="restaurant-carousel"></div>
+  <div load-template="restaurant-carousel"></div>
 </main>
-<div xlu-include-file="../../templates/footer/footer.html"></div>
+<div load-template="footer"></div>
 </body>
 
-<script>initComponents()</script>
 </html>

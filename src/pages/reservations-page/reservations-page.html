@@ -9,33 +9,33 @@
     <link rel="stylesheet" href="../../templates/overview/overview.css">
     <link rel="stylesheet" href="../../pages/reservations-page/reservations-page.css">
     <script src="../../templates/overview/setup-cards.js"></script>
-    <script src="../../js/xlu-include-file.js"></script>
+    <script src="../../js/load-template.js"></script>
     <script src="../../js/init-dark-mode.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
 <body>
 <header>
-<div xlu-include-file="../../templates/header/header.html"></div>
+<div load-template="header"></div>
 </header>
 
-    <div  xlu-include-file="../../templates/date-range/date-range.html"></div>
+    <div  load-template="date-range"></div>
 
 <main class="reservation-container">
     <section class="reservation-container__result">
-        <div xlu-include-file="../../templates/overview/overview.html"></div>
-        <div xlu-include-file="../../templates/overview/overview.html"></div>
-        <div xlu-include-file="../../templates/overview/overview.html"></div>
-        <div xlu-include-file="../../templates/overview/overview.html"></div>
-        <div xlu-include-file="../../templates/overview/overview.html"></div>
-        <div xlu-include-file="../../templates/overview/overview.html"></div>
-        <div xlu-include-file="../../templates/overview/overview.html"></div>
+        <div load-template="overview"></div>
+        <div load-template="overview"></div>
+        <div load-template="overview"></div>
+        <div load-template="overview"></div>
+        <div load-template="overview"></div>
+        <div load-template="overview"></div>
+        <div load-template="overview"></div>
     </section>
 </main>
 
-<div xlu-include-file="../../templates/footer/footer.html"></div>
+<div load-template="footer"></div>
 <script>
     document.addEventListener("DOMContentLoaded", async () => {
-        await xLuIncludeFile();
+        await loadTemplate();
         mix();
         checkDarkMode();
     });

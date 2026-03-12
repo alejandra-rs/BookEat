@@ -9,14 +9,14 @@
     <link rel="stylesheet" href="../../pages/book-table-page/book-table-page.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="../../pages/book-table-page/book-table-page.js"></script>
-    <script src="../../js/xlu-include-file.js"></script>
+    <script src="../../js/load-template.js"></script>
     <script src="../../js/init-dark-mode.js"></script>
     <script src="../../js/auth-mode.js"></script>
     <script src="../../js/init-components.js"></script>
 </head>
 <body>
 
-<header xlu-include-file="../../templates/header/header.html"></header>
+<header load-template="header"></header>
 
 <a href="../../pages/restaurant-info-page/restaurant-info-page.html">
     <button class="back-button">
@@ -26,13 +26,12 @@
 </a>
 
 <main class="book-table-page">
-    <div xlu-include-file="../../templates/hour-table/hour-table.html"></div>
+    <div load-template="hour-table"></div>
     <h2 id="hour-table-txt"><em>Please select a date and time to show available tables</em></h2>
-    <div id="hour-table-map" xlu-include-file="../../templates/table-map/table-map.html"></div>
-    <button id="book-selected" class="primary-button" onclick="popupMode('login-popup-main',null)">Book Selected</button>
+    <div id="hour-table-map" load-template="table-map"></div>
+    <button id="book-selected" class="primary-button" data-opens="login-popup">Book Selected</button>
 </main>
 
-<footer xlu-include-file="../../templates/footer/footer.html"></footer>
-<script> initComponents(); </script>
+<footer load-template="footer"></footer>
 </body>
 </html>

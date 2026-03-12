@@ -5,6 +5,10 @@
     font-size: inherit;
 }
 
+
+body:has(dialog[open]) {
+    overflow: hidden;
+}
 body {
     background-color: var(--bg-primary);
     min-height: 100vh;

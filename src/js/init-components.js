@@ -1,4 +1,4 @@
-async function initComponents() {
-    await xLuIncludeFile();
+document.addEventListener('DOMContentLoaded', async function() {
+    await loadTemplate();
     checkDarkMode();
-}
+});
