@@ -22,7 +22,6 @@
 .restaurant-carousel__carousel__item {
     display: flex;
     min-width: 200px;
-    height: 100%;
     background: none;
     align-items: center;
     justify-content: center;
