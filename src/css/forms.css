@@ -1,3 +1,8 @@
+dialog {
+    border: none;
+    background: transparent;
+    margin: auto;
+}
 .form {
     display: flex;
     flex-direction: column;
@@ -58,9 +63,12 @@ h3 {
     width: 100%;
 }
 
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+}
+
 .login-form,
 .register-form {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    margin: auto;
 }

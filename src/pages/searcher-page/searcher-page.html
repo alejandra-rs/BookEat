@@ -11,10 +11,10 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="../../templates/overview/setup-cards.js"></script>
     <script src="../../js/init-dark-mode.js"></script>
-    <script src="../../js/xlu-include-file.js"></script>
+    <script src="../../js/load-template.js"></script>
 </head>
 <body>
-<header xlu-include-file="../../templates/header/header.html"></header>
+<header load-template="header"></header>
 
 <main class="searcher-page">
     <aside class="searcher-page__filters">
@@ -33,22 +33,21 @@
     </aside>
 
     <section class="searcher-page__results">
-        <div xlu-include-file="../../templates/overview/overview.html"></div>
-        <div xlu-include-file="../../templates/overview/overview.html"></div>
-        <div xlu-include-file="../../templates/overview/overview.html"></div>
-        <div xlu-include-file="../../templates/overview/overview.html"></div>
-        <div xlu-include-file="../../templates/overview/overview.html"></div>
-        <div xlu-include-file="../../templates/overview/overview.html"></div>
-        <div xlu-include-file="../../templates/overview/overview.html"></div>
+        <div load-template="overview"></div>
+        <div load-template="overview"></div>
+        <div load-template="overview"></div>
+        <div load-template="overview"></div>
+        <div load-template="overview"></div>
+        <div load-template="overview"></div>
+        <div load-template="overview"></div>
     </section>
 
 </main>
 
-<footer xlu-include-file="../../templates/footer/footer.html"></footer>
+<footer load-template="footer"></footer>
 <script>
-
     document.addEventListener("DOMContentLoaded", async () => {
-        await xLuIncludeFile();
+        await loadTemplate();
         setupCards("default");
         checkDarkMode();
     });
