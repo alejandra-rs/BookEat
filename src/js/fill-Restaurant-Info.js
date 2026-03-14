@@ -1,10 +1,15 @@
-import {fillText, fillImage} from "../../src/js/fill-utils.js";
+import {fillText, fillImage, fillRating} from "../../src/js/fill-utils.js";
+import {fillReview} from "../../src/js/fill-review.js";
 
 export async function fillRestaurantInfo() {
     try {
         const index = new URLSearchParams(window.location.search).get('id') ?? 0;
-        const response = await fetch('../../../data/restaurants.json');
-        const restaurants = await response.json();
+        const [resResp, revResp, userResp] = await Promise.all([
+            fetch('../../../data/restaurants.json'),
+            fetch('../../../data/reviews.json'),
+            fetch('../../../data/user-profiles.json')
+        ]);
+        const restaurants = await resResp.json();
         const restaurant = restaurants[index - 1];
         if (!restaurant) return;
         const ratings = restaurant.rating;
@@ -12,15 +17,23 @@ export async function fillRestaurantInfo() {
         const weightedSum = Object.entries(ratings).reduce(
             (sum, [starts,count]) =>sum + Number(starts) * count, 0);
         const avg = totalVotes > 0 ?(weightedSum/totalVotes).toFixed(1) : '-' ;
+        const container = document.querySelector('.restaurant-info');
 
+        if (restaurant.images) {
+        }
+        fillImage( 'image', restaurant.images,container);
+        fillText('restaurant-name', restaurant.name, container);
+        fillText('description', restaurant.description, container, true);
+        fillRating('user-score', avg, container);
+        fillImage( 'carousel', restaurant.gallery ?? [restaurant.images]);
 
-            if (restaurant.images) {
-                fillImage(restaurant.images, 'image');
-            }
-            fillText('restaurant-name', restaurant.name, 'restaurant-info');
-            fillText('description', restaurant.description, 'restaurant-info', true);
-            fillText('user-score', avg, 'restaurant-info');
-            fillImage(restaurant.gallery ?? [restaurant.images], 'carousel'); // contenedor
+        const allReviews = await revResp.json();
+        const restaurantReviews = allReviews.filter(r => r['restaurant-id'] === restaurant.id);
+        const userIdsInRestaurant = new Set(restaurantReviews.map(r => r['user-id']));
+
+        const allUsers = await userResp.json();
+        const userReviews = allUsers.filter(user => userIdsInRestaurant.has(user.id));
+        fillReview(restaurantReviews, userReviews);
     }catch (error){
         console.error("Error al rellenar el restaurante:", error);
     }
