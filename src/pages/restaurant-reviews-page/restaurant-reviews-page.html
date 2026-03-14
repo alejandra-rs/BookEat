@@ -14,19 +14,9 @@
 
 <header load-template="header"></header>
 
-<main class="restaurant-reviews-page">
+<main class="restaurant-reviews-page__main">
     <div load-template="restaurant-info"></div>
-    <div class="restaurant-reviews-page__image-carousel">
-        <img src="../../assets/img/restaurant-item.png" alt="">
-        <img src="../../assets/img/restaurant-item.png" alt="">
-        <img src="../../assets/img/restaurant-item.png" alt="">
-        <img src="../../assets/img/restaurant-item.png" alt="">
-        <img src="../../assets/img/restaurant-item.png" alt="">
-        <img src="../../assets/img/restaurant-item.png" alt="">
-        <img src="../../assets/img/restaurant-item.png" alt="">
-        <img src="../../assets/img/restaurant-item.png" alt="">
-        <img src="../../assets/img/restaurant-item.png" alt="">
-        <img src="../../assets/img/restaurant-item.png" alt="">
+    <div data-template="carousel" class="restaurant-reviews-page__image-carousel">
     </div>
 
     <section class="restaurant-reviews-page__summary">
@@ -41,33 +31,31 @@
         <div>
             <h2>Filter</h2>
             <div class="restaurant-reviews-page__filters__buttons">
-                <button>Lorem Ipsum</button>
-                <button>Lorem Ipsum</button>
-                <button>Lorem Ipsum</button>
-                <button>Lorem Ipsum</button>
-                <button>Lorem Ipsum</button>
-                <button>Lorem Ipsum</button>
-                <button>Lorem Ipsum</button>
-                <button>Lorem Ipsum</button>
+                <button class="restaurant-reviews-page__filters__button active" data-rating="all">All</button>
+                <button class="restaurant-reviews-page__filters__button" data-rating="5">5 Stars</button>
+                <button class="restaurant-reviews-page__filters__button" data-rating="4">4 Stars</button>
+                <button class="restaurant-reviews-page__filters__button" data-rating="3">3 Stars</button>
+                <button class="restaurant-reviews-page__filters__button" data-rating="2">2 Stars</button>
+                <button class="restaurant-reviews-page__filters__button" data-rating="1">1 Star</button>
+                <button class="restaurant-reviews-page__filters__button" data-photos="true">With Photos</button>
             </div>
         </div>
         <div>
             <h2>Sort by</h2>
             <div class="restaurant-reviews-page__filters__sort-by">
-                <label><select name="sort-by"><option>Lorem Ipsum</option></select></label>
-                <label><select name="sort-by"><option>Lorem Ipsum</option></select></label>
+                <label>
+                    <select id="sort-reviews" name="sort-by">
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                    </select>
+                </label>
             </div>
         </div>
     </section>
 
     <section class="restaurant-reviews-page__reviews">
-        <div load-template="user-review"></div>
-        <div load-template="user-review"></div>
-        <div load-template="user-review"></div>
-        <div load-template="user-review"></div>
-        <div load-template="user-review"></div>
-        <div load-template="user-review"></div>
     </section>
+    <div load-template="pagination"></div>
 </main>
 
 <footer load-template="footer"></footer>
