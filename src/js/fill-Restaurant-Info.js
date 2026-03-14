@@ -19,8 +19,6 @@ export async function fillRestaurantInfo() {
         const avg = totalVotes > 0 ?(weightedSum/totalVotes).toFixed(1) : '-' ;
         const container = document.querySelector('.restaurant-info');
 
-        if (restaurant.images) {
-        }
         fillImage( 'image', restaurant.images,container);
         fillText('restaurant-name', restaurant.name, container);
         fillText('description', restaurant.description, container, true);
