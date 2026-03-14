@@ -9,9 +9,7 @@
     <link rel="stylesheet" href="../../templates/overview/overview.css">
     <link rel="stylesheet" href="../../pages/searcher-page/searcher-page.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="../../templates/overview/setup-cards.js"></script>
-    <script src="../../js/init-dark-mode.js"></script>
-    <script src="../../js/load-template.js"></script>
+    <script type="module" src="../../js/init-components.js"></script>
 </head>
 <body>
 <header load-template="header"></header>
@@ -45,12 +43,5 @@
 </main>
 
 <footer load-template="footer"></footer>
-<script>
-    document.addEventListener("DOMContentLoaded", async () => {
-        await loadTemplate();
-        setupCards("default");
-        checkDarkMode();
-    });
-</script>
 </body>
 </html>
