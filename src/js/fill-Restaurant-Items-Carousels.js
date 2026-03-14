@@ -1,4 +1,4 @@
-async function fillRestaurantItems() {
+export async function fillRestaurantItems() {
     try {
         const response = await fetch('../../../data/restaurants.json');
         const restaurants = await response.json();

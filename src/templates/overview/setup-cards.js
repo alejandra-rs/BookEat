@@ -26,7 +26,7 @@ const Buttons = {
     `
 };
 
-async function setupCards(type) {
+export async function setupCards(type) {
 let overviews = document.querySelectorAll('.overview');
     for (let overview of overviews) {
         let date = overview.querySelector(".overview__content__title > span.overview__content__title__date")
@@ -41,7 +41,7 @@ let overviews = document.querySelectorAll('.overview');
     }
 }
 
-async function mix() {
+export async function mix() {
     let index = 0
     let types = ["incoming", "past", "restaurant-incoming", "restaurant-past"]
     let overviews = document.querySelectorAll('.overview');

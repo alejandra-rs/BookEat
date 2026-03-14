@@ -1,7 +1,7 @@
 const sunIcon = "../../assets/icons/light-mode.svg";
 const moonIcon = "../../assets/icons/dark-mode.svg";
 
-function initDarkMode() {
+export function initDarkMode() {
     const darkModeToggle = document.getElementById('dark-mode-toggle');
     const themeIcon = document.getElementById('dark-mode-icon');
 
@@ -19,9 +19,7 @@ function initDarkMode() {
     });
 }
 
-initDarkMode();
-
-function checkDarkMode() {
+export function checkDarkMode() {
     const savedTheme = localStorage.getItem('theme') || 'light';
     const themeIcon = document.getElementById('dark-mode-icon');
     themeIcon.src = savedTheme === "dark" ? sunIcon : moonIcon;

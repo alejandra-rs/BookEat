@@ -7,9 +7,7 @@
     <link rel="icon" type="image/svg+xml" href="../../assets/icons/logo.svg">
     <link rel="stylesheet" href="/styles.css">
     <link rel="stylesheet" href="../../pages/restaurant-reviews-page/restaurant-reviews-page.css">
-    <script src="../../js/load-template.js"></script>
-    <script src="../../js/init-dark-mode.js"></script>
-    <script src="../../js/init-components.js"></script>
+    <script type="module" src="../../js/init-components.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
 <body>
@@ -36,7 +34,7 @@
             <div load-template="user-score" class="restaurant-reviews-page__summary__mean__score"></div>
             <p class="restaurant-reviews-page__summary__mean__info">999 reviews</p>
         </div>
-        <div class="restaurant-reviews-page__summary__breakdown" xlu-include-file="../../pages/restaurant-reviews-page/summary-breakdown.html"></div>
+        <div class="restaurant-reviews-page__summary__breakdown" load-template="summary-breakdown"></div>
     </section>
 
     <section class="restaurant-reviews-page__filters">

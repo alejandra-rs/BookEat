@@ -1,4 +1,4 @@
-async function loadTemplate(rootContext = document) {
+export async function loadTemplate(rootContext = document) {
     let elements = Array.from(rootContext.querySelectorAll('[load-template]'));
     if (elements.length === 0) return;
 
