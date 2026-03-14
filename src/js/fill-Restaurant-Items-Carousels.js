@@ -56,7 +56,7 @@ async function fillCarousel(carouselSection, restaurants, title) {
 function fillItem(item, restaurant) {
     fillLink(item, restaurant);
     fillText('name', restaurant.name, item);
-    fillImage(restaurant.images, 'image', item);
+    fillImage('image',restaurant.images, item);
     fillTotalRating(item, restaurant);
     fillPrice(item, restaurant);
 }
