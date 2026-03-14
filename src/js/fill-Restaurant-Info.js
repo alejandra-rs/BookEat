@@ -1,4 +1,4 @@
-import {fillText, fillImage, fillRating, fillTotalRating} from "../../src/js/fill-utils.js";
+import {fillText, fillImage, fillTotalRating} from "../../src/js/fill-utils.js";
 import {fillReview} from "../../src/js/fill-review.js";
 import {fillMenu} from "../../src/js/fill-menu.js";
 
