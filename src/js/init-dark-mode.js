@@ -26,4 +26,5 @@ export function checkDarkMode() {
     if (savedTheme === 'dark') {
         document.body.classList.toggle('dark-mode');
     }
+    initDarkMode()
 }
