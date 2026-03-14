@@ -14,8 +14,12 @@ document.addEventListener('DOMContentLoaded', async function() {
             await fillRestaurantInfo();
             break;
         case window.location.href.includes('reservation-page'):
-            mix();
+            await mix();
             break;
+        case window.location.href.includes('searcher-page'):
+            await  setupCards("default");
+            break;
+
     }
     checkDarkMode();
 });
