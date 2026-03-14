@@ -1,29 +1,43 @@
 import {fillText, fillImage, fillRating} from "../../src/js/fill-utils.js";
+import {find} from "../../src/js/load-template.js";
 
-export function fillReview(reviews, userReviews) {
-    const reviewContainers = document.querySelectorAll('[data-template="user-review"]');
-    // We only populate as many reviews as there are template slots in the HTML
-    reviews.slice(0, reviewContainers.length).forEach((review, index) => {
-        const container = reviewContainers[index];
-        const user = userReviews.filter(u => u.id === review['user-id'])[0];
+export async  function fillReview(reviews, userReviews) {
+    const section = document.querySelector('.restaurant-reviews-page__reviews')
+        || document.querySelector('.restaurant-info-page__main__reviews');
 
-        const nameEl = container.querySelector('.user-review__header__metadata');
+    if (!section) return;
 
-        fillText('user-name-review',`${user.name} ${user.surname}`, nameEl);
-        fillText('user-date-review',formatDate(review['created-at']), nameEl);
-        fillText('user-description', review.description, container);
+    const [reviewRes, scoreRes] = await Promise.all([
+        fetch(find('user-review')),
+        fetch(find('user-score'))
+    ]);
+    const templateHTML = await reviewRes.text();
+    const scoreHTML = await scoreRes.text();
 
-        fillText('user-pros-review', `<li>${review.pros}</li>`, container, true);
-        fillText('user-cons-review', `<li>${review.cons}</li>`, container, true);
+    section.innerHTML = '';
 
-        const scoreContainer = container.querySelector('[data-template="user-score"]');
-        fillRating('user-score', review.rating, scoreContainer);
+    reviews.forEach(review => {
+        const user = userReviews.find(u => u.id === review['user-id']);
+        const wrapper = document.createElement('article');
 
-        const userImage = container.querySelector('.user-review__header__imag');
-        fillImage( 'user-profile-review',`${user['profile-picture']}`, container);
+        wrapper.setAttribute('data-template', 'user-review');
+        wrapper.classList.add('user-review');
+        wrapper.innerHTML = templateHTML;
+        const scorePlaceholder = wrapper.querySelector('[data-template="user-score"]');
+        if (scorePlaceholder) {
+            scorePlaceholder.innerHTML = scoreHTML;
+            fillRating('user-score', review.rating, scorePlaceholder);
+        }
+        fillText('user-name-review', `${user.name} ${user.surname}`, wrapper);
+        fillText('user-date-review', formatDate(review['created-at']), wrapper);
+        fillText('user-description', review.description, wrapper);
+        fillText('user-pros-review', `<li>${review.pros}</li>`, wrapper, true);
+        fillText('user-cons-review', `<li>${review.cons}</li>`, wrapper, true);
 
-        const imageContainer = container.querySelector('.user-review__images');
-        fillImage('user-carousel',review.images, imageContainer );
+        fillImage('user-profile-review', user['profile-picture'], wrapper);
+        fillImage('user-carousel', review.images, wrapper);
+
+        section.appendChild(wrapper);
     });
 }
 
