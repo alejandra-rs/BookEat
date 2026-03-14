@@ -43,7 +43,7 @@ export async function loadTemplate(rootContext = document) {
     }));
 }
 
-function find(dato) {
+export function find(dato) {
     return "../../templates/" + dato + "/" + dato + ".html" ;
 }
 
