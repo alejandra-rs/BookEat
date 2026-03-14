@@ -13,19 +13,29 @@ export function fillText(key, val, context = document, isHTML = false) {
 export function fillImage(key,src, context = document) {
     const container = context === document ? context.body : context;
     if (!container) return;
-
+    const DEFAULT_IMAGE = '../../assets/img/restaurant-item.png';
     container.querySelectorAll(`[data-template="${key}"]`).forEach(element => {
        if (!src) return;
         if (element.tagName.toLowerCase() === 'img') {
+            element.onerror = () => {
+                element.src = DEFAULT_IMAGE;
+                element.onerror = null; // Evita bucles infinitos si la de por defecto también falla
+            };
             element.src = src.startsWith('//') ? `https:${src}` : src;
         } else {
             const images = Array.isArray(src) ? src : [src];
+            element.onerror = () => {
+                element.src = DEFAULT_IMAGE;
+                element.onerror = null; // Evita bucles infinitos si la de por defecto también falla
+            };
             element.innerHTML = images
                 .map(url => {
                     const fullUrl = url.startsWith('//') ? `https:${url}` : url;
                     return `<img src="${fullUrl}" alt="">`;
                 })
                 .join('');
+
+
         }
     });
 }
