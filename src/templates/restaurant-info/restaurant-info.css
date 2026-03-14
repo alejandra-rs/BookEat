@@ -1,5 +1,6 @@
 .restaurant-info {
     display: flex;
+    flex-direction: column;
     gap: 2rem;
 }
 
@@ -26,7 +27,6 @@
 
 .restaurant-info__content{
     display: flex;
-    width: 100%;
     flex-direction: column;
     justify-content: space-between;
     color: var(--text-secondary);
@@ -49,4 +49,22 @@
 .restaurant-info__content__buttons__menu__icon{
     width: 2rem;
     height: 2rem;
+}
+
+@media (min-width: 1024px) {
+    .restaurant-info{
+        flex-direction: row;
+    }
+    .restaurant-item__content__info {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .restaurant-info__image {
+        width: 45%;
+    }
+
+    .restaurant-info__content {
+        width: 55%;
+    }
 }
