@@ -1,4 +1,3 @@
-import {loadTemplate} from "../../src/js/load-template.js";
 import {fillText, fillImage, fillPrice, fillTotalRating, calculateRating} from "../../src/js/fill-utils.js";
 
 export async function fillRestaurantItems() {
