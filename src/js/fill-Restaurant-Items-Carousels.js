@@ -1,5 +1,5 @@
 import {loadTemplate} from "../../src/js/load-template.js";
-import {fillText, fillImage, fillPrice, fillTotalRating} from "../../src/js/fill-utils.js";
+import {fillText, fillImage, fillPrice, fillTotalRating, calculateRating} from "../../src/js/fill-utils.js";
 
 export async function fillRestaurantItems() {
     try {
@@ -9,9 +9,7 @@ export async function fillRestaurantItems() {
         const latest   = [...restaurants].sort((a, b) => a.id - b.id).slice(0, 10);
         const popular = [...restaurants]
             .filter(r => {
-                const totalVotes = Object.values(r.rating).reduce((sum, v) => sum + v, 0);
-                const totalScore = Object.entries(r.rating).reduce((sum, [star, count]) => sum + Number(star) * count, 0);
-                const average = totalVotes === 0 ? 0 : totalScore / totalVotes;
+                const average = calculateRating(r.rating);
                 return average > 4;
             })
             .slice(0);

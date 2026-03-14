@@ -50,7 +50,7 @@ export function fillRating(key, value, context = document) {
     })
 }
 
-function calculateRating(ratings){
+export function calculateRating(ratings){
     const totalVotes = Object.values(ratings).reduce((a, b) => a + b, 0);
     const weightedSum = Object.entries(ratings).reduce(
         (sum, [starts,count]) =>sum + Number(starts) * count, 0);
