@@ -17,13 +17,20 @@ export async function fillRestaurantItems() {
             .slice(0);
         const featured = [...restaurants].sort(() => Math.random() - 0.5).slice(0, 10);
 
-        const latestSection= document.querySelector('.carousel--lastest .restaurant-carousel__carousel');
-        const popularSection = document.querySelector('.carousel--popular .restaurant-carousel__carousel');
-        const featuredSection= document.querySelector('.carousel--featured .restaurant-carousel__carousel');
+        const sections = [
+            { el: document.querySelector('.carousel--lastest .restaurant-carousel__carousel'),  data: latest,   title: 'Latest' },
+            { el: document.querySelector('.carousel--popular .restaurant-carousel__carousel'),  data: popular,  title: 'Popular' },
+            { el: document.querySelector('.carousel--featured .restaurant-carousel__carousel'), data: featured, title: 'Featured' }
+        ];
+        const templateResponse = await fetch('../../templates/restaurant-item/restaurant-item.html');
+        const itemHTML = await templateResponse.text();
 
-        await fillCarousel(latestSection,   latest,   'Latest');
-        await fillCarousel(popularSection,  popular,  'Popular');
-        await fillCarousel(featuredSection, featured, 'Featured');
+        for (const section of sections) {
+            if (section.el) {
+                await fillCarousel(section.el, section.data, section.title, itemHTML);
+            }
+        }
+
     } catch (e) {
         console.error(e);
     }
@@ -38,27 +45,38 @@ async function fillCarousel(carouselSection, restaurants, title) {
     const response = await fetch('../../templates/restaurant-item/restaurant-item.html');
     const itemHTML = await response.text();
 
+    const scoreResponse = await fetch('../../templates/user-score/user-score.html');
+    const scoreHTML = await scoreResponse.text();
+
+    const fragment = document.createDocumentFragment();
     for (const restaurant of restaurants) {
         const wrapper = document.createElement('div');
         wrapper.classList.add('restaurant-carousel__carousel__item');
         wrapper.innerHTML = itemHTML;
 
         carouselSection.appendChild(wrapper);
-        await loadTemplate(wrapper);
 
         const item = wrapper.querySelector('.restaurant-item');
         if (!item) continue;
 
+        const scorePlaceholder = item.querySelector('[load-template="user-score"]');
+        if (scorePlaceholder) {
+            scorePlaceholder.innerHTML = scoreHTML;
+        }
+
         fillItem(item, restaurant);
+        fragment.appendChild(wrapper);
     }
+    carouselSection.innerHTML = '';
+    carouselSection.appendChild(fragment);
 }
 
-function fillItem(item, restaurant) {
-    fillLink(item, restaurant);
-    fillText('name', restaurant.name, item);
-    fillImage('image',restaurant.images, item);
-    fillTotalRating(item, restaurant);
-    fillPrice(item, restaurant);
+function fillItem(container, data) {
+    fillLink(container, data);
+    fillText('name', data.name, container);
+    fillImage('image',data.images, container);
+    fillTotalRating('user-score', data.rating, container);
+    fillPrice(container, data);
 }
 
 function fillLink(item, restaurant) {

@@ -1,5 +1,6 @@
-import {fillText, fillImage, fillRating} from "../../src/js/fill-utils.js";
+import {fillText, fillImage, fillRating, fillTotalRating} from "../../src/js/fill-utils.js";
 import {fillReview} from "../../src/js/fill-review.js";
+import {fillMenu} from "../../src/js/fill-menu.js";
 
 export async function fillRestaurantInfo() {
     try {
@@ -12,17 +13,12 @@ export async function fillRestaurantInfo() {
         const restaurants = await resResp.json();
         const restaurant = restaurants[index - 1];
         if (!restaurant) return;
-        const ratings = restaurant.rating;
-        const totalVotes = Object.values(ratings).reduce((a, b) => a + b, 0);
-        const weightedSum = Object.entries(ratings).reduce(
-            (sum, [starts,count]) =>sum + Number(starts) * count, 0);
-        const avg = totalVotes > 0 ?(weightedSum/totalVotes).toFixed(1) : '-' ;
         const container = document.querySelector('.restaurant-info');
 
         fillImage( 'image', restaurant.images,container);
         fillText('restaurant-name', restaurant.name, container);
         fillText('description', restaurant.description, container, true);
-        fillRating('user-score', avg, container);
+        fillTotalRating('user-score', restaurant.rating, container);
         fillImage( 'carousel', restaurant.gallery ?? [restaurant.images]);
 
         const allReviews = await revResp.json();
@@ -32,6 +28,7 @@ export async function fillRestaurantInfo() {
         const allUsers = await userResp.json();
         const userReviews = allUsers.filter(user => userIdsInRestaurant.has(user.id));
         fillReview(restaurantReviews, userReviews);
+        await fillMenu(restaurant.menu)
     }catch (error){
         console.error("Error al rellenar el restaurante:", error);
     }

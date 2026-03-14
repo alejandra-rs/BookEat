@@ -30,19 +30,15 @@ export function fillImage(key,src, context = document) {
     });
 }
 
-export function fillTotalRating(item, restaurant) {
-    let totalVotes = 0, totalScore = 0;
-    for (const [star, count] of Object.entries(restaurant.rating)) {
-        totalVotes += count;
-        totalScore += Number(star) * count;
-    }
-    const average = totalVotes === 0 ? "0.0" : (totalScore / totalVotes).toFixed(1);
+export function fillTotalRating(key, ratings, context = document) {
+    const container = context === document ? context.body : context;
+    if (!container || !ratings) return;
+    const score = calculateRating(ratings);
+    container.querySelectorAll(`[data-template="${key}"]`).forEach(item => {
+        item.textContent = score;
+        item.setAttribute('value', score);
+    })
 
-    const scoreNumberEl = item.querySelector('.score__number');
-    if (scoreNumberEl) {
-        scoreNumberEl.textContent = average;
-        scoreNumberEl.setAttribute('value', average);
-    }
 }
 
 export function fillRating(key, value, context = document) {
@@ -50,18 +46,25 @@ export function fillRating(key, value, context = document) {
     if (!container) return;
     container.querySelectorAll(`[data-template="${key}"]`).forEach(item => {
         item.textContent = value;
+        item.setAttribute('value', value);
     })
-
 }
 
-export function fillPrice(item, restaurant) {
-    const priceEl = item.querySelector('.restaurant-item__content__info__price');
+function calculateRating(ratings){
+    const totalVotes = Object.values(ratings).reduce((a, b) => a + b, 0);
+    const weightedSum = Object.entries(ratings).reduce(
+        (sum, [starts,count]) =>sum + Number(starts) * count, 0);
+    return totalVotes > 0 ?(weightedSum/totalVotes).toFixed(1) : '-' ;
+}
+
+export function fillPrice(container, data) {
+    const priceEl = container.querySelector('.restaurant-item__content__info__price');
     if (!priceEl) return;
 
-    if (restaurant.menu?.length > 0) {
+    if (data.menu?.length > 0) {
         let minPrice = Infinity, maxPrice = 0, hasPrice = false;
 
-        restaurant.menu.forEach(section => {
+        data.menu.forEach(section => {
             section.items.forEach(dish => {
                 if (dish.price != null) {
                     if (dish.price < minPrice) minPrice = dish.price;
