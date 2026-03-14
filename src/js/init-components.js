@@ -3,6 +3,7 @@ import {fillRestaurantInfo} from '../../src/js/fill-Restaurant-info.js';
 import {checkDarkMode} from "../../src/js/init-dark-mode.js";
 import {loadTemplate} from "../../src/js/load-template.js";
 import {mix, setupCards} from '../../src/templates/overview/setup-cards.js';
+import {fillReviewsPage} from "../../src/js/fill-review-page.js";
 
 document.addEventListener('DOMContentLoaded', async function() {
     await loadTemplate();
@@ -19,7 +20,9 @@ document.addEventListener('DOMContentLoaded', async function() {
         case window.location.href.includes('searcher-page'):
             await  setupCards("default");
             break;
-
+        case window.location.href.includes('restaurant-reviews-page'):
+            await fillReviewsPage();
+            break;
     }
     checkDarkMode();
 });
