@@ -1,7 +1,7 @@
 .menu-section {
-    display: inline-flex;
-    align-items: center;
+    display: flex;
     flex-direction: column;
+    align-items: center;
     padding: 0.5rem;
     gap: 1rem;
     background: transparent;
@@ -13,10 +13,19 @@
 
 .menu-section h2 {
     font-size: 2rem;
+    font-weight: 600;
 }
 
 .menu-section__items {
-    display: inline-flex;
-    flex-direction: column;
-    gap: 1rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+@media (min-width: 992px) {
+    .menu-section__items {
+        grid-template-columns: 1fr 1fr; /* Crea las dos columnas perfectas */
+        align-items: stretch;
+    }
 }

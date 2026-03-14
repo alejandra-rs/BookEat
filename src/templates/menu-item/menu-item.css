@@ -1,12 +1,16 @@
 .menu-item {
     display: flex;
     align-items: stretch;
-    font-size: inherit;
+    width: 100%;
+    min-height: 120px;
     background-color: var(--bg-secondary);
+    font-size: inherit;
     border-radius: 30px;
     padding: 1rem 2rem;
     gap: 1rem;
     color: var(--text-primary);
+    box-sizing: border-box;
+    cursor: default;
 }
 
 .menu-item__content {
@@ -22,12 +26,15 @@
 
 .menu-item__image {
     display: flex;
+    width: 8rem;
+    height: 8rem;
+    flex-shrink: 0;
     align-items: stretch;
 }
 
 .menu-item__image > img {
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: contain;
     max-width: 8rem;
 }
