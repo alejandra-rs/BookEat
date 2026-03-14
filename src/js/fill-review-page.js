@@ -115,6 +115,10 @@ function fillSummaryBreakdown(reviews) {
     if (!reviews || reviews.length === 0) return;
 
     const totalReviews = Object.values(reviews).reduce((a, b) => a + b, 0);
+    const totalCountEl = document.querySelector('.restaurant-reviews-page__summary__mean__info');
+    if (totalCountEl) {
+        totalCountEl.textContent = `${totalReviews} reviews`;
+    }
     for (let i = 1; i <= 5; i++) {
         const count = reviews[i];
         const percentage = (count / totalReviews) * 100;
