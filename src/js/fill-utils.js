@@ -19,14 +19,14 @@ export function fillImage(key,src, context = document) {
         if (element.tagName.toLowerCase() === 'img') {
             element.onerror = () => {
                 element.src = DEFAULT_IMAGE;
-                element.onerror = null; // Evita bucles infinitos si la de por defecto también falla
+                element.onerror = null;
             };
             element.src = src.startsWith('//') ? `https:${src}` : src;
         } else {
             const images = Array.isArray(src) ? src : [src];
             element.onerror = () => {
                 element.src = DEFAULT_IMAGE;
-                element.onerror = null; // Evita bucles infinitos si la de por defecto también falla
+                element.onerror = null;
             };
             element.innerHTML = images
                 .map(url => {
