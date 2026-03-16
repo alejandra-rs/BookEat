@@ -16,7 +16,11 @@
 
     <main class="restaurant-info-page__main">
         <div load-template="restaurant-info"></div>
-        <div data-template="carousel" class="restaurant-info-page__main__image-carousel"></div>
+        <div class="restaurant-info-page__main__image-carousel">
+            <template>
+                <img alt="restaurant-image" src="">
+            </template>
+        </div>
 
         <section class="restaurant-info-page__main__reviews">
             <article data-template="user-review" load-template="user-review"></article>
@@ -32,8 +36,6 @@
     </main>
 
     <footer load-template="footer"></footer>
-
-
 
 </body>
 </html>

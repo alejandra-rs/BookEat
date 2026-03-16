@@ -1,57 +1,49 @@
-import {fillText, fillImage, fillPrice, fillTotalRating, calculateRating} from "../../src/js/fill-utils.js";
+import {calculateRating, fillImage, fillPrice, fillText, fillTotalRating} from "../../src/js/fill-utils.js";
 
 export async function fillRestaurantItems() {
     try {
-        const response = await fetch('../../../data/restaurants.json');
-        const restaurants = await response.json();
+        const restaurants = await (await fetch('../../../data/restaurants.json')).json();
+        const itemHTML = await (await fetch('../../templates/restaurant-item/restaurant-item.html')).text();
 
-        const latest   = [...restaurants].sort((a, b) => a.id - b.id).slice(0, 10);
-        const popular = [...restaurants]
-            .filter(r => {
-                const average = calculateRating(r.rating);
-                return average > 4;
-            })
-            .slice(0);
-        const featured = [...restaurants].sort(() => Math.random() - 0.5).slice(0, 10);
+        const sections = await Promise.all([
+            getLatestRestaurants(restaurants).then(data => ({
+                el: document.querySelector('.carousel--lastest .restaurant-carousel__carousel'),
+                data: data,
+                title: 'Latest'
+            })),
 
-        const sections = [
-            { el: document.querySelector('.carousel--lastest .restaurant-carousel__carousel'),  data: latest,   title: 'Latest' },
-            { el: document.querySelector('.carousel--popular .restaurant-carousel__carousel'),  data: popular,  title: 'Popular' },
-            { el: document.querySelector('.carousel--featured .restaurant-carousel__carousel'), data: featured, title: 'Featured' }
-        ];
-        const templateResponse = await fetch('../../templates/restaurant-item/restaurant-item.html');
-        const itemHTML = await templateResponse.text();
+            getPopularRestaurants(restaurants).then(data => ({
+                el: document.querySelector('.carousel--popular .restaurant-carousel__carousel'),
+                data: data,
+                title: 'Popular'
+            })),
 
-        for (const section of sections) {
-            if (section.el) {
-                await fillCarousel(section.el, section.data, section.title, itemHTML);
-            }
-        }
+            getFeaturedRestaurants(restaurants).then(data => ({
+                el: document.querySelector('.carousel--featured .restaurant-carousel__carousel'),
+                data: data,
+                title: 'Featured'
+            }))
+        ]);
+        await Promise.all(sections.map(section => fillCarousel(section, itemHTML))
+        )
 
     } catch (e) {
         console.error(e);
     }
 }
 
-async function fillCarousel(carouselSection, restaurants, title) {
-    if (!carouselSection) return;
-
-    const h1 = carouselSection.closest('.restaurant-carousel')?.querySelector('h1');
-    if (h1) h1.textContent = title.charAt(0).toUpperCase() + title.slice(1);
-
-    const response = await fetch('../../templates/restaurant-item/restaurant-item.html');
-    const itemHTML = await response.text();
-
-    const scoreResponse = await fetch('../../templates/user-score/user-score.html');
-    const scoreHTML = await scoreResponse.text();
+async function fillCarousel(carouselSection, html) {
+    if (!carouselSection.el) return;
+    const scoreHTML = await (await fetch('../../templates/user-score/user-score.html')).text();
+    carouselSection.el.closest('.restaurant-carousel').querySelector('h1').textContent = carouselSection.title
 
     const fragment = document.createDocumentFragment();
-    for (const restaurant of restaurants) {
+    for (const restaurant of carouselSection.data) {
         const wrapper = document.createElement('div');
         wrapper.classList.add('restaurant-carousel__carousel__item');
-        wrapper.innerHTML = itemHTML;
+        wrapper.innerHTML = html;
 
-        carouselSection.appendChild(wrapper);
+        carouselSection.el.appendChild(wrapper);
 
         const item = wrapper.querySelector('.restaurant-item');
         if (!item) continue;
@@ -64,8 +56,8 @@ async function fillCarousel(carouselSection, restaurants, title) {
         fillItem(item, restaurant);
         fragment.appendChild(wrapper);
     }
-    carouselSection.innerHTML = '';
-    carouselSection.appendChild(fragment);
+    carouselSection.el.innerHTML = '';
+    carouselSection.el.appendChild(fragment);
 }
 
 function fillItem(container, data) {
@@ -76,6 +68,21 @@ function fillItem(container, data) {
     fillPrice(container, data);
 }
 
+
+async function getLatestRestaurants(data) {
+    return [...data].sort((a, b) => a.id - b.id).slice(0, 10);
+}
+
+async function getPopularRestaurants(data) {
+    return [...data]
+        .filter(r => calculateRating(r.rating) > 4)
+        .sort((a, b) => calculateRating(b.rating) - calculateRating(a.rating))
+        .slice(0, 10);
+}
+
+async function getFeaturedRestaurants(data) {
+    return [...data].sort(() => Math.random() - 0.5).slice(0, 10);
+}
 function fillLink(item, restaurant) {
     item.href = `../../pages/restaurant-info-page/restaurant-info-page.html?id=${restaurant.id}`;
 }
