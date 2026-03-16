@@ -3,11 +3,11 @@
 
   <section class="menu-section">
     <header class="menu-section__header">
-      <h2 data-template="section-title">Menu section</h2>
+      <h2 data-template="section-name">Menu section</h2>
     </header>
     <div class="menu-section__items">
-      <article load-template="menu-item"></article>
-      <article load-template="menu-item"></article>
-      <article load-template="menu-item"></article>
+      <template>
+        <article load-template="menu-item" data-context="list-items"></article>
+      </template>
     </div>
   </section>
