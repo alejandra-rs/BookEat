@@ -9,12 +9,19 @@
 body:has(dialog[open]) {
     overflow: hidden;
 }
+html, body {
+    height: 100%;
+}
 body {
     background-color: var(--bg-primary);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     margin: 0;
+}
+
+main{
+    flex-grow: 1;
 }
 
 header, footer {flex-shrink: 0;}
