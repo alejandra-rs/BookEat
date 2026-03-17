@@ -8,7 +8,7 @@ formLogin.addEventListener('submit', async (evento) => {
     try {
         const usuarioLogueado = await findUser(email, password);
 
-        localStorage.setItem('usuarioActual', JSON.stringify(usuarioLogueado));
+        sessionStorage.setItem('usuarioActual', JSON.stringify(usuarioLogueado));
 
         alert(`¡Bienvenido! Has iniciado sesión como ${usuarioLogueado.rol}`);
 
