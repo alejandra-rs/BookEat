@@ -2,7 +2,7 @@
   [
     {
       "id": 1,
-      "restaurant-id": 1,
+      "restaurantId": 1,
       "user-id": 29,
       "tables": [
         14
@@ -13,7 +13,7 @@
     },
     {
       "id": 2,
-      "restaurant-id": 1,
+      "restaurantId": 1,
       "user-id": 38,
       "tables": [
         9,
@@ -25,7 +25,7 @@
     },
     {
       "id": 3,
-      "restaurant-id": 1,
+      "restaurantId": 1,
       "user-id": 17,
       "tables": [
         11,
@@ -38,7 +38,7 @@
     },
     {
       "id": 4,
-      "restaurant-id": 1,
+      "restaurantId": 1,
       "user-id": 59,
       "tables": [
         3,
@@ -50,7 +50,7 @@
     },
     {
       "id": 5,
-      "restaurant-id": 1,
+      "restaurantId": 1,
       "user-id": 18,
       "tables": [
         6
@@ -61,7 +61,7 @@
     },
     {
       "id": 6,
-      "restaurant-id": 1,
+      "restaurantId": 1,
       "user-id": 8,
       "tables": [
         1,
@@ -74,7 +74,7 @@
     },
     {
       "id": 7,
-      "restaurant-id": 1,
+      "restaurantId": 1,
       "user-id": 36,
       "tables": [
         5,
@@ -86,7 +86,7 @@
     },
     {
       "id": 8,
-      "restaurant-id": 1,
+      "restaurantId": 1,
       "user-id": 5,
       "tables": [
         1,
@@ -99,7 +99,7 @@
     },
     {
       "id": 9,
-      "restaurant-id": 1,
+      "restaurantId": 1,
       "user-id": 17,
       "tables": [
         10
@@ -110,7 +110,7 @@
     },
     {
       "id": 10,
-      "restaurant-id": 1,
+      "restaurantId": 1,
       "user-id": 21,
       "tables": [
         6
@@ -121,7 +121,7 @@
     },
     {
       "id": 11,
-      "restaurant-id": 1,
+      "restaurantId": 1,
       "user-id": 54,
       "tables": [
         4,
@@ -133,7 +133,7 @@
     },
     {
       "id": 12,
-      "restaurant-id": 1,
+      "restaurantId": 1,
       "user-id": 4,
       "tables": [
         3
@@ -144,7 +144,7 @@
     },
     {
       "id": 13,
-      "restaurant-id": 1,
+      "restaurantId": 1,
       "user-id": 42,
       "tables": [
         14
@@ -155,7 +155,7 @@
     },
     {
       "id": 14,
-      "restaurant-id": 1,
+      "restaurantId": 1,
       "user-id": 52,
       "tables": [
         6,
@@ -168,7 +168,7 @@
     },
     {
       "id": 15,
-      "restaurant-id": 1,
+      "restaurantId": 1,
       "user-id": 58,
       "tables": [
         10,
@@ -180,7 +180,7 @@
     },
     {
       "id": 16,
-      "restaurant-id": 1,
+      "restaurantId": 1,
       "user-id": 31,
       "tables": [
         6,
@@ -192,7 +192,7 @@
     },
     {
       "id": 17,
-      "restaurant-id": 1,
+      "restaurantId": 1,
       "user-id": 28,
       "tables": [
         5,
@@ -204,7 +204,7 @@
     },
     {
       "id": 18,
-      "restaurant-id": 1,
+      "restaurantId": 1,
       "user-id": 10,
       "tables": [
         14,
@@ -216,7 +216,7 @@
     },
     {
       "id": 19,
-      "restaurant-id": 1,
+      "restaurantId": 1,
       "user-id": 18,
       "tables": [
         5
@@ -227,7 +227,7 @@
     },
     {
       "id": 20,
-      "restaurant-id": 1,
+      "restaurantId": 1,
       "user-id": 60,
       "tables": [
         7
@@ -238,7 +238,7 @@
     },
     {
       "id": 21,
-      "restaurant-id": 1,
+      "restaurantId": 1,
       "user-id": 13,
       "tables": [
         2
@@ -249,7 +249,7 @@
     },
     {
       "id": 22,
-      "restaurant-id": 1,
+      "restaurantId": 1,
       "user-id": 9,
       "tables": [
         1
@@ -260,7 +260,7 @@
     },
     {
       "id": 23,
-      "restaurant-id": 1,
+      "restaurantId": 1,
       "user-id": 50,
       "tables": [
         6
@@ -271,7 +271,7 @@
     },
     {
       "id": 24,
-      "restaurant-id": 1,
+      "restaurantId": 1,
       "user-id": 51,
       "tables": [
         7,
@@ -286,7 +286,7 @@
   [
     {
       "id": 25,
-      "restaurant-id": 2,
+      "restaurantId": 2,
       "user-id": 38,
       "tables": [
         9
@@ -297,7 +297,7 @@
     },
     {
       "id": 26,
-      "restaurant-id": 2,
+      "restaurantId": 2,
       "user-id": 13,
       "tables": [
         3,
@@ -310,7 +310,7 @@
     },
     {
       "id": 27,
-      "restaurant-id": 2,
+      "restaurantId": 2,
       "user-id": 52,
       "tables": [
         10,
@@ -322,7 +322,7 @@
     },
     {
       "id": 28,
-      "restaurant-id": 2,
+      "restaurantId": 2,
       "user-id": 38,
       "tables": [
         3
@@ -333,7 +333,7 @@
     },
     {
       "id": 29,
-      "restaurant-id": 2,
+      "restaurantId": 2,
       "user-id": 51,
       "tables": [
         13,
@@ -346,7 +346,7 @@
     },
     {
       "id": 30,
-      "restaurant-id": 2,
+      "restaurantId": 2,
       "user-id": 7,
       "tables": [
         7,
@@ -359,7 +359,7 @@
     },
     {
       "id": 31,
-      "restaurant-id": 2,
+      "restaurantId": 2,
       "user-id": 33,
       "tables": [
         12,
@@ -371,7 +371,7 @@
     },
     {
       "id": 32,
-      "restaurant-id": 2,
+      "restaurantId": 2,
       "user-id": 40,
       "tables": [
         12,
@@ -384,7 +384,7 @@
     },
     {
       "id": 33,
-      "restaurant-id": 2,
+      "restaurantId": 2,
       "user-id": 58,
       "tables": [
         12,
@@ -396,7 +396,7 @@
     },
     {
       "id": 34,
-      "restaurant-id": 2,
+      "restaurantId": 2,
       "user-id": 42,
       "tables": [
         13
@@ -407,7 +407,7 @@
     },
     {
       "id": 35,
-      "restaurant-id": 2,
+      "restaurantId": 2,
       "user-id": 18,
       "tables": [
         9,
@@ -419,7 +419,7 @@
     },
     {
       "id": 36,
-      "restaurant-id": 2,
+      "restaurantId": 2,
       "user-id": 52,
       "tables": [
         10
@@ -430,7 +430,7 @@
     },
     {
       "id": 37,
-      "restaurant-id": 2,
+      "restaurantId": 2,
       "user-id": 32,
       "tables": [
         6,
@@ -443,7 +443,7 @@
     },
     {
       "id": 38,
-      "restaurant-id": 2,
+      "restaurantId": 2,
       "user-id": 32,
       "tables": [
         14
@@ -454,7 +454,7 @@
     },
     {
       "id": 39,
-      "restaurant-id": 2,
+      "restaurantId": 2,
       "user-id": 31,
       "tables": [
         5
@@ -465,7 +465,7 @@
     },
     {
       "id": 40,
-      "restaurant-id": 2,
+      "restaurantId": 2,
       "user-id": 6,
       "tables": [
         11,
@@ -478,7 +478,7 @@
     },
     {
       "id": 41,
-      "restaurant-id": 2,
+      "restaurantId": 2,
       "user-id": 38,
       "tables": [
         11
@@ -489,7 +489,7 @@
     },
     {
       "id": 42,
-      "restaurant-id": 2,
+      "restaurantId": 2,
       "user-id": 33,
       "tables": [
         2,
@@ -502,7 +502,7 @@
     },
     {
       "id": 43,
-      "restaurant-id": 2,
+      "restaurantId": 2,
       "user-id": 28,
       "tables": [
         1
@@ -513,7 +513,7 @@
     },
     {
       "id": 44,
-      "restaurant-id": 2,
+      "restaurantId": 2,
       "user-id": 32,
       "tables": [
         5,
@@ -526,7 +526,7 @@
     },
     {
       "id": 45,
-      "restaurant-id": 2,
+      "restaurantId": 2,
       "user-id": 10,
       "tables": [
         5,
@@ -539,7 +539,7 @@
     },
     {
       "id": 46,
-      "restaurant-id": 2,
+      "restaurantId": 2,
       "user-id": 28,
       "tables": [
         3,

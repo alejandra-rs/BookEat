@@ -17,19 +17,15 @@
     <main class="restaurant-info-page__main">
         <div load-template="restaurant-info"></div>
         <div class="restaurant-info-page__main__image-carousel">
-            <template>
-                <img alt="restaurant-image" src="">
-            </template>
+            <template> <img alt="restaurant-image" src=""> </template>
         </div>
 
-        <section class="restaurant-info-page__main__reviews">
-            <article data-template="user-review" load-template="user-review"></article>
-            <article data-template="user-review" load-template="user-review"></article>
-            <article data-template="user-review" load-template="user-review"></article>
+        <section class="restaurant-info-page__main__reviews" data-context="reviews" related="restaurantId">
+            <template><article load-template="user-review"></article></template>
         </section>
 
         <div class="restaurant-info-page__main__read-more">
-            <a href="../../pages/restaurant-reviews-page/restaurant-reviews-page.html">
+            <a data-template="href-id" href="../../pages/restaurant-reviews-page/restaurant-reviews-page.html">
                 <button class="secondary-button read-more"> Read More </button>
             </a>
         </div>

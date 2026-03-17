@@ -1,6 +1,6 @@
 import { fillText, fillImage, fillTotalRating } from "../../src/js/fill-utils.js";
 import { fillReview } from "../../src/js/fill-review.js";
-import { fillMenu } from "../../src/js/fill-menu.js";
+import { fillMenu } from "../js/fill-menu.js";
 
 export async function fillRestaurantInfo() {
     try {
@@ -22,7 +22,7 @@ export async function fillRestaurantInfo() {
         fillImage('carousel', restaurant.gallery ?? [restaurant.images]);
 
         const allReviews = await revResp.json();
-        const restaurantReviews = allReviews.filter(r => r['restaurant-id'] === restaurant.id);
+        const restaurantReviews = allReviews.filter(r => r['restaurantId'] === restaurant.id);
         const previewReviews = restaurantReviews.slice(0, 3);
         const userIdsInRestaurant = new Set(previewReviews.map(r => r['user-id']));
 

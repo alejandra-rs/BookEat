@@ -14,7 +14,7 @@
 
 <header load-template="header"></header>
 
-<main class="restaurant-reviews-page__main">
+<main class="restaurant-reviews-page__main" >
     <div load-template="restaurant-info"></div>
     <div data-template="carousel" class="restaurant-reviews-page__image-carousel">
     </div>
@@ -22,12 +22,12 @@
     <section class="restaurant-reviews-page__summary">
         <div class="restaurant-reviews-page__summary__mean">
             <div load-template="user-score" class="restaurant-reviews-page__summary__mean__score"></div>
-            <p class="restaurant-reviews-page__summary__mean__info">999 reviews</p>
+            <span data-template="text-rating" filter="total" class="restaurant-reviews-page__summary__mean__info">999</span> <span> reviews</span>
         </div>
-        <div class="restaurant-reviews-page__summary__breakdown" load-template="summary-breakdown"></div>
+        <div class="restaurant-reviews-page__summary__breakdown" data-template="list-rating" load-template="summary-breakdown"></div>
     </section>
 
-    <section class="restaurant-reviews-page__filters">
+    <section class="restaurant-reviews-page__filters" data-context="reviews">
         <div>
             <h2>Filter</h2>
             <div class="restaurant-reviews-page__filters__buttons">
@@ -53,7 +53,8 @@
         </div>
     </section>
 
-    <section class="restaurant-reviews-page__reviews">
+    <section class="restaurant-reviews-page__reviews" data-context="reviews" related="restaurantId">
+        <template><article load-template="user-review"></article></template>
     </section>
     <div load-template="pagination"></div>
 </main>

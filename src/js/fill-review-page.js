@@ -32,7 +32,7 @@ export async function fillReviewsPage() {
         fillTotalRating('user-score', restaurant.rating, infoContainer);
     }
 
-    state.allReviews = rev.filter(r => r['restaurant-id'] === Number(id));
+    state.allReviews = rev.filter(r => r['restaurantId'] === Number(id));
     state.users = users;
 
     fillSummaryBreakdown(restaurant.rating);
