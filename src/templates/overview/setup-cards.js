@@ -27,34 +27,15 @@ const Buttons = {
 };
 
 export async function setupCards(type) {
-let overviews = document.querySelectorAll('.overview');
-    for (let overview of overviews) {
+    for (let overview of document.querySelectorAll('.overview')) {
         let date = overview.querySelector(".overview__content__title > span.overview__content__title__date")
         date.textContent = DatesMockUps[type + "-date"]
+
         let buttonContainer = overview.querySelector(".overview__content__button-container")
         buttonContainer.innerHTML = Buttons[type]
-        let card = overview.querySelector(".overview__image");
-        if (type.includes('restaurant')) {
-            card.innerHTML = '<img src="../../assets/img/user-image.png" alt="user image" class="icon overview__image"/>'
-        } else
-        card.innerHTML =`<img src="../../assets/img/restaurant-item.png" alt="a restaurant image" class="icon overview__image"/>`
-    }
-}
 
-export async function mix() {
-    let index = 0
-    let types = ["incoming", "past", "restaurant-incoming", "restaurant-past"]
-    let overviews = document.querySelectorAll('.overview');
-    for (let overview of overviews) {
-        index = (index +1) % 4
-        let date = overview.querySelector(".overview__content__title > span.overview__content__title__date")
-        date.textContent = DatesMockUps[types[index] + "-date"]
-        let buttonContainer = overview.querySelector(".overview__content__button-container")
-        buttonContainer.innerHTML = Buttons[types[index]]
         let card = overview.querySelector(".overview__image");
-        if (types[index].includes('restaurant')) {
-            card.innerHTML = '<img src="../../assets/img/user-image.png" alt="user image" class="icon overview__image"/>'
-        } else
-        card.innerHTML =`<img src="../../assets/img/restaurant-item.png" alt="a restaurant image" class="icon overview__image"/>`
+        if (type.includes('restaurant')) card.innerHTML = '<img src="../../assets/img/user-image.png" alt="user image" class="icon overview__image"/>'
+        else card.innerHTML =`<img src="../../assets/img/restaurant-item.png" alt="a restaurant image" class="icon overview__image"/>`
     }
 }

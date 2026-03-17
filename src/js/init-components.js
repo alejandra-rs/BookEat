@@ -1,6 +1,7 @@
 import {checkDarkMode} from "../../src/js/init-dark-mode.js";
 import {loadTemplate} from "../../src/js/load-template.js";
-import {fillPage, fillTemplate} from "../../src/js/SUPREME-FILL.js";
+import {fillPage, fillTemplate} from "./load-data.js";
+//import {setupCards} from "../../templates/overview/setup-cards";
 
 document.addEventListener('DOMContentLoaded', async function() {
     await loadTemplate();
@@ -13,7 +14,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         try {
             const response = await fetch(`http://localhost:3000/restaurants/${id}`);
             globalData = await response.json();
-            fillPage(document.body, globalData);
+            await fillPage(document.body, globalData);
         } catch (error) {
             console.error("Error cargando el restaurante:", error);
         }
@@ -28,23 +29,24 @@ document.addEventListener('DOMContentLoaded', async function() {
         if (globalData && globalData[context]) {
             const localData = globalData[context];
             if (Array.isArray(localData)) await fillTemplate(container, localData);
-            else fillPage(container, localData);
+            else await fillPage(container, localData);
         }
         else {
             try {
                 let url = `http://localhost:3000/${context}`;
-                if (id && related) {
-                    url += `?${related}=${id}`;
-                }
+                if (id && related) url += `?${related}=${id}`;
 
                 const jsonData = await (await fetch(url)).json();
                 if (Array.isArray(jsonData)) await fillTemplate(container, jsonData);
-                else fillPage(container, jsonData);
+                else await fillPage(container, jsonData);
             } catch (error) {
                 console.error(`Error en contexto "${context}":`, error);
             }
         }
     }
+
+    // (window.location.href.includes('searcher-page')) await setupCards("default");
+
     checkDarkMode();
 
     /*

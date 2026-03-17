@@ -14,6 +14,10 @@
     gap: 1rem;
 }
 
+.user-review__header__image {
+    border-radius: 100%
+}
+
 .user-review__header__image, .user-review__images > img {
     width: 5rem;
     height: 5rem;
