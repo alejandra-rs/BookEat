@@ -17,20 +17,15 @@ document.addEventListener('click', (event) => {
     }
 });
 
-// 1. Ejecutamos la función al cargar la página para mantener la sesión
 document.addEventListener('DOMContentLoaded', () => {
-    // Le damos un pequeño tiempo para que load-template.js termine de inyectar el HTML si es necesario
-    setTimeout(actualizarHeader, 100);
+    setTimeout(updateHeader, 100);
 });
 
-// 2. Definimos la función que cambia la vista del header
-function actualizarHeader() {
+function updateHeader() {
     const usuarioGuardado = localStorage.getItem('usuarioActual');
 
-    // Seleccionamos los elementos del header
-    const loginBtn = document.getElementById('loginButton');
+    const loginBtn = document.querySelector('header .header');
     const registerBtn = document.getElementById('registerButton');
-    const userIcon = document.getElementById('user-icon');
     const accountContainer = document.querySelector('.header__buttons__account');
 
     // Verificamos que los elementos existan antes de intentar cambiarlos
@@ -89,4 +84,4 @@ function actualizarHeader() {
 }
 
 // Hacemos que la función sea accesible globalmente por si otros scripts (como login.js) la necesitan
-window.actualizarHeader = actualizarHeader;
+window.actualizarHeader = updateHeader;

@@ -13,7 +13,7 @@ formLogin.addEventListener('submit', async (evento) => {
         alert(`¡Bienvenido! Has iniciado sesión como ${usuarioLogueado.rol}`);
 
         document.getElementById('login-popup').close();
-        actualizarHeader();
+        updateHeader();
 
     } catch (error) {
         alert(error.message);
@@ -32,9 +32,6 @@ const getRestaurantUser = async (URL_BASE, email, password) => {
     return usuarios.filter(user => user.password === password);
 }
 
-/**
- * Función que busca al usuario primero en clientes y luego en dueños
- */
 async function findUser(email, password) {
     const URL_BASE = 'http://localhost:3000';
 
