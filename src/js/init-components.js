@@ -1,7 +1,7 @@
 import {checkDarkMode} from "../../src/js/init-dark-mode.js";
 import {loadTemplate} from "../../src/js/load-template.js";
 import {fillPage, fillTemplate} from "./load-data.js";
-//import {setupCards} from "../../templates/overview/setup-cards";
+import {setupCards} from "../../src/templates/overview/setup-cards.js";
 
 document.addEventListener('DOMContentLoaded', async function() {
     await loadTemplate();
@@ -37,7 +37,11 @@ document.addEventListener('DOMContentLoaded', async function() {
                 if (id && related) url += `?${related}=${id}`;
 
                 const jsonData = await (await fetch(url)).json();
-                if (Array.isArray(jsonData)) await fillTemplate(container, jsonData);
+                if (Array.isArray(jsonData)) {
+                    await fillTemplate(container, jsonData);
+                    if (window.location.href.includes('searcher-page'))
+                        setupCards(container);
+                }
                 else await fillPage(container, jsonData);
             } catch (error) {
                 console.error(`Error en contexto "${context}":`, error);
@@ -45,7 +49,6 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
     }
 
-    // (window.location.href.includes('searcher-page')) await setupCards("default");
 
     checkDarkMode();
 

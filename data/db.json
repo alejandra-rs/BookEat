@@ -25826,41 +25826,7 @@
         "https://loremflickr.com/720/576/restaurant?random=0",
         "https://loremflickr.com/720/576/restaurant?random=1",
         "https://loremflickr.com/720/576/restaurant?random=2",
-        "https://loremflickr.com/720/576/restaurant?random=3",
-        "https://loremflickr.com/720/576/restaurant?random=4",
-        "https://loremflickr.com/720/576/restaurant?random=5",
-        "https://loremflickr.com/720/576/restaurant?random=6",
-        "https://loremflickr.com/720/576/restaurant?random=7",
-        "https://loremflickr.com/720/576/restaurant?random=8",
-        "https://loremflickr.com/720/576/restaurant?random=8",
-        "https://loremflickr.com/720/576/restaurant?random=8",
-        "https://loremflickr.com/720/576/restaurant?random=8",
-        "https://loremflickr.com/720/576/restaurant?random=8",
-        "https://loremflickr.com/720/576/restaurant?random=8",
-        "https://loremflickr.com/720/576/restaurant?random=8",
-        "https://loremflickr.com/720/576/restaurant?random=8",
-        "https://loremflickr.com/720/576/restaurant?random=8",
-        "https://loremflickr.com/720/576/restaurant?random=8",
-        "https://loremflickr.com/720/576/restaurant?random=8",
-        "https://loremflickr.com/720/576/restaurant?random=8",
-        "https://loremflickr.com/720/576/restaurant?random=8",
-        "https://loremflickr.com/720/576/restaurant?random=8",
-        "https://loremflickr.com/720/576/restaurant?random=8",
-        "https://loremflickr.com/720/576/restaurant?random=8",
-        "https://loremflickr.com/720/576/restaurant?random=8",
-        "https://loremflickr.com/720/576/restaurant?random=8",
-        "https://loremflickr.com/720/576/restaurant?random=8",
-        "https://loremflickr.com/720/576/restaurant?random=8",
-        "https://loremflickr.com/720/576/restaurant?random=8",
-        "https://loremflickr.com/720/576/restaurant?random=8",
-        "https://loremflickr.com/720/576/restaurant?random=8",
-        "https://loremflickr.com/720/576/restaurant?random=8",
-        "https://loremflickr.com/720/576/restaurant?random=8",
-        "https://loremflickr.com/720/576/restaurant?random=8",
-        "https://loremflickr.com/720/576/restaurant?random=8",
-        "https://loremflickr.com/720/576/restaurant?random=8",
-        "https://loremflickr.com/720/576/restaurant?random=8",
-        "https://loremflickr.com/720/576/restaurant?random=9"
+        "https://loremflickr.com/720/576/restaurant?random=3"
       ]
     },
     {
@@ -25873,7 +25839,13 @@
       "userId": 38,
       "restaurantId": 1,
       "createdAt": "2026-02-16",
-      "images": []
+      "images": [
+        "https://loremflickr.com/720/576/restaurant?random=4",
+        "https://loremflickr.com/720/576/restaurant?random=5",
+        "https://loremflickr.com/720/576/restaurant?random=6",
+        "https://loremflickr.com/720/576/restaurant?random=7",
+        "https://loremflickr.com/720/576/restaurant?random=8",
+        "https://loremflickr.com/720/576/restaurant?random=9"]
     },
     {
       "id": 3,
@@ -25885,7 +25857,13 @@
       "userId": 1,
       "restaurantId": 1,
       "createdAt": "2025-05-17",
-      "images": []
+      "images": [
+        "https://loremflickr.com/720/576/restaurant?random=10",
+        "https://loremflickr.com/720/576/restaurant?random=11",
+        "https://loremflickr.com/720/576/restaurant?random=12",
+        "https://loremflickr.com/720/576/restaurant?random=13",
+        "https://loremflickr.com/720/576/restaurant?random=14",
+        "https://loremflickr.com/720/576/restaurant?random=15"]
     },
     {
       "id": 4,

@@ -1,3 +1,5 @@
+import {fillPage} from "../../js/load-data.js";
+
 const DatesMockUps = {
     'default-date': "",
     'incoming-date': "12/02/2026",
@@ -8,7 +10,11 @@ const DatesMockUps = {
 
 const Buttons = {
     'default': `
-        <button class="secondary-button" onclick="window.location.href='../restaurant-info-page/restaurant-info-page.html'"> Go </button>
+       <template>
+           <div class="card">
+               <a class="button" data-template="href-id" href="../../pages/restaurant-info-page/restaurant-info-page.html">Go</a>
+           </div>
+       </template>
     `,
     'incoming': `
         <button class="secondary-button">Cancel Reservation</button>
@@ -26,16 +32,28 @@ const Buttons = {
     `
 };
 
-export async function setupCards(type) {
-    for (let overview of document.querySelectorAll('.overview')) {
-        let date = overview.querySelector(".overview__content__title > span.overview__content__title__date")
-        date.textContent = DatesMockUps[type + "-date"]
+export function setupCards(container) {
+    // 1. Find all the freshly rendered cards inside the container
+    const cards = container.querySelectorAll('.overview'); // Changed this to '.overview' to perfectly match overview.html's root element
 
-        let buttonContainer = overview.querySelector(".overview__content__button-container")
-        buttonContainer.innerHTML = Buttons[type]
+    cards.forEach(card => {
+        const actionsContainer = card.querySelector('.card__actions-container');
+        const idStore = card.querySelector('.overview__content__button-container');
 
-        let card = overview.querySelector(".overview__image");
-        if (type.includes('restaurant')) card.innerHTML = '<img src="../../assets/img/user-image.png" alt="user image" class="icon overview__image"/>'
-        else card.innerHTML =`<img src="../../assets/img/restaurant-item.png" alt="a restaurant image" class="icon overview__image"/>`
-    }
+        if (actionsContainer && idStore) {
+            // 2. Grab the ID that load-data.js injected
+            const cardId = idStore.getAttribute('value') || idStore.textContent;
+
+            // 3. Create the "GO" button
+            const goButton = document.createElement('a');
+            goButton.className = 'button'; // Give it your global button class so it looks nice
+            goButton.textContent = 'GO >';
+
+            // 4. Set the correct URL with the dynamic ID attached!
+            goButton.href = `../../pages/restaurant-info-page/restaurant-info-page.html?id=${cardId}`;
+
+            // 5. Inject the button into the card
+            actionsContainer.appendChild(goButton);
+        }
+    });
 }
