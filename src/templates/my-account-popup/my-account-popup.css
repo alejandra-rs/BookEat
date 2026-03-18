@@ -1,5 +1,4 @@
-.my-account-popup {
-    display: flex;
+#my-account-popup {
     align-items: center;
     position: fixed;
     padding: 0.5rem;

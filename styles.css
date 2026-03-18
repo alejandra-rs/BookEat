@@ -56,9 +56,13 @@ button {
     cursor: pointer;
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+
+}
 a > button {
     text-decoration: none;
-    height: 100%;
 }
 
 button img.icon {

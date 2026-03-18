@@ -17,9 +17,28 @@ document.addEventListener('click', (event) => {
     }
 });
 
-document.addEventListener('submit', (event) => {
-    if (event.target.id === 'form-login' || event.target.id === 'form-register') {
-        event.preventDefault();
-        event.target.closest('dialog').close();
-    }
+document.addEventListener('header-loaded', () => {
+    updateHeader()
 });
+
+function prepareImage(miImagen, user) {
+    miImagen.src = user.datos['profile-picture'] || "../../assets/icons/user-profile.svg";
+    miImagen.alt = 'User profile';
+    miImagen.style.cursor = 'pointer';
+    miImagen.setAttribute('data-opens', 'my-account-popup');
+    miImagen.setAttribute('class', 'user-profile-picture');
+    return miImagen;
+}
+
+function updateHeader() {
+    const usuarioGuardado = sessionStorage.getItem('usuarioActual');
+    if (!usuarioGuardado) return;
+    const user = JSON.parse(usuarioGuardado);
+    const header__buttons = document.querySelector('header.header > .header__buttons');
+    if (!header__buttons) return;
+    header__buttons.replaceChildren(prepareImage(document.createElement('img'), user));
+}
+
+updateHeader();
+window.updateHeader = updateHeader;
+
