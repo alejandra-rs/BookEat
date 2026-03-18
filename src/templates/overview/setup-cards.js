@@ -1,5 +1,3 @@
-import {fillPage} from "../../js/load-data.js";
-
 const DatesMockUps = {
     'default-date': "",
     'incoming-date': "12/02/2026",
@@ -11,9 +9,9 @@ const DatesMockUps = {
 const Buttons = {
     'default': `
        <template>
-           <div class="card">
-               <a class="button" data-template="href-id" href="../../pages/restaurant-info-page/restaurant-info-page.html">Go</a>
-           </div>
+           <a data-template="href-id" href="../../pages/restaurant-info-page/restaurant-info-page.html">
+                <button class="secondary-button read-more"> Go </button>
+           </a>
        </template>
     `,
     'incoming': `
@@ -32,28 +30,31 @@ const Buttons = {
     `
 };
 
-export function setupCards(container) {
-    // 1. Find all the freshly rendered cards inside the container
-    const cards = container.querySelectorAll('.overview'); // Changed this to '.overview' to perfectly match overview.html's root element
+export function setupCards(container, type = 'default') {
+    const cards = container.querySelectorAll('.overview');
+    const dateValue = DatesMockUps[`${type}-date`] || DatesMockUps['default-date'];
 
     cards.forEach(card => {
         const actionsContainer = card.querySelector('.card__actions-container');
-        const idStore = card.querySelector('.overview__content__button-container');
+        const idStore = card.querySelector('.overview__content__buttons__id');
+        const dateDisplay = card.querySelector('[data-template="text-date"]');
+
+        if (dateDisplay) dateDisplay.textContent = dateValue;
 
         if (actionsContainer && idStore) {
-            // 2. Grab the ID that load-data.js injected
             const cardId = idStore.getAttribute('value') || idStore.textContent;
 
-            // 3. Create the "GO" button
-            const goButton = document.createElement('a');
-            goButton.className = 'button'; // Give it your global button class so it looks nice
-            goButton.textContent = 'GO >';
+            while (actionsContainer.firstChild) actionsContainer.removeChild(actionsContainer.firstChild);
 
-            // 4. Set the correct URL with the dynamic ID attached!
-            goButton.href = `../../pages/restaurant-info-page/restaurant-info-page.html?id=${cardId}`;
+            const templateString = Buttons[type] || Buttons['default'];
+            const fragment = document.createRange().createContextualFragment(templateString);
 
-            // 5. Inject the button into the card
-            actionsContainer.appendChild(goButton);
+            const content = fragment.querySelector('template').content.cloneNode(true);
+
+            const link = content.querySelector('a[data-template="href-id"]');
+            if (link) link.href = `${link.getAttribute('href')}?id=${cardId}`;
+
+            actionsContainer.appendChild(content);
         }
     });
 }
