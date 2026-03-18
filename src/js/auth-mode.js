@@ -38,5 +38,7 @@ function updateHeader() {
     if (!header__buttons) return;
     header__buttons.replaceChildren(prepareImage(document.createElement('img'), user));
 }
+
 updateHeader();
 window.updateHeader = updateHeader;
+

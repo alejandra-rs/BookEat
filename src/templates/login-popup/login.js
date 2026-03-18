@@ -10,8 +10,6 @@ formLogin.addEventListener('submit', async (evento) => {
 
         sessionStorage.setItem('usuarioActual', JSON.stringify(usuarioLogueado));
 
-        alert(`¡Bienvenido! Has iniciado sesión como ${usuarioLogueado.rol}`);
-
         document.getElementById('login-popup').close();
         updateHeader();
 
