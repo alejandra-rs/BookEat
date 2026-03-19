@@ -11,7 +11,7 @@
 .date-picker__input,
 .date-picker__input::placeholder,
 .date-picker .flatpickr-input {
-    max-width: 5rem;
+    max-width: 6rem;
     border: none;
     outline: none;
     background: transparent;
