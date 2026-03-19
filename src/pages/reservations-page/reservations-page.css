@@ -8,6 +8,8 @@ body {
 
 .reservation-container {
     display: flex;
-    align-self: center;
+    flex-direction: column;
     width: 90%;
+    align-self: center;
+    flex-shrink: 0;
 }

@@ -14,7 +14,7 @@ async function logIn(email, password) {
 }
 
 const postUser = async (URL_BASE, newUser) => {
-    return await fetch(`${URL_BASE}/user-profiles`, {
+    return await fetch(`${URL_BASE}/users`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -55,7 +55,7 @@ function validPhone(data) {
 }
 
 async function findUserByEmail(email) {
-    return (await fetch(`${URL_BASE}/user-profiles?email=${email}`)).json();
+    return (await fetch(`${URL_BASE}/users?email=${email}`)).json();
 }
 
 async function findRestaurantByEmail(email) {

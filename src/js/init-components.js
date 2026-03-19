@@ -22,6 +22,11 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     const containers = document.querySelectorAll("[data-context]");
 
+    // Detect exactly which page is loading to apply specific behaviors
+    const currentUrl = window.location.href;
+    const isReservationsPage = currentUrl.includes('reservations-page');
+    const isSearcherPage = currentUrl.includes('searcher-page');
+
     for (const container of containers) {
         const context = container.getAttribute("data-context");
         const related = container.getAttribute("related");
@@ -37,37 +42,44 @@ document.addEventListener('DOMContentLoaded', async function() {
                 if (id && related) url += `?${related}=${id}`;
 
                 if (related === 'session') {
-                    const session = JSON.parse(sessionStorage.getItem('usuarioActual') || '{}');
+                    const session = JSON.parse(sessionStorage.getItem('currentSession') || '{}');
                     const role = session.rol;
-                    const myId = typeof session.datos === 'object' ? session.datos.id : session.datos;
+                    const myId = session.id;
 
-                    if (role === 'cliente') url += `?userId=${myId}&_expand=restaurant&_sort=datetime`;
-                    else if (role === 'restaurante') url += `?restaurantId=${myId}&_expand=user&_sort=datetime`;
+                    if (role === 'user') url += `?userId=${myId}&_expand=restaurant&_sort=datetime`;
+                    else if (role === 'restaurant') url += `?restaurantId=${myId}&_expand=user&_sort=datetime`;
+
                     console.log(url);
                 }
 
-
-
-                const jsonData = await (await fetch(url)).json();
+                const response = await fetch(url);
+                const jsonData = await response.json();
 
                 if (Array.isArray(jsonData)) {
-                    const session = JSON.parse(sessionStorage.getItem('usuarioActual') || '{}');
+                    const session = JSON.parse(sessionStorage.getItem('currentSession') || '{}');
                     const role = session.rol || 'cliente';
 
-                    console.log(jsonData);
 
-                    const mappedData = jsonData.map(booking => {
-                        const target = role === 'cliente' ? booking.restaurant : booking.user;
-                        return {
-                            ...booking,
-                            name: target?.name || "Reservation",
-                            description: `Booking for ${booking.guests} guests on ${booking.datetime}.`,
-                            id: target?.id
-                        };
-                    });
-
-                    await fillTemplate(container, mappedData);
-                    setupCards(container);
+                    // 1. RESERVATIONS PAGE LOGIC (Map descriptions and setup cards)
+                    if (isReservationsPage && context === 'bookings') {
+                        console.log(url)
+                        const mappedData = jsonData.map(booking => {
+                            const target = role === 'cliente' ? booking.restaurant : booking.user;
+                            return {
+                                ...booking,
+                                description: `Booking for ${booking.guests} guests on ${booking.datetime}.`,
+                                id: target?.id || booking.id
+                            };
+                        });
+                        await fillTemplate(container, mappedData);
+                        setupCards(container);
+                    }
+                    // 2. SEARCHER PAGE LOGIC (Setup cards directly, no mapping needed)
+                    else if (isSearcherPage) {
+                        await fillTemplate(container, jsonData);
+                        setupCards(container);
+                    }
+                    else await fillTemplate(container, jsonData);
                 }
 
                 else await fillPage(container, jsonData);
@@ -76,18 +88,5 @@ document.addEventListener('DOMContentLoaded', async function() {
             }
         }
     }
-
-
     checkDarkMode();
-
-    /*
-    switch (true) {
-        case window.location.href.includes('reservation-page'):
-            await mix();
-            break;
-        case window.location.href.includes('searcher-page'):
-            await  setupCards("default");
-            break;
-    }
-     */
 });

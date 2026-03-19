@@ -8,7 +8,7 @@ export async function fillRestaurantInfo() {
         const [resResp, revResp, userResp] = await Promise.all([
             fetch('../../../data/restaurants.json'),
             fetch('../../../data/reviews.json'),
-            fetch('../../../data/user-profiles.json')
+            fetch('../../../data/users.json')
         ]);
         const restaurants = await resResp.json();
         const restaurant = restaurants[index - 1];

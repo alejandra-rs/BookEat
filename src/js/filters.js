@@ -83,34 +83,21 @@ export function renderFloorPlan(layout, container) {
     });
 }
 
-const profileCache = {};
-
-async function fetchProfile(endpoint, dataId) {
-    if (profileCache[dataId]) return profileCache[dataId];
-    try {
-        const res = await fetch(`http://localhost:3000/${endpoint}/${dataId}`);
-        const profile = await res.json();
-        profileCache[dataId] = profile;
-        return profile;
-    } catch (e) { return null; }
-}
-
 export async function getReservationName(data) {
-    const role = JSON.parse(sessionStorage.getItem('usuarioActual') || '{}').rol;
-    const endpoint = role === 'cliente' ? "restaurants" : "user-profiles";
-    const resInfo = await fetchProfile(endpoint, data.id);
-    if (!resInfo) return "Loading...";
-    return resInfo.name || `${resInfo.name} ${resInfo.surname}`;
+    if (data.name) return data.name;
+    if (data.restaurant) return data.restaurant.name;
+    if (data.user) return `${data.user.name} ${data.user.surname || ''}`.trim();
+    return "Unknown";
 }
 
 
 export async function getReservationImage(data) {
-    const role = JSON.parse(sessionStorage.getItem('usuarioActual') || '{}').rol;
-    const endpoint = role === 'cliente' ? "restaurants" : "user-profiles";
+    if (data.images) return data.images;
+    if (data.image) return data.image;
 
-    const resInfo = await fetchProfile(endpoint, data.id);
-    console.log(resInfo);
-    if (resInfo?.image) return resInfo.image;
-    if (resInfo?.images) return resInfo.images;
-    return role === 'cliente' ? "../../assets/img/restaurant-item.png" : "../../assets/img/user-image.png";
+    if (data.restaurant && data.restaurant.images) return data.restaurant.images;
+    if (data.user && data.user.image) return data.user.image;
+
+    // Fallback if no image is found
+    return data.restaurant ? "../../assets/img/restaurant-item.png" : "../../assets/img/user-image.png";
 }

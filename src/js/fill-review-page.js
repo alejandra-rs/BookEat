@@ -17,7 +17,7 @@ export async function fillReviewsPage() {
     const [res, rev, users] = await Promise.all([
         fetch('../../../data/restaurants.json').then(r => r.json()),
         fetch('../../../data/reviews.json').then(r => r.json()),
-        fetch('../../../data/user-profiles.json').then(r => r.json())
+        fetch('../../../data/users.json').then(r => r.json())
     ]);
 
     const restaurant = res.find(r => r.id === Number(id));
