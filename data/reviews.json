@@ -7,7 +7,7 @@
     "pros": "Camareros súper amables",
     "cons": "Local mal ventilado/calor",
     "user-id": 28,
-    "restaurant-id": 1,
+    "restaurantId": 1,
     "created-at": "2025-11-18",
     "images": [
       "https://loremflickr.com/720/576/restaurant?random=0",
@@ -58,7 +58,7 @@
     "pros": "Atención rápida",
     "cons": "Algún camarero borde",
     "user-id": 38,
-    "restaurant-id": 1,
+    "restaurantId": 1,
     "created-at": "2026-02-16",
     "images": []
   },
@@ -70,7 +70,7 @@
     "pros": "Terraza muy agradable",
     "cons": "Baños poco limpios",
     "user-id": 1,
-    "restaurant-id": 1,
+    "restaurantId": 1,
     "created-at": "2025-05-17",
     "images": []
   },
@@ -82,7 +82,7 @@
     "pros": "Decoración muy cuidada",
     "cons": "No admiten tarjeta de crédito",
     "user-id": 16,
-    "restaurant-id": 1,
+    "restaurantId": 1,
     "created-at": "2025-06-03",
     "images": []
   },
@@ -94,7 +94,7 @@
     "pros": "Sillas muy cómodas",
     "cons": "Baños poco limpios",
     "user-id": 29,
-    "restaurant-id": 1,
+    "restaurantId": 1,
     "created-at": "2025-05-13",
     "images": []
   },
@@ -106,7 +106,7 @@
     "pros": "Atención rápida",
     "cons": "Mesas demasiado juntas",
     "user-id": 42,
-    "restaurant-id": 1,
+    "restaurantId": 1,
     "created-at": "2025-05-27",
     "images": []
   },
@@ -118,7 +118,7 @@
     "pros": "Servicio rapidísimo",
     "cons": "Precios desorbitados",
     "user-id": 41,
-    "restaurant-id": 1,
+    "restaurantId": 1,
     "created-at": "2026-01-06",
     "images": []
   },
@@ -130,7 +130,7 @@
     "pros": "Servicio rapidísimo",
     "cons": "Poco espacio para moverse",
     "user-id": 50,
-    "restaurant-id": 1,
+    "restaurantId": 1,
     "created-at": "2025-11-24",
     "images": []
   },
@@ -142,7 +142,7 @@
     "pros": "Servicio rapidísimo",
     "cons": "Algún camarero borde",
     "user-id": 41,
-    "restaurant-id": 1,
+    "restaurantId": 1,
     "created-at": "2025-12-06",
     "images": []
   },
@@ -154,7 +154,7 @@
     "pros": "Servicio rapidísimo",
     "cons": "Mucho ruido en el local",
     "user-id": 28,
-    "restaurant-id": 1,
+    "restaurantId": 1,
     "created-at": "2026-03-04",
     "images": []
   },
@@ -166,7 +166,7 @@
     "pros": "Raciones muy abundantes",
     "cons": "Mesas demasiado juntas",
     "user-id": 44,
-    "restaurant-id": 1,
+    "restaurantId": 1,
     "created-at": "2025-04-28",
     "images": []
   },
@@ -178,7 +178,7 @@
     "pros": "Opciones sin gluten/veganas",
     "cons": "Local mal ventilado/calor",
     "user-id": 31,
-    "restaurant-id": 1,
+    "restaurantId": 1,
     "created-at": "2025-12-09",
     "images": []
   },
@@ -190,7 +190,7 @@
     "pros": "Raciones muy abundantes",
     "cons": "Local mal ventilado/calor",
     "user-id": 45,
-    "restaurant-id": 1,
+    "restaurantId": 1,
     "created-at": "2025-05-01",
     "images": []
   },
@@ -202,7 +202,7 @@
     "pros": "Ubicación excelente",
     "cons": "Precios desorbitados",
     "user-id": 3,
-    "restaurant-id": 1,
+    "restaurantId": 1,
     "created-at": "2025-09-27",
     "images": []
   },
@@ -214,7 +214,7 @@
     "pros": "Servicio rapidísimo",
     "cons": "Local mal ventilado/calor",
     "user-id": 37,
-    "restaurant-id": 1,
+    "restaurantId": 1,
     "created-at": "2025-08-05",
     "images": []
   },
@@ -226,7 +226,7 @@
     "pros": "Ubicación excelente",
     "cons": "Poco espacio para moverse",
     "user-id": 37,
-    "restaurant-id": 1,
+    "restaurantId": 1,
     "created-at": "2025-08-12",
     "images": []
   },
@@ -238,7 +238,7 @@
     "pros": "Mucha variedad en la carta",
     "cons": "Mesas demasiado juntas",
     "user-id": 29,
-    "restaurant-id": 1,
+    "restaurantId": 1,
     "created-at": "2025-12-30",
     "images": []
   },
@@ -250,7 +250,7 @@
     "pros": "Sillas muy cómodas",
     "cons": "Algún camarero borde",
     "user-id": 40,
-    "restaurant-id": 1,
+    "restaurantId": 1,
     "created-at": "2025-08-09",
     "images": []
   },
@@ -262,7 +262,7 @@
     "pros": "Opciones sin gluten/veganas",
     "cons": "Baños poco limpios",
     "user-id": 1,
-    "restaurant-id": 1,
+    "restaurantId": 1,
     "created-at": "2025-03-18",
     "images": []
   },
@@ -274,7 +274,7 @@
     "pros": "Postres 100% caseros",
     "cons": "Carta con pocas opciones",
     "user-id": 29,
-    "restaurant-id": 1,
+    "restaurantId": 1,
     "created-at": "2025-08-14",
     "images": []
   },
@@ -286,7 +286,7 @@
     "pros": "Aparcamiento fácil en la zona",
     "cons": "Tardan demasiado entre platos",
     "user-id": 4,
-    "restaurant-id": 1,
+    "restaurantId": 1,
     "created-at": "2025-10-29",
     "images": []
   },
@@ -298,7 +298,7 @@
     "pros": "Atención rápida",
     "cons": "La comida llegó fría",
     "user-id": 54,
-    "restaurant-id": 1,
+    "restaurantId": 1,
     "created-at": "2025-11-30",
     "images": []
   },
@@ -310,7 +310,7 @@
     "pros": "Ingredientes muy frescos",
     "cons": "Carta con pocas opciones",
     "user-id": 36,
-    "restaurant-id": 1,
+    "restaurantId": 1,
     "created-at": "2025-11-08",
     "images": []
   },
@@ -322,7 +322,7 @@
     "pros": "Ubicación excelente",
     "cons": "Carta con pocas opciones",
     "user-id": 13,
-    "restaurant-id": 1,
+    "restaurantId": 1,
     "created-at": "2025-08-18",
     "images": []
   },
@@ -334,7 +334,7 @@
     "pros": "Buen ambiente y música",
     "cons": "Algún camarero borde",
     "user-id": 27,
-    "restaurant-id": 2,
+    "restaurantId": 2,
     "created-at": "2025-07-18",
     "images": []
   },
@@ -346,7 +346,7 @@
     "pros": "Ubicación excelente",
     "cons": "Baños poco limpios",
     "user-id": 23,
-    "restaurant-id": 2,
+    "restaurantId": 2,
     "created-at": "2025-03-28",
     "images": []
   },
@@ -358,7 +358,7 @@
     "pros": "Terraza muy agradable",
     "cons": "Tardan demasiado entre platos",
     "user-id": 10,
-    "restaurant-id": 2,
+    "restaurantId": 2,
     "created-at": "2025-05-15",
     "images": []
   },
@@ -370,7 +370,7 @@
     "pros": "Servicio rapidísimo",
     "cons": "Precios desorbitados",
     "user-id": 51,
-    "restaurant-id": 2,
+    "restaurantId": 2,
     "created-at": "2025-07-06",
     "images": []
   },
@@ -382,7 +382,7 @@
     "pros": "Buen ambiente y música",
     "cons": "Baños poco limpios",
     "user-id": 12,
-    "restaurant-id": 2,
+    "restaurantId": 2,
     "created-at": "2026-03-02",
     "images": []
   },
@@ -394,7 +394,7 @@
     "pros": "Ingredientes muy frescos",
     "cons": "Local mal ventilado/calor",
     "user-id": 4,
-    "restaurant-id": 2,
+    "restaurantId": 2,
     "created-at": "2026-02-24",
     "images": []
   },
@@ -406,7 +406,7 @@
     "pros": "Postres 100% caseros",
     "cons": "Algún camarero borde",
     "user-id": 44,
-    "restaurant-id": 2,
+    "restaurantId": 2,
     "created-at": "2025-05-30",
     "images": []
   },
@@ -418,7 +418,7 @@
     "pros": "Raciones muy abundantes",
     "cons": "Mala acústica",
     "user-id": 7,
-    "restaurant-id": 2,
+    "restaurantId": 2,
     "created-at": "2025-07-07",
     "images": []
   },
@@ -430,7 +430,7 @@
     "pros": "Opciones sin gluten/veganas",
     "cons": "No admiten tarjeta de crédito",
     "user-id": 45,
-    "restaurant-id": 2,
+    "restaurantId": 2,
     "created-at": "2026-02-04",
     "images": []
   },
@@ -442,7 +442,7 @@
     "pros": "Terraza muy agradable",
     "cons": "La comida llegó fría",
     "user-id": 58,
-    "restaurant-id": 2,
+    "restaurantId": 2,
     "created-at": "2025-12-06",
     "images": []
   },
@@ -454,7 +454,7 @@
     "pros": "Servicio rapidísimo",
     "cons": "No admiten tarjeta de crédito",
     "user-id": 46,
-    "restaurant-id": 2,
+    "restaurantId": 2,
     "created-at": "2026-02-06",
     "images": []
   },
@@ -466,7 +466,7 @@
     "pros": "Terraza muy agradable",
     "cons": "Precios desorbitados",
     "user-id": 56,
-    "restaurant-id": 2,
+    "restaurantId": 2,
     "created-at": "2025-08-28",
     "images": []
   },
@@ -478,7 +478,7 @@
     "pros": "Mucha variedad en la carta",
     "cons": "Local mal ventilado/calor",
     "user-id": 2,
-    "restaurant-id": 2,
+    "restaurantId": 2,
     "created-at": "2025-04-21",
     "images": []
   },
@@ -490,7 +490,7 @@
     "pros": "Atención rápida",
     "cons": "Mesas demasiado juntas",
     "user-id": 23,
-    "restaurant-id": 2,
+    "restaurantId": 2,
     "created-at": "2026-01-07",
     "images": []
   },
@@ -502,7 +502,7 @@
     "pros": "Sillas muy cómodas",
     "cons": "Tardan demasiado entre platos",
     "user-id": 30,
-    "restaurant-id": 2,
+    "restaurantId": 2,
     "created-at": "2025-11-30",
     "images": []
   },
@@ -514,7 +514,7 @@
     "pros": "Terraza muy agradable",
     "cons": "Mesas demasiado juntas",
     "user-id": 47,
-    "restaurant-id": 2,
+    "restaurantId": 2,
     "created-at": "2025-05-29",
     "images": []
   },
@@ -526,7 +526,7 @@
     "pros": "Terraza muy agradable",
     "cons": "Mucho ruido en el local",
     "user-id": 30,
-    "restaurant-id": 2,
+    "restaurantId": 2,
     "created-at": "2025-07-11",
     "images": []
   },
