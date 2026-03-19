@@ -1,98 +1,137 @@
+const URL_BASE = 'http://localhost:3000';
 const formRegister = document.getElementById('form-register');
 
-const getPostUser = async (URL_BASE, nuevoUsuario) => {
+async function logIn(email, password) {
+    const [usersExistences, restaurantExistences] = await getExistencesByEmail(email);
+    if (usersExistences.length === 0 && restaurantExistences.length === 0) throw new Error("email or password is wrong.");
+
+    let rol = usersExistences.length === 1 ? 'user' : 'restaurant';
+    let user = usersExistences.length === 1 ? usersExistences[0] : restaurantExistences[0];
+
+    if (!matchPasswords(user.password, password)) throw new Error("email or password is wrong.");
+
+    sessionStorage.setItem('currentSession', JSON.stringify({rol: rol,id: user.id, image: user['profile_image']}));
+}
+
+const postUser = async (URL_BASE, newUser) => {
     return await fetch(`${URL_BASE}/user-profiles`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(nuevoUsuario)
+        body: JSON.stringify(newUser)
     });
 }
+
+function getData(form) {
+    return Object.fromEntries(new FormData(form).entries())
+}
+
+function isEmpty(data) {
+    for (let value in data.values) {
+        if (!value?.trim()){
+            return true
+        }
+    }
+    return false
+}
+
+function checkEmail(data) {
+    let emailRegex = /^[^\s@]+@[^\s@]+/;
+    return (emailRegex.test(data.email))
+
+}
+
+function matchPasswords(password, otherPassword) {
+    return password === otherPassword;
+}
+
+function validPassword(data) {
+    return data.password.length > 8;
+}
+
+function validPhone(data) {
+    return data.phoneNumber.length === 9;
+}
+
+async function findUserByEmail(email) {
+    return (await fetch(`${URL_BASE}/user-profiles?email=${email}`)).json();
+}
+
+async function findRestaurantByEmail(email) {
+    return (await fetch(`${URL_BASE}/restaurant-profiles?email=${email}`)).json();
+}
+
+function createUser(data) {
+    return {
+        name: data.name,
+        surname: data.surname,
+        phone: data.phoneNumber,
+        email: data.email,
+        password: data.password,
+        "profile-picture": ""
+    };
+}
+
+async function getExistencesByEmail(email) {
+    return await Promise.all([
+        findUserByEmail(email),
+        findRestaurantByEmail(email),
+    ]);
+}
+
 if (formRegister) {
     formRegister.addEventListener('submit', async (evento) => {
         evento.preventDefault();
         evento.stopImmediatePropagation();
 
-        const formData = new FormData(formRegister);
+        const data = getData(formRegister);
 
-        const data = Object.fromEntries(formData.entries());
-        const { Name, Surname, Email, Password, Birthdate, PhoneNumber } = data;
-
-        if (!Name?.trim() || !Surname?.trim() || !Email?.trim() || !Password?.trim() || !Birthdate) {
-            alert("please complete all fields");
-            return;
-        }
-
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(Email)) {
-            alert("please enter a valid email address");
-            return;
-        }
-
-        if (Password !== data.ConfirmPassword) {
-            alert("the password do not match.");
-            return;
-        }
-        if (Password.length < 8){
-            alert("the password length should be at least 8 characters.");
-            return;
-        }
-        if (PhoneNumber.length !== 9){
-            alert("the phone number length should be at least 8 characters.");
-            return;
-        }
-
-
-        const URL_BASE = 'http://localhost:3000';
+        if(isEmpty(data)) return alert("please complete all fields");
+        if(!checkEmail(data)) return alert("must be a valid email address");
+        if (!matchPasswords(data.password, data.confirmPassword)) return alert("the password do not match.");
+        if (!validPassword(data)) return alert("the password length should be at least 8 characters.");
+        if (!validPhone(data)) return alert("the phone number length should be at least 8 characters.");
 
         try {
 
-            //TODO hacer esto con promesas
+            const [usersExistences, restaurantExistences] = await getExistencesByEmail(data.email)
+            if (usersExistences.length > 0 || restaurantExistences.length > 0) return alert("This email already exists.");
 
-            const usuariosExistentes = await (await fetch(`${URL_BASE}/user-profiles?email=${data.Email}`)).json();
-            const restaurantesExistentes = await (await fetch(`${URL_BASE}/restaurant-profiles?email=${data.Email}`)).json();
+            const postResponse = await postUser(URL_BASE, createUser(data));
 
-            if (usuariosExistentes.length > 0 || restaurantesExistentes.length > 0) {
-                alert("Este email ya está registrado. Por favor, ve a la pestaña de Login.");
-                return;
-            }
+            if (!postResponse.ok) throw new Error("The account could not be created.");
 
-            const nuevoUsuario = {
-                name: Name,
-                surname: Surname,
-                phone: PhoneNumber,
-                email: Email,
-                password: Password,
-                "profile-picture": ""
-            };
-
-            const postResponse = await getPostUser(URL_BASE, nuevoUsuario);
-
-            if (!postResponse.ok) {
-                throw new Error("Hubo un problema al crear la cuenta en el servidor.");
-            }
-
-            const usuarioCreado = await postResponse.json();
-
-            // TODO aquí hay dry que se puede separar
-            const sesion = {
-                rol: 'cliente',
-                datos: usuarioCreado,
-                id:usuarioCreado.id
-            };
-            sessionStorage.setItem('usuarioActual', JSON.stringify(sesion));
-
-            alert(`¡Cuenta creada con éxito! Bienvenido a BookEat, ${name}.`);
+            await logIn(data.email, data.password);
             formRegister.reset();
-
-            const dialog = document.getElementById('register-popup');
-            if (dialog) dialog.close();
-
-            window.updateHeader();
+            document.getElementById('register-popup').close();
+            updateHeader();
 
         } catch (error) {
             alert(error.message);
         }
     });
 }
+
+
+const formLogin = document.getElementById('form-login');
+
+formLogin.addEventListener('submit', async (evento) => {
+    evento.preventDefault();
+    evento.stopImmediatePropagation();
+
+    const data = getData(formLogin);
+
+    if(isEmpty(data)) return alert("please complete all fields");
+    if(!checkEmail(data)) return alert("must be a valid email address");
+
+    try {
+        await logIn(data.email, data.password)
+        document.getElementById('login-popup').close();
+        formLogin.reset();
+        updateHeader();
+
+    } catch (error) {
+        alert(error.message);
+    }
+});

@@ -22,7 +22,7 @@ document.addEventListener('header-loaded', () => {
 });
 
 function prepareImage(miImagen, user) {
-    miImagen.src = user.datos['profile-picture'] || "../../assets/icons/user-profile.svg";
+    miImagen.src = user.image || "../../assets/icons/user-profile.svg";
     miImagen.alt = 'User profile';
     miImagen.style.cursor = 'pointer';
     miImagen.setAttribute('data-opens', 'my-account-popup');
@@ -31,10 +31,10 @@ function prepareImage(miImagen, user) {
 }
 
 function updateHeader() {
-    const usuarioGuardado = sessionStorage.getItem('usuarioActual');
+    const usuarioGuardado = sessionStorage.getItem('currentSession');
     if (!usuarioGuardado) return;
     const user = JSON.parse(usuarioGuardado);
-    const header__buttons = document.querySelector('header.header > .header__buttons');
+    const header__buttons = document.querySelector('header.header > .header__buttons > .header__buttons__account');
     if (!header__buttons) return;
     header__buttons.replaceChildren(prepareImage(document.createElement('img'), user));
 }
