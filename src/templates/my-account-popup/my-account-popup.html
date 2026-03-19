@@ -1,12 +1,13 @@
 <link rel="stylesheet" href="../../templates/my-account-popup/my-account-popup.css">
+<script src="../../templates/my-account-popup/log-out.js"></script>
 <link rel="stylesheet" href="/styles.css">
 
 <dialog id="my-account-popup">
-    <nav class="my-account-popup__nav">
-        <a href="../../pages/edit-profile-page/edit-profile-page.html">
-            <button class="my-account-popup__nav__button" id="my-account">
+    <nav id="my-account-popup__nav">
+        <a href="../../pages/edit-profile-page/edit-profile-page.html" id="my-account-popup__profile">
+            <button class="my-account-popup__nav__button" id="my-account__button">
                 <img src="../../assets/icons/account-user.svg" alt="User Icon" class="icon">
-                My Account
+                <span>My Account</span>
             </button>
         </a>
         <a href="../../pages/reservations-page/reservations-page.html?time=past">

@@ -31,14 +31,20 @@ function prepareImage(miImagen, user) {
 }
 
 function updateHeader() {
-    const usuarioGuardado = sessionStorage.getItem('currentSession');
-    if (!usuarioGuardado) return;
-    const user = JSON.parse(usuarioGuardado);
+    const currentUser = sessionStorage.getItem('currentSession');
+    if (!currentUser) return;
+    const user = JSON.parse(currentUser);
     const header__buttons = document.querySelector('header.header > .header__buttons > .header__buttons__account');
     if (!header__buttons) return;
     header__buttons.replaceChildren(prepareImage(document.createElement('img'), user));
+    if (window.adaptarPopupPorRol) {
+        window.adaptarPopupPorRol();
+    }
 }
 
+if (window.adaptarPopupPorRol) {
+    window.adaptarPopupPorRol();
+}
 updateHeader();
 window.updateHeader = updateHeader;
 
