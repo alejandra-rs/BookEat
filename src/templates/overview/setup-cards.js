@@ -8,7 +8,11 @@ const DatesMockUps = {
 
 const Buttons = {
     'default': `
-        <button class="secondary-button" onclick="window.location.href='../restaurant-info-page/restaurant-info-page.html'"> Go </button>
+       <template>
+           <a data-template="href-id" href="../../pages/restaurant-info-page/restaurant-info-page.html">
+                <button class="secondary-button read-more"> Go </button>
+           </a>
+       </template>
     `,
     'incoming': `
         <button class="secondary-button">Cancel Reservation</button>
@@ -26,35 +30,38 @@ const Buttons = {
     `
 };
 
-export async function setupCards(type) {
-let overviews = document.querySelectorAll('.overview');
-    for (let overview of overviews) {
-        let date = overview.querySelector(".overview__content__title > span.overview__content__title__date")
-        date.textContent = DatesMockUps[type + "-date"]
-        let buttonContainer = overview.querySelector(".overview__content__button-container")
-        buttonContainer.innerHTML = Buttons[type]
-        let card = overview.querySelector(".overview__image");
-        if (type.includes('restaurant')) {
-            card.innerHTML = '<img src="../../assets/img/user-image.png" alt="user image" class="icon overview__image"/>'
-        } else
-        card.innerHTML =`<img src="../../assets/img/restaurant-item.png" alt="a restaurant image" class="icon overview__image"/>`
-    }
-}
+export function setupCards(container) {
+    const time = new URLSearchParams(window.location.search).get('time');
+    const session = JSON.parse(sessionStorage.getItem('userSession') || '{}');
+    const role = session.rol || 'cliente';
 
-export async function mix() {
-    let index = 0
-    let types = ["incoming", "past", "restaurant-incoming", "restaurant-past"]
-    let overviews = document.querySelectorAll('.overview');
-    for (let overview of overviews) {
-        index = (index +1) % 4
-        let date = overview.querySelector(".overview__content__title > span.overview__content__title__date")
-        date.textContent = DatesMockUps[types[index] + "-date"]
-        let buttonContainer = overview.querySelector(".overview__content__button-container")
-        buttonContainer.innerHTML = Buttons[types[index]]
-        let card = overview.querySelector(".overview__image");
-        if (types[index].includes('restaurant')) {
-            card.innerHTML = '<img src="../../assets/img/user-image.png" alt="user image" class="icon overview__image"/>'
-        } else
-        card.innerHTML =`<img src="../../assets/img/restaurant-item.png" alt="a restaurant image" class="icon overview__image"/>`
-    }
+    let type = 'default';
+    if (time) type = role === 'restaurante' ? `restaurant-${time}` : time;
+    const dateValue = DatesMockUps[`${type}-date`] || DatesMockUps['default-date'];
+    const cards = container.querySelectorAll('.overview');
+
+    cards.forEach(card => {
+        const actionsContainer = card.querySelector('.card__actions-container');
+        const idStore = card.querySelector('.overview__content__buttons__id');
+        const dateDisplay = card.querySelector('[data-template="text-date"]');
+
+        if (dateDisplay) dateDisplay.textContent = dateValue;
+
+        if (actionsContainer && idStore) {
+            const cardId = idStore.getAttribute('value') || idStore.textContent;
+
+            while (actionsContainer.firstChild) actionsContainer.removeChild(actionsContainer.firstChild);
+
+            const templateString = Buttons[type] || Buttons['default'];
+            const fragment = document.createRange().createContextualFragment(templateString);
+
+            const template = fragment.querySelector('template');
+            const content = template ? template.content.cloneNode(true) : fragment;
+
+            const link = content.querySelector('a[data-template="href-id"]');
+            if (link) link.href = `${link.getAttribute('href')}?id=${cardId}`;
+
+            actionsContainer.appendChild(content);
+        }
+    });
 }

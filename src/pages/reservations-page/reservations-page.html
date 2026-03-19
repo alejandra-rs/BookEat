@@ -19,14 +19,10 @@
     <div  load-template="date-range"></div>
 
 <main class="reservation-container">
-    <section class="reservation-container__result">
-        <div load-template="overview"></div>
-        <div load-template="overview"></div>
-        <div load-template="overview"></div>
-        <div load-template="overview"></div>
-        <div load-template="overview"></div>
-        <div load-template="overview"></div>
-        <div load-template="overview"></div>
+    <section class="reservation-container__result" data-context="bookings" related="session">
+        <template>
+            <div load-template="overview"></div>
+        </template>
     </section>
 </main>
 

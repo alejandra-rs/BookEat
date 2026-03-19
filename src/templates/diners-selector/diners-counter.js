@@ -2,7 +2,7 @@ const btnLess = document.getElementById('less');
 const btnMore = document.getElementById('more');
 const numberDisplay = document.getElementById('number');
 
-let dinersCount = 0;
+let dinersCount = 1;
 
 function updateDisplay() {
     numberDisplay.textContent = dinersCount;
@@ -14,7 +14,7 @@ btnMore.addEventListener('click', () => {
 });
 
 btnLess.addEventListener('click', () => {
-    if (dinersCount > 0) {
+    if (dinersCount > 1) {
         dinersCount--;
         updateDisplay();
     }

@@ -3,22 +3,26 @@
     background-color: var(--bg-secondary);
     border-radius: 0.5rem;
     padding: 1.2rem;
-    width: 80%;
     margin: 20px auto;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     gap: 1.2rem;
+    width: 100%;
 }
 
 .overview__image {
     flex: 0 0 auto;
     display: flex;
-    max-width: 10rem;
+    height: 13rem;
+    max-width: 14rem;
     justify-content: center;
     align-items: center;
+    align-self: center;
+    object-fit: cover;
 }
 
 .overview__content {
     display: flex;
+    width: 100%;
     flex-direction: column;
     gap: 15px;
 }
@@ -44,16 +48,23 @@
     color: var(--text-secondary);
     font-size: 0.95rem;
     line-height: 1.5;
+    height: 6rem;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
 }
 
-.overview__content__button-container {
+.overview__content__buttons {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.card__actions-container {
     display: flex;
     flex-direction: row-reverse;
     justify-content: flex-end;
     align-self: end;
     gap: 0.5rem;
-}
-
-.overview__content__button-container > button {
-    padding: 0.5rem 1rem;
 }

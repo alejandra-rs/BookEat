@@ -5,3 +5,11 @@ body {
     gap: 20px;
     width: 100%;
 }
+
+.reservation-container {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    align-self: center;
+    flex-shrink: 0;
+}
