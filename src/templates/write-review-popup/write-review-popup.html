@@ -1,41 +1,38 @@
 <link rel="stylesheet" href="../../templates/write-review-popup/write-review-popup.css">
 <link rel="stylesheet" href="/styles.css">
 
-<dialog id="write-review" class="write-review" open>
-  <header> <h1>Restaurant Name</h1> </header>
+<dialog id="write-review" class="write-review">
+  <form id="form-write-review">
+  <header> <h1 id="review-restaurant-title">Restaurant Name</h1> </header>
+    <input type="hidden" name="restaurantId" id="review-restaurant-id">
 
-  <section class="write-review__content">
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis elementum ligula, et convallis felis.
-      Donec porttitor turpis vel arcu suscipit aliquam. Sed et interdum eros. Phasellus ut vehicula mi, in condimentum erat.
-      Suspendisse potenti. Curabitur quis tellus et nisl tempus rhoncus id vitae mauris. Curabitur ac elit vel magna pretium
-      laoreet quis porta nisi. Sed justo sapien, ullamcorper quis est nec, sagittis blandit risus. Morbi tempus tincidunt
-      nibh nec auctor. Phasellus bibendum tellus ac elementum mollis.</p>
-  </section>
-
-  <section class="write-review__pros-cons">
     <section class="write-review__content">
-      <header> <h2>Pros</h2> </header>
-      <ul>
-        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-        <li>Etiam quis elementum ligula.</li>
-        <li>Donec porttitor turpis vel arcu suscipit.</li>
-      </ul>
+      <textarea name="title" aria-label="General experience" placeholder="give a sort description" required rows="1"></textarea>
     </section>
+
     <section class="write-review__content">
-      <header> <h2>Cons</h2> </header>
-      <ul>
-        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-        <li>Etiam quis elementum ligula.</li>
-        <li>Donec porttitor turpis vel arcu suscipit.</li>
-      </ul>
+      <textarea name="reviewText" aria-label="General experience" placeholder="Tell us about your experience... What did you eat? How was the service?" required rows="5" style="width: 100%; padding: 0.5rem; border-radius: 0.5rem;"></textarea>
     </section>
-  </section>
 
-  <section xlu-include-file="star-selector.html"></section>
-  <section xlu-include-file="insert-image.html"></section>
+    <section class="write-review__pros-cons">
+      <section class="write-review__content">
+        <header> <h2>Pros</h2> </header>
+        <textarea name="pros" aria-label="Pros" placeholder="What did you love?" rows="3"></textarea>
+      </section>
+      <section class="write-review__content">
+        <header> <h2>Cons</h2> </header>
+        <textarea name="cons" aria-label="Cons" placeholder="What could be better?" rows="3"></textarea>
+      </section>
+    </section>
 
-  <footer class="write-review__footer">
-    <button class="secondary-button">Cancel</button>
-    <button class="primary-button">Submit</button>
-  </footer>
+    <div load-template="star-selector"></div>
+    <div load-template="insert-image"></div>
+
+    <footer class="write-review__footer">
+      <button type="button" class="secondary-button" onclick="document.getElementById('write-review').close()">Cancel</button>
+      <button type="submit" class="primary-button">Submit</button>
+    </footer>
+  </form>
 </dialog>
+
+<script src="../../templates/write-review-popup/write-review-popup.js"></script>

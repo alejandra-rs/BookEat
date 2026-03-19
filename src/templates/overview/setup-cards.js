@@ -26,9 +26,8 @@ const Buttons = {
     `,
     'past': `
        <template>
-           <a>
-                <button class="secondary-button">Write a Review</button>
-           </a>
+            <button class="secondary-button btn-write-review">Write a Review</button>
+           
            <a data-template="href-restaurantId" href="../../pages/restaurant-reviews-page/restaurant-reviews-page.html">
                 <button class="secondary-button">Read Reviews</button>
            </a>
@@ -44,11 +43,11 @@ const Buttons = {
 
 export function setupCards(container) {
     const time = new URLSearchParams(window.location.search).get('time');
-    const session = JSON.parse(sessionStorage.getItem('userSession') || '{}');
-    const role = session.rol || 'cliente';
+    const session = JSON.parse(sessionStorage.getItem('currentSession') || '{}');
+    const role = session.rol || 'user';
 
     let type = 'default';
-    if (time) type = role === 'restaurante' ? `restaurant-${time}` : time;
+    if (time) type = role === 'restaurant' ? `restaurant-${time}` : time;
     const dateValue = DatesMockUps[`${type}-date`] || DatesMockUps['default-date'];
     const cards = container.querySelectorAll('.overview');
 
@@ -69,12 +68,43 @@ export function setupCards(container) {
             const content = template ? template.content.cloneNode(true) : fragment;
 
             const link = content.querySelector('a[data-template]');
-            if (link) link.href = `${link.getAttribute('href')}?id=${card.querySelector(
-                `.overview__content__buttons__${link.getAttribute('data-template')
-                                                             .split('-')[1]}`)
-                                                             .getAttribute('value')}`;
-
-            actionsContainer.appendChild(content);
+            if (link) {
+                const targetIdSelector = `.overview__content__buttons__${link.getAttribute('data-template').split('-')[1]}`;
+                const targetIdElement = card.querySelector(targetIdSelector);
+                if (targetIdElement) {
+                    link.href = `${link.getAttribute('href')}?id=${targetIdElement.getAttribute('value')}`;
+                }
         }
+            // --- EL FRANCOTIRADOR ---
+            const reviewBtn = content.querySelector('.btn-write-review');
+            if (reviewBtn) {
+                // 1. Buscamos el nombre
+                const titleElement = card.querySelector('h1[filter="reservationName"]');
+                const restaurantName = titleElement ? titleElement.textContent : 'Restaurant';
+
+                // 2. Buscamos el ID del restaurante en la tarjeta
+                const restIdElement = card.querySelector('.overview__content__buttons__restaurantId');
+                const restaurantId = restIdElement ? restIdElement.getAttribute('value') : '';
+
+                reviewBtn.addEventListener('click', () => {
+                    // Ponemos el nombre en el título
+                    const popupTitle = document.getElementById('review-restaurant-title');
+                    if (popupTitle) popupTitle.textContent = `Review: ${restaurantName}`;
+
+                    // Metemos el ID en el bolsillo secreto del formulario
+                    const hiddenIdInput = document.getElementById('review-restaurant-id');
+                    if (hiddenIdInput) hiddenIdInput.value = restaurantId;
+
+                    const dialog = document.getElementById('write-review');
+                    if (dialog) {
+                        document.querySelectorAll('dialog[open]').forEach(d => d.close());
+                        dialog.showModal();
+                    }
+                });
+            }
+            // -------------------------
+
+        actionsContainer.appendChild(content);
+    }
     });
 }

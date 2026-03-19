@@ -42,9 +42,6 @@ function updateHeader() {
     }
 }
 
-if (window.adaptarPopupPorRol) {
-    window.adaptarPopupPorRol();
-}
 updateHeader();
 window.updateHeader = updateHeader;
 

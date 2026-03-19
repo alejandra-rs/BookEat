@@ -55,8 +55,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                             return {
                                 ...booking,
                                 description: `Booking for ${booking.guests} guests.`,
-                                id: target?.id || booking.id,
-                                restaurantId: target?.id
+                                id: target?.id
                             };
                         });
                         await fillTemplate(container, mappedData);

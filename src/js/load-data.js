@@ -24,8 +24,10 @@ export async function fillPage(pageContainer, data) {
                                              : null;
 
     let elements = pageContainer.querySelectorAll('[data-template]');
+    //TODO promiseAll
     for (const element of elements) await injectData(element, currentContextContainer, activeData);
 
+    //TODO promiseAll cuidado que es recursivo
     let nestedContexts = pageContainer.querySelectorAll('[data-context]');
     for (const nested of nestedContexts) {
         const parentContext = nested.parentElement ? nested.parentElement.closest('[data-context]') : null;
