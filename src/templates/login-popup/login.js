@@ -38,7 +38,8 @@ async function findUser(email, password) {
     if (clientes.length > 0) {
         return {
             rol: 'cliente',
-            datos: clientes[0]
+            datos: clientes[0],
+            id: clientes[0].id
         };
     }
 
@@ -47,7 +48,8 @@ async function findUser(email, password) {
     if (duenos.length > 0) {
         return {
             rol: 'dueño',
-            datos: duenos[0]
+            datos: duenos[0],
+            id: duenos[0]
         };
     }
 
