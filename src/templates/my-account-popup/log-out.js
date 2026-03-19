@@ -18,7 +18,7 @@ function adaptarPopupPorRol() {
     const account = document.getElementById('my-account-popup__profile');
 
     if (session.rol === 'restaurant') {
-        if (account) account.lastChild.textContent = 'My Restaurant Account';
+        if (account) account.querySelector("span").textContent = 'My Restaurant Account';
 
         const restaurantBtnHTML = `
             <a href="../../pages/restaurant-info-page/restaurant-info-page.html" id="restaurant-tab">
@@ -28,7 +28,7 @@ function adaptarPopupPorRol() {
                 </button>
             </a>
         `;
-        if (account) {
+        if (account && !document.getElementById('restaurant-tab')) {
             account.insertAdjacentHTML('afterend', restaurantBtnHTML);
         }
 
@@ -38,4 +38,4 @@ function adaptarPopupPorRol() {
     }
 }
 
-adaptarPopupPorRol();
+window.adaptarPopupPorRol = adaptarPopupPorRol;
