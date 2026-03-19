@@ -5,3 +5,9 @@ body {
     gap: 20px;
     width: 100%;
 }
+
+.reservation-container {
+    display: flex;
+    align-self: center;
+    width: 90%;
+}

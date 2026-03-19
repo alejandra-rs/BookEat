@@ -9,10 +9,15 @@ function adjustWidth() {
     }
 }
 
+const dateLimits = {}
+if ((new URLSearchParams(window.location.search)).get('time') === 'past') dateLimits.maxDate = "today";
+else dateLimits.minDate = "today";
+
 const fromPicker = flatpickr('#calendar-range-input', {
     dateFormat: 'd.m.Y',
     clickOutside: false,
     mode: "range",
+    ...dateLimits,
     onReady: adjustWidth,
     onChange: adjustWidth,
     onClose(selectedDates) {

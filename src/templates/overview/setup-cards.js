@@ -30,9 +30,15 @@ const Buttons = {
     `
 };
 
-export function setupCards(container, type = 'default') {
-    const cards = container.querySelectorAll('.overview');
+export function setupCards(container) {
+    const time = new URLSearchParams(window.location.search).get('time');
+    const session = JSON.parse(sessionStorage.getItem('userSession') || '{}');
+    const role = session.rol || 'cliente';
+
+    let type = 'default';
+    if (time) type = role === 'restaurante' ? `restaurant-${time}` : time;
     const dateValue = DatesMockUps[`${type}-date`] || DatesMockUps['default-date'];
+    const cards = container.querySelectorAll('.overview');
 
     cards.forEach(card => {
         const actionsContainer = card.querySelector('.card__actions-container');
@@ -49,7 +55,8 @@ export function setupCards(container, type = 'default') {
             const templateString = Buttons[type] || Buttons['default'];
             const fragment = document.createRange().createContextualFragment(templateString);
 
-            const content = fragment.querySelector('template').content.cloneNode(true);
+            const template = fragment.querySelector('template');
+            const content = template ? template.content.cloneNode(true) : fragment;
 
             const link = content.querySelector('a[data-template="href-id"]');
             if (link) link.href = `${link.getAttribute('href')}?id=${cardId}`;

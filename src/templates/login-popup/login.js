@@ -39,7 +39,7 @@ async function findUser(email, password) {
         return {
             rol: 'cliente',
             datos: clientes[0],
-            id: clientes[0].id
+            id: parseInt(clientes[0].id)
         };
     }
 

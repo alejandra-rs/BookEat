@@ -3,7 +3,9 @@ export const filters = {
     average: average,
     tableMap: renderFloorPlan,
     percent: reviewProportion,
-    get: getStarValue
+    get: getStarValue,
+    reservationName: getReservationName,
+    reservationImage: getReservationImage
 }
 
 
@@ -79,4 +81,36 @@ export function renderFloorPlan(layout, container) {
 
         floor.appendChild(btn);
     });
+}
+
+const profileCache = {};
+
+async function fetchProfile(endpoint, dataId) {
+    if (profileCache[dataId]) return profileCache[dataId];
+    try {
+        const res = await fetch(`http://localhost:3000/${endpoint}/${dataId}`);
+        const profile = await res.json();
+        profileCache[dataId] = profile;
+        return profile;
+    } catch (e) { return null; }
+}
+
+export async function getReservationName(data) {
+    const role = JSON.parse(sessionStorage.getItem('usuarioActual') || '{}').rol;
+    const endpoint = role === 'cliente' ? "restaurants" : "user-profiles";
+    const resInfo = await fetchProfile(endpoint, data.id);
+    if (!resInfo) return "Loading...";
+    return resInfo.name || `${resInfo.name} ${resInfo.surname}`;
+}
+
+
+export async function getReservationImage(data) {
+    const role = JSON.parse(sessionStorage.getItem('usuarioActual') || '{}').rol;
+    const endpoint = role === 'cliente' ? "restaurants" : "user-profiles";
+
+    const resInfo = await fetchProfile(endpoint, data.id);
+    console.log(resInfo);
+    if (resInfo?.image) return resInfo.image;
+    if (resInfo?.images) return resInfo.images;
+    return role === 'cliente' ? "../../assets/img/restaurant-item.png" : "../../assets/img/user-image.png";
 }

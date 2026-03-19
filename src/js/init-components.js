@@ -36,12 +36,40 @@ document.addEventListener('DOMContentLoaded', async function() {
                 let url = `http://localhost:3000/${context}`;
                 if (id && related) url += `?${related}=${id}`;
 
-                const jsonData = await (await fetch(url)).json();
-                if (Array.isArray(jsonData)) {
-                    await fillTemplate(container, jsonData);
-                    if (window.location.href.includes('searcher-page'))
-                        setupCards(container);
+                if (related === 'session') {
+                    const session = JSON.parse(sessionStorage.getItem('usuarioActual') || '{}');
+                    const role = session.rol;
+                    const myId = typeof session.datos === 'object' ? session.datos.id : session.datos;
+
+                    if (role === 'cliente') url += `?userId=${myId}&_expand=restaurant&_sort=datetime`;
+                    else if (role === 'restaurante') url += `?restaurantId=${myId}&_expand=user&_sort=datetime`;
+                    console.log(url);
                 }
+
+
+
+                const jsonData = await (await fetch(url)).json();
+
+                if (Array.isArray(jsonData)) {
+                    const session = JSON.parse(sessionStorage.getItem('usuarioActual') || '{}');
+                    const role = session.rol || 'cliente';
+
+                    console.log(jsonData);
+
+                    const mappedData = jsonData.map(booking => {
+                        const target = role === 'cliente' ? booking.restaurant : booking.user;
+                        return {
+                            ...booking,
+                            name: target?.name || "Reservation",
+                            description: `Booking for ${booking.guests} guests on ${booking.datetime}.`,
+                            id: target?.id
+                        };
+                    });
+
+                    await fillTemplate(container, mappedData);
+                    setupCards(container);
+                }
+
                 else await fillPage(container, jsonData);
             } catch (error) {
                 console.error(`Error en contexto "${context}":`, error);
