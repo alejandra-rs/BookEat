@@ -91,7 +91,6 @@ async function injectData(element, currentContextContainer, data) {
     const filter = element.getAttribute('filter');
 
     if (key !== 'self' && !(key in data)) return;
-
     let value = (key === 'self') ? data : data[key];
 
     if (filter) value = await applyFilter(filter, value, element);

@@ -10,21 +10,20 @@ export const filters = {
 
 
 export function average(value) {
-    if (typeof value === 'number') return parseInt(value);
 
+    if (typeof value === 'string') return parseInt(value);
     const acc = Object.entries(value)
         .reduce((acc, [star, num]) => {
-            acc.sum += parseInt(star) * num;
-            acc.total += num;
+            acc.sum += parseInt(star) * parseInt(num);
+            acc.total += parseInt(num);
             return acc;
         }, {sum: 0, total: 0});
-
     return (acc.sum / acc.total).toFixed(1);
 }
 
 
 export function total(value) {
-    return Object.values(value).reduce((acc, val) => acc + val, 0);
+    return Object.values(value).reduce((acc, val) => acc + parseInt(val), 0);
 }
 
 

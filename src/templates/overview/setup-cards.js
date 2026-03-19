@@ -15,12 +15,24 @@ const Buttons = {
        </template>
     `,
     'incoming': `
-        <button class="secondary-button">Cancel Reservation</button>
-        <button class="secondary-button">Read Reviews</button>
+       <template>
+           <a>
+                <button class="secondary-button">Cancel Reservation</button>
+           </a>
+           <a data-template="href-restaurantId" href="../../pages/restaurant-reviews-page/restaurant-reviews-page.html">
+                <button class="secondary-button">Read Reviews</button>
+           </a>
+       </template>
     `,
     'past': `
-        <button class="secondary-button">Write a Review</button>
-        <button class="secondary-button">Read Reviews</button>
+       <template>
+           <a>
+                <button class="secondary-button">Write a Review</button>
+           </a>
+           <a data-template="href-restaurantId" href="../../pages/restaurant-reviews-page/restaurant-reviews-page.html">
+                <button class="secondary-button">Read Reviews</button>
+           </a>
+       </template>
     `,
     'restaurant-incoming': `
         <button class="secondary-button">Booked tables</button>
@@ -48,8 +60,6 @@ export function setupCards(container) {
         if (dateDisplay) dateDisplay.textContent = dateValue;
 
         if (actionsContainer && idStore) {
-            const cardId = idStore.getAttribute('value') || idStore.textContent;
-
             while (actionsContainer.firstChild) actionsContainer.removeChild(actionsContainer.firstChild);
 
             const templateString = Buttons[type] || Buttons['default'];
@@ -58,8 +68,11 @@ export function setupCards(container) {
             const template = fragment.querySelector('template');
             const content = template ? template.content.cloneNode(true) : fragment;
 
-            const link = content.querySelector('a[data-template="href-id"]');
-            if (link) link.href = `${link.getAttribute('href')}?id=${cardId}`;
+            const link = content.querySelector('a[data-template]');
+            if (link) link.href = `${link.getAttribute('href')}?id=${card.querySelector(
+                `.overview__content__buttons__${link.getAttribute('data-template')
+                                                             .split('-')[1]}`)
+                                                             .getAttribute('value')}`;
 
             actionsContainer.appendChild(content);
         }
