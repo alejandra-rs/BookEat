@@ -38,8 +38,8 @@ if (formRegister) {
             alert("the password length should be at least 8 characters.");
             return;
         }
-        if (PhoneNumber.length === 9){
-            alert("the password length should be at least 8 characters.");
+        if (PhoneNumber.length !== 9){
+            alert("the phone number length should be at least 8 characters.");
             return;
         }
 
@@ -59,11 +59,11 @@ if (formRegister) {
             }
 
             const nuevoUsuario = {
-                Name,
-                Surname,
-                PhoneNumber,
-                Email,
-                Password,
+                name: Name,
+                surname: Surname,
+                phone: PhoneNumber,
+                email: Email,
+                password: Password,
                 "profile-picture": ""
             };
 
@@ -78,7 +78,8 @@ if (formRegister) {
             // TODO aquí hay dry que se puede separar
             const sesion = {
                 rol: 'cliente',
-                datos: usuarioCreado
+                datos: usuarioCreado,
+                id:usuarioCreado.id
             };
             sessionStorage.setItem('usuarioActual', JSON.stringify(sesion));
 
