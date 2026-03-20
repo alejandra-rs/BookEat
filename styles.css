@@ -105,6 +105,25 @@ button img.icon {
     overflow:hidden;
 }
 
+.toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background-color: var(--bg-primary, #333);
+    color: var(--text-primary);
+    padding: 12px 24px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 9999;
+    transition: transform 0.3s ease-out;
+    font-weight: 500;
+}
+
+.toast.show {
+    transform: translateX(-50%) translateY(0);
+}
+
 body.dark-mode .icon{
     filter: invert(1) sepia(1) grayscale(1) brightness(0.9);
 }

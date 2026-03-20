@@ -11,25 +11,25 @@
     <script type="module" src="../../js/init-components.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
-<body>
-<header>
-<div load-template="header"></div>
-</header>
 
-    <div  load-template="date-range"></div>
+<body data-page-context="bookings">
+    <header>
+    <div load-template="header"></div>
+    </header>
 
-<main class="reservation-container">
-    <section class="reservation-container__result" data-context="bookings" related="session">
-        <template>
-            <div load-template="overview"></div>
-        </template>
-    </section>
-</main>
+    <div load-template="date-range"></div>
 
-<div load-template="footer"></div>
+    <main class="reservation-container">
+        <section class="reservation-container__result" data-context="bookings" related="session">
+            <template>
+                <div load-template="overview"></div>
+            </template>
+        </section>
+    </main>
+
+    <div load-template="footer"></div>
 </body>
 
 <div load-template="write-review-popup"></div>
-
 
 </html>

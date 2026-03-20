@@ -6,6 +6,7 @@ export const typeActions = {
         if (element.tagName === 'DATA') element.setAttribute('value', value);
         element.textContent = value;
     },
+    'input': (element, value) => element.value = value || "",
     'src': (element, value) => element.src = value ? value : "../../assets/img/restaurant-item.png",
     'href': (element, value) => element.href = `${element.getAttribute('href')}?id=${value}`,
     'width': (element, value) => element.style.width = value + '%',
