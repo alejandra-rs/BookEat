@@ -14,6 +14,7 @@ html, body {
 }
 body {
     background-color: var(--bg-primary);
+    color: var(--text-primary);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -22,6 +23,7 @@ body {
 
 main{
     flex-grow: 1;
+    background-color: var(--bg-primary);
 }
 
 header, footer {flex-shrink: 0;}
@@ -54,7 +56,7 @@ body.dark-mode {
     --button-secondary: #acacac;
 }
 
-button {
+body button {
     display: inline-flex;
     align-items: center;
     border-radius: 12px;
@@ -63,12 +65,12 @@ button {
     cursor: pointer;
 }
 
-a > button {
+body a > button {
     text-decoration: none;
     height: 100%;
 }
 
-button img.icon {
+body button img.icon {
     width: 2em;
     height: 2em;
     color: var(--text-primary);
