@@ -6,6 +6,7 @@ export const typeActions = {
         if (element.tagName === 'DATA') element.setAttribute('value', value);
         element.textContent = value;
     },
+    'input': (element, value) => element.value = value || "",
     'src': (element, value) => element.src = value ? value : "../../assets/img/restaurant-item.png",
     'href': (element, value) => element.href = `${element.getAttribute('href')}?id=${value}`,
     'width': (element, value) => element.style.width = value + '%',
@@ -24,8 +25,10 @@ export async function fillPage(pageContainer, data) {
                                              : null;
 
     let elements = pageContainer.querySelectorAll('[data-template]');
+    //TODO promiseAll
     for (const element of elements) await injectData(element, currentContextContainer, activeData);
 
+    //TODO promiseAll cuidado que es recursivo
     let nestedContexts = pageContainer.querySelectorAll('[data-context]');
     for (const nested of nestedContexts) {
         const parentContext = nested.parentElement ? nested.parentElement.closest('[data-context]') : null;
@@ -91,7 +94,6 @@ async function injectData(element, currentContextContainer, data) {
     const filter = element.getAttribute('filter');
 
     if (key !== 'self' && !(key in data)) return;
-
     let value = (key === 'self') ? data : data[key];
 
     if (filter) value = await applyFilter(filter, value, element);

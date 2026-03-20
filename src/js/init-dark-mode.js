@@ -7,7 +7,7 @@ export function initDarkMode() {
 
     if (!darkModeToggle || !themeIcon) return;
 
-    const savedTheme = localStorage.getItem('theme') || 'light';
+    const savedTheme = sessionStorage.getItem('theme') || 'light';
     themeIcon.src = savedTheme === 'dark' ? sunIcon : moonIcon;
 
     darkModeToggle.addEventListener('click', () => {
@@ -15,12 +15,12 @@ export function initDarkMode() {
         const isDarkMode = document.body.classList.contains('dark-mode');
 
         themeIcon.src = isDarkMode ? sunIcon : moonIcon;
-        localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+        sessionStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
     });
 }
 
 export function checkDarkMode() {
-    const savedTheme = localStorage.getItem('theme') || 'light';
+    const savedTheme = sessionStorage.getItem('theme') || 'light';
     const themeIcon = document.getElementById('dark-mode-icon');
     themeIcon.src = savedTheme === "dark" ? sunIcon : moonIcon;
     if (savedTheme === 'dark') {

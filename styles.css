@@ -65,9 +65,13 @@ body button {
     cursor: pointer;
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+
+}
 body a > button {
     text-decoration: none;
-    height: 100%;
 }
 
 body button img.icon {
@@ -108,6 +112,25 @@ body button img.icon {
 }
 .block-scroll {
     overflow:hidden;
+}
+
+.toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background-color: var(--bg-primary, #333);
+    color: var(--text-primary);
+    padding: 12px 24px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 9999;
+    transition: transform 0.3s ease-out;
+    font-weight: 500;
+}
+
+.toast.show {
+    transform: translateX(-50%) translateY(0);
 }
 
 body.dark-mode .icon{

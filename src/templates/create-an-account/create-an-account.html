@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="../../css/forms.css">
-
+<script type="module" src="../../templates/create-an-account/create-account.js"></script>
 <dialog id="register-popup">
 
     <div class="register-form form">
@@ -8,16 +8,16 @@
 
         <form id="form-register">
             <div class="form__row">
-                <label> <input type="text" placeholder="Name" required> </label>
-                <label> <input type="text" placeholder="Surname" required> </label>
+                <label> <input name="name" type="text" placeholder="Name" required> </label>
+                <label> <input name="surname" type="text" placeholder="Surname" required> </label>
             </div>
             <div class="form__row">
-                <label> <input type="tel" placeholder="Phone Number" required> </label>
-                <label> <input type="date" placeholder="Birthdate" required> </label>
+                <label> <input name="phoneNumber" type="tel" placeholder="Phone Number" required> </label>
+                <label> <input name="birthdate" type="date" placeholder="Birthdate" required> </label>
             </div>
-            <label class="form__row"> <input type="email" placeholder="Email" required> </label>
-            <label class="form__row"> <input type="password" placeholder="Password" required> </label>
-            <label class="form__row"> <input type="password" placeholder="Confirm Password" required> </label>
+            <label class="form__row"> <input name="email" type="email" placeholder="Email" required> </label>
+            <label class="form__row"> <input name="password" type="password" placeholder="Password" required> </label>
+            <label class="form__row"> <input name="confirmPassword" type="password" placeholder="Confirm Password" required> </label>
 
             <button class="primary-button" type="submit">Register</button>
         </form>

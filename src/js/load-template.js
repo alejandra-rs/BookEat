@@ -36,6 +36,7 @@ export async function loadTemplate(rootContext = document) {
                         oldScript.remove();
                     });
                 }
+                document.dispatchEvent(new Event(`${file}-loaded`));
             }
         } catch (error) {
             console.error("Error fetching file:", error);

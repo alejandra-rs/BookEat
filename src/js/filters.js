@@ -3,26 +3,27 @@ export const filters = {
     average: average,
     tableMap: renderFloorPlan,
     percent: reviewProportion,
-    get: getStarValue
+    get: getStarValue,
+    reservationName: getReservationName,
+    reservationImage: getReservationImage
 }
 
 
 export function average(value) {
-    if (typeof value === 'number') return parseInt(value);
 
+    if (typeof value === 'string') return parseInt(value);
     const acc = Object.entries(value)
         .reduce((acc, [star, num]) => {
-            acc.sum += parseInt(star) * num;
-            acc.total += num;
+            acc.sum += parseInt(star) * parseInt(num);
+            acc.total += parseInt(num);
             return acc;
         }, {sum: 0, total: 0});
-
     return (acc.sum / acc.total).toFixed(1);
 }
 
 
 export function total(value) {
-    return Object.values(value).reduce((acc, val) => acc + val, 0);
+    return Object.values(value).reduce((acc, val) => acc + parseInt(val), 0);
 }
 
 
@@ -79,4 +80,23 @@ export function renderFloorPlan(layout, container) {
 
         floor.appendChild(btn);
     });
+}
+
+export async function getReservationName(data) {
+    if (data.name) return data.name;
+    if (data.restaurant) return data.restaurant.name;
+    if (data.user) return `${data.user.name} ${data.user.surname || ''}`.trim();
+    return "Unknown";
+}
+
+
+export async function getReservationImage(data) {
+    if (data.images) return data.images;
+    if (data.image) return data.image;
+
+    if (data.restaurant && data.restaurant.images) return data.restaurant.images;
+    if (data.user && data.user.image) return data.user.image;
+
+    // Fallback if no image is found
+    return data.restaurant ? "../../assets/img/restaurant-item.png" : "../../assets/img/user-image.png";
 }

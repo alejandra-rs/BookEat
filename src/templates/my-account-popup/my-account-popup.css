@@ -1,5 +1,4 @@
-.my-account-popup {
-    display: flex;
+#my-account-popup {
     align-items: center;
     position: fixed;
     padding: 0.5rem;
@@ -12,7 +11,7 @@
     background-color: var(--bg-primary);
 
 }
-.my-account-popup__nav {
+#my-account-popup__nav {
     display: flex;
     flex-direction: column;
     padding: 1rem;

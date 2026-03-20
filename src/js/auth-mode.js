@@ -17,9 +17,31 @@ document.addEventListener('click', (event) => {
     }
 });
 
-document.addEventListener('submit', (event) => {
-    if (event.target.id === 'form-login' || event.target.id === 'form-register') {
-        event.preventDefault();
-        event.target.closest('dialog').close();
-    }
+document.addEventListener('header-loaded', () => {
+    updateHeader()
 });
+
+function prepareImage(miImagen, user) {
+    miImagen.src = user.image || "../../assets/icons/user-profile.svg";
+    miImagen.alt = 'User profile';
+    miImagen.style.cursor = 'pointer';
+    miImagen.setAttribute('data-opens', 'my-account-popup');
+    miImagen.setAttribute('class', 'user-profile-picture');
+    return miImagen;
+}
+
+function updateHeader() {
+    const currentUser = sessionStorage.getItem('currentSession');
+    if (!currentUser) return;
+    const user = JSON.parse(currentUser);
+    const header__buttons = document.querySelector('header.header > .header__buttons > .header__buttons__account');
+    if (!header__buttons) return;
+    header__buttons.replaceChildren(prepareImage(document.createElement('img'), user));
+    if (window.adaptarPopupPorRol) {
+        window.adaptarPopupPorRol();
+    }
+}
+
+updateHeader();
+window.updateHeader = updateHeader;
+
