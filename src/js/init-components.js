@@ -29,8 +29,8 @@ document.addEventListener('DOMContentLoaded', async function() {
     });
 
     const session = JSON.parse(sessionStorage.getItem('currentSession'));
-    const role = session.rol;
-    const myId = session.id;
+    const role = session?.rol || "";
+    const myId = session?.id || "";
 
     const urlParams = new URLSearchParams(window.location.search);
     let id = urlParams.get('id');

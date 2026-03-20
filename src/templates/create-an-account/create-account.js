@@ -1,4 +1,4 @@
-import {post} from '../../js/api-json.js';
+import {post, URL_BASE} from '../../js/api-json.js';
 const formRegister = document.getElementById('form-register');
 
 async function logIn(email, password) {
