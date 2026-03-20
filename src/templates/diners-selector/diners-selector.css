@@ -14,7 +14,7 @@
     gap: 0.4em;
     border: 1px solid var(--text-primary);
     border-radius: 1em;
-    padding: 0.15em
+    padding: 0.15em;
 }
 
 .diners-counter__container__button {
@@ -32,4 +32,20 @@
 .diners-counter__icon {
     height: 1em;
     width: 1em;
+}
+
+@media (max-width: 640px) {
+    .diners-counter__container {
+        gap: 0.25em;
+        padding: 0.1em;
+    }
+
+    .diners-counter__container__button {
+        padding: 0.35em;
+    }
+
+    .diners-counter__container__button > img {
+        width: 0.72em !important;
+        height: 0.72em !important;
+    }
 }
