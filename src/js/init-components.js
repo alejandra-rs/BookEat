@@ -67,7 +67,6 @@ document.addEventListener('DOMContentLoaded', async function() {
         else {
             try {
                 let url = `http://localhost:3000/${context}`;
-                if (id && related) url += `?${related}=${id}`;
 
                 if (related === 'session' && context === 'bookings') {
                     url += role === 'user'
