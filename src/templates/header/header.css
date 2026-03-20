@@ -17,7 +17,7 @@
 }
 
 .header__logo > img,
-.user-profile-picture{
+.user-profile-picture {
     width: 3em;
     height: 3em;
 }
@@ -138,7 +138,7 @@
     display: none;
 }
 
-@media (max-width: 1120px) {
+@media (max-width: 1024px) {
     .header {
         position: relative;
         flex-wrap: wrap;
@@ -232,6 +232,7 @@
 
 @media (max-width: 900px) {
     .header {
+        gap: 0.55rem;
         padding: 0.75rem;
     }
 
@@ -248,21 +249,10 @@
     .header__search__field__input {
         font-size: 0.92rem;
     }
-}
-
-@media (max-width: 640px) {
-    .header {
-        gap: 0.55rem;
-        padding: 0.65rem;
-    }
 
     .header__logo > img {
         width: 2.6em !important;
         height: 2.6em !important;
-    }
-
-    .header__search {
-        padding: 0.15rem 0.6rem;
     }
 
     .header__search__field {
@@ -291,25 +281,5 @@
     .header__search__selectors > div:nth-child(3) {
         flex: 1 1 0;
         min-width: 6rem;
-    }
-
-    .header__buttons {
-        gap: 0.45rem;
-    }
-
-    .header__buttons__account {
-        gap: 0.35rem;
-    }
-}
-
-@media (max-width: 420px) {
-    .header__search__overflow-toggle {
-        width: 1.8rem;
-        height: 1.8rem;
-        font-size: 1.05rem;
-    }
-
-    .header__search__selectors {
-        width: 98vw;
     }
 }
