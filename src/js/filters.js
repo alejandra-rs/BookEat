@@ -97,6 +97,5 @@ export async function getReservationImage(data) {
     if (data.restaurant && data.restaurant.images) return data.restaurant.images;
     if (data.user && data.user.image) return data.user.image;
 
-    // Fallback if no image is found
     return data.restaurant ? "../../assets/img/restaurant-item.png" : "../../assets/img/user-image.png";
 }

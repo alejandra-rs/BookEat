@@ -2,9 +2,11 @@ import {checkDarkMode} from "../../src/js/init-dark-mode.js";
 import {loadTemplate} from "../../src/js/load-template.js";
 import {fillPage, fillTemplate} from "./load-data.js";
 import {setupCards} from "../../src/templates/overview/setup-cards.js";
+import {initEditButtons} from "../../src/templates/edit-button/edit-button.js";
 
 document.addEventListener('DOMContentLoaded', async function() {
     await loadTemplate();
+    initEditButtons();
 
     document.querySelectorAll('.custom-property').forEach(container => {
         const icon = container.getAttribute('data-icon');
@@ -105,67 +107,5 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
     }
 
-    if (pageContext === 'my-profile' || pageContext === 'restaurants' || pageContext === 'users') {
-        document.addEventListener('click', async (event) => {
-            const editBtnContainer = event.target.closest('.edit-button');
-            if (!editBtnContainer) return;
-
-            const fieldContainer = editBtnContainer.closest('.edit-property__label__field');
-            if (!fieldContainer) return;
-
-            const inputElement = fieldContainer.querySelector('input');
-            const fieldName = inputElement.getAttribute('name');
-
-            const btnImage = editBtnContainer.querySelector('img') || editBtnContainer.querySelector('.icon');
-
-            if (inputElement.hasAttribute('readonly')) {
-                event.preventDefault();
-                inputElement.removeAttribute('readonly');
-                inputElement.focus();
-
-                if (btnImage) btnImage.src = "../../assets/icons/save.svg";
-            }
-
-            else {
-                const newValue = inputElement.value;
-                try {
-                    const endpoint = role === 'user' ? 'users' : 'restaurants';
-
-                    const response = await fetch(`http://localhost:3000/${endpoint}/${myId}`, {
-                        method: 'PATCH',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ [fieldName]: newValue })
-                    });
-
-                    if (response.ok) {
-                        inputElement.setAttribute('readonly', true);
-                        if (btnImage) btnImage.src = "../../assets/icons/pencil.svg";
-                        showToast(`You have successfully updated your ${fieldName}.`);
-                    } else {
-                        throw new Error("Failed to save to database");
-                    }
-
-                } catch (error) {
-                    showToast(`Failed to save changes on ${fieldName}.`);
-                    alert("Could not save changes. Please try again.");
-                }
-            }
-        });
-    }
-
     checkDarkMode();
 });
-
-function showToast(message) {
-    const toast = document.createElement('div');
-    toast.className = 'toast';
-    toast.textContent = message;
-    document.body.appendChild(toast);
-
-    setTimeout(() => toast.classList.add('show'), 100);
-
-    setTimeout(() => {
-        toast.classList.remove('show');
-        setTimeout(() => toast.remove(), 300);
-    }, 3000);
-}

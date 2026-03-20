@@ -25,15 +25,22 @@ export async function fillPage(pageContainer, data) {
                                              : null;
 
     let elements = pageContainer.querySelectorAll('[data-template]');
-    //TODO promiseAll
-    for (const element of elements) await injectData(element, currentContextContainer, activeData);
 
-    //TODO promiseAll cuidado que es recursivo
+    await Promise.all(
+        Array.from(elements).map(
+            element => injectData(element, currentContextContainer, activeData)
+        )
+    );
+
     let nestedContexts = pageContainer.querySelectorAll('[data-context]');
-    for (const nested of nestedContexts) {
-        const parentContext = nested.parentElement ? nested.parentElement.closest('[data-context]') : null;
-        if (parentContext === currentContextContainer) await fillPage(nested, activeData);
-    }
+    await Promise.all(
+        Array.from(nestedContexts).map(async (nested) => {
+            const parentContext = nested.parentElement ? nested.parentElement.closest('[data-context]') : null;
+            if (parentContext === currentContextContainer) {
+                await fillPage(nested, activeData);
+            }
+        })
+    );
 }
 
 
@@ -46,13 +53,16 @@ export async function fillTemplate(container, items) {
         if (child.tagName !== 'TEMPLATE') child.remove();
     });
 
-    for (const item of items) {
-        const clone = template.content.cloneNode(true);
-        await loadTemplate(clone);
-        const firstElement = clone.firstElementChild;
-        await fillPage(firstElement || clone, item);
-        itemsContainer.appendChild(clone);
-    }
+    const clones = await Promise.all(
+        items.map(async (item) => {
+            const clone = template.content.cloneNode(true);
+            await loadTemplate(clone);
+            const firstElement = clone.firstElementChild;
+            await fillPage(firstElement || clone, item)
+            return clone
+        })
+    )
+    itemsContainer.append(...clones);
 }
 
 
@@ -61,12 +71,19 @@ export async function fillCarousel(container, images) {
     if (!template) return;
 
     const itemsContainer = template.parentElement;
-    for (const imageUrl of images) {
+
+    Array.from(itemsContainer.children).forEach(child => {
+        if (child.tagName !== 'TEMPLATE') child.remove();
+    });
+
+    const clones = images.map(imageUrl => {
         const clone = template.content.cloneNode(true);
         const imgElement = clone.querySelector('img');
-        imgElement.src = imageUrl;
-        itemsContainer.appendChild(clone);
-    }
+        if (imgElement) imgElement.src = imageUrl;
+        return clone;
+    });
+
+    itemsContainer.append(...clones);
 }
 
 
