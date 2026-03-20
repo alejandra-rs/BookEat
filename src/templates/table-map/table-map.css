@@ -47,8 +47,8 @@
     cursor: pointer;
     position: absolute;
     pointer-events: auto;
-    background: palevioletred;
-    color: white;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
 }
 
 .table-item__map__table.occupied .table-map__map__table__shape {

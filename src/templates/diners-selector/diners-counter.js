@@ -1,23 +1,15 @@
-const btnLess = document.getElementById('less');
-const btnMore = document.getElementById('more');
-const numberDisplay = document.getElementById('number');
+document.addEventListener('click', (e) => {
+    const btnMore = e.target.closest('#more');
+    const btnLess = e.target.closest('#less');
 
-let dinersCount = 1;
+    if (btnMore || btnLess) {
+        const container = (btnMore || btnLess).closest('.diners-counter__container');
+        const numberDisplay = container.querySelector('#number');
 
-function updateDisplay() {
-    numberDisplay.textContent = dinersCount;
-}
+        let count = parseInt(numberDisplay.textContent) || 1;
 
-btnMore.addEventListener('click', () => {
-    dinersCount++;
-    updateDisplay();
-});
-
-btnLess.addEventListener('click', () => {
-    if (dinersCount > 1) {
-        dinersCount--;
-        updateDisplay();
+        if (btnMore) count++;
+        else if (btnLess && count > 1) count--;
+        numberDisplay.textContent = count;
     }
 });
-
-updateDisplay();

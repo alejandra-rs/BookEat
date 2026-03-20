@@ -3,29 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Book Table</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="icon" type="image/svg+xml" href="../../assets/icons/logo.svg">
     <link rel="stylesheet" href="../../../styles.css">
     <link rel="stylesheet" href="../../pages/book-table-page/book-table-page.css">
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="../../pages/book-table-page/book-table-page.js"></script>
     <script type="module" src="../../js/init-components.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
-<body data-page-context="restaurants">
+<body data-page-context="restaurants" class="hide-searcher">
 
 <header load-template="header"></header>
 
 <a data-template="href-id" href="../../pages/restaurant-info-page/restaurant-info-page.html">
     <button class="back-button">
         <img src="../../assets/icons/back-button.svg" alt="" class="icon"/>
-        Currently booking: <strong data-template="text-name"></strong>
+        Back to booking details: <strong data-template="text-name"></strong>
     </button>
 </a>
 
 <main class="book-table-page">
-    <div load-template="hour-table"></div>
-    <h2 id="hour-table-txt"><em>Please select a date and time to show available tables</em></h2>
-    <div id="hour-table-map" load-template="table-map"></div>
+    <h2 id="hour-table-txt"><em> Select your tables at <strong data-template="text-name"></strong></em></h2>
+    <div id="hour-table-map" load-template="table-map" data-template="custom-tableMap" filter="tableMap"></div>
     <button id="book-selected" class="primary-button" data-opens="login-popup">Book Selected</button>
 </main>
 

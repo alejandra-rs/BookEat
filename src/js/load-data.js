@@ -11,7 +11,8 @@ export const typeActions = {
     'href': (element, value) => element.href = `${element.getAttribute('href')}?id=${value}`,
     'width': (element, value) => element.style.width = value + '%',
     'list': async (element, value) => await fillTemplate(element, value),
-    'carousel': async (element, value) => await fillCarousel(element, value)
+    'carousel': async (element, value) => await fillCarousel(element, value),
+    'custom': () => {}
 }
 
 

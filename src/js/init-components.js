@@ -3,32 +3,14 @@ import {loadTemplate} from "../../src/js/load-template.js";
 import {fillPage, fillTemplate} from "./load-data.js";
 import {setupCards} from "../../src/templates/overview/setup-cards.js";
 import {initEditButtons} from "../../src/templates/edit-button/edit-button.js";
+import {setProperties} from "../../src/templates/edit-property/properties.js";
 
 document.addEventListener('DOMContentLoaded', async function() {
     await loadTemplate();
-    initEditButtons();
+    initEditButtons(); setProperties();
 
-    document.querySelectorAll('.custom-property').forEach(container => {
-        const icon = container.getAttribute('data-icon');
-        const label = container.getAttribute('data-label');
-        const type = container.getAttribute('data-type');
-        const name = container.getAttribute('data-key');
-
-        const img = container.querySelector('.edit-property__icon');
-        const labelSpan = container.querySelector('.edit-property__label > span');
-        const input = container.querySelector('input');
-
-        if (icon && img) img.src = `../../assets/icons/${icon}`;
-        if (label && labelSpan) labelSpan.textContent = label;
-
-        if (input) {
-            if (type) input.type = type;
-            if (name) {
-                input.name = name;
-                input.setAttribute('data-template', `input-${name}`);
-            }
-        }
-    });
+    document.addEventListener('click', () => setTimeout(saveBookingState, 100));
+    setTimeout(restoreBookingState, 300);
 
     const session = JSON.parse(sessionStorage.getItem('currentSession'));
     const role = session?.rol || "";
@@ -109,3 +91,29 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     checkDarkMode();
 });
+
+function saveBookingState() {
+    const dateInput = document.querySelector('main .date-picker__input') || document.querySelector('.header .date-picker__input');
+    const timeInput = document.querySelector('main .hour-selector__placeholder span') || document.querySelector('.header .hour-selector__placeholder span');
+    const dinersInput = document.querySelector('main #number') || document.querySelector('.header #number');
+
+    const state = {
+        date: dateInput?.value || "",
+        time: timeInput?.textContent !== "Time" ? timeInput?.textContent : "",
+        diners: dinersInput?.textContent || "1"
+    };
+    sessionStorage.setItem('pendingBooking', JSON.stringify(state));
+}
+
+function restoreBookingState() {
+    const state = JSON.parse(sessionStorage.getItem('pendingBooking') || '{}');
+
+    if (state.diners) document.querySelectorAll('#number').forEach(el => el.textContent = state.diners);
+    if (state.time !== "Time") document.querySelectorAll('.hour-selector__placeholder span').forEach(el => el.textContent = state.time);
+    if (state.date) {
+        document.querySelectorAll('.date-picker__input').forEach(el => {
+            el.value = state.date;
+            if (el._flatpickr) el._flatpickr.setDate(state.date);
+        });
+    }
+}

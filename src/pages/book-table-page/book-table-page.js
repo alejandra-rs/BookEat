@@ -1,21 +1,49 @@
-document.addEventListener('click', event => {
+document.addEventListener('DOMContentLoaded', () => {
 
-    const text = document.getElementById('hour-table-txt');
-    const map = document.getElementById('hour-table-map');
-    const bookButton = document.getElementById('book-selected');
+    setInterval(() => {
+        const bookButton = document.getElementById('book-selected');
+        if (!bookButton) return;
+        const currentSelected = window.selectedTables;
+        if (currentSelected && currentSelected.size > 0) bookButton.style.display = 'block';
+        else bookButton.style.display = 'none';
+    }, 200);
 
-    const hourButton = event.target.closest('.hour-table > button');
-    if (hourButton) {
-        if (text) text.style.display = 'none';
-        if (map) map.style.display = 'flex';
-    }
+    document.addEventListener('click', async (event) => {
+        const bookBtn = event.target.closest('#book-selected');
+        if (!bookBtn) return;
 
-    const tableClicked = event.target.closest('.table-item__map__table');
-    if (tableClicked) {
-        setTimeout(() => {
-            const currentSelected = window.selectedTables;
-            if (currentSelected && currentSelected.size > 0) bookButton.style.display = 'block';
-            else bookButton.style.display = 'none';
-        }, 50);
-    }
+        const session = JSON.parse(sessionStorage.getItem('currentSession') || '{}');
+        const userId = session.datos ? (typeof session.datos === 'object' ? session.datos.id : session.datos) : null;
+
+        if (!userId) return;
+
+        const state = JSON.parse(sessionStorage.getItem('pendingBooking') || '{}');
+        const urlParams = new URLSearchParams(window.location.search);
+        const restaurantId = urlParams.get('id');
+
+        const selectedTableIds = Array.from(window.selectedTables);
+        const startTime = state.time.split(' - ')[0];
+
+        const bookingPayload = {
+            id: crypto.randomUUID(),
+            restaurantId: restaurantId,
+            userId: String(userId),
+            datetime: `${state.date} ${startTime}`,
+            guests: state.diners,
+            tableIds: selectedTableIds,
+            status: "incoming"
+        };
+
+        try {
+            const response = await post(bookingPayload, "bookings");
+
+            if (response.ok) {
+                // TODO: booking popup confirmation + something went wrong
+                sessionStorage.removeItem('pendingBooking');
+            }
+
+        } catch (e) {
+            console.error("Error posting booking:", e);
+        }
+    });
 });

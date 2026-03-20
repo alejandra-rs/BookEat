@@ -75,23 +75,16 @@ export function setupCards(container) {
                     link.href = `${link.getAttribute('href')}?id=${targetIdElement.getAttribute('value')}`;
                 }
         }
-            // --- EL FRANCOTIRADOR ---
             const reviewBtn = content.querySelector('.btn-write-review');
             if (reviewBtn) {
-                // 1. Buscamos el nombre
                 const titleElement = card.querySelector('h1[filter="reservationName"]');
                 const restaurantName = titleElement ? titleElement.textContent : 'Restaurant';
-
-                // 2. Buscamos el ID del restaurante en la tarjeta
                 const restIdElement = card.querySelector('.overview__content__buttons__restaurantId');
                 const restaurantId = restIdElement ? restIdElement.getAttribute('value') : '';
 
                 reviewBtn.addEventListener('click', () => {
-                    // Ponemos el nombre en el título
                     const popupTitle = document.getElementById('review-restaurant-title');
                     if (popupTitle) popupTitle.textContent = `Review: ${restaurantName}`;
-
-                    // Metemos el ID en el bolsillo secreto del formulario
                     const hiddenIdInput = document.getElementById('review-restaurant-id');
                     if (hiddenIdInput) hiddenIdInput.value = restaurantId;
 
@@ -102,8 +95,6 @@ export function setupCards(container) {
                     }
                 });
             }
-            // -------------------------
-
         actionsContainer.appendChild(content);
     }
     });

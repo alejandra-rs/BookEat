@@ -29,7 +29,7 @@
     z-index: 1000;
 }
 
-.hour-selector__dropdown.open {
+.hour-selector__dropdown.show {
     display: flex;
     flex-direction: column;
     align-items: stretch;

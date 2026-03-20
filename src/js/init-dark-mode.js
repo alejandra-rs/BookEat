@@ -23,8 +23,6 @@ export function checkDarkMode() {
     const savedTheme = sessionStorage.getItem('theme') || 'light';
     const themeIcon = document.getElementById('dark-mode-icon');
     themeIcon.src = savedTheme === "dark" ? sunIcon : moonIcon;
-    if (savedTheme === 'dark') {
-        document.body.classList.toggle('dark-mode');
-    }
-    initDarkMode()
+    if (savedTheme === 'dark') document.body.classList.toggle('dark-mode');
+    initDarkMode();
 }

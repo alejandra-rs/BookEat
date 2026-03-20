@@ -44,4 +44,3 @@ function updateHeader() {
 
 updateHeader();
 window.updateHeader = updateHeader;
-

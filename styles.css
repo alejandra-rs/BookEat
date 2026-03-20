@@ -5,7 +5,6 @@
     font-size: inherit;
 }
 
-
 body:has(dialog[open]) {
     overflow: hidden;
 }
@@ -122,6 +121,10 @@ button img.icon {
 
 .toast.show {
     transform: translateX(-50%) translateY(0);
+}
+
+body.hide-searcher .header__search {
+    display: none;
 }
 
 body.dark-mode .icon{

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirm Booking Details</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="icon" type="image/svg+xml" href="../../assets/icons/logo.svg">
+    <link rel="stylesheet" href="../../../styles.css">
+    <link rel="stylesheet" href="../../pages/booking-details-page/booking-details-page.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script type="module" src="../../js/init-components.js"></script>
+    <script type="module" src="../../pages/booking-details-page/booking-details.js" defer></script>
+</head>
+<body data-page-context="restaurants" class="hide-searcher">
+
+<header load-template="header"></header>
+
+<a data-template="href-id" href="../../pages/restaurant-info-page/restaurant-info-page.html">
+    <button class="back-button">
+        <img src="../../assets/icons/back-button.svg" alt="" class="icon"/>
+        Currently booking: <strong data-template="text-name"></strong>
+    </button>
+</a>
+
+<main class="booking-details-page">
+
+    <h1>Confirm your Booking Details</h1>
+    <h2 data-template="text-name">Restaurant Name</h2>
+
+    <div class="booking-details__form">
+        <div class="booking-details__field" id="detail-diners">
+            <h3>Diners</h3>
+            <div load-template="diners-selector"></div>
+        </div>
+
+        <div class="booking-details__field" id="detail-date">
+            <h3>Date</h3>
+            <label for="inline-calendar"></label>
+            <input type="text" id="inline-calendar" style="display: none;">
+        </div>
+
+        <div class="booking-details__field" id="detail-time">
+            <h3>Time</h3>
+            <div class="hour-table" id="dynamic-hour-table">
+                <p><em>Please select a date first to see available hours.</em></p>
+            </div>
+        </div>
+    </div>
+
+    <button class="primary-button" id="confirm-details" disabled>Confirm Booking Details</button>
+</main>
+
+<footer load-template="footer"></footer>
+</body>
+</html>
