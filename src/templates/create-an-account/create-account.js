@@ -1,4 +1,4 @@
-const URL_BASE = 'http://localhost:3000';
+import {post} from '../../js/api-json.js';
 const formRegister = document.getElementById('form-register');
 
 async function logIn(email, password) {
@@ -11,16 +11,6 @@ async function logIn(email, password) {
     if (!matchPasswords(user.password, password)) throw new Error("email or password is wrong.");
 
     sessionStorage.setItem('currentSession', JSON.stringify({rol: rol,id: user.id, image: user['profile_image']}));
-}
-
-const postUser = async (URL_BASE, newUser) => {
-    return await fetch(`${URL_BASE}/users`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(newUser)
-    });
 }
 
 function getData(form) {
@@ -98,7 +88,7 @@ if (formRegister) {
             const [usersExistences, restaurantExistences] = await getExistencesByEmail(data.email)
             if (usersExistences.length > 0 || restaurantExistences.length > 0) return alert("This email already exists.");
 
-            const postResponse = await postUser(URL_BASE, createUser(data));
+            const postResponse = await post(createUser(data), 'user');
 
             if (!postResponse.ok) throw new Error("The account could not be created.");
 

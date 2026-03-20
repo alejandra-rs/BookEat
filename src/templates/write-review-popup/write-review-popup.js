@@ -1,3 +1,5 @@
+import {post} from "../../js/api-json.js";
+
 document.addEventListener('submit', async (e) => {
     if (e.target && e.target.id === 'form-write-review') {
         e.preventDefault();
@@ -5,7 +7,7 @@ document.addEventListener('submit', async (e) => {
         const formData = Object.fromEntries(new FormData(e.target).entries());
         const sessionData = JSON.parse(sessionStorage.getItem('currentSession'));
 
-        const nuevaResena = {
+        const newComment = {
             restaurantId: formData.restaurantId,
             userId: sessionData.id,
 
@@ -13,16 +15,12 @@ document.addEventListener('submit', async (e) => {
             pros: formData.pros,
             cons: formData.cons,
             rating: String(formData.rating),
-            'created-at': new Date().toISOString().split('T')[0]
+            createdAt: new Date().toISOString().split('T')[0]
         };
 
         try {
 
-            const response = await fetch('http://localhost:3000/reviews', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(nuevaResena)
-            });
+            const response = await post(newComment, 'reviews');
 
             if (!response.ok) throw new Error("Error saving the review.");
 
