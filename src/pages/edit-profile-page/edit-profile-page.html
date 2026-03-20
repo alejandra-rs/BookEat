@@ -21,36 +21,41 @@
 
 <body data-page-context="my-profile">
   <header load-template="header"></header>
-  <main class="edit-profile-page">
-    <section class="edit-profile-page__public">
-      <div class="edit-profile-page__public__image">
-        <img data-template="src-image" src="" alt="">
-        <div class="" load-template="edit-button"></div>
-      </div>
-      <div class="custom-property edit-profile-page__public__name" load-template="edit-property"
-        data-icon="../../assets/icons/user-profile.svg" data-label="Account Name" data-type="text"
-        data-key="accountName"></div>
-    </section>
-    <section class="edit-profile-page__account-management">
-      <h2>Account Management</h2>
-      <div class="custom-property" load-template="edit-property" data-icon="../../assets/icons/id.svg" data-label="Name"
-        data-type="text" data-key="name"></div>
+  <main class="edit-profile-page container py-4 py-lg-5">
+    <div class="row g-4 g-lg-5 align-items-start">
+      <section class="edit-profile-page__public col-12">
+        <div class="edit-profile-page__public__image">
+          <img data-template="src-image" src="" alt="">
+          <div load-template="edit-button"></div>
+        </div>
+        <div class="custom-property edit-profile-page__public__name" load-template="edit-property"
+          data-icon="../../assets/icons/user-profile.svg" data-label="Account Name" data-type="text"
+          data-key="accountName"></div>
+      </section>
 
-      <div class="custom-property" load-template="edit-property" data-icon="../../assets/icons/id.svg"
-        data-label="Surname" data-type="text" data-key="surname"></div>
+      <section class="edit-profile-page__account-management col-12">
+        <h2 class="mb-2">Account Management</h2>
+        <div class="row g-3">
+          <div class="custom-property col-12" load-template="edit-property" data-icon="../../assets/icons/id.svg"
+            data-label="Name" data-type="text" data-key="name"></div>
 
+          <div class="custom-property col-12" load-template="edit-property" data-icon="../../assets/icons/id.svg"
+            data-label="Surname" data-type="text" data-key="surname"></div>
 
-      <div class="custom-property" load-template="edit-property" data-icon="../../assets/icons/lock.svg"
-        data-label="Password" data-type="password" data-key="password"></div>
+          <div class="custom-property col-12" load-template="edit-property" data-icon="../../assets/icons/lock.svg"
+            data-label="Password" data-type="password" data-key="password"></div>
 
-      <div class="custom-property" load-template="edit-property" data-icon="../../assets/icons/email.svg"
-        data-label="Email" data-type="email" data-key="email"></div>
+          <div class="custom-property col-12" load-template="edit-property" data-icon="../../assets/icons/email.svg"
+            data-label="Email" data-type="email" data-key="email"></div>
 
-      <div class="custom-property" load-template="edit-property" data-icon="../../assets/icons/phone.svg"
-        data-label="Phone Number" data-type="tel" data-key="phoneNumber"></div>
-
-    </section>
+          <div class="custom-property col-12" load-template="edit-property" data-icon="../../assets/icons/phone.svg"
+            data-label="Phone Number" data-type="tel" data-key="phoneNumber"></div>
+        </div>
+      </section>
+    </div>
   </main>
   <footer load-template="footer"></footer>
 
 </body>
+
+</html>
