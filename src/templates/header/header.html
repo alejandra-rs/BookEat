@@ -1,6 +1,4 @@
 <link rel="stylesheet" href="../../templates/header/header.css" />
-<script type="module" src="../../js/init-dark-mode.js"></script>
-<script type="module" src="../../js/auth-mode.js"></script>
 <link rel="stylesheet" href="../../../styles.css" />
 
 <header class="header">
@@ -104,33 +102,4 @@
     document.getElementById("search-button").addEventListener("click", () => {
         window.location.href = "../../pages/searcher-page/searcher-page.html";
     });
-
-    const headerSearch = document.querySelector(".header__search");
-    const headerSearchToggle = document.getElementById("header-search-toggle");
-    const headerSelectors = document.getElementById("header__search__selectors");
-
-    if (headerSearch && headerSearchToggle) {
-        document.addEventListener("click", (event) => {
-            if (!headerSearchToggle.checked) return;
-
-            const clickedInsideHeaderSearch = headerSearch.contains(
-                event.target,
-            );
-            const clickedInsideSelectors =
-                headerSelectors && headerSelectors.contains(event.target);
-            const clickedInsideDatePicker = event.target.closest("#date-picker");
-            const clickedInsideDateCalendar = event.target.closest(
-                ".flatpickr-calendar",
-            );
-
-            if (
-                !clickedInsideHeaderSearch &&
-                !clickedInsideSelectors &&
-                !clickedInsideDatePicker &&
-                !clickedInsideDateCalendar
-            ) {
-                headerSearchToggle.checked = false;
-            }
-        });
-    }
 </script>
