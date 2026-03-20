@@ -10,7 +10,7 @@ document.addEventListener('submit', async (e) => {
         const newComment = {
             restaurantId: formData.restaurantId,
             userId: sessionData.id,
-
+            title: formData.title,
             description: formData.reviewText,
             pros: formData.pros,
             cons: formData.cons,

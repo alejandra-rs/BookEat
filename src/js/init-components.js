@@ -70,8 +70,8 @@ document.addEventListener('DOMContentLoaded', async function() {
 
                 if (related === 'session' && context === 'bookings') {
                     url += role === 'user'
-                        ? `?userId=${myId}&_embed=restaurant&_sort=datetime`
-                        : `?restaurantId=${myId}&_embed=user&_sort=datetime`;
+                        ? `?userId=${myId}&_expand=restaurant&_sort=datetime`
+                        : `?restaurantId=${myId}&_expand=user&_sort=datetime`;
                 } else if (id && related) {
                     url += `?${related}=${id}`;
                 }
