@@ -23,8 +23,8 @@
 <body>
     <header load-template="header"></header>
 
-    <main class="searcher-page">
-        <aside class="searcher-page__filters">
+    <main class="searcher-page container-fluid row">
+        <aside class="searcher-page__filters col-12 col-lg-3">
             <h3>Price</h3>
             <div class="searcher-page__filters__slider">
                 <div class="searcher-page__filters__slider__line"></div>
@@ -39,7 +39,7 @@
             </ul>
         </aside>
 
-        <div data-context="restaurants" class="searcher-page__results">
+        <div data-context="restaurants" class="searcher-page__results col-12 col-lg-9">
             <template>
                 <div load-template="overview" class="searcher-page__results__card"></div>
             </template>
