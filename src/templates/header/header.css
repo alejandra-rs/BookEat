@@ -16,7 +16,8 @@
     order: 1;
 }
 
-.header__logo > img {
+.header__logo > img,
+.user-profile-picture{
     width: 3em;
     height: 3em;
 }
