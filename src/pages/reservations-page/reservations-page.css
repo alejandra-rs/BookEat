@@ -1,9 +1,10 @@
 body {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 20px;
     width: 100%;
+    overflow-y: auto;
 }
 
 .reservation-container {
@@ -11,5 +12,5 @@ body {
     flex-direction: column;
     width: 90%;
     align-self: center;
-    flex-shrink: 0;
+    flex: 0 0 auto;
 }
