@@ -47,11 +47,12 @@ export function matchPasswords(password, otherPassword) {
 }
 
 export function validPassword(data) {
-    return data.password.length > 8;
+    return data.password.length >= 8;
 }
 
 export function validPhone(data) {
-    return data.phoneNumber.length === 9;
+    const patronNumerico = /^[0-9]+$/
+    return patronNumerico.test(data.phoneNumber) && data.phoneNumber.length === 9 ;
 }
 
 export function buildAddress(data) {
