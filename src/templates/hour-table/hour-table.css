@@ -1,11 +1,10 @@
 .hour-table {
     display: grid;
-    grid-template-columns: repeat(5,1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 1em;
     align-items: center;
     padding: 1.5em;
 }
-
 
 .hour-table > button {
     display: flex;
@@ -31,4 +30,10 @@
     color: var(--bg-primary);
     cursor: default;
     pointer-events: none;
+}
+
+@media (max-width: 600px) {
+    .hour-table {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }

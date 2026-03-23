@@ -1,15 +1,11 @@
 .edit-profile-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 4rem;
-    padding: 0.5rem 20rem;
     width: 100%;
     color: var(--text-primary);
 }
 
 .edit-profile-page__public {
+    display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 1.5rem;
 }
@@ -19,17 +15,16 @@
 }
 
 .edit-profile-page__public__image > img {
-    width: 20rem;
-    height: 20rem;
+    width: min(70vw, 20rem);
+    height: min(70vw, 20rem);
     object-fit: cover;
     border-radius: 100%;
 }
 
 .edit-profile-page__public__image > div {
-    font-size: 1.5rem;
     position: absolute;
-    right: 6rem;
-    bottom: 1rem;
+    right: 0.8rem;
+    bottom: 0.8rem;
 }
 
 .edit-profile-page__public__name {
@@ -58,15 +53,10 @@
 }
 
 .edit-profile-page__account-management {
+    display: flex;
+    width: 100%;
     gap: 1rem;
     flex-direction: column;
-}
-
-.edit-profile-page__account-management,
-.edit-profile-page__account-management div {
-    display: flex;
-    align-items: stretch;
-    width: 100%;
 }
 
 h2 {

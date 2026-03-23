@@ -1,28 +1,56 @@
-<link rel="stylesheet" href="../../templates/footer/footer.css">
-<link rel="stylesheet" href="../../../styles.css">
+<link rel="stylesheet" href="../../templates/footer/footer.css" />
+<link rel="stylesheet" href="../../../styles.css" />
 
 <footer class="footer">
-    <div class="footer__column">
-    <img src="../../assets/icons/logo.svg" alt="BookEat" class="icon">
-    </div>
-    <div class="footer__column">
-      <a href="../../pages/become-an-affiliate/become-an-affiliate.html">
-          <h3>Become an affiliate</h3>
-      </a>
-    </div>
+    <div class="footer__wrapper">
+        <div class="footer__column footer__column--logo">
+            <img
+                src="../../assets/icons/logo.svg"
+                alt="BookEat"
+                class="icon footer__logo-img"
+            />
+        </div>
 
-    <div class="footer__column">
-      <h3>Links</h3>
-      <ul>
-        <li>Lorem ipsum dolor</li>
-        <li>Lorem ipsum dolor</li>
-        <li>Lorem ipsum dolor</li>
-      </ul>
-    </div>
+        <div class="footer__column footer__column--affiliate">
+            <a
+                href="../../pages/become-an-affiliate/become-an-affiliate.html"
+                class="footer__affiliate-link"
+            >
+                <h3>Become an affiliate</h3>
+            </a>
+        </div>
 
-    <div class="footer__column">
-      <h3>Contact</h3>
-      <p>Email: lorem@ipsum.com</p>
-      <p>Tel: 123456789</p>
+        <div class="footer__column footer__column--links">
+            <input
+                type="checkbox"
+                id="footer-links-toggle"
+                class="footer__toggle"
+            />
+            <label for="footer-links-toggle" class="footer__label">
+                Links
+                <span class="footer__toggle-icon"></span>
+            </label>
+            <ul class="footer__list footer__content">
+                <li>Lorem ipsum dolor</li>
+                <li>Lorem ipsum dolor</li>
+                <li>Lorem ipsum dolor</li>
+            </ul>
+        </div>
+
+        <div class="footer__column footer__column--contact">
+            <input
+                type="checkbox"
+                id="footer-contact-toggle"
+                class="footer__toggle"
+            />
+            <label for="footer-contact-toggle" class="footer__label">
+                Contact
+                <span class="footer__toggle-icon"></span>
+            </label>
+            <div class="footer__content">
+                <p>Email: lorem@ipsum.com</p>
+                <p>Tel: 123456789</p>
+            </div>
+        </div>
     </div>
 </footer>
