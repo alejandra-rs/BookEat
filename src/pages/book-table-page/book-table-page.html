@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../../../styles.css">
     <link rel="stylesheet" href="../../pages/book-table-page/book-table-page.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <script src="../../pages/book-table-page/book-table-page.js"></script>
+    <script type="module" src="../../pages/book-table-page/book-table-page.js"></script>
     <script type="module" src="../../js/init-components.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
@@ -25,7 +25,7 @@
 <main class="book-table-page">
     <h2 id="hour-table-txt"><em> Select your tables at <strong data-template="text-name"></strong></em></h2>
     <div id="hour-table-map" load-template="table-map" data-template="custom-tableMap" filter="tableMap"></div>
-    <button id="book-selected" class="primary-button" data-opens="login-popup">Book Selected</button>
+    <button id="book-selected" class="primary-button" data-opens="booking-confirmation-popup">Book Selected</button>
 </main>
 
 <footer load-template="footer"></footer>

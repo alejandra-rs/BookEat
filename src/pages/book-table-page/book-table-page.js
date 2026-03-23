@@ -1,3 +1,5 @@
+import {post} from "../../js/api-json.js";
+
 document.addEventListener('DOMContentLoaded', () => {
 
     setInterval(() => {
@@ -13,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!bookBtn) return;
 
         const session = JSON.parse(sessionStorage.getItem('currentSession') || '{}');
-        const userId = session.datos ? (typeof session.datos === 'object' ? session.datos.id : session.datos) : null;
+        const userId = session.id || "";
 
         if (!userId) return;
 
@@ -25,12 +27,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const startTime = state.time.split(' - ')[0];
 
         const bookingPayload = {
-            id: crypto.randomUUID(),
             restaurantId: restaurantId,
             userId: String(userId),
             datetime: `${state.date} ${startTime}`,
             guests: state.diners,
-            tableIds: selectedTableIds,
+            tables: selectedTableIds,
             status: "incoming"
         };
 

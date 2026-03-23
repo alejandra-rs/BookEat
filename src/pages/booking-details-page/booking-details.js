@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const fp = flatpickr(calendarInput, {
         inline: true,
         minDate: "today",
-        dateFormat: "d/m/Y",
+        dateFormat: "Y-m-d",
         enable: [
             function(date) {
                 const dayLetter = dayMap[date.getDay()];

@@ -109,3 +109,11 @@ body {
     align-self: center;
     margin-top: 2rem;
 }
+
+.table-item__map__table.shape-round {
+    border-radius: 50%;
+}
+
+.table-item__map__table.shape-square {
+    border-radius: 8px;
+}

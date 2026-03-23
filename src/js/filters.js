@@ -8,6 +8,7 @@ export const filters = {
     reservationImage: getReservationImage
 }
 
+const DRAW_SCALE = 100;
 
 export function average(value) {
 
@@ -37,10 +38,21 @@ export function getStarValue(value, star) {
     return value[star];
 }
 
+
 export async function renderFloorPlan(layout, container) {
-    // 1. CLEAN DOM INJECTION
-    let canvas = container.querySelector('canvas');
-    let floor = container.querySelector('#floor');
+    const { canvas, floor } = setupMapContainer(container);
+    const { maxX, maxY } = drawRoomOutline(canvas, layout.outline, container);
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const occupiedTableIds = await fetchOccupiedTables(urlParams.get('id'),
+                                                           JSON.parse(sessionStorage.getItem('pendingBooking')));
+
+    renderTables(floor, layout.tables, { maxX, maxY }, occupiedTableIds);
+}
+
+
+function setupMapContainer(container) {
+    let canvas = container.querySelector('canvas'); let floor = container.querySelector('#floor');
 
     if (!canvas || !floor) {
         container.innerHTML = `
@@ -50,117 +62,99 @@ export async function renderFloorPlan(layout, container) {
         canvas = container.querySelector('canvas');
         floor = container.querySelector('#floor');
     }
+    return { canvas, floor };
+}
 
-    // 2. ASPECT RATIO & SCALING
-    const maxX = Math.max(...layout.outline.map(p => p.x));
-    const maxY = Math.max(...layout.outline.map(p => p.y));
 
-    // Apply the exact aspect ratio dynamically so the map is never warped
+function drawRoomOutline(canvas, outline, container) {
+    const maxX = Math.max(...outline.map(p => p.x)); const maxY = Math.max(...outline.map(p => p.y));
+
     container.style.aspectRatio = `${maxX} / ${maxY}`;
-
-    // Set internal canvas resolution to be high-quality
-    const DRAW_SCALE = 100;
-    canvas.width = maxX * DRAW_SCALE;
-    canvas.height = maxY * DRAW_SCALE;
+    canvas.width = maxX * DRAW_SCALE; canvas.height = maxY * DRAW_SCALE;
 
     const ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.beginPath();
-    ctx.lineWidth = 15; // Thicker line for better visibility
-    ctx.strokeStyle = '#333';
-    ctx.moveTo(layout.outline[0].x * DRAW_SCALE, layout.outline[0].y * DRAW_SCALE);
-    layout.outline.forEach(p => ctx.lineTo(p.x * DRAW_SCALE, p.y * DRAW_SCALE));
+    ctx.lineWidth = 15; ctx.strokeStyle = '#333';
+
+    ctx.moveTo(outline[0].x * DRAW_SCALE, outline[0].y * DRAW_SCALE);
+    outline.forEach(p => ctx.lineTo(p.x * DRAW_SCALE, p.y * DRAW_SCALE));
     ctx.closePath();
     ctx.stroke();
 
-    // 3. COLLISION LOGIC
-    const state = JSON.parse(sessionStorage.getItem('pendingBooking') || '{}');
-    const urlParams = new URLSearchParams(window.location.search);
-    const restaurantId = urlParams.get('id');
+    return { maxX, maxY };
+}
 
-    let occupiedTableIds = [];
 
-    if (state.date && state.time && state.time.includes(' - ')) {
-        try {
-            const res = await fetch(`http://localhost:3000/bookings?restaurantId=${restaurantId}`);
-            const bookings = await res.json();
+async function fetchOccupiedTables(restaurantId, state) {
+    try {
+        const res = await fetch(`http://localhost:3000/bookings?restaurantId=${restaurantId}`);
+        if (!res.ok) return [];
+        const bookings = await res.json();
 
-            let targetDateStr = state.date;
-            if (targetDateStr.includes('/')) {
-                const [d, m, y] = targetDateStr.split('/');
-                targetDateStr = `${y}-${m}-${d}`;
-            }
+        const targetDateStr = state.date;
 
-            bookings.forEach(b => {
-                if (b.datetime && b.datetime.includes(targetDateStr)) {
-                    const timeMatch = b.datetime.match(/\d{2}:\d{2}/);
-                    if (timeMatch) {
-                        const [bH, bM] = timeMatch[0].split(':').map(Number);
-                        const [sH, sM] = state.time.split(' - ')[0].split(':').map(Number);
+        const [sH, sM] = state.time.split(' - ')[0].split(':').map(Number);
+        const sTotalMins = sH * 60 + sM;
 
-                        const diffMins = Math.abs((bH * 60 + bM) - (sH * 60 + sM));
-                        if (diffMins < 120 && b.tableIds) {
-                            occupiedTableIds.push(...b.tableIds);
-                        }
-                    }
+        const occupied = [];
+
+        bookings.forEach(b => {
+            if (b.datetime && b.datetime.startsWith(targetDateStr)) {
+                const timeMatch = b.datetime.split(" ")[1];
+                if (timeMatch) {
+                    const [bH, bM] = timeMatch.split(':').map(Number);
+                    const diffMins = Math.abs((bH * 60 + bM) - sTotalMins);
+                    if (diffMins < 120) occupied.push(...b.tables.map(id => String(id)));
                 }
-            });
-        } catch (e) {
-            console.error("Could not fetch bookings:", e);
-        }
+            }
+        });
+        return occupied;
+    } catch (e) {
+        console.error("Could not fetch bookings:", e);
+        return [];
     }
+}
 
-    // 4. DRAW TABLES (Relying mostly on CSS now)
+
+function renderTables(floor, tables, { maxX, maxY }, occupiedTableIds) {
     floor.innerHTML = '';
     window.selectedTables = new Set();
 
-    layout.tables.forEach(table => {
+    tables.forEach(table => {
         const btn = document.createElement('div');
 
-        const widthVal = Math.abs(table.p2.x - table.p1.x);
-        const heightVal = Math.abs(table.p2.y - table.p1.y);
-        const minX = Math.min(table.p1.x, table.p2.x);
-        const minY = Math.min(table.p1.y, table.p2.y);
+        const w = (Math.abs(table.p2.x - table.p1.x) / maxX) * 100;
+        const h = (Math.abs(table.p2.y - table.p1.y) / maxY) * 100;
+        const x = (Math.min(table.p1.x, table.p2.x) / maxX) * 100;
+        const y = (Math.min(table.p1.y, table.p2.y) / maxY) * 100;
 
-        const w = (widthVal / maxX) * 100;
-        const h = (heightVal / maxY) * 100;
-        const x = (minX / maxX) * 100;
-        const y = (minY / maxY) * 100;
+        const isOccupied = occupiedTableIds.includes(String(table.id));
+        const stateClass = isOccupied ? 'occupied' : 'free';
+        const shapeClass = `shape-${table.shape}`;
 
-        const isOccupied = occupiedTableIds.includes(table.id);
-
-        // Add base class and state class
-        btn.className = `table-item__map__table ${isOccupied ? 'occupied' : 'free'}`;
-
-        // Keep positioning inline because it depends on the math
-        btn.style.width = `${w}%`;
-        btn.style.height = `${h}%`;
-        btn.style.left = `${x}%`;
-        btn.style.top = `${y}%`;
-
-        if (table.shape === 'round' || table.shape === 'circle') {
-            btn.style.borderRadius = '50%';
-        } else {
-            btn.style.borderRadius = '8px';
-        }
+        btn.className = `table-item__map__table ${stateClass} ${shapeClass}`;
+        btn.style.width = `${w}%`; btn.style.height = `${h}%`;
+        btn.style.left = `${x}%`; btn.style.top = `${y}%`;
 
         btn.dataset.id = table.id;
         btn.innerHTML = `<span>${table.capacity}</span>`;
 
-        btn.onclick = () => {
-            if (!isOccupied) {
-                btn.classList.toggle('selected');
-                if (btn.classList.contains('selected')) {
-                    window.selectedTables.add(table.id);
-                } else {
-                    window.selectedTables.delete(table.id);
-                }
-            }
-        };
+        btn.addEventListener('click', () => {
+            if (btn.classList.contains('occupied')) return;
+
+            const session = JSON.parse(sessionStorage.getItem('currentSession') || '{}');
+            if (!session.id) { document.getElementById("loginButton").click(); return; }
+
+            btn.classList.toggle('selected');
+            if (btn.classList.contains('selected'))  window.selectedTables.add(table.id);
+            else window.selectedTables.delete(table.id);
+        });
 
         floor.appendChild(btn);
     });
 }
+
 
 export async function getReservationName(data) {
     if (data.name) return data.name;
@@ -173,9 +167,7 @@ export async function getReservationName(data) {
 export async function getReservationImage(data) {
     if (data.images) return data.images;
     if (data.image) return data.image;
-
     if (data.restaurant && data.restaurant.images) return data.restaurant.images;
     if (data.user && data.user.image) return data.user.image;
-
     return data.restaurant ? "../../assets/img/restaurant-item.png" : "../../assets/img/user-image.png";
 }

@@ -93,14 +93,20 @@ document.addEventListener('DOMContentLoaded', async function() {
 });
 
 function saveBookingState() {
-    const dateInput = document.querySelector('main .date-picker__input') || document.querySelector('.header .date-picker__input');
-    const timeInput = document.querySelector('main .hour-selector__placeholder span') || document.querySelector('.header .hour-selector__placeholder span');
-    const dinersInput = document.querySelector('main #number') || document.querySelector('.header #number');
+    if (document.querySelector('.booking-details-page') || document.querySelector('.book-table-page')) return;
+    const dateInputEl = document.querySelector('.date-picker__input');
+    const rawDate = dateInputEl?.value;
+
+    let formattedDate = "";
+    if (rawDate && rawDate.includes('/')) {
+        const [d, m, y] = rawDate.split('/');
+        formattedDate = `${y}-${m}-${d}`;
+    } else formattedDate = `${rawDate}`;
 
     const state = {
-        date: dateInput?.value || "",
-        time: timeInput?.textContent !== "Time" ? timeInput?.textContent : "",
-        diners: dinersInput?.textContent || "1"
+        date: formattedDate,
+        time: document.querySelector('.hour-selector__placeholder span')?.textContent || "",
+        diners: document.querySelector('#number')?.textContent || "1"
     };
     sessionStorage.setItem('pendingBooking', JSON.stringify(state));
 }
@@ -112,8 +118,8 @@ function restoreBookingState() {
     if (state.time !== "Time") document.querySelectorAll('.hour-selector__placeholder span').forEach(el => el.textContent = state.time);
     if (state.date) {
         document.querySelectorAll('.date-picker__input').forEach(el => {
-            el.value = state.date;
-            if (el._flatpickr) el._flatpickr.setDate(state.date);
+            const [y, m, d] = state.date.split('-');
+            el.value = `${d}/${m}/${y}`;
         });
     }
 }
