@@ -10,7 +10,7 @@ async function logIn(email, password) {
 
     if (!matchPasswords(user.password, password)) throw new Error("email or password is wrong.");
 
-    sessionStorage.setItem('currentSession', JSON.stringify({rol: rol,id: user.id, image: user['profile_image']}));
+    sessionStorage.setItem('currentSession', JSON.stringify({rol: rol,id: user.id, image: user.image}));
 }
 
 function getData(form) {
@@ -59,7 +59,7 @@ function createUser(data) {
         phone: data.phoneNumber,
         email: data.email,
         password: data.password,
-        "profile-picture": ""
+        image: ""
     };
 }
 
