@@ -21,16 +21,20 @@
           velit. Phasellus elementum laoreet ante sit amet aliquam. Integer vel ante enim. Nam aliquet pharetra libero
           port titor faucibus. Curabitur ut leo non odio placerat elementum. Vestibulum commodo ipsum a auctor pretium.
           Integer sagittis et orci et sagittis.</p>
-      <form class="affiliate-form__form">
+      <form id="form-affiliate" class="affiliate-form__form">
           <div class="affiliate-form__fields form__fields">
               <div class="form__row">
-                <label> <input type="text" placeholder="Name" required> </label>
-                <label> <input type="text" placeholder="Surname" required> </label>
-                <label> <input type="tel" placeholder="Phone number" required> </label>
+                <label> <input name="name" type="text" placeholder="Name" required> </label>
+                <label> <input name="surname" type="text" placeholder="Surname" required> </label>
+                <label> <input name="phoneNumber" type="tel" placeholder="Phone number" required> </label>
               </div>
-              <label class="form__row"> <input type="email" placeholder="Email" required> </label>
+              <label class="form__row"> <input name="email" type="email" placeholder="Email" required> </label>
               <div class="form__row">
-                  <label> <input type="text" placeholder="Restaurant Name" required> </label>
+                <label> <input name="password" type="password" placeholder="Password" required> </label>
+                <label> <input name="confirmPassword" type="password" placeholder="Confirm Password" required> </label>
+              </div>
+              <div class="form__row">
+                  <label> <input name="restaurantName" type="text" placeholder="Restaurant Name" required> </label>
                   <label class="campo">
                       <input list="tagsList" id="tag-input" placeholder="Add a tag">
                       <datalist id="tagsList">
@@ -41,19 +45,19 @@
                   </label>
               </div>
               <div class="tags-container" id="tags-container"></div>
-              <script src="../../pages/become-an-affiliate/become-an-affiliate.js"></script>
 
-              <label class="form__row"> <input type="text" placeholder="Restaurant address (line 1)" required> </label>
-              <label class="form__row"> <input type="text" placeholder="Restaurant address (line 2)"> </label>
+              <label class="form__row"> <input name="addressLine1" type="text" placeholder="Restaurant address (line 1)" required> </label>
+              <label class="form__row"> <input name="addressLine2" type="text" placeholder="Restaurant address (line 2)"> </label>
               <div class="form__row">
-                <label> <input type="text" placeholder="City" required> </label>
-                <label> <input type="text" placeholder="Province" required> </label>
-                <label> <input type="text" placeholder="Postal Code" required> </label>
+                <label> <input name="city" type="text" placeholder="City" required> </label>
+                <label> <input name="province" type="text" placeholder="Province" required> </label>
+                <label> <input name="postalCode" type="text" placeholder="Postal Code" required> </label>
               </div>
           </div>
         <button class="primary-button" type="submit">Become an affiliate</button>
       </form>
     </main>
     <footer load-template="footer"></footer>
+    <script type="module" src="../../pages/become-an-affiliate/become-an-affiliate.js"></script>
 
 </body>
