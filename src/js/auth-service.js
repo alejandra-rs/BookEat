@@ -16,15 +16,17 @@ export function getData(form) {
     return Object.fromEntries(new FormData(form).entries())
 }
 
-export async function getNextRestaurantId() {
-    const restaurants = await (await fetch(`${URL_BASE}/restaurants`)).json();
-    const maxId = restaurants.reduce((max, restaurant) => {
-        const numericId = Number(restaurant.id);
+export async function getNextId(url) {
+    const datas = await (await fetch(`${URL_BASE}/${url}`)).json();
+    const maxId = datas.reduce((max, data) => {
+        const numericId = Number(data.id);
         return Number.isFinite(numericId) ? Math.max(max, numericId) : max;
     }, 0);
 
     return maxId + 1;
 }
+
+
 
 export function isEmpty(data) {
     for (let value in data.values) {
