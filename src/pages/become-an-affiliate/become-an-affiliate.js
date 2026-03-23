@@ -43,11 +43,11 @@ function createRestaurantProfile(data, userId, restaurantId) {
         id: `${userId}`,
         name: data.name,
         surname: data.surname,
-        "account-name": data.name,
+        accountName: data.name,
         password: data.password,
         email: data.email,
-        "phoneNumber": data.phone,
-        "image": "",
+        phoneNumber: data.phone,
+        image: "",
         restaurant: restaurantId
     };
 }
@@ -108,20 +108,21 @@ if (formAffiliate) {
             }
             const nextRestaurantId = await getNextId('restaurants');
             const restaurantPostResponse = await post(createRestaurantData(data, nextRestaurantId), 'restaurants');
+            
             if (!restaurantPostResponse.ok) throw new Error('The restaurant could not be created.');
 
-            const createdRestaurantData = await restaurantPostResponse.json();
-            const restaurantId = Number(createdRestaurantData.id);
-            console.log(restaurantId);
+            
             const nextProfileId = await getNextId('restaurant-profiles');
-            const newRestaurantProfile = createRestaurantProfile(data, nextProfileId, restaurantId)
+            console.log(nextProfileId);
+            const newRestaurantProfile = createRestaurantProfile(data, nextProfileId, nextRestaurantId)
             console.log(newRestaurantProfile);
+
             const postResponse = await post(newRestaurantProfile, 'restaurant-profiles');
             console.log(postResponse);
+
             if (!postResponse.ok) throw new Error('The account could not be created.');
 
-            const createdRestaurant = await postResponse.json();
-            await logIn(createdRestaurant.email, createdRestaurant.password)
+            await logIn(data.email, data.password)
 
             formAffiliate.reset();
             tagsContainer.replaceChildren();
