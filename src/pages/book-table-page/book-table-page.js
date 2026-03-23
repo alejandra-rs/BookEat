@@ -24,12 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const restaurantId = urlParams.get('id');
 
         const selectedTableIds = Array.from(window.selectedTables);
-        const startTime = state.time.split(' - ')[0];
 
         const bookingPayload = {
             restaurantId: restaurantId,
             userId: String(userId),
-            datetime: `${state.date} ${startTime}`,
+            datetime: `${state.date} ${state.time}`,
             guests: state.diners,
             tables: selectedTableIds,
             status: "incoming"
