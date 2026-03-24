@@ -8,12 +8,21 @@
 body:has(dialog[open]) {
     overflow: hidden;
 }
+html, body {
+    height: 100%;
+}
 body {
     background-color: var(--bg-primary);
+    color: var(--text-primary);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     margin: 0;
+}
+
+main{
+    flex-grow: 1;
+    background-color: var(--bg-primary);
 }
 
 header, footer {flex-shrink: 0;}
@@ -46,7 +55,7 @@ body.dark-mode {
     --button-secondary: #acacac;
 }
 
-button {
+body button {
     display: inline-flex;
     align-items: center;
     border-radius: 12px;
@@ -60,11 +69,11 @@ a {
     color: inherit;
 
 }
-a > button {
+body a > button {
     text-decoration: none;
 }
 
-button img.icon {
+body button img.icon {
     width: 2em;
     height: 2em;
     color: var(--text-primary);

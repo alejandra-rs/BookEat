@@ -1,64 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurant Reviews Page</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="icon" type="image/svg+xml" href="../../assets/icons/logo.svg">
     <link rel="stylesheet" href="/styles.css">
     <link rel="stylesheet" href="../../pages/restaurant-reviews-page/restaurant-reviews-page.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <script type="module" src="../../js/init-components.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
+
 <body>
 
-<header load-template="header"></header>
+    <header load-template="header"></header>
 
-<main class="restaurant-reviews-page__main" data-page-context="restaurants">
+<main class="restaurant-reviews-page__main container-fluid d-flex flex-column gap-4 px-3 px-md-4 px-lg-5 pt-3 pb-4"
+      data-page-context="restaurants">
     <div load-template="restaurant-info"></div>
-    <div class="restaurant-reviews-page__image-carousel">
+    <div class="restaurant-reviews-page__image-carousel d-flex overflow-auto gap-3 py-2">
     </div>
 
-    <section class="restaurant-reviews-page__summary">
-        <div class="restaurant-reviews-page__summary__mean">
-            <div load-template="user-score" class="restaurant-reviews-page__summary__mean__score"></div>
-            <span data-template="text-rating" filter="total" class="restaurant-reviews-page__summary__mean__info">999</span> <span> reviews</span>
-        </div>
-        <div class="restaurant-reviews-page__summary__breakdown" data-template="list-rating" load-template="summary-breakdown"></div>
-    </section>
-
-    <section class="restaurant-reviews-page__filters" data-context="reviews">
-        <div>
-            <h2>Filter</h2>
-            <div class="restaurant-reviews-page__filters__buttons">
-                <button class="restaurant-reviews-page__filters__button active" data-rating="all">All</button>
-                <button class="restaurant-reviews-page__filters__button" data-rating="5">5 Stars</button>
-                <button class="restaurant-reviews-page__filters__button" data-rating="4">4 Stars</button>
-                <button class="restaurant-reviews-page__filters__button" data-rating="3">3 Stars</button>
-                <button class="restaurant-reviews-page__filters__button" data-rating="2">2 Stars</button>
-                <button class="restaurant-reviews-page__filters__button" data-rating="1">1 Star</button>
-                <button class="restaurant-reviews-page__filters__button" data-photos="true">With Photos</button>
+        <section class="restaurant-reviews-page__summary row g-3 g-lg-4 justify-content-center align-items-stretch">
+            <div class="restaurant-reviews-page__summary__mean col-12 col-lg-auto">
+                <div load-template="user-score" class="restaurant-reviews-page__summary__mean__score"></div>
+                <span data-template="text-rating" filter="total"
+                    class="restaurant-reviews-page__summary__mean__info">999</span> <span> reviews</span>
             </div>
-        </div>
-        <div>
-            <h2>Sort by</h2>
-            <div class="restaurant-reviews-page__filters__sort-by">
-                <label>
-                    <select id="sort-reviews" name="sort-by">
-                        <option value="newest">Newest First</option>
-                        <option value="oldest">Oldest First</option>
-                    </select>
-                </label>
+            <div class="restaurant-reviews-page__summary__breakdown col-12 col-lg-auto" data-template="list-rating"
+                load-template="summary-breakdown"></div>
+        </section>
+
+        <section
+            class="restaurant-reviews-page__filters row g-4 g-lg-3 justify-content-lg-between align-items-lg-center"
+            data-context="reviews">
+            <div class="col-12 col-lg-8 d-flex flex-column flex-lg-row align-items-start align-items-lg-center gap-3">
+                <h2>Filter</h2>
+                <div class="restaurant-reviews-page__filters__buttons">
+                    <button class="restaurant-reviews-page__filters__button active" data-rating="all">All</button>
+                    <button class="restaurant-reviews-page__filters__button" data-rating="5">5 Stars</button>
+                    <button class="restaurant-reviews-page__filters__button" data-rating="4">4 Stars</button>
+                    <button class="restaurant-reviews-page__filters__button" data-rating="3">3 Stars</button>
+                    <button class="restaurant-reviews-page__filters__button" data-rating="2">2 Stars</button>
+                    <button class="restaurant-reviews-page__filters__button" data-rating="1">1 Star</button>
+                    <button class="restaurant-reviews-page__filters__button" data-photos="true">With Photos</button>
+                </div>
             </div>
-        </div>
-    </section>
+            <div
+                class="col-12 col-lg-4 d-flex flex-column flex-lg-row align-items-start align-items-lg-center gap-3 justify-content-lg-end">
+                <h2>Sort by</h2>
+                <div class="restaurant-reviews-page__filters__sort-by">
+                    <label class="w-100">
+                        <select id="sort-reviews" name="sort-by" class="form-select">
+                            <option value="newest">Newest First</option>
+                            <option value="oldest">Oldest First</option>
+                        </select>
+                    </label>
+                </div>
+            </div>
+        </section>
 
-    <section class="restaurant-reviews-page__reviews" data-context="reviews" related="restaurantId">
-        <template><article load-template="user-review"></article></template>
-    </section>
-    <div load-template="pagination"></div>
-</main>
+        <section class="restaurant-reviews-page__reviews d-flex flex-column gap-4" data-context="reviews"
+            related="restaurantId">
+            <template>
+                <article load-template="user-review"></article>
+            </template>
+        </section>
+        <div class="d-flex justify-content-center" load-template="pagination"></div>
+    </main>
 
-<footer load-template="footer"></footer>
+    <footer load-template="footer"></footer>
 </body>
+
 </html>

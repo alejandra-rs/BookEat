@@ -1,4 +1,10 @@
 <script type="module" src="../../templates/create-an-account/create-account.js" defer></script>
+<script
+    type="module"
+    src="../../templates/create-an-account/create-account.js"
+    defer
+></script>
+<script src="../../templates/my-account-popup/log-out.js" defer></script>
 <script type="module" src="../../js/init-dark-mode.js"></script>
 <script type="module" src="../../js/auth-mode.js"></script>
 <script type="module" src="../../templates/my-account-popup/log-out.js" defer></script>
@@ -9,14 +15,44 @@
 <header class="header">
 
     <a href="../../pages/landing-page/landing-page.html" class="header__logo">
-        <img src="../../assets/icons/logo.svg" alt="BookEat Logo" class="icon">
+        <img
+            src="../../assets/icons/logo.svg"
+            alt="BookEat Logo"
+            class="icon"
+        />
     </a>
 
     <div class="header__search">
         <div class="header__search__field">
-            <button id="search-button"> <img src="../../assets/icons/search.svg" alt="Search" class="icon"> </button>
-            <label> <input type="text" placeholder="Search..." class="header__search__field__input" onchange="search()"> </label>
+            <button id="search-button">
+                <img
+                    src="../../assets/icons/search.svg"
+                    alt="Search"
+                    class="icon"
+                />
+            </button>
+            <label>
+                <input
+                    type="text"
+                    placeholder="Search..."
+                    class="header__search__field__input"
+                    onchange="search()"
+                />
+            </label>
         </div>
+        <input
+            id="header-search-toggle"
+            class="header__search__toggle-checkbox"
+            type="checkbox"
+        />
+        <label
+            for="header-search-toggle"
+            class="header__search__overflow-toggle"
+        >
+            <i
+                class="bi bi-three-dots-vertical header__search__overflow-toggle"
+            ></i>
+        </label>
         <div id="header__search__selectors" class="header__search__selectors">
             <div load-template="date-selector"></div>
             <div load-template="hour-selector"></div>
@@ -26,13 +62,38 @@
 
     <div class="header__buttons">
         <div class="header__buttons__toggles">
-            <button id="language-button"> <img src="../../assets/icons/language.svg" alt="Language" class="icon">  </button>
-            <button id="dark-mode-toggle"> <img src="../../assets/icons/dark-mode.svg" alt="Light Mode" id="dark-mode-icon" class="icon"> </button>
+            <button id="language-button">
+                <img
+                    src="../../assets/icons/language.svg"
+                    alt="Language"
+                    class="icon"
+                />
+            </button>
+            <button id="dark-mode-toggle">
+                <img
+                    src="../../assets/icons/dark-mode.svg"
+                    alt="Light Mode"
+                    id="dark-mode-icon"
+                    class="icon"
+                />
+            </button>
         </div>
 
         <div class="header__buttons__account" title="profile">
-            <button class="secondary-button" id="loginButton" data-opens="login-popup">Sign in</button>
-            <button class="primary-button" id="registerButton" data-opens="register-popup">Register</button>
+            <button
+                class="secondary-button"
+                id="loginButton"
+                data-opens="login-popup"
+            >
+                Sign in
+            </button>
+            <button
+                class="primary-button"
+                id="registerButton"
+                data-opens="register-popup"
+            >
+                Register
+            </button>
         </div>
     </div>
 </header>
@@ -42,9 +103,10 @@
 <div id="profile-popup-main" load-template="my-account-popup"></div>
 
 <script>
-    function search(){
+    function search() {
         window.location.href = "../../pages/searcher-page/searcher-page.html";
     }
-    document.getElementById('search-button').addEventListener('click', () => {
-        window.location.href = "../../pages/searcher-page/searcher-page.html";});
+    document.getElementById("search-button").addEventListener("click", () => {
+        window.location.href = "../../pages/searcher-page/searcher-page.html";
+    });
 </script>

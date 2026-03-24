@@ -1,7 +1,7 @@
 .header {
     display: flex;
     padding: 1rem 2rem;
-    gap: 5rem;
+    gap: 1rem;
     width: 100%;
     justify-content: space-between;
     align-items: center;
@@ -9,14 +9,21 @@
     background-color: var(--bg-secondary);
     color: var(--text-primary);
     z-index: 999;
+    container-type: inline-size;
 }
 
-.header__logo > img {
+.header__logo {
+    order: 1;
+}
+
+.header__logo > img,
+.user-profile-picture {
     width: 3em;
     height: 3em;
 }
 
 .header__search {
+    order: 2;
     display: flex;
     align-items: center;
     flex: 1;
@@ -27,6 +34,26 @@
     background-color: var(--bg-primary);
     border: 0.1rem solid var(--border-color);
     color: var(--text-primary);
+}
+
+.header__search__toggle-checkbox {
+    display: none;
+}
+
+.header__search__overflow-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: 1.2rem;
+    line-height: 1;
+    user-select: none;
 }
 
 .header__search__field {
@@ -48,6 +75,8 @@
     outline: none;
     background-color: transparent;
     color: var(--text-primary);
+    min-width: 0;
+    width: 100%;
 }
 
 .header__search__selectors {
@@ -72,6 +101,7 @@
 }
 
 .header__buttons {
+    order: 3;
     display: flex;
     justify-content: flex-end;
     gap: 1.5rem;
@@ -101,10 +131,155 @@
 .header__buttons__account {
     display: flex;
     gap: 0.8rem;
+    align-items: center;
 }
 
-.header__buttons img{
-    width: 4rem;
-    height: 4rem;
-    border-radius: 50%;
+#user-icon {
+    display: none;
+}
+
+@media (max-width: 1024px) {
+    .header {
+        position: relative;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        padding: 0.8rem;
+        overflow: visible;
+    }
+
+    .header__logo {
+        order: 1;
+    }
+
+    .header__buttons {
+        order: 1;
+        margin-left: auto;
+        gap: 0.8rem;
+    }
+    .header__buttons__toggles {
+        display: none;
+    }
+
+    .header__search {
+        min-width: 0;
+        max-width: 100%;
+        flex: 1 1 100%;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 0.4rem;
+        border-radius: 2rem;
+        padding: 0.2rem 0.8rem;
+    }
+
+    .header__search__field {
+        min-width: 120px;
+        flex: 1 1 auto;
+        grid-column: 1;
+    }
+
+    .header__search__overflow-toggle {
+        display: inline-flex;
+        grid-column: 2;
+        justify-self: end;
+    }
+
+    .header__search__selectors {
+        display: flex;
+        width: min(96vw, 700px);
+        max-width: 700px;
+        flex: 0 0 auto;
+        border-radius: 1.25rem;
+        position: absolute;
+        top: calc(100% + 0.45rem);
+        left: 50%;
+        z-index: 1200;
+        flex-direction: row;
+        align-items: center;
+        justify-self: center;
+        background-color: var(--bg-primary);
+        box-shadow: 0 8px 22px var(--shadow);
+        opacity: 0;
+        transform: translate(-50%, 0);
+        overflow: visible;
+        z-index: 2000;
+        visibility: hidden;
+        pointer-events: none;
+    }
+
+    .header__search__selectors > div {
+        width: auto;
+        flex: 1 1 0;
+        min-width: 0;
+        justify-content: center;
+        align-items: center;
+        padding: 0.25rem 0.6rem;
+        transition: background-color 0.2s;
+    }
+
+    .header__search__selectors > div:not(:last-child) {
+        height: auto;
+        min-height: 2rem;
+    }
+
+    .header__search__toggle-checkbox:checked ~ .header__search__selectors {
+        opacity: 1;
+        transform: translate(-50%, 0);
+        visibility: visible;
+        pointer-events: auto;
+    }
+}
+
+@media (max-width: 900px) {
+    .header {
+        gap: 0.55rem;
+        padding: 0.75rem;
+    }
+
+    .header__buttons__account {
+        gap: 0.4rem;
+    }
+
+    .header__buttons__account .secondary-button,
+    .header__buttons__account .primary-button {
+        padding: 0.25rem 0.7rem;
+        font-size: 0.88rem;
+    }
+
+    .header__search__field__input {
+        font-size: 0.92rem;
+    }
+
+    .header__logo > img {
+        width: 2.6em !important;
+        height: 2.6em !important;
+    }
+
+    .header__search__field {
+        min-width: 0;
+    }
+
+    .header__search__field__input {
+        font-size: 0.86rem;
+    }
+
+    .header__search__selectors {
+        width: min(98vw, 640px);
+        border-radius: 1rem;
+    }
+
+    .header__search__selectors > div {
+        padding: 0.2rem 0.35rem;
+    }
+
+    .header__search__selectors > div:first-child {
+        flex: 0 1 auto;
+        min-width: 0;
+    }
+
+    .header__search__selectors > div:nth-child(2),
+    .header__search__selectors > div:nth-child(3) {
+        flex: 1 1 0;
+        min-width: 6rem;
+    }
 }

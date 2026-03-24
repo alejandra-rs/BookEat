@@ -12,19 +12,27 @@
 .edit-property__icon {
     width: 2rem !important;
     height: 2rem !important;
+    flex: 0 0 2rem;
 }
 
 .edit-property__label {
     display: flex;
     align-items: center;
-    flex-grow: 1;
+    flex: 1 1 auto;
     gap: 0.5rem;
     width: 100%;
+    min-width: 0;
+}
+
+.edit-property__label__name {
+    flex: 0 0 7rem;
+    min-width: 7rem;
 }
 
 .edit-property__label__field {
     display: flex;
-    flex-grow: 1;
+    flex: 1 1 auto;
+    min-width: 0;
     align-items: center;
     border: var(--text-primary) solid 1px;
     padding: 0.2rem 0.5rem;

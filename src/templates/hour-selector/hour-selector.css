@@ -25,8 +25,8 @@
     width: max-content;
     background-color: var(--bg-secondary);
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 2500;
 }
 
 .hour-selector__dropdown.show {
@@ -63,4 +63,16 @@
 .hour-button.occupied {
     color: var(--bg-primary);
     background-color: var(--text-primary);
+}
+
+@media (max-width: 640px) {
+    .hour-selector__placeholder {
+        padding: 0.2em;
+        min-width: 66px;
+    }
+
+    .hour-selector__placeholder__icon {
+        width: 1em !important;
+        height: 1em !important;
+    }
 }

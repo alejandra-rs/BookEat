@@ -108,14 +108,9 @@ function renderHourTable(dateObj, savedTimeStr) {
         let current = new Date(); current.setHours(startH, startM, 0);
         let end = new Date(); end.setHours(endH, endM, 0);
 
-        while (current < end) {
-            let startStr = current.toTimeString().substring(0, 5);
+        while (current <= end) {
+            slots.push(`${current.toTimeString().substring(0, 5)}`);
             current.setMinutes(current.getMinutes() + 30);
-            let nextStr = current.toTimeString().substring(0, 5);
-
-            if (current <= end) {
-                slots.push(`${startStr} - ${nextStr}`);
-            }
         }
     });
 

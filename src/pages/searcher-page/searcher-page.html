@@ -1,43 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Searcher Page</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="icon" type="image/svg+xml" href="../../assets/icons/logo.svg">
     <link rel="stylesheet" href="../../../styles.css">
     <link rel="stylesheet" href="../../templates/overview/overview.css">
     <link rel="stylesheet" href="../../pages/searcher-page/searcher-page.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script type="module" src="../../js/init-components.js"></script>
 </head>
-<body>
-<header load-template="header"></header>
 
-<main class="searcher-page">
-    <aside class="searcher-page__filters">
-        <h3>Price</h3>
-        <div class="searcher-page__filters__slider">
-            <div class="searcher-page__filters__slider__line"></div>
-            <div class="searcher-page__filters__slider__dot left"><span>0</span></div>
-            <div class="searcher-page__filters__slider__dot right"><span>100</span></div>
+<body>
+    <header load-template="header"></header>
+
+    <main class="searcher-page container-fluid row">
+        <aside class="searcher-page__filters col-12 col-lg-3">
+            <h3>Price</h3>
+            <div class="searcher-page__filters__slider">
+                <div class="searcher-page__filters__slider__line"></div>
+                <div class="searcher-page__filters__slider__dot left"><span>0</span></div>
+                <div class="searcher-page__filters__slider__dot right"><span>100</span></div>
+            </div>
+
+            <ul class="searcher-page__filters__list">
+                <li> <label> <input type="checkbox"> </label> Lorem ipsum </li>
+                <li> <label> <input type="checkbox"> </label> Lorem ipsum </li>
+                <li> <label> <input type="checkbox" checked> </label> Lorem ipsum </li>
+            </ul>
+        </aside>
+
+        <div data-context="restaurants" class="searcher-page__results col-12 col-lg-9">
+            <template>
+                <div load-template="overview" class="searcher-page__results__card"></div>
+            </template>
         </div>
 
-        <ul class="searcher-page__filters__list">
-            <li> <label> <input type="checkbox"> </label> Lorem ipsum </li>
-            <li> <label> <input type="checkbox"> </label> Lorem ipsum </li>
-            <li> <label> <input type="checkbox" checked> </label> Lorem ipsum </li>
-        </ul>
-    </aside>
+    </main>
 
-    <div data-context="restaurants" class="searcher-page__results">
-        <template>
-            <div load-template="overview" class="searcher-page__results__card"></div>
-        </template>
-    </div>
-
-</main>
-
-<footer load-template="footer"></footer>
+    <footer load-template="footer"></footer>
 </body>
+
 </html>

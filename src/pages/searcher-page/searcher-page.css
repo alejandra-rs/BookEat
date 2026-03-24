@@ -1,13 +1,9 @@
 .searcher-page {
-    display: flex;
     align-items: flex-start;
-    gap: 30px;
     margin: 20px auto;
-    padding: 0 20px;
 }
 
 .searcher-page__filters {
-    flex: 0 0 250px;
     position: sticky;
     top: 20px;
     padding: 15px;
@@ -52,8 +48,19 @@
 }
 
 .searcher-page__results {
-    flex: 1;
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+
+@media (max-width: 1024px) {
+    .searcher-page {
+        margin: 16px auto;
+    }
+
+    .searcher-page__filters {
+        position: static;
+        top: auto;
+        padding: 12px;
+    }
 }
