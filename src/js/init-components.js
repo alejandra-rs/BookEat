@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     let pageContext = contextElement ? contextElement.getAttribute('data-page-context') : null;
 
     if (pageContext === 'my-profile') {
-        pageContext = role === 'user' ? 'users' : 'restaurants';
+        pageContext = role === 'user' ? 'users' : 'restaurant-profiles';
         if (!id) id = myId;
     }
 

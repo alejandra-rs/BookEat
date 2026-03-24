@@ -31,8 +31,10 @@ async function updateText(element, fieldName, btnImage) {
     const newValue = element.value;
     try {
         const session = JSON.parse(sessionStorage.getItem('currentSession'));
-        const role = session?.rol || "";
+        let role = session?.rol || "";
         const myId = session?.id || "";
+
+        (role === "restaurant") ? role = "restaurant-profile" : role = "restaurant";
 
         const response = await fetch(`http://localhost:3000/${role}s/${myId}`, {
             method: 'PATCH',

@@ -37,7 +37,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             const response = await post(bookingPayload, "bookings");
-            if (response.ok) sessionStorage.removeItem('pendingBooking');
+
+            if (response.ok) {
+                sessionStorage.removeItem('pendingBooking');
+                const confirmationDialog = document.querySelector('#booking-confirmation-container dialog');
+                confirmationDialog.showModal();
+            }
+
         } catch (e) {
             console.error("Error posting booking:", e);
         }
