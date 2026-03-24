@@ -31,7 +31,7 @@
 }
 
 .booking-details-page__title > h2 {
-    font-size: 2rem;
+    font-size: 1.4rem;
 }
 
 .booking-details-page__form {
@@ -47,6 +47,15 @@
     align-items: center;
     gap: 1rem;
     width: 100%;
+    min-width: 0;
+}
+
+#detail-time {
+    align-items: stretch;
+}
+
+#detail-time > h3 {
+    text-align: center;
 }
 
 #detail-diners > div {
@@ -55,7 +64,7 @@
 
 #dynamic-hour-table {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(80%/2, max(120px, 80%/5)), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(clamp(1rem, 22vw, 110px), 1fr));
     max-width: 700px;
     gap: 0.5rem;
 }
@@ -80,13 +89,16 @@
 
 @media (min-width: 800px) {
     .booking-details-page__form {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
         align-items: start;
     }
 
     #detail-diners {
         grid-column: 1 / -1;
         margin-bottom: 1rem;
+    }
+    .booking-details-page__title > h2{
+        font-size: 2em ;
     }
 }
 
@@ -97,11 +109,16 @@
     }
 
     .booking-details-page__form {
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
     }
 
     #detail-diners {
         grid-column: span 1;
         margin-bottom: 0;
     }
+
+    .booking-details-page__title > h2{
+        font-size: 2em ;
+    }
+
 }
