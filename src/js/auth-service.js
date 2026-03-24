@@ -69,6 +69,12 @@ async function findUserByEmail(email) {
 async function findRestaurantByEmail(email) {
     return (await fetch(`${URL_BASE}/restaurant-profiles?email=${email}`)).json();
 }
+
+export async function findRestaurantById(id) {
+    let promise = (await fetch(`${URL_BASE}/restaurant-profiles?id=${id}`)).json();
+    return promise.restaurantId;
+}
+
 export async function getExistencesByEmail(email) {
     return await Promise.all([
         findUserByEmail(email),

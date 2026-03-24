@@ -1,3 +1,5 @@
+import {findRestaurantById} from "../../js/auth-service";
+
 const logOutBtn = document.getElementById('log-out');
 
 if (logOutBtn) {
@@ -21,7 +23,8 @@ function adaptarPopupPorRol() {
         if (account) account.querySelector("span").textContent = 'My Restaurant Account';
 
         const restaurantBtnHTML = `
-            <a href="../../pages/restaurant-info-page/restaurant-info-page.html" id="restaurant-tab">
+            <a href='../../pages/restaurant-info-page/restaurant-info-page.html?id=${findRestaurantById(session.id)}'
+                id="restaurant-tab">
                 <button class="my-account-popup__nav__button" id="my-restaurant">
                     <img src="../../assets/icons/fork-knife.svg" alt="Restaurant Icon" class="icon">
                     My Restaurant
