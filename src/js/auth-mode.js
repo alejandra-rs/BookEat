@@ -13,6 +13,11 @@ document.addEventListener('click', (event) => {
     }
 
     if (event.target.tagName === 'DIALOG' && event.target.open) {
+        if (event.target.id === "booking-confirmation-popup"){
+            event.target.close();
+            window.location.href = "../../pages/landing-page/landing-page.html";
+            return;
+        }
         event.target.close();
     }
 });
