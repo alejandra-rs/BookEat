@@ -71,8 +71,16 @@ async function findRestaurantByEmail(email) {
 }
 
 export async function findRestaurantById(id) {
-    let promise = (await fetch(`${URL_BASE}/restaurant-profiles?id=${id}`)).json();
-    return promise.restaurantId;
+    try {
+        const response = await fetch(`${URL_BASE}/restaurants/${id}`);
+        if (!response.ok) return null;
+
+        const data = await response.json();
+        return data.id;
+    } catch (error) {
+        console.error("Error searching a restaurant", error);
+        return null;
+    }
 }
 
 export async function getExistencesByEmail(email) {

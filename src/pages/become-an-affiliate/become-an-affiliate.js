@@ -46,9 +46,9 @@ function createRestaurantProfile(data, userId, restaurantId) {
         accountName: data.name,
         password: data.password,
         email: data.email,
-        phoneNumber: data.phone,
+        phoneNumber: data.phoneNumber,
         image: "",
-        restaurant: restaurantId
+        restaurantId: restaurantId
     };
 }
 
@@ -113,12 +113,9 @@ if (formAffiliate) {
 
             
             const nextProfileId = await getNextId('restaurant-profiles');
-            console.log(nextProfileId);
             const newRestaurantProfile = createRestaurantProfile(data, nextProfileId, nextRestaurantId)
-            console.log(newRestaurantProfile);
 
             const postResponse = await post(newRestaurantProfile, 'restaurant-profiles');
-            console.log(postResponse);
 
             if (!postResponse.ok) throw new Error('The account could not be created.');
 
