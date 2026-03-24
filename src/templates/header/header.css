@@ -161,9 +161,6 @@
         margin-left: auto;
         gap: 0.8rem;
     }
-    .header__buttons__toggles {
-        display: none;
-    }
 
     .header__search {
         min-width: 0;
@@ -254,5 +251,11 @@
 
     .header__search__field__input {
         font-size: 0.86rem;
+    }
+}
+
+@media (max-width: 350px) {
+    .header__buttons__toggles {
+        display: none;
     }
 }
