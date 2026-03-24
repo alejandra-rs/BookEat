@@ -1,9 +1,11 @@
 export const filters = {
     total: total,
     average: average,
-    tableMap: renderFloorPlan,
     percent: reviewProportion,
     get: getStarValue,
+    showRandom: showRandom,
+    showBest: showBest,
+    tableMap: renderFloorPlan,
     reservationName: getReservationName,
     reservationImage: getReservationImage
 }
@@ -36,6 +38,14 @@ export function reviewProportion(value, star) {
 
 export function getStarValue(value, star) {
     return value[star];
+}
+
+export function showRandom(value, nItems) {
+    console.log(value, nItems);
+}
+
+export function showBest(value, nItems) {
+
 }
 
 
@@ -75,7 +85,7 @@ function drawRoomOutline(canvas, outline, container) {
     const ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.beginPath();
-    ctx.lineWidth = 15; ctx.strokeStyle = '#333';
+    ctx.lineWidth = 5; ctx.strokeStyle = '#333';
 
     ctx.moveTo(outline[0].x * DRAW_SCALE, outline[0].y * DRAW_SCALE);
     outline.forEach(p => ctx.lineTo(p.x * DRAW_SCALE, p.y * DRAW_SCALE));
