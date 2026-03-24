@@ -9,6 +9,7 @@
     border: none;
     align-self: start;
     color: var(--text-primary);
+    margin-top: 1rem;
 }
 
 .booking-details-page {
@@ -16,8 +17,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 2rem;
-    padding: 3rem;
+    gap: 3rem;
+    padding: 1rem;
     width: 100%;
 }
 
@@ -34,33 +35,73 @@
 }
 
 .booking-details-page__form {
-    width: 80%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    width: 100%;
+}
+
+.booking-details-page__form__field {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+#detail-diners > div {
+    font-size: 1.2rem;
 }
 
 #dynamic-hour-table {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(80%/2, max(120px, 80%/5)), 1fr));
     max-width: 700px;
-    gap: 10px;
-    margin-top: 15px;
+    gap: 0.5rem;
 }
 
 .hour-table__btn {
     width: 100%;
-    padding: 10px;
+    padding: 0.5rem;
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
 .hour-table__btn.selected {
-    background-color: pink;
-    color: white;
+    background-color: var(--text-primary);
+    color: var(--bg-primary);
     border-color: var(--text-primary);
 }
 
-.hour-table__btn.occupied {
-    background-color: #eee;
-    color: #aaa;
-    cursor: not-allowed;
-    text-decoration: line-through;
+#confirm-details {
+    display: flex;
+    padding: 0.7rem 1rem;
+}
+
+@media (min-width: 800px) {
+    .booking-details-page__form {
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+    }
+
+    #detail-diners {
+        grid-column: 1 / -1;
+        margin-bottom: 1rem;
+    }
+}
+
+
+@media (min-width: 1024px) {
+    .booking-details-page {
+        gap: 8rem;
+    }
+
+    .booking-details-page__form {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    #detail-diners {
+        grid-column: span 1;
+        margin-bottom: 0;
+    }
 }

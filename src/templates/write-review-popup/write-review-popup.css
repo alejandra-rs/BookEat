@@ -1,16 +1,28 @@
 #write-review {
-    flex-direction: column;
-    align-items: center;
     background-color: var(--bg-primary);
     border: none;
-    gap: 1em;
-    padding: 1.5em;
     border-radius: 30px;
+    max-width: 700px;
+    width: calc(95% - 20vw);
+}
+
+.write-review__form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.5em;
+    padding: 2em;
+}
+
+.write-review__form > div {
+    display: flex;
+    align-self: center;
 }
 
 h1 {
-    font-size: 2rem; 
+    font-size: 2rem;
     color: var(--text-primary);
+    margin: 0;
 }
 
 h2 {
@@ -18,21 +30,37 @@ h2 {
     color: var(--text-secondary);
 }
 
+textarea {
+    width: 100%;
+}
+
 .write-review__content {
-    background-color: var(--bg-secondary);
+    display: flex;
+    flex-direction: column;
     border-radius: 20px;
-    padding: 0.8em 1.5em;
-    gap: 1em;
-    flex: 1;
+    padding: 1rem 1.5rem;
+    background-color: var(--bg-secondary);
     color: var(--text-secondary);
+    width: 100%
 }
 
 .write-review__pros-cons {
     display: flex;
+    flex-direction: row;
     align-self: stretch;
-    gap: 1em;
+    gap: 1.5em;
 }
 
 .write-review__footer {
-    align-self: flex-end;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+@media (max-width: 900px) {
+
+    .write-review__pros-cons {
+        flex-direction: column;
+    }
 }

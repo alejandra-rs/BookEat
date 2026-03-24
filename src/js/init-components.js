@@ -115,7 +115,7 @@ function restoreBookingState() {
     const state = JSON.parse(sessionStorage.getItem('pendingBooking') || '{}');
 
     if (state.diners) document.querySelectorAll('#number').forEach(el => el.textContent = state.diners);
-    if (state.time !== "Time") document.querySelectorAll('.hour-selector__placeholder span').forEach(el => el.textContent = state.time);
+    if (state.time && state.time !== "Time") document.querySelectorAll('.hour-selector__placeholder span').forEach(el => el.textContent = state.time);
     if (state.date) {
         document.querySelectorAll('.date-picker__input').forEach(el => {
             const [y, m, d] = state.date.split('-');

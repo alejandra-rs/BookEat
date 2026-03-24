@@ -26,14 +26,48 @@
 
 .user-review__header__metadata {
     display: flex;
-    flex: 1;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
+    width: 100%;
 }
 
-.user-review__header__metadata__user {
+.user-review__header__metadata__left {
     display: flex;
+    align-items: center;
     gap: 1rem;
+    min-width: 0;
+    flex: 1;
+}
+
+.user-review__header__metadata__left__text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.1rem;
+    min-width: 0;
+    width: 100%;
+}
+
+.user-review__header__metadata__left__text h2 {
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.user-review__header__metadata__left__text__date {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.user-review__header__metadata__right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    flex-shrink: 0;
+    margin-left: 1rem;
 }
 
 .user-review__header__metadata__other__value {

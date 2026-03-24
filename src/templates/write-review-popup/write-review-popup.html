@@ -3,16 +3,16 @@
 <script type="module" src="../../templates/write-review-popup/write-review-popup.js"></script>
 
 <dialog id="write-review" class="write-review">
-  <form id="form-write-review">
+  <form id="form-write-review" class="write-review__form">
   <header> <h1 id="review-restaurant-title">Restaurant Name</h1> </header>
     <input type="hidden" name="restaurantId" id="review-restaurant-id">
 
     <section class="write-review__content">
-      <textarea name="title" aria-label="General experience" placeholder="give a sort description" required rows="1"></textarea>
+      <textarea name="title" aria-label="Title" placeholder="Title" required rows="1"></textarea>
     </section>
 
     <section class="write-review__content">
-      <textarea name="reviewText" aria-label="General experience" placeholder="Tell us about your experience... What did you eat? How was the service?" required rows="5" style="width: 100%; padding: 0.5rem; border-radius: 0.5rem;"></textarea>
+      <textarea name="reviewText" aria-label="Description" placeholder="Tell us about your experience... What did you eat? How was the service?" required rows="5" style="width: 100%; padding: 0.5rem; border-radius: 0.5rem;"></textarea>
     </section>
 
     <section class="write-review__pros-cons">
@@ -35,5 +35,3 @@
     </footer>
   </form>
 </dialog>
-
-<script src="../../templates/write-review-popup/write-review-popup.js"></script>

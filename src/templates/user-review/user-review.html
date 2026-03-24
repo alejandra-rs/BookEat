@@ -2,19 +2,32 @@
 <link rel="stylesheet" href="/styles.css">
 
 <article class="user-review">
+
   <header class="user-review__header">
     <div class="user-review__header__metadata">
-      <div class="user-review__header__metadata__user" data-context="users" related="userId">
-        <img data-template="src-image" class="user-review__header__image" src="../../assets/img/restaurant-item.png" alt="" >
-        <h2 data-template="text-name">User Name</h2>
+
+      <div class="user-review__header__metadata__left">
+
+        <div data-context="users" related="userId">
+          <img data-template="src-image" class="user-review__header__image" src="../../assets/img/restaurant-item.png" alt="" >
+        </div>
+
+        <div class="user-review__header__metadata__left__text">
+          <div data-context="users" related="userId"> <h2 data-template="text-name">User Name</h2> </div>
+          <p class="user-review__header__metadata__left__text__date" data-template="text-createdAt"></p>
+        </div>
+
       </div>
-      <div class="user-review__header__metadata__other">
+
+      <div class="user-review__header__metadata__right">
         <div class="user-review__header__metadata__other__value" load-template="user-score"></div>
-        <p data-template="text-createdAt"></p>
       </div>
+
     </div>
+
     <h3 data-template="text-title">Review title</h3>
   </header>
+
   <p data-template="text-description"></p>
   <div class="user-review__pros-cons">
     <div class="user-review__pros-cons__section">
