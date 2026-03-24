@@ -40,6 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (response.ok) {
                 // TODO: booking popup confirmation + something went wrong
                 sessionStorage.removeItem('pendingBooking');
+                const confirmationDialog = document.querySelector('#booking-confirmation-container dialog');
+                confirmationDialog.showModal();
             }
 
         } catch (e) {
