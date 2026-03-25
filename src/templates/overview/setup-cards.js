@@ -1,3 +1,5 @@
+import {fillTemplate} from "../../js/load-data.js";
+
 const DatesMockUps = {
     'default-date': "",
     'incoming-date': "12/02/2026",
@@ -34,10 +36,10 @@ const Buttons = {
        </template>
     `,
     'restaurant-incoming': `
-        <button class="secondary-button">Booked tables</button>
+        <button class="secondary-button btn-booked-tables" data-opens="re">Booked tables</button>
     `,
     'restaurant-past': `
-        <button class="secondary-button">Booked tables</button>
+        <button class="secondary-button btn-booked-tables">Booked tables</button>
     `
 };
 
@@ -59,7 +61,7 @@ export function setupCards(container) {
         if (dateDisplay) dateDisplay.textContent = dateValue;
 
         if (actionsContainer && idStore) {
-            while (actionsContainer.firstChild) actionsContainer.removeChild(actionsContainer.firstChild);
+            actionsContainer.replaceChildren();
 
             const templateString = Buttons[type] || Buttons['default'];
             const fragment = document.createRange().createContextualFragment(templateString);
@@ -95,7 +97,27 @@ export function setupCards(container) {
                     }
                 });
             }
-        actionsContainer.appendChild(content);
+
+            const tablesBtn = content.querySelector('.btn-booked-tables');
+            if (tablesBtn) {
+                const tablesElement = card.querySelector('.overview__content__buttons__tables');
+                const tablesString = tablesElement ? tablesElement.getAttribute('value') : '';
+
+                tablesBtn.addEventListener('click', async () => {
+                    const tablesArray = tablesString ? tablesString.split(',') : [];
+
+                    const dialog = document.getElementById('table-map-popup');
+                    const ulContainer = dialog.querySelector('[data-template="list-tables"]');
+
+                    if (dialog && ulContainer) {
+                        await fillTemplate(ulContainer, tablesArray);
+                        document.querySelectorAll('dialog[open]').forEach(d => d.close());
+                        dialog.showModal();
+                    }
+                });
+            }
+
+            actionsContainer.appendChild(content);
     }
     });
 }

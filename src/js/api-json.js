@@ -9,3 +9,7 @@ export async function post(newUser, endpoint) {
         body: JSON.stringify(newUser)
     });
 }
+
+export async function get(information, endpoint) {
+    return await(await fetch(`${URL_BASE}/${endpoint}?id=${information.id}`)).json();
+}

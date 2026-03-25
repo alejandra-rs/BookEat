@@ -56,7 +56,7 @@ function createUser(data) {
     return {
         name: data.name,
         surname: data.surname,
-        phone: data.phoneNumber,
+        phoneNumber: data.phoneNumber,
         email: data.email,
         password: data.password,
         image: ""
@@ -88,7 +88,7 @@ if (formRegister) {
             const [usersExistences, restaurantExistences] = await getExistencesByEmail(data.email)
             if (usersExistences.length > 0 || restaurantExistences.length > 0) return alert("This email already exists.");
 
-            const postResponse = await post(createUser(data), 'user');
+            const postResponse = await post(createUser(data), 'users');
 
             if (!postResponse.ok) throw new Error("The account could not be created.");
 
