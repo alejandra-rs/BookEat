@@ -1,16 +1,5 @@
-import {post} from "../../js/api-json.js";
-import {get} from "../../js/api-json.js";
-
-async function setConfirmation(confirmationDialog, bookingPayload) {
-    let [restaurant] =  await Promise.all([
-        get('restaurants', bookingPayload.restaurantId)
-    ])
-    confirmationDialog.querySelector("#booking-confirmation-popup__title").innerText = `Booking Confirmed at\n${restaurant[0].name}`;
-    confirmationDialog.querySelector("#reservation-details__content__info__address span").innerText = restaurant[0].address;
-    const timeElement = confirmationDialog.querySelector("#reservation-details__content__info__datetime time");
-    timeElement.innerText = bookingPayload.datetime;
-    timeElement.setAttribute('datetime', bookingPayload.datetime);
-}
+import {post, get} from "../../js/api-json.js";
+import {fillPage} from "../../js/load-data.js";
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -52,9 +41,14 @@ document.addEventListener('DOMContentLoaded', () => {
             if (response.ok) {
                 sessionStorage.removeItem('pendingBooking');
                 const confirmationDialog = document.querySelector('#booking-confirmation-container dialog');
-                await setConfirmation(confirmationDialog, bookingPayload);
+
+                const datos={datetime: "...", address: "...", map: "..."}
+                await fillPage(confirmationDialog, datos);
                 confirmationDialog.showModal();
             }
+
+
+
 
         } catch (e) {
             console.error("Error posting booking:", e);
