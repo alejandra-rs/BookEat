@@ -11,5 +11,5 @@ export async function post(newUser, endpoint) {
 }
 
 export async function get(information, endpoint) {
-    return await(await fetch(`${URL_BASE}/${endpoint}?id=${information.id}`)).json();
+    return await(await fetch(`${URL_BASE}/${information}?id=${endpoint}`)).json();
 }
