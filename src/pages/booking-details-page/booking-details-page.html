@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Confirm Booking Details</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="icon" type="image/svg+xml" href="../../assets/icons/logo.svg">
@@ -24,22 +25,24 @@
 
 <main class="booking-details-page">
 
-    <h1>Confirm your Booking Details</h1>
-    <h2 data-template="text-name">Restaurant Name</h2>
+    <div class="booking-details-page__title">
+        <p><em>Confirm your Booking Details at</em></p>
+        <h2 data-template="text-name">Restaurant Name</h2>
+    </div>
 
-    <div class="booking-details__form">
-        <div class="booking-details__field" id="detail-diners">
+    <div class="booking-details-page__form">
+        <div class="booking-details-page__form__field" id="detail-diners">
             <h3>Diners</h3>
             <div load-template="diners-selector"></div>
         </div>
 
-        <div class="booking-details__field" id="detail-date">
+        <div class="booking-details-page__form__field" id="detail-date">
             <h3>Date</h3>
             <label for="inline-calendar"></label>
             <input type="text" id="inline-calendar" style="display: none;">
         </div>
 
-        <div class="booking-details__field" id="detail-time">
+        <div class="booking-details-page__form__field" id="detail-time">
             <h3>Time</h3>
             <div class="hour-table" id="dynamic-hour-table">
                 <p><em>Please select a date first to see available hours.</em></p>

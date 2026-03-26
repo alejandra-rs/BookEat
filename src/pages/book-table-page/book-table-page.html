@@ -16,6 +16,7 @@
             integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
             crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://unpkg.com/@panzoom/panzoom@4.6.0/dist/panzoom.min.js"></script>
     <script type="module" src="../../pages/book-table-page/book-table-page.js"></script>
     <script type="module" src="../../js/init-components.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -35,7 +36,20 @@
 
 <main class="book-table-page">
     <h2 id="hour-table-txt"><em> Select your tables at <strong data-template="text-name"></strong></em></h2>
-    <div id="hour-table-map" load-template="table-map" data-template="custom-tableMap" filter="tableMap"></div>
+    <div class="map-viewport">
+        <div class="map-controls">
+            <button id="zoom-in" title="Zoom In">
+                <img class="icon" src="../../assets/icons/zoom-in.svg" alt="+">
+            </button>
+            <button id="zoom-out" title="Zoom Out">
+                <img class="icon" src="../../assets/icons/zoom-out.svg" alt="-">
+            </button>
+            <button id="zoom-reset" title="Reset View">
+                <img class="icon" src="../../assets/icons/reset.svg" alt="Reset">
+            </button>
+        </div>
+        <div id="hour-table-map" load-template="table-map" data-template="custom-tableMap" filter="tableMap"></div>
+    </div>
     <button id="book-selected" class="primary-button" data-opens="booking-confirmation-popup">Book Selected</button>
 </main>
 

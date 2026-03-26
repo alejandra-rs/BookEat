@@ -69,6 +69,20 @@ async function findUserByEmail(email) {
 async function findRestaurantByEmail(email) {
     return (await fetch(`${URL_BASE}/restaurant-profiles?email=${email}`)).json();
 }
+
+export async function findRestaurantById(id) {
+    try {
+        const response = await fetch(`${URL_BASE}/restaurants/${id}`);
+        if (!response.ok) return null;
+
+        const data = await response.json();
+        return data.id;
+    } catch (error) {
+        console.error("Error searching a restaurant", error);
+        return null;
+    }
+}
+
 export async function getExistencesByEmail(email) {
     return await Promise.all([
         findUserByEmail(email),

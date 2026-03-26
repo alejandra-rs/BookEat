@@ -2,9 +2,9 @@ export const filters = {
     total: total,
     average: average,
     categories: categories,
-    tableMap: renderFloorPlan,
     percent: reviewProportion,
     get: getStarValue,
+    tableMap: renderFloorPlan,
     random: randomSelection,
     best: bestN,
     sortDate: sortChronologically,
@@ -44,7 +44,6 @@ export function getStarValue(value, star) {
     return value[star];
 }
 
-
 export async function renderFloorPlan(layout, container) {
     const { canvas, floor } = setupMapContainer(container);
     const { maxX, maxY } = drawRoomOutline(canvas, layout.outline, container);
@@ -81,7 +80,7 @@ function drawRoomOutline(canvas, outline, container) {
     const ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.beginPath();
-    ctx.lineWidth = 15; ctx.strokeStyle = '#333';
+    ctx.lineWidth = 5; ctx.strokeStyle = '#333';
 
     ctx.moveTo(outline[0].x * DRAW_SCALE, outline[0].y * DRAW_SCALE);
     outline.forEach(p => ctx.lineTo(p.x * DRAW_SCALE, p.y * DRAW_SCALE));
