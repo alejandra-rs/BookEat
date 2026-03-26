@@ -9,7 +9,7 @@ if (logOutBtn) {
     });
 }
 
-function adaptarPopupPorRol() {
+async function adaptarPopupPorRol() {
     const sessionData = sessionStorage.getItem('currentSession');
     if (!sessionData) return;
 
@@ -18,10 +18,14 @@ function adaptarPopupPorRol() {
     const account = document.getElementById('my-account-popup__profile');
 
     if (session.rol === 'restaurant') {
+
+        let restProfile = await (await fetch(`http://localhost:3000/restaurant-profiles?id=${session.id}`)).json();
+        let restId = restProfile[0].restaurantId;
+
         if (account) account.querySelector("span").textContent = 'My Restaurant Account';
 
         const restaurantBtnHTML = `
-            <a href="../../pages/restaurant-info-page/restaurant-info-page.html" id="restaurant-tab">
+            <a href="../../pages/restaurant-info-page/restaurant-info-page.html?id=${restId}&edit=true" id="restaurant-tab">
                 <button class="my-account-popup__nav__button" id="my-restaurant">
                     <img src="../../assets/icons/fork-knife.svg" alt="Restaurant Icon" class="icon">
                     My Restaurant

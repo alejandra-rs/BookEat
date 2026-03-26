@@ -111,15 +111,9 @@ if (formAffiliate) {
             
             if (!restaurantPostResponse.ok) throw new Error('The restaurant could not be created.');
 
-            
             const nextProfileId = await getNextId('restaurant-profiles');
-            console.log(nextProfileId);
             const newRestaurantProfile = createRestaurantProfile(data, nextProfileId, nextRestaurantId)
-            console.log(newRestaurantProfile);
-
             const postResponse = await post(newRestaurantProfile, 'restaurant-profiles');
-            console.log(postResponse);
-
             if (!postResponse.ok) throw new Error('The account could not be created.');
 
             await logIn(data.email, data.password)

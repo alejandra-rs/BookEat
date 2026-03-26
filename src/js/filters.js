@@ -1,6 +1,7 @@
 export const filters = {
     total: total,
     average: average,
+    categories: categories,
     tableMap: renderFloorPlan,
     percent: reviewProportion,
     get: getStarValue,
@@ -162,7 +163,6 @@ function renderTables(floor, tables, { maxX, maxY }, occupiedTableIds) {
 
 
 export async function getReservationName(data) {
-    console.log(data);
     if (data.name) return data.name;
     if (data.restaurant) return data.restaurant.name;
     if (data.user) return `${data.user.name} ${data.user.surname || ''}`.trim();
@@ -218,4 +218,17 @@ export function bestN(array, n) {
 
 export function sortChronologically(array) {
     return [...array].sort((a, b) => b.createdAt > a.createdAt ? 1 : -1);
+}
+
+export async function categories(categoryIds) {
+    if (typeof categoryIds[0] !== "number") return categoryIds || [];
+    try {
+        const queryString = categoryIds.map(id => `id=${id}`).join('&');
+        const response = await fetch(`http://localhost:3000/categories?${queryString}`);
+        if (!response.ok) return [];
+        return await response.json();
+    } catch (e) {
+        console.error("Error fetching category names:", e);
+        return [];
+    }
 }

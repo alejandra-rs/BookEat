@@ -18,19 +18,19 @@ export const typeActions = {
 
 export async function fillPage(pageContainer, data) {
     let activeData = data;
-
     if (pageContainer.nodeType === Node.ELEMENT_NODE) activeData = await setContext(pageContainer, data);
 
     const currentContextContainer = pageContainer.nodeType === Node.ELEMENT_NODE
                                              ? pageContainer.closest('[data-context]')
                                              : null;
 
-    let elements = pageContainer.querySelectorAll('[data-template]');
+    let elements = Array.from(pageContainer.querySelectorAll('[data-template]'));
+    if (pageContainer.nodeType === Node.ELEMENT_NODE && pageContainer.hasAttribute('data-template')) {
+        elements.push(pageContainer);
+    }
 
     await Promise.all(
-        Array.from(elements).map(
-            element => injectData(element, currentContextContainer, activeData)
-        )
+        elements.map(element => injectData(element, currentContextContainer, activeData))
     );
 
     let nestedContexts = pageContainer.querySelectorAll('[data-context]');

@@ -10,12 +10,15 @@
         </header>
         <p data-template="text-description">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vel sem dui. Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit. Aliquam blandit viverra scelerisque. Aliquam et vehicula nibh, vulputate
-            tincidunt velit. Phasellus elementum laoreet ante sit amet aliquam. Integer vel ante enim. Nam aliquet
-            pharetra libero porttitor faucibus. Curabitur ut leo non odio placerat elementum. Vestibulum commodo ipsum
-            a auctor pretium. Integer sagittis et orci et sagittis. Quisque erat justo, tincidunt vel tristique quis,
-            mollis eget dui.
+            consectetur adipiscing elit.
         </p>
+
+        <section class="restaurant-info__content__categories" data-template="list-categories" filter="categories">
+            <template>
+                <span data-template="text-name">Category</span>
+            </template>
+        </section>
+
         <div class="restaurant-info__content__buttons">
             <button id="menu-icon" class="restaurant-info__content__buttons__menu secondary-button" data-opens="menu-popup" >
                 <img src="../../assets/icons/restaurant-menu.svg" alt="restaurant menu" class="restaurant-info__content__buttons__menu__icon icon">

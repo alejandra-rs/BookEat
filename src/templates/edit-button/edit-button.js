@@ -1,6 +1,6 @@
 const editActions = {
     text: async (editBtnContainer, fieldContainer) => {
-        const inputElement = fieldContainer.querySelector('input');
+        const inputElement = fieldContainer.querySelector('input') || fieldContainer.querySelector('textarea');
         const fieldName = inputElement.getAttribute('name');
         const btnImage = editBtnContainer.querySelector('.icon');
 
@@ -34,7 +34,10 @@ async function updateText(element, fieldName, btnImage) {
         const role = session?.rol || "";
         const myId = session?.id || "";
 
-        const response = await fetch(`http://localhost:3000/${role}s/${myId}`, {
+        const collection = element.getAttribute('data-collection') || `${role}s`;
+        const targetId = element.getAttribute('data-id') || myId;
+
+        const response = await fetch(`http://localhost:3000/${collection}/${targetId}`, {
             method: 'PATCH',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({[fieldName]: newValue})
