@@ -1,5 +1,6 @@
 import {post, get} from "../../js/api-json.js";
 import {fillPage} from "../../js/load-data.js";
+import proj4 from 'https://cdn.skypack.dev/proj4';
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -42,16 +43,36 @@ document.addEventListener('DOMContentLoaded', () => {
                 sessionStorage.removeItem('pendingBooking');
                 const confirmationDialog = document.querySelector('#booking-confirmation-container dialog');
 
-                const datos={datetime: "...", address: "...", map: "..."}
-                await fillPage(confirmationDialog, datos);
+                await fillPage(confirmationDialog, getPopupData(bookingPayload.datetime, bookingPayload.restaurantId));
                 confirmationDialog.showModal();
             }
-
-
-
 
         } catch (e) {
             console.error("Error posting booking:", e);
         }
     });
 });
+
+async function getPopupData(datetime, restaurantId) {
+    const restaurant = await Promise.any([
+        get("restaurants", restaurantId)
+    ])
+    return {
+        datetime: datetime,
+        address: restaurant[0].address,
+        map: getMapLinkFrom(restaurant[0].coordinates)
+    }
+}
+
+function getMapLinkFrom(coordinates) {
+    const utm30N = "+proj=utm +zone=30 +ellps=GRS80 +units=m +no_defs";
+    const wgs84 = "+proj=longlat +datum=WGS84 +no_defs";
+
+    const projection = proj4(utm30N, wgs84);
+    const [lon, lat] = projection.forward(coordinates);
+
+    const offset = 0.005;
+    const bbox = `${lon - offset}%2C${lat - offset}%2C${lon + offset}%2C${lat + offset}`;
+
+    return `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${lat}%2C${lon}`;
+}
