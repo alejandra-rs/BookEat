@@ -18,6 +18,7 @@
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script type="module" src="../../js/init-components.js"></script>
+    <script type="module" src="../../pages/searcher-page/searcher-page.js"></script>
 </head>
 
 <body>
@@ -26,16 +27,21 @@
     <main class="searcher-page container-fluid row">
         <aside class="searcher-page__filters col-12 col-lg-3">
             <h3>Price</h3>
-            <div class="searcher-page__filters__slider">
-                <div class="searcher-page__filters__slider__line"></div>
-                <div class="searcher-page__filters__slider__dot left"><span>0</span></div>
-                <div class="searcher-page__filters__slider__dot right"><span>100</span></div>
+            <div class="searcher-page__filters__price">
+                <div class="searcher-page__filters__price__slider">
+                    <label><input type="range" id="min-price" min="0" max="50" value="0"></label>
+                    <label><input type="range" id="max-price" min="0" max="50" value="50"></label>
+                </div>
+                <div class="searcher-page__filters__price__labels">
+                    <span id="min-price-label">0€</span> - <span id="max-price-label">50€</span>
+                </div>
             </div>
 
+            <h3 class="mt-4">Categories</h3>
             <ul class="searcher-page__filters__list">
-                <li> <label> <input type="checkbox"> </label> Lorem ipsum </li>
-                <li> <label> <input type="checkbox"> </label> Lorem ipsum </li>
-                <li> <label> <input type="checkbox" checked> </label> Lorem ipsum </li>
+                <li> <label> <input type="checkbox" class="category-filter" value="1"> Italian </label> </li>
+                <li> <label> <input type="checkbox" class="category-filter" value="12"> Asian </label> </li>
+                <li> <label> <input type="checkbox" class="category-filter" value="13"> Spanish </label> </li>
             </ul>
         </aside>
 

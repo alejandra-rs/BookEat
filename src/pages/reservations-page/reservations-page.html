@@ -18,6 +18,7 @@
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <script type="module" src="../../js/init-components.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script type="module" src="../../pages/reservations-page/reservations-page.js"></script>
 </head>
 
 <body data-page-context="bookings">
@@ -28,7 +29,7 @@
     <div load-template="date-range"></div>
 
     <main class="reservation-container">
-        <section class="reservation-container__result" data-context="bookings" related="session">
+        <section class="reservation-container__result" data-context="bookings" related="session" filter="incoming">
             <template>
                 <div load-template="overview"></div>
             </template>

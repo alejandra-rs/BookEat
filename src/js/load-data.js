@@ -54,8 +54,12 @@ export async function fillTemplate(container, items) {
         if (child.tagName !== 'TEMPLATE') child.remove();
     });
 
+    let activeItems = items;
+    const filter = itemsContainer.getAttribute('filter');
+    if (filter) activeItems = await applyFilter(filter, items, itemsContainer);
+
     const clones = await Promise.all(
-        items.map(async (item) => {
+        activeItems.map(async (item) => {
             const clone = template.content.cloneNode(true);
             await loadTemplate(clone);
             const firstElement = clone.firstElementChild;

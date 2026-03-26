@@ -100,9 +100,12 @@
 
 <script>
     function search() {
-        window.location.href = "../../pages/searcher-page/searcher-page.html";
+        const searchInput = document.querySelector('.header__search__field__input');
+        const query = searchInput ? searchInput.value.trim() : '';
+
+        if (query) window.location.href = `../../pages/searcher-page/searcher-page.html?q=${encodeURIComponent(query)}`;
+        else window.location.href = "../../pages/searcher-page/searcher-page.html";
     }
-    document.getElementById("search-button").addEventListener("click", () => {
-        window.location.href = "../../pages/searcher-page/searcher-page.html";
-    });
+
+    document.getElementById("search-button").addEventListener("click", search);
 </script>

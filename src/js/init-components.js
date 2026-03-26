@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     const urlParams = new URLSearchParams(window.location.search);
     let id = urlParams.get('id');
+    const searchQuery = urlParams.get('q');
 
     const contextElement = document.querySelector('[data-page-context]');
     let pageContext = contextElement ? contextElement.getAttribute('data-page-context') : null;
@@ -52,35 +53,20 @@ document.addEventListener('DOMContentLoaded', async function() {
             try {
                 let url = `http://localhost:3000/${context}`;
 
-                if (related === 'session' && context === 'bookings') {
-                    url += role === 'user'
-                        ? `?userId=${myId}&_expand=restaurant&_sort=datetime`
-                        : `?restaurantId=${myId}&_expand=user&_sort=datetime`;
-                } else if (id && related) {
-                    url += `?${related}=${id}`;
+                if (related === 'session') {
+                    const relationField = role === 'user' ? 'userId' : 'restaurantId';
+                    const expandField = role === 'user' ? 'restaurant' : 'user';
+                    url += `?${relationField}=${myId}&_expand=${expandField}`;
                 }
+                else if (id && related) url += `?${related}=${id}`;
+                else if (searchQuery && context === 'restaurants') url += `?q=${searchQuery}`;
 
                 const jsonData = await (await fetch(url)).json();
 
                 if (Array.isArray(jsonData)) {
-                    if (context === 'bookings' && window.location.href.includes('reservations-page')) {
-                        const mappedData = jsonData.map(booking => {
-                            const target = role === 'user' ? booking.restaurant : booking.user;
-                            return {
-                                ...booking,
-                                description: `Booking for ${booking.guests} guests.`,
-                                id: booking.id,
-                                restaurantId: target?.id
-                            };
-                        });
-                        await fillTemplate(container, mappedData);
-                        setupCards(container);
-                    } else {
-                        await fillTemplate(container, jsonData);
-                        if (window.location.href.includes('searcher-page') && context === 'restaurants') {
-                            setupCards(container);
-                        }
-                    }
+                    container.__loadedData = jsonData;
+                    await fillTemplate(container, jsonData);
+                    if (container.querySelector('.overview')) setupCards(container);
                 }
                 else await fillPage(container, jsonData);
             } catch (error) {
@@ -97,7 +83,7 @@ function saveBookingState() {
     const dateInputEl = document.querySelector('.date-picker__input');
     const rawDate = dateInputEl?.value;
 
-    let formattedDate = "";
+    let formattedDate;
     if (rawDate && rawDate.includes('/')) {
         const [d, m, y] = rawDate.split('/');
         formattedDate = `${y}-${m}-${d}`;

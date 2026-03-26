@@ -62,12 +62,12 @@
     border-color: var(--bg-secondary);
 }
 
-.restaurant-reviews-page__filters__sort-by {
+.restaurant-reviews-page__filters__sort-by__dropdown {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
 }
-.restaurant-reviews-page__filters__sort-by select {
+.restaurant-reviews-page__filters__sort-by__dropdown select {
     width: 100%;
     min-width: 0;
     border-radius: 8px;
@@ -89,7 +89,7 @@
         width: auto;
     }
 
-    .restaurant-reviews-page__filters__sort-by select {
+    .restaurant-reviews-page__filters__sort-by__dropdown select {
         width: auto;
         min-width: 200px;
     }
@@ -103,5 +103,10 @@
 
     .restaurant-reviews-page__summary__breakdown {
         max-width: 500px;
+    }
+
+    .restaurant-reviews-page__filters__sort-by {
+        display: flex;
+        flex-direction: row;
     }
 }

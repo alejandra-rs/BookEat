@@ -4,6 +4,11 @@ export const filters = {
     tableMap: renderFloorPlan,
     percent: reviewProportion,
     get: getStarValue,
+    random: randomSelection,
+    best: bestN,
+    sortDate: sortChronologically,
+    incoming: incomingBookings,
+    past: pastBookings,
     reservationName: getReservationName,
     reservationImage: getReservationImage
 }
@@ -157,12 +162,19 @@ function renderTables(floor, tables, { maxX, maxY }, occupiedTableIds) {
 
 
 export async function getReservationName(data) {
+    console.log(data);
     if (data.name) return data.name;
     if (data.restaurant) return data.restaurant.name;
     if (data.user) return `${data.user.name} ${data.user.surname || ''}`.trim();
     return "Unknown";
 }
 
+function formatBookingData(booking) {
+    return {
+        ...booking,
+        description: `Booking for ${booking.guests} guests.`
+    };
+}
 
 export async function getReservationImage(data) {
     if (data.images) return data.images;
@@ -170,4 +182,40 @@ export async function getReservationImage(data) {
     if (data.restaurant && data.restaurant.images) return data.restaurant.images;
     if (data.user && data.user.image) return data.user.image;
     return data.restaurant ? "../../assets/img/restaurant-item.png" : "../../assets/img/user-image.png";
+}
+
+export async function incomingBookings(array) {
+    if (!Array.isArray(array)) return array;
+    const now = new Date();
+
+    const filtered = array
+        .filter(b => new Date(b.datetime) >= now)
+        .sort((a, b) => new Date(a.datetime) - new Date(b.datetime));
+
+
+    return await Promise.all(filtered.map(formatBookingData));
+}
+
+export async function pastBookings(array) {
+    if (!Array.isArray(array)) return array;
+    const now = new Date();
+
+    const filtered = array
+        .filter(b => new Date(b.datetime) < now) // Past only
+        .sort((a, b) => new Date(b.datetime) - new Date(a.datetime)); // Reverse
+
+    return await Promise.all(filtered.map(formatBookingData));
+}
+
+
+export function randomSelection(array, n) {
+    return [...array].sort(() => 0.5 - Math.random()).slice(0, n);
+}
+
+export function bestN(array, n) {
+    return [...array].sort((a, b) => b.rating - a.rating).slice(0, n);
+}
+
+export function sortChronologically(array) {
+    return [...array].sort((a, b) => b.createdAt > a.createdAt ? 1 : -1);
 }
