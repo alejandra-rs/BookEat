@@ -10,9 +10,6 @@ const editActions = {
             inputElement.focus();
             if (btnImage) btnImage.src = "../../assets/icons/save.svg";
         } else await updateText(inputElement, fieldName, btnImage);
-    },
-    image: async (editBtnContainer, fieldContainer) => {
-        console.log("imagen");
     }
 }
 

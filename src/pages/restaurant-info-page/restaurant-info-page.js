@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     `;
                     desc.outerHTML = `
                         <div class="edit-property__label__field w-100 mt-3">
-                            <textarea name="description" class="edit-property__field__input" rows="5" readonly style="resize: none; width: 100%;" data-collection="restaurants" data-id="${myRestaurantId}">${desc.textContent}</textarea>
+                            <textarea name="description" class="edit-property__field__input" rows="5" readonly data-collection="restaurants" data-id="${myRestaurantId}">${desc.textContent}</textarea>
                             <span load-template="edit-button" ></span>
                         </div>
                     `;

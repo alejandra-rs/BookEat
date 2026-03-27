@@ -49,7 +49,6 @@ document.addEventListener('submit', async (evento) => {
     }
     if (evento.target && evento.target.id === 'form-login') {
         evento.preventDefault();
-        console.log("estoy en login");
         const formLogin = evento.target;
         const data = getData(formLogin);
         if(isEmpty(data)) return alert("please complete all fields");

@@ -10,8 +10,8 @@ export async function post(newUser, endpoint) {
     });
 }
 
-export async function get(information, endpoint) {
-    return await(await fetch(`${URL_BASE}/${information}?id=${endpoint}`)).json();
+export async function get(endpoint) {
+    return await(await fetch(`${URL_BASE}/${endpoint}`)).json();
 }
 
 export async function findUserByEmail(email) {

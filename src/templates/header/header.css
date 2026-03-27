@@ -101,9 +101,11 @@
 }
 
 .header__buttons {
+    height: 100%;
     order: 3;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     gap: 1.5rem;
 }
 
@@ -129,6 +131,7 @@
 }
 
 .header__buttons__account {
+    height: 100%;
     display: flex;
     gap: 0.8rem;
     align-items: center;
