@@ -2,7 +2,8 @@ dialog {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: var(--bg-primary);
+    text-align: center;
+    background: var(--bg-secondary);
     border: 1px solid var(--border-color);
     border-radius: 0.25em;
     padding: 2rem;
@@ -23,14 +24,14 @@ dialog {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
+    padding: 0.5rem;
+    gap: 1rem;
 }
 
 figure{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 2rem;
 }
 
 .reservation-details__content__media__image{
@@ -47,11 +48,21 @@ figure{
 .reservation-details__content__info p{
     display: flex;
     flex-direction: row;
-    justify-content: left;
+    text-align: left;
     align-items: center;
     gap: 3px;
 }
 
 .reservation-details__content__info p .icon{
     width: 1em;
+}
+
+.secondary-button {
+    margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+    .reservation-details__content {
+        flex-direction: column;
+    }
 }

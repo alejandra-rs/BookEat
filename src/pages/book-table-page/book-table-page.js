@@ -93,6 +93,7 @@ async function getPopupData(datetime, restaurantId) {
     ])
     return {
         datetime: datetime,
+        restaurantName: restaurant[0].name,
         address: restaurant[0].address,
         map: getMapLinkFrom(restaurant[0].coordinates)
     }
