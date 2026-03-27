@@ -2,27 +2,35 @@ import {findRestaurantByEmail, findUserByEmail, URL_BASE} from "../js/api-json.j
 
 export async function logIn(email, password) {
     const [usersExistences, restaurantExistences] = await getExistencesByEmail(email);
-    if (usersExistences.length === 0 && restaurantExistences.length === 0) throw new Error("email or password is wrong.");
+    if (usersExistences.length === 0 && restaurantExistences.length === 0) return false
 
     let rol = usersExistences.length === 1 ? 'user' : 'restaurant';
     let user = usersExistences.length === 1 ? usersExistences[0] : restaurantExistences[0];
 
-    if (!matchPasswords(user.password, password)) throw new Error("email or password is wrong.");
+    if (!matchPasswords(user.password, password)) return false;
 
     sessionStorage.setItem('currentSession', JSON.stringify({rol: rol,id: user.id, image: user.image}));
+    return true
 }
 
 export function getData(form) {
     return Object.fromEntries(new FormData(form).entries())
 }
 
-export function isEmpty(data) {
-    for (let value in data.values) {
-        if (!value?.trim()){
-            return true
+export function isEmpty(form) {
+    let hasError = false;
+    const inputs = Array.from(form.elements);
+
+    for (let input of inputs) {
+        if (input.tagName === 'BUTTON' || input.type === 'submit' || input.type === 'button') {
+            continue;
+        }
+        if (!input.value.trim()) {
+            showError(input, "This field is required");
+            hasError = true;
         }
     }
-    return false
+    return hasError;
 }
 
 export function checkEmail(data) {
@@ -80,3 +88,51 @@ export async function getNextId(url) {
 
     return maxId + 1;
 }
+
+
+export function dateValid(data) {
+    let today = new Date();
+    let birthdate = new Date(data.birthdate);
+
+    let age = today.getFullYear() - birthdate.getFullYear();
+
+    let month = today.getMonth() - birthdate.getMonth();
+    if (month < 0 || (month === 0 && today.getDate() < birthdate.getDate())) {
+        age--;
+    }
+
+    return age >= 18 && age <= 99;
+}
+
+
+export function showError(input, message) {
+    input.classList.add('input-error');
+    let errorSpan = input.parentNode.querySelector('.error-message');
+    if (!errorSpan) {
+        errorSpan = document.createElement('div');
+        errorSpan.className = 'error-message';
+        input.parentNode.appendChild(errorSpan);
+    }
+    errorSpan.textContent = message;
+    return true
+}
+
+export function check(condition, input, message) {
+    if (!condition) {
+        return showError(input, message);
+    }
+    return false;
+}
+
+export function clearErrors(form) {
+    form.querySelectorAll('.input-error').forEach(i => i.classList.remove('input-error'));
+    form.querySelectorAll('.error-message').forEach(span => span.remove());
+}
+
+document.addEventListener('input', (e) => {
+    if (e.target.classList.contains('input-error')) {
+        e.target.classList.remove('input-error');
+        const errorSpan = e.target.parentNode.querySelector('.error-message');
+        if (errorSpan) errorSpan.remove();
+    }
+});

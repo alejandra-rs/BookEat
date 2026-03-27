@@ -3,9 +3,21 @@ dialog {
     background: transparent;
     margin: auto;
 }
-input:invalid {
-    border: 2px solid red;
+
+.input-error {
+    border: 2px solid #ff4d4d !important;
+    background-color: #fff0f0;
 }
+
+.error-message {
+    color: #ff4d4d;
+    font-size: 0.8rem;
+    display: block;
+    margin-top: 0.2rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
 .form {
     display: flex;
     flex-direction: column;

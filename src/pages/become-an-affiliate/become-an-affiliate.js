@@ -119,7 +119,9 @@ if (formAffiliate) {
 
             if (!postResponse.ok) throw new Error('The account could not be created.');
 
-            await logIn(data.email, data.password)
+            if (await logIn(data.email, data.password)){
+
+            }
 
             formAffiliate.reset();
             tagsContainer.replaceChildren();

@@ -1,12 +1,13 @@
 import {post} from '../../js/api-json.js';
-import {checkEmail, getData, getExistencesByEmail, isEmpty, logIn, matchPasswords, validPassword, validPhone} from "../../js/auth-service.js";
+import {check, checkEmail, clearErrors, dateValid, getData, getExistencesByEmail, isEmpty, logIn, matchPasswords, showError, validPassword, validPhone} from "../../js/auth-service.js";
+import {showToast} from "../../js/show-toast.js";
 
 function createUser(data) {
     return {
         name: data.name,
         surname: data.surname,
         username: data.surname,
-        accountName: data.nickName,
+        accountName: data.name + data.surname,
         phoneNumber: data.phoneNumber,
         email: data.email,
         password: data.password,
@@ -19,19 +20,25 @@ document.addEventListener('submit', async (evento) => {
         evento.preventDefault();
         evento.stopImmediatePropagation();
 
+
         const formRegister = evento.target;
         const data = getData(formRegister);
 
-        if(isEmpty(data)) return alert("please complete all fields");
-        if(!checkEmail(data)) return alert("must be a valid email address");
-        if (!matchPasswords(data.password, data.confirmPassword)) return alert("the password do not match.");
-        if (!validPassword(data)) return alert("the password length should be at least 8 characters.");
-        if (!validPhone(data)) return alert("the phone number length should be 9 numbers.");
+        clearErrors(formRegister);
+        let hasError = false;
 
+        if(isEmpty(formRegister)) return;
+        if (check(dateValid(data), formRegister.elements['birthdate'], 'Must be between 18 and 99 years')) hasError = true;
+        if (check(validPhone(data), formRegister.elements['phoneNumber'], 'Must be exactly 9 numbers')) hasError = true;
+        if (check(checkEmail(data), formRegister.elements['email'], 'Must be a valid email')) hasError = true;
+        if (check(validPassword(data), formRegister.elements['password'], 'Must be at least 8 characters')) hasError = true;
+        if (check(matchPasswords(data.password, data.confirmPassword), formRegister.elements['confirmPassword'], 'Passwords do not match')) hasError = true;
+
+        if (hasError) return;
         try {
 
             const [usersExistences, restaurantExistences] = await getExistencesByEmail(data.email)
-            if (usersExistences.length > 0 || restaurantExistences.length > 0) return alert("This email already exists.");
+            if (usersExistences.length > 0 || restaurantExistences.length > 0) return showError(formRegister.elements['email'], "This email already exists.");
 
             const postResponse = await post(createUser(data), 'users');
 
@@ -44,25 +51,37 @@ document.addEventListener('submit', async (evento) => {
             updateHeader();
 
         } catch (error) {
-            alert(error.message);
+            showToast(error.message);
         }
     }
     if (evento.target && evento.target.id === 'form-login') {
         evento.preventDefault();
-        console.log("estoy en login");
         const formLogin = evento.target;
+
+        clearErrors(formLogin);
         const data = getData(formLogin);
-        if(isEmpty(data)) return alert("please complete all fields");
-        if(!checkEmail(data)) return alert("must be a valid email address");
+        let hasError = false;
+
+        if(isEmpty(formLogin)) return;
+        if (check(checkEmail(data), formLogin.elements['email'], 'Must be a valid email')) hasError = true;
+        if (check(validPassword(data), formLogin.elements['password'], 'Must be at least 8 characters')) hasError = true;
+
+        if (hasError) return;
+
         try {
-            await logIn(data.email, data.password)
+            let login = await logIn(data.email, data.password)
+            if (!login){
+                showError(formLogin.elements['email'], "");
+                showError(formLogin.elements['password'], "");
+                throw new Error("Mail or Password Invalid");
+            }
             const dialog = formLogin.closest('dialog');
             if(dialog) dialog.close();
             formLogin.reset();
             updateHeader();
 
         } catch (error) {
-            alert(error.message);
+            showToast(error.message);
         }
     }
 });

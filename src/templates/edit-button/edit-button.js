@@ -1,3 +1,5 @@
+import {showToast} from "../../js/show-toast.js";
+
 const editActions = {
     text: async (event, editBtnContainer, fieldContainer) => {
         const inputElement = fieldContainer.querySelector('input') || fieldContainer.querySelector('textarea');
@@ -52,20 +54,4 @@ async function updateText(element, fieldName, btnImage) {
         } else showToast(`Failed to save changes on ${fieldName}.`);
 
     } catch (error) { showToast(`Failed to save changes on ${fieldName}.`); }
-}
-
-
-
-function showToast(message) {
-    const toast = document.createElement('div');
-    toast.className = 'toast';
-    toast.textContent = message;
-    document.body.appendChild(toast);
-
-    setTimeout(() => toast.classList.add('show'), 100);
-
-    setTimeout(() => {
-        toast.classList.remove('show');
-        setTimeout(() => toast.remove(), 300);
-    }, 3000);
 }
