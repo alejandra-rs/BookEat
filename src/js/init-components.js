@@ -4,10 +4,11 @@ import {fillPage, fillTemplate} from "./load-data.js";
 import {setupCards} from "../../src/templates/overview/setup-cards.js";
 import {initEditButtons} from "../../src/templates/edit-button/edit-button.js";
 import {setProperties} from "../../src/templates/edit-property/properties.js";
+import {setCarouselTitles} from "../../src/templates/restaurant-carousel/carousel-title.js";
 
 document.addEventListener('DOMContentLoaded', async function() {
     await loadTemplate();
-    initEditButtons(); setProperties();
+    initEditButtons(); setProperties(); setCarouselTitles();
 
     document.addEventListener('click', () => setTimeout(saveBookingState, 100));
     setTimeout(restoreBookingState, 300);
