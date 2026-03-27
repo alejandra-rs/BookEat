@@ -17,6 +17,7 @@
     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <script type="module" src="../../js/init-components.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script type="module" src="../../templates/edit-profile-image-popup/edit-profile-image-popup.js"></script>
 </head>
 
 <body data-page-context="my-profile">
@@ -26,7 +27,7 @@
       <section class="edit-profile-page__public col-12">
         <div class="edit-profile-page__public__image">
           <img data-template="src-image" src="" alt="">
-          <div load-template="edit-button"></div>
+          <div data-opens="edit-profile-image-dialog" load-template="edit-button"></div>
         </div>
         <div class="custom-property edit-profile-page__public__name" load-template="edit-property"
           data-icon="../../assets/icons/user-profile.svg" data-label="Account Name" data-type="text"
@@ -57,5 +58,5 @@
   <footer load-template="footer"></footer>
 
 </body>
-
+<div id="login-popup-main" load-template="edit-profile-image-popup"></div>
 </html>

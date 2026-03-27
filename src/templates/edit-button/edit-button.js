@@ -1,8 +1,8 @@
 const editActions = {
-    text: async (editBtnContainer, fieldContainer) => {
+    text: async (event, editBtnContainer, fieldContainer) => {
         const inputElement = fieldContainer.querySelector('input') || fieldContainer.querySelector('textarea');
         const fieldName = inputElement.getAttribute('name');
-        const btnImage = editBtnContainer.querySelector('.icon');
+        const btnImage = editBtnContainer.querySelector('.icon') || editBtnContainer.querySelector('img');
 
         if (inputElement.hasAttribute('readonly')) {
             event.preventDefault();
@@ -20,9 +20,9 @@ export function initEditButtons() {
     document.addEventListener('click', async (event) => {
         const editBtnContainer = event.target.closest('.edit-button');
         if (!editBtnContainer) return;
-
+        event.preventDefault();
         const fieldContainer = editBtnContainer.closest('.edit-property__label__field');
-        if (fieldContainer) await editActions.text(editBtnContainer, fieldContainer);
+        if (fieldContainer) await editActions.text(event, editBtnContainer, fieldContainer);
         else await editActions.image(editBtnContainer, fieldContainer);
     });
 }
@@ -34,7 +34,7 @@ async function updateText(element, fieldName, btnImage) {
         let role = session?.rol || "";
         const myId = session?.id || "";
 
-        (role === "restaurant") ? role = "restaurant-profile" : role = "restaurant";
+        (role === "restaurant") ? role = "restaurant-profile" : role = "user";
 
         const collection = element.getAttribute('data-collection') || `${role}s`;
         const targetId = element.getAttribute('data-id') || myId;

@@ -13,3 +13,13 @@ export async function post(newUser, endpoint) {
 export async function get(information, endpoint) {
     return await(await fetch(`${URL_BASE}/${information}?id=${endpoint}`)).json();
 }
+
+export async function patch(updatedData, endpoint, id) {
+    return await fetch(`${URL_BASE}/${endpoint}/${id}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updatedData)
+    });
+}

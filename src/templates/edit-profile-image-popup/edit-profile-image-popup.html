@@ -4,10 +4,12 @@
 <dialog id="edit-profile-image-dialog" class="edit-profile-image">
   <section class="edit-profile-image__content">
     <h2>Edit your profile image</h2>
-    <div xlu-include-file="../../components/insert-image.html"></div>
+    <div load-template="insert-image"></div>
   </section>
   <footer class="edit-profile-image__footer">
-    <button class="secondary-button">Cancel</button>
-    <button class="primary-button">Save</button>
+    <button class="secondary-button" id="edit-profile-image__footer__cancel-button">Cancel</button>
+    <button class="primary-button" id="edit-profile-image__footer__save-button">Save</button>
   </footer>
 </dialog>
+
+<script type="module" src="../../templates/edit-profile-image-popup/edit-profile-image-popup.js"></script>
