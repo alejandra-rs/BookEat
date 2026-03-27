@@ -14,6 +14,14 @@ export async function get(information, endpoint) {
     return await(await fetch(`${URL_BASE}/${information}?id=${endpoint}`)).json();
 }
 
+export async function findUserByEmail(email) {
+    return (await fetch(`${URL_BASE}/users?email=${email}`)).json();
+}
+
+export async function findRestaurantByEmail(email) {
+    return (await fetch(`${URL_BASE}/restaurant-profiles?email=${email}`)).json();
+}
+
 export async function patch(updatedData, endpoint, id) {
     return await fetch(`${URL_BASE}/${endpoint}/${id}`, {
         method: 'PATCH',

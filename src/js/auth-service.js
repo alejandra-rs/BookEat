@@ -1,4 +1,4 @@
-import {URL_BASE} from "../js/api-json.js";
+import {findRestaurantByEmail, findUserByEmail, URL_BASE} from "../js/api-json.js";
 
 export async function logIn(email, password) {
     const [usersExistences, restaurantExistences] = await getExistencesByEmail(email);
@@ -15,18 +15,6 @@ export async function logIn(email, password) {
 export function getData(form) {
     return Object.fromEntries(new FormData(form).entries())
 }
-
-export async function getNextId(url) {
-    const datas = await (await fetch(`${URL_BASE}/${url}`)).json();
-    const maxId = datas.reduce((max, data) => {
-        const numericId = Number(data.id);
-        return Number.isFinite(numericId) ? Math.max(max, numericId) : max;
-    }, 0);
-
-    return maxId + 1;
-}
-
-
 
 export function isEmpty(data) {
     for (let value in data.values) {
@@ -62,13 +50,13 @@ export function buildAddress(data) {
         .join(', ');
 }
 
-async function findUserByEmail(email) {
-    return (await fetch(`${URL_BASE}/users?email=${email}`)).json();
+export async function getExistencesByEmail(email) {
+    return await Promise.all([
+        findUserByEmail(email),
+        findRestaurantByEmail(email),
+    ]);
 }
 
-async function findRestaurantByEmail(email) {
-    return (await fetch(`${URL_BASE}/restaurant-profiles?email=${email}`)).json();
-}
 
 export async function findRestaurantById(id) {
     try {
@@ -83,9 +71,12 @@ export async function findRestaurantById(id) {
     }
 }
 
-export async function getExistencesByEmail(email) {
-    return await Promise.all([
-        findUserByEmail(email),
-        findRestaurantByEmail(email),
-    ]);
+export async function getNextId(url) {
+    const datas = await (await fetch(`${URL_BASE}/${url}`)).json();
+    const maxId = datas.reduce((max, data) => {
+        const numericId = Number(data.id);
+        return Number.isFinite(numericId) ? Math.max(max, numericId) : max;
+    }, 0);
+
+    return maxId + 1;
 }

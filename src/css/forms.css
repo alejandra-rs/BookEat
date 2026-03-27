@@ -3,6 +3,9 @@ dialog {
     background: transparent;
     margin: auto;
 }
+input:invalid {
+    border: 2px solid red;
+}
 .form {
     display: flex;
     flex-direction: column;
@@ -71,4 +74,11 @@ dialog::backdrop {
 .login-form,
 .register-form {
     margin: auto;
+}
+
+
+@media (max-width: 600px) {
+    .form__row{
+        flex-direction: column;
+    }
 }
