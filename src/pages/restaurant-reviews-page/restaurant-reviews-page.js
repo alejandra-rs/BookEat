@@ -35,8 +35,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
 
         filteredReviews.sort((a, b) => {
-            const dateA = new Date(a.createdAt || a.date).getTime();
-            const dateB = new Date(b.createdAt || b.date).getTime();
+            const dateA = new Date(a.datetime || a.date).getTime();
+            const dateB = new Date(b.datetime || b.date).getTime();
 
             return currentSort === 'newest' ? dateB - dateA : dateA - dateB;
         });

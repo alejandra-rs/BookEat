@@ -15,7 +15,7 @@ document.addEventListener('submit', async (e) => {
             pros: formData.pros,
             cons: formData.cons,
             rating: String(formData.rating),
-            createdAt: new Date().toISOString().split('T')[0],
+            datetime: new Date().toISOString().split('T')[0],
             images: formData.image === "" ? [] : [formData.image]
         };
 

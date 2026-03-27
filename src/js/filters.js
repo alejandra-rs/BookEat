@@ -173,7 +173,7 @@ export function bestN(array, n) {
 }
 
 export function sortChronologically(array) {
-    return [...array].sort((a, b) => b.createdAt > a.createdAt ? 1 : -1);
+    return [...array].sort((a, b) => b.datetime > a.datetime ? 1 : -1);
 }
 
 
