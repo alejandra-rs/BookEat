@@ -1,5 +1,5 @@
 import {post, get} from "../../js/api-json.js";
-import {fillPage} from "../../js/load-data.js";
+import {fillComponent} from "../../js/load-data.js";
 import Panzoom from 'https://cdn.jsdelivr.net/npm/@panzoom/panzoom@4.6.0/dist/panzoom.es.js';
 import proj4 from 'https://cdn.skypack.dev/proj4';
 
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const bookingPayload = {
             restaurantId: restaurantId,
-            userId: String(userId),
+            sessionId: String(userId),
             datetime: `${state.date} ${state.time}`,
             guests: state.diners,
             tables: selectedTableIds,
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (response.ok) {
                 sessionStorage.removeItem('pendingBooking');
                 const confirmationDialog = document.querySelector('#booking-confirmation-container dialog');
-                await fillPage(confirmationDialog, getPopupData(bookingPayload.datetime, bookingPayload.restaurantId));
+                await fillComponent(confirmationDialog, getPopupData(bookingPayload.datetime, bookingPayload.restaurantId));
                 confirmationDialog.showModal();
             }
 
@@ -88,9 +88,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function getPopupData(datetime, restaurantId) {
-    const restaurant = await Promise.any([
-        get("restaurants", restaurantId)
-    ])
+    const restaurant = await get(`restaurants?id=${restaurantId}`);
+
     return {
         datetime: datetime,
         restaurantName: restaurant[0].name,

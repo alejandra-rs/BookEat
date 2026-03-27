@@ -1,23 +1,21 @@
+import {get} from "../../src/js/api-json.js";
+
+
 export const filters = {
-    total: total,
-    average: average,
-    categories: categories,
-    percent: reviewProportion,
-    get: getStarValue,
-    tableMap: renderFloorPlan,
-    random: randomSelection,
-    best: bestN,
-    sortDate: sortChronologically,
-    incoming: incomingBookings,
-    past: pastBookings,
-    reservationName: getReservationName,
-    reservationImage: getReservationImage
+    "total": total, "average": averageRating, "percent": reviewProportion, "get": getStarValue,
+    "categories": categories,
+    "tableMap": renderFloorPlan,
+    "random": randomSelection, "best": bestN, "sortDate": sortChronologically,
+    "incoming": incomingBookings, "past": pastBookings,
+    "reservationName": getReservationName, "reservationImage": getReservationImage
 }
 
-const DRAW_SCALE = 100;
 
-export function average(value) {
+export function total(value) {
+    return Object.values(value).reduce((acc, val) => acc + parseInt(val), 0);
+}
 
+export function averageRating(value) {
     if (typeof value === 'string') return parseInt(value);
     const acc = Object.entries(value)
         .reduce((acc, [star, num]) => {
@@ -28,21 +26,31 @@ export function average(value) {
     return (acc.sum / acc.total).toFixed(1);
 }
 
-
-export function total(value) {
-    return Object.values(value).reduce((acc, val) => acc + parseInt(val), 0);
-}
-
-
 export function reviewProportion(value, star) {
     const total = Object.values(value).reduce((a, b) => Math.max(a, b), 0);
     return total > 0 ? getStarValue(value, star) / total * 100 : 0;
 }
 
-
 export function getStarValue(value, star) {
     return value[star];
 }
+
+
+
+export async function categories(categoryIds) {
+    if (typeof categoryIds[0] !== "number") return categoryIds || [];
+    try {
+        const queryString = categoryIds.map(id => `id=${id}`).join('&');
+        return await get(`categories?${queryString}`);
+    } catch (e) {
+        console.error("Error fetching category names:", e);
+        return [];
+    }
+}
+
+
+
+const DRAW_SCALE = 100;
 
 export async function renderFloorPlan(layout, container) {
     const { canvas, floor } = setupMapContainer(container);
@@ -54,7 +62,6 @@ export async function renderFloorPlan(layout, container) {
 
     renderTables(floor, layout.tables, { maxX, maxY }, occupiedTableIds);
 }
-
 
 function setupMapContainer(container) {
     let canvas = container.querySelector('canvas'); let floor = container.querySelector('#floor');
@@ -69,7 +76,6 @@ function setupMapContainer(container) {
     }
     return { canvas, floor };
 }
-
 
 function drawRoomOutline(canvas, outline, container) {
     const maxX = Math.max(...outline.map(p => p.x)); const maxY = Math.max(...outline.map(p => p.y));
@@ -90,12 +96,9 @@ function drawRoomOutline(canvas, outline, container) {
     return { maxX, maxY };
 }
 
-
 async function fetchOccupiedTables(restaurantId, state) {
     try {
-        const res = await fetch(`http://localhost:3000/bookings?restaurantId=${restaurantId}`);
-        if (!res.ok) return [];
-        const bookings = await res.json();
+        const bookings = await get(`bookings?restaurantId=${restaurantId}`);
 
         const targetDateStr = state.date;
 
@@ -120,7 +123,6 @@ async function fetchOccupiedTables(restaurantId, state) {
         return [];
     }
 }
-
 
 function renderTables(floor, tables, { maxX, maxY }, occupiedTableIds) {
     floor.innerHTML = '';
@@ -161,27 +163,20 @@ function renderTables(floor, tables, { maxX, maxY }, occupiedTableIds) {
 }
 
 
-export async function getReservationName(data) {
-    if (data.name) return data.name;
-    if (data.restaurant) return data.restaurant.name;
-    if (data.user) return `${data.user.name} ${data.user.surname || ''}`.trim();
-    return "Unknown";
+
+export function randomSelection(array, n) {
+    return [...array].sort(() => 0.5 - Math.random()).slice(0, n);
 }
 
-function formatBookingData(booking) {
-    return {
-        ...booking,
-        description: `Booking for ${booking.guests} guests.`
-    };
+export function bestN(array, n) {
+    return [...array].sort((a, b) => b.rating - a.rating).slice(0, n);
 }
 
-export async function getReservationImage(data) {
-    if (data.images) return data.images;
-    if (data.image) return data.image;
-    if (data.restaurant && data.restaurant.images) return data.restaurant.images;
-    if (data.user && data.user.image) return data.user.image;
-    return data.restaurant ? "../../assets/img/restaurant-item.png" : "../../assets/img/user-image.png";
+export function sortChronologically(array) {
+    return [...array].sort((a, b) => b.createdAt > a.createdAt ? 1 : -1);
 }
+
+
 
 export async function incomingBookings(array) {
     if (!Array.isArray(array)) return array;
@@ -200,34 +195,32 @@ export async function pastBookings(array) {
     const now = new Date();
 
     const filtered = array
-        .filter(b => new Date(b.datetime) < now) // Past only
-        .sort((a, b) => new Date(b.datetime) - new Date(a.datetime)); // Reverse
+        .filter(b => new Date(b.datetime) < now)
+        .sort((a, b) => new Date(b.datetime) - new Date(a.datetime));
 
     return await Promise.all(filtered.map(formatBookingData));
 }
 
-
-export function randomSelection(array, n) {
-    return [...array].sort(() => 0.5 - Math.random()).slice(0, n);
+function formatBookingData(booking) {
+    return {
+        ...booking,
+        description: `Booking for ${booking.guests} guests.`
+    };
 }
 
-export function bestN(array, n) {
-    return [...array].sort((a, b) => b.rating - a.rating).slice(0, n);
+
+
+export async function getReservationName(data) {
+    if (data.name) return data.name;
+    if (data.restaurant) return data.restaurant.name;
+    if (data.user) return `${data.user.name} ${data.user.surname || ''}`.trim();
+    return "Unknown";
 }
 
-export function sortChronologically(array) {
-    return [...array].sort((a, b) => b.createdAt > a.createdAt ? 1 : -1);
-}
-
-export async function categories(categoryIds) {
-    if (typeof categoryIds[0] !== "number") return categoryIds || [];
-    try {
-        const queryString = categoryIds.map(id => `id=${id}`).join('&');
-        const response = await fetch(`http://localhost:3000/categories?${queryString}`);
-        if (!response.ok) return [];
-        return await response.json();
-    } catch (e) {
-        console.error("Error fetching category names:", e);
-        return [];
-    }
+export async function getReservationImage(data) {
+    if (data.images) return data.images;
+    if (data.image) return data.image;
+    if (data.restaurant && data.restaurant.images) return data.restaurant.images;
+    if (data.user && data.user.image) return data.user.image;
+    return data.restaurant ? "../../assets/img/restaurant-item.png" : "../../assets/img/user-image.png";
 }

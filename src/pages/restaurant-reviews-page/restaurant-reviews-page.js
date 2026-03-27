@@ -1,4 +1,5 @@
 import { fillTemplate } from "../../js/load-data.js";
+import {get} from "../../js/api-json.js";
 
 let allReviews = [];
 let currentRating = 'all';
@@ -11,18 +12,18 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (!restaurantId) return;
 
-    const reviewsContainer = document.querySelector('.restaurant-reviews-page__reviews');
     const filterButtons = document.querySelectorAll('.restaurant-reviews-page__filters__button');
     const sortSelect = document.getElementById('sort-reviews');
 
     try {
-        const response = await fetch(`http://localhost:3000/reviews?restaurantId=${restaurantId}`);
-        allReviews = await response.json();
+        allReviews = await get(`reviews?restaurantId=${restaurantId}`);
     } catch (error) {
         console.error("Error fetching reviews:", error);
     }
 
     const applyFiltersAndSort = async () => {
+        const reviewsContainer = document.querySelector('.restaurant-reviews-page__reviews');
+
         let filteredReviews = allReviews.filter(review => {
             const reviewScore = review.score || review.rating || 0;
             const matchesRating = currentRating === 'all' || Math.floor(reviewScore) === parseInt(currentRating);
@@ -40,7 +41,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             return currentSort === 'newest' ? dateB - dateA : dateA - dateB;
         });
 
-        await fillTemplate(reviewsContainer, filteredReviews);
+        await fillTemplate(reviewsContainer, [...filteredReviews]);
     };
 
     filterButtons.forEach(button => {
