@@ -18,14 +18,13 @@
 
 .menu-section__items {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
     width: 100%;
 }
 
-@media (min-width: 992px) {
+@media (max-width: 992px) {
     .menu-section__items {
-        grid-template-columns: 1fr 1fr; /* Crea las dos columnas perfectas */
-        align-items: stretch;
+        grid-template-columns: 1fr;
     }
 }

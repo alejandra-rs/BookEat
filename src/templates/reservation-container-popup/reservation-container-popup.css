@@ -1,0 +1,36 @@
+dialog {
+    background-color: var(--bg-primary);
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+dialog h2 {
+    font-size: 2rem;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+}
+
+.table-map-popup__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.table-map-popup__list__table {
+    display: flex;
+    flex-direction: row;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    padding: 0.2rem;
+    align-items: center;
+    font-size: 1.5rem;
+    gap: 1rem;
+    border-radius: 10rem;
+    border: 1px solid var(--border-color, rgba(0,0,0,0.1));
+    white-space: nowrap;
+}
+
+.icon {
+    width: 2rem;
+    height: 2rem;
+}
