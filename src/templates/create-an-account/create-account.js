@@ -62,7 +62,6 @@ document.addEventListener('submit', async (evento) => {
         const data = getData(formLogin);
         let hasError = false;
 
-        if(isEmpty(formLogin)) return;
         if (check(checkEmail(data), formLogin.elements['email'], 'Must be a valid email')) hasError = true;
         if (check(validPassword(data), formLogin.elements['password'], 'Must be at least 8 characters')) hasError = true;
 
