@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const reviewsContainer = document.querySelector('.restaurant-reviews-page__reviews');
 
         let filteredReviews = allReviews.filter(review => {
-            const reviewScore = review.score || review.rating || 0;
+            const reviewScore = review.rating || 0;
             const matchesRating = currentRating === 'all' || Math.floor(reviewScore) === parseInt(currentRating);
 
             const hasPhotos = (review.images && review.images.length > 0) || (review.gallery && review.gallery.length > 0);

@@ -16,7 +16,7 @@ export function total(value) {
 }
 
 export function averageRating(value) {
-    if (typeof value === 'string') return parseInt(value);
+    if (typeof value === 'string' || typeof value === 'number') return parseInt(value);
     const acc = Object.entries(value)
         .reduce((acc, [star, num]) => {
             acc.sum += parseInt(star) * parseInt(num);
@@ -218,9 +218,8 @@ export async function getReservationName(data) {
 }
 
 export async function getReservationImage(data) {
-    if (data.images) return data.images;
     if (data.image) return data.image;
-    if (data.restaurant && data.restaurant.images) return data.restaurant.images;
+    if (data.restaurant && data.restaurant.image) return data.restaurant.image;
     if (data.user && data.user.image) return data.user.image;
     return data.restaurant ? "../../assets/img/restaurant-item.png" : "../../assets/img/user-image.png";
 }

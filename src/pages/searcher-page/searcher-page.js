@@ -36,19 +36,16 @@ document.addEventListener('DOMContentLoaded', async () => {
             .map(cb => parseInt(cb.value));
 
         const filteredRestaurants = allRestaurants.filter(restaurant => {
+            const restMin = parseFloat(restaurant.minPrice) || 0;
+            const restMax = parseFloat(restaurant.maxPrice) || 0;
 
-            let matchesPrice = true;
-            if (restaurant.price) {
-                const restMin = parseFloat(restaurant.price.min) || 0;
-                const restMax = parseFloat(restaurant.price.max) || 0;
+            const matchesPrice = (restMin <= maxPrice) && (restMax >= minPrice);
 
-                matchesPrice = (restMin <= maxPrice) && (restMax >= minPrice);
-            }
             const matchesCategory = selectedCategories.length === 0 ||
-                selectedCategories.some(id => restaurant.categories?.includes(id));
+                (restaurant.categories && selectedCategories.some(id => restaurant.categories.includes(id)));
 
             return matchesPrice && matchesCategory;
-        });
+        })
 
         await fillTemplate(resultsContainer, filteredRestaurants);
         setupCards(resultsContainer);
