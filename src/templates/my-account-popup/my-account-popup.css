@@ -11,6 +11,10 @@
     background-color: var(--bg-primary);
 
 }
+*:focus{
+    outline: none;
+}
+
 #my-account-popup__nav {
     display: flex;
     flex-direction: column;

@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const bookingPayload = {
             restaurantId: restaurantId,
-            sessionId: String(userId),
+            userId: String(userId),
             datetime: `${state.date} ${state.time}`,
             guests: state.diners,
             tables: selectedTableIds,

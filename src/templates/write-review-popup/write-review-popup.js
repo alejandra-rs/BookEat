@@ -1,4 +1,5 @@
 import {post} from "../../js/api-json.js";
+import {showToast} from "../../js/show-toast.js";
 
 document.addEventListener('submit', async (e) => {
     if (e.target && e.target.id === 'form-write-review') {
@@ -9,7 +10,7 @@ document.addEventListener('submit', async (e) => {
 
         const newComment = {
             restaurantId: formData.restaurantId,
-            sessionId: sessionData.id,
+            userId: sessionData.id,
             title: formData.title,
             description: formData.reviewText,
             pros: formData.pros,
@@ -29,11 +30,10 @@ document.addEventListener('submit', async (e) => {
             const dialog = e.target.closest('dialog');
             if (dialog) dialog.close();
 
-            setTimeout(() => alert("Thanks for your review! It has been published."), 100);
+            showToast("Thanks for your review! It has been published.")
 
         } catch (error) {
-            console.error(error);
-            alert("Oops! Something went wrong.");
+            showToast("Oops! Something went wrong.");
         }
     }
 });
