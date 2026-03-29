@@ -1,4 +1,5 @@
 import { patch } from "../../js/api-json.js";
+import {showToast} from "../../js/show-toast.js";
 
 document.addEventListener('click', async (e) => {
 
@@ -14,7 +15,7 @@ document.addEventListener('click', async (e) => {
         const newImageUrl = imageInput ? imageInput.value : '';
 
         if (!newImageUrl) {
-            alert("Please provide an image URL.");
+            showToast("Please provide an image URL.");
             return;
         }
 
@@ -42,13 +43,12 @@ document.addEventListener('click', async (e) => {
 
                 if (dialog) dialog.close();
 
-                setTimeout(() => alert("Profile picture updated!"), 100);
+                setTimeout(() => showToast("Profile picture updated!"), 100);
             } else {
-                alert("Failed to update profile image.");
+                showToast("Failed to update profile image.");
             }
         } catch (error) {
-            console.error("Error updating image:", error);
-            alert("Oops! Something went wrong.");
+            showToast("Oops! Something went wrong.");
         }
     }
 });
