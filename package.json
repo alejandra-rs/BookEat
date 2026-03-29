@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "api": "json-server --watch data/db.json"
+    "api": "json-server --watch data/db.json --port 3000"
   },
   "dependencies": {
     "bootstrap": "^5.3.8",
