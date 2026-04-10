@@ -23,7 +23,7 @@ Para construir esta vista, se han ensamblado los siguientes módulos:
 | Template          | Propósito en esta página                                                                                                  |
 |:------------------|:--------------------------------------------------------------------------------------------------------------------------|
 | `Header`          | Cabecera global con opciones de navegación.                                                                               |
-| `Restaurant Info` | Resumen detallado del local. Desde él se puede pasar a reservar una mesa.                                                 |
+| `RestaurantModel Info` | Resumen detallado del local. Desde él se puede pasar a reservar una mesa.                                                 |
 | `User Review`     | Tarjeta detallada de la opinión de un cliente sobre el restaurante, preparada para soportar texto e imágenes.             |
 | `User Score`      | Muestra la puntuación que le ha sido otorgada al restaurante.                                                             |
 | `Footer`          | Pie de la página, contendrá enlaces e información de contacto, así como el enlace al formulario de registro de afiliados. |

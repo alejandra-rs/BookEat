@@ -1,0 +1,15 @@
+<div class="container mt-5">
+  <h1 class="mb-4 text-center">Restaurantes Destacados</h1>
+
+  <div class="d-flex flex-column gap-5">
+
+    @for (restaurante of restaurantesDestacados; track restaurante.id) {
+
+      <app-restaurant-info [restaurant]="restaurante"></app-restaurant-info>
+
+    } @empty {
+      <p class="text-center text-muted">No hay restaurantes disponibles en este momento.</p>
+    }
+
+  </div>
+</div>

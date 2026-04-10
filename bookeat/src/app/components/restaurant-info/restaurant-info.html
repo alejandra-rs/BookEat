@@ -1,0 +1,37 @@
+<article class="restaurant-info d-flex flex-column flex-lg-row gap-4">
+  <img [src]="restaurant?.image || '../../assets/img/restaurant-item.png'"
+       alt="Imagen de {{ restaurant?.name }}"
+       class="restaurant-info__image">
+
+  <div class="restaurant-info__content d-flex flex-column justify-content-between w-100">
+
+    <header class="d-flex justify-content-between align-items-center mb-2">
+      <h1 class="m-0">{{ restaurant?.name }}</h1>
+
+      <span class="badge bg-primary fs-5">{{ restaurant?.rating || 'Nuevo' }} ⭐</span>
+    </header>
+
+    <p class="d-flex align-items-center fs-5 text-muted gap-2">
+      <img src="../../assets/icons/place-marker.svg" alt="" class="icon" style="width: 2.5rem;">
+      <span>{{ restaurant?.address }}</span>
+    </p>
+
+    <p>{{ restaurant?.description }}</p>
+
+    <section class="d-flex flex-wrap gap-2 mb-3">
+      @for (category of restaurant?.categories; track category.id) {
+        <span class="badge rounded-pill text-bg-light border px-3 py-2">
+                    {{ category.name }}
+                </span>
+      } @empty {
+        <span class="text-muted">Sin categorías</span>
+      }
+    </section>
+
+    <div class="d-flex flex-row-reverse gap-2 p-3">
+      <button class="btn btn-primary px-4" [routerLink]="['/reserva', restaurant?.id]">
+        Reservar
+      </button>
+    </div>
+  </div>
+</article>

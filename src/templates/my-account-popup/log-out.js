@@ -22,7 +22,7 @@ async function adaptarPopupPorRol() {
         let restProfile = await (await fetch(`http://localhost:3000/restaurant-profiles?id=${session.id}`)).json();
         let restId = restProfile[0].restaurantId;
 
-        if (account) account.querySelector("span").textContent = 'My Restaurant Account';
+        if (account) account.querySelector("span").textContent = 'My RestaurantModel Account';
 
         const restaurantBtnHTML = `
             <a href="../../pages/restaurant-info-page/restaurant-info-page.html?id=${restId}&edit=true" id="restaurant-tab">

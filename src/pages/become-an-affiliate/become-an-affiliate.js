@@ -124,7 +124,7 @@ document.addEventListener('submit', async (event) => {
 
             if (window.updateHeader) window.updateHeader();
 
-            showToast('Restaurant account created successfully.');
+            showToast('RestaurantModel account created successfully.');
 
         } catch (error) {
             showToast(error.message);

@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const title = document.querySelector('[data-template="text-name"]');
                 const desc = document.querySelector('[data-template="text-description"]');
 
-                if (title && desc && title.textContent !== 'Restaurant Name') {
+                if (title && desc && title.textContent !== 'RestaurantModel Name') {
                     clearInterval(waitForRender);
 
                     title.outerHTML = `

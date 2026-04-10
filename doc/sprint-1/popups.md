@@ -25,7 +25,7 @@ se le redirigirá al código fuente del _popup_.
 [<img alt="menu.png" src="images/popups/menu.png" width="600"/>](/src/templates/menu-popup)
 
 * **Propósito:** Mostrar la información del menú de un establecimiento.
-* **Usado en:** `Restaurant Info Page`, `Restaurant Reviews Page`
+* **Usado en:** `RestaurantModel Info Page`, `RestaurantModel Reviews Page`
 
 ---
 

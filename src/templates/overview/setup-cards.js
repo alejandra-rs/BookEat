@@ -80,7 +80,7 @@ export function setupCards(container) {
             const reviewBtn = content.querySelector('.btn-write-review');
             if (reviewBtn) {
                 const titleElement = card.querySelector('h1[filter="reservationName"]');
-                const restaurantName = titleElement ? titleElement.textContent : 'Restaurant';
+                const restaurantName = titleElement ? titleElement.textContent : 'RestaurantModel';
                 const restIdElement = card.querySelector('.overview__content__buttons__restaurantId');
                 const restaurantId = restIdElement ? restIdElement.getAttribute('value') : '';
 

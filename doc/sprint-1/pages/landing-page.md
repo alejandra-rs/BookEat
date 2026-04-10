@@ -24,8 +24,8 @@ Para construir esta vista, se han ensamblado los siguientes módulos:
 | Template              | Propósito en esta página                                                                                                  |
 |:----------------------|:--------------------------------------------------------------------------------------------------------------------------|
 | `Header`              | Cabecera de la página, a partir de la cual se puede buscar un restaurante.                                                |
-| `Restaurant Carousel` | Muestra una serie de restaurantes seleccionados para ser ubicados en la página principal según distintos criterios.       |
-| `Restaurant Item`     | *Template* dentro de un carrousel. Representa a un restaurante, con su información esencial.                              |
+| `RestaurantModel Carousel` | Muestra una serie de restaurantes seleccionados para ser ubicados en la página principal según distintos criterios.       |
+| `RestaurantModel Item`     | *Template* dentro de un carrousel. Representa a un restaurante, con su información esencial.                              |
 | `User Score`          | Para cada restaurante, muestra la puntuación media que le ha sido otorgada.                                               |
 | `Footer`              | Pie de la página, contendrá enlaces e información de contacto, así como el enlace al formulario de registro de afiliados. |
 

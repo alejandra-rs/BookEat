@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  /* Tu nuevo color principal (Ejemplo: un naranja tipo TheFork) */
+  --bs-primary: #f25c05;
+
+  --bs-primary-rgb: 242, 92, 5;
+}
+
+.btn-primary {
+  --bs-btn-bg: var(--bs-primary);
+  --bs-btn-border-color: var(--bs-primary);
+  --bs-btn-hover-bg: #d95304;
+  --bs-btn-hover-border-color: #d95304;
+  --bs-btn-active-bg: #c04903;
+  --bs-btn-active-border-color: #c04903;
+}
