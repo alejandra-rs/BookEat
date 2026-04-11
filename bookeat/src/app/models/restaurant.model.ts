@@ -5,6 +5,7 @@ export interface Restaurant {
   name: string;
   address: string;
   description: string;
+  price: number;
   image?: string;
   rating?: number | string;
   categories?: Category[];
