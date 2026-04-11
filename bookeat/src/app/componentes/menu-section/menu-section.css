@@ -1,0 +1,15 @@
+.text-primary-custom {
+  color: var(--text-primary);
+}
+
+.menu-section__items {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 992px) {
+  .menu-section__items {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,18 @@
+<section class="d-flex flex-column align-items-center gap-3 p-2 bg-transparent">
+
+  <header>
+    <h2 class="fs-1 fw-semibold text-primary-custom">{{ sectionName }}</h2>
+  </header>
+
+  <div class="w-100 menu-section__items">
+    @for (item of items; track item.name) {
+      <app-menu-item
+        [name]="item.name"
+        [price]="item.price"
+        [description]="item.description"
+        [image]="item.image"
+      />
+    }
+  </div>
+
+</section>
