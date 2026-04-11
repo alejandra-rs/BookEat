@@ -1,7 +1,9 @@
-<h1>{{title}}</h1>
-<div class="d-flex flex-row overflow-auto gap-3 mh-100">
-@for (restaurant of restaurants; track restaurant.id){
-  <app-restaurant-item [restaurant]="restaurant"></app-restaurant-item>
-}
+<div class="d-flex flex-column gap-4">
+  <h1>{{title}}</h1>
+  <div class="d-flex flex-row overflow-auto gap-3 mh-100">
+    @let restaurants = (restaurants$ | async)!;
+    @for (restaurant of restaurants; track restaurant.id) {
+      <app-restaurant-item [restaurant]="restaurant"></app-restaurant-item>
+    }
+  </div>
 </div>
-

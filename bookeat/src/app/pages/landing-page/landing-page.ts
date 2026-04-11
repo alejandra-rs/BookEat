@@ -1,0 +1,11 @@
+import {Component, inject} from '@angular/core';
+import {RestaurantCarousel} from '../../components/restaurant-carousel/restaurant-carousel';
+import {RestaurantsService} from '../../services/jsonserver/restaurants.service';
+
+@Component({
+  selector: 'app-landing-page',
+  imports: [RestaurantCarousel],
+  templateUrl: './landing-page.html',
+  styleUrl: './landing-page.css',
+})
+export class LandingPage {}

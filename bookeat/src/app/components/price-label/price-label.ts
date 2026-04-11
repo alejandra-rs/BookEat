@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, input, Input} from '@angular/core';
 
 @Component({
   selector: 'app-price-label',
@@ -7,5 +7,6 @@ import {Component, Input} from '@angular/core';
   styleUrl: './price-label.css',
 })
 export class PriceLabel {
-  @Input('price') price!: number;
+  minPrice = input<number>(0);
+  maxPrice = input<number>(0);
 }
