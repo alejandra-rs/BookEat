@@ -1,0 +1,33 @@
+<div class="modal-header border-0">
+  <h1 class="modal-title fs-4">Review: Restaurant Name</h1>
+  <button type="button" class="btn-close" (click)="activeModal.dismiss()"></button>
+</div>
+
+<div class="modal-body">
+  <form id="form-write-review" class="d-flex flex-column gap-3" [formGroup]="form">
+    <div class="write-review__field rounded-3 d-flex flex-column gap-3">
+      <textarea formControlName="title" class="form-control" placeholder="Title" rows="1"></textarea>
+      <textarea formControlName="description" class="form-control" placeholder="Tell us about your experience... What did you eat? How was the service?" required rows="5"></textarea>
+    </div>
+
+    <div class="write-review__pros-cons d-flex gap-3">
+      <div class="write-review__field rounded-3 flex-grow-1">
+        <h2 class="fs-6">Pros</h2>
+        <textarea formControlName="pros" class="form-control" placeholder="What did you love?" rows="3"></textarea>
+      </div>
+      <div class="flex-grow-1 write-review__field rounded-3">
+        <h2 class="fs-6">Cons</h2>
+        <textarea formControlName="cons" class="form-control" placeholder="What could be better?" rows="3"></textarea>
+      </div>
+    </div>
+    <div class="d-flex flex-column align-items-center gap-3">
+      <app-star-selector [rating]="form.controls.rating.value!" (ratingChange)="form.controls.rating.setValue($event)"></app-star-selector>
+      <app-insert-image></app-insert-image>
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer border-0">
+  <button type="button" class="btn-custom-secondary" (click)="activeModal.dismiss()">Cancel</button>
+  <button type="submit" class="btn-custom-primary" form="form-write-review" (click)="submit()">Submit</button>
+</div>
