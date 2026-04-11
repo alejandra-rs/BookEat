@@ -1,26 +1,16 @@
+<div class="card h-100" style="width: 18rem;">
 
-<div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="" alt="Card image cap">
-  <div class="card-body">
+  <img [src]="restaurant.image || '../../assets/img/restaurant-item.png'"
+       class="card-img-top object-fit-cover"
+       style="height: 12rem;"
+       alt="Imagen de {{restaurant.name}}">
+
+  <div class="card-body d-flex flex-column">
     <h5 class="card-title">{{restaurant.name}}</h5>
-    <div>
-    <app-user-score [score]="restaurant.rating"></app-user-score>
 
+    <div class="d-flex justify-content-between flex-wrap gap-2 mt-auto">
+      <app-user-score [score]="restaurant.rating"></app-user-score>
+      <app-price-label [price]="restaurant.price"></app-price-label>
     </div>
   </div>
 </div>
-
-
-<a data-template="href-id" href="../../pages/restaurant-info-page/restaurant-info-page.html" class="restaurant-item">
-  <div class="restaurant-item__image">
-    <img data-template="src-image" src="../../assets/img/restaurant-item.png" alt="Restaurant img"/>
-  </div>
-  <div class="restaurant-item__content">
-    <h1 data-template="text-name" class="restaurant-item__content__title">Restaurant Name</h1>
-    <div class="restaurant-item__content__info">
-      <div load-template="user-score"></div>
-      <p class="restaurant-item__content__info__price">
-        <span data-template="text-minPrice"></span>€ - <span data-template="text-maxPrice"></span>€
-      </p>
-    </div>
-  </div>
