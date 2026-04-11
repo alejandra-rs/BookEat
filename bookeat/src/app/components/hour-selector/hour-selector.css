@@ -1,0 +1,10 @@
+[ngbDropdownToggle]::after {
+  display: none;
+}
+
+.hour-menu {
+  min-width: unset;
+  max-height: 300px;
+  width: 100%;
+  overflow-y: scroll;
+}
