@@ -10,5 +10,5 @@ export class MenuItem {
   @Input() name: string = '';
   @Input() price: number = 0;
   @Input() description: string = '';
-  @Input() imageSrc: string = '';
+  @Input() image: string = '';
 }
