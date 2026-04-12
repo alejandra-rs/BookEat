@@ -4,9 +4,9 @@ import { Component, Input } from '@angular/core';
   selector: 'app-form-card',
   standalone: true,
   template: `
-    <div class="{{ classname }}" style="{{ styles }}">
-      <h3 class="fw-bold mb-1">{{ title }}</h3>
-      <p class="text-muted mb-3">{{ subtitle }}</p>
+    <div class="{{ classname }} " style="{{ styles }}">
+      <h3 class="fw-bold mb-1 user-select-none">{{ title }}</h3>
+      <p class="text-muted mb-3 user-select-none">{{ subtitle }}</p>
       <ng-content />
     </div>
   `,
@@ -17,4 +17,3 @@ export class FormCard {
   @Input() classname = '';
   @Input() styles = '';
 }
-
