@@ -1,0 +1,145 @@
+<app-form-card
+  title="Become an Affiliate"
+  subtitle="Join our network of restaurants"
+  classname="d-flex flex-column align-items-center w-100 text-center"
+  styles="background: transparent; box-shadow: none; padding: 2rem; gap: 1rem; color: var(--text-primary)"
+>
+  <form (submit)="onSubmit($event)">
+    <div class="row g-2 mb-2">
+      @for (field of ['name', 'surname', 'phoneNumber']; track field) {
+        <div class="col-12 col-md-4">
+          <input type="text" class="form-control rounded-pill px-3"
+                 [formField]="$any(affiliateForm)[field]" [placeholder]="field | titlecase">
+          @if (submitted() && $any(affiliateForm)[field]().errors(); as errors) {
+            @for (error of errors; track error.kind) {
+              @if (error.kind === 'pattern') {
+                <div class="invalid-feedback ps-3 text-start d-block">{{ error.message }}</div>
+              } @else {
+                <div class="invalid-feedback ps-3 text-start d-block">{{ error.message }}</div>
+              }
+            }
+          }
+        </div>
+      }
+    </div>
+
+    <div class="mb-2">
+      <input type="email" class="form-control rounded-pill px-3" [formField]="affiliateForm.email" placeholder="Email" autocomplete="user-name">
+      @for (error of affiliateForm.email().errors(); track error.kind) {
+        @if (affiliateForm.email().touched() || submitted()) {
+          @if (error.kind === 'required') {
+            <div class="invalid-feedback ps-3 text-start d-block">{{ error.message }}</div>
+          }
+          @if (error.kind === 'email') {
+            <div class="invalid-feedback ps-3 text-start d-block">Please enter a valid email address.</div>
+          }
+        }
+      }
+    </div>
+
+    <div class="row g-2 mb-2">
+        @for (field of ['password', 'confirmPassword']; track field) {
+          <div class="col-12 col-md-6">
+            <input type="text" class="form-control rounded-pill px-3"
+                   [formField]="$any(affiliateForm)[field]" [placeholder]="field === 'confirmPassword' ? 'Confirm Password' : 'Password'" autocomplete="new-password">
+            @if (submitted() && $any(affiliateForm)[field]().errors(); as errors) {
+              @for (error of errors; track error.kind) {
+                  @if (error.kind === 'required') {
+                  <div class="invalid-feedback ps-3 text-start d-block">{{ error.message }}</div>
+                    @if (error.kind === 'mismatch') {
+                      <div class="invalid-feedback ps-3 text-start d-block">Passwords do not match.</div>
+                    }
+                }
+              }
+            }
+          </div>
+        }
+    </div>
+
+    <div class="row g-2 mb-2">
+      <div class="col-12 col-md-6">
+        <input type="text" class="form-control rounded-pill px-3" [formField]="affiliateForm.restaurantName" placeholder="Restaurant Name">
+        @for (error of affiliateForm.restaurantName().errors(); track error.kind) {
+          @if (error.kind === 'required' && (affiliateForm.restaurantName().touched() || submitted())) {
+            <p class="text-danger small">{{ error.message }}</p>
+          }
+        }
+      </div>
+
+      <div class="col-12 col-md-6">
+        <input
+          #tagInput
+          type="text"
+          class="form-control rounded-pill px-3"
+          placeholder="Add a tag"
+          list="tagsList"
+          (keydown.enter)="$event.preventDefault(); onTagInput(tagInput)"
+          (blur)="onTagInput(tagInput)"
+          (change)="onTagInput(tagInput)"
+        >
+
+        @if (submitted()) {
+          @for (error of affiliateForm.tags().errors(); track error.kind) {
+            @if (error.kind === 'required') {
+              <div class="invalid-feedback ps-3 text-start d-block">{{ error.message }}</div>
+            }
+          }
+        }
+
+        <datalist id="tagsList">
+          @for (tag of availableTags(); track tag) {
+            <option [value]="tag"></option>
+          }
+        </datalist>
+      </div>
+    </div>
+
+    @if (tags().length > 0) {
+      <div class="d-flex flex-wrap gap-2 mb-2">
+        @for (tag of tags(); track tag) {
+          <span class="badge rounded-pill bg-secondary d-flex align-items-center gap-1">
+            {{ tag }}
+            <i class="bi bi-x" style="cursor:pointer" (click)="removeTag(tag)"></i>
+          </span>
+        }
+      </div>
+    }
+
+    @for (field of ['addressLine1', 'addressLine2']; track field) {
+      <div class="mb-2">
+        <input type="text" class="form-control rounded-pill px-3"
+               [formField]="$any(affiliateForm)[field]" placeholder="Restaurant address (line {{ field === 'addressLine1' ? '1' : '2' }})">
+        @if (submitted() && $any(affiliateForm)[field]().errors(); as errors) {
+          @for (error of errors; track error.kind) {
+            @if (error.kind === 'required') {
+              <div class="invalid-feedback ps-3 text-start d-block">{{ error.message }}</div>
+              @if (error.kind === 'mismatch') {
+                <div class="invalid-feedback ps-3 text-start d-block">Passwords do not match.</div>
+              }
+            }
+          }
+        }
+      </div>
+    }
+
+    <div class="row g-2 mb-4">
+      @for (field of ['city', 'province','postalCode']; track field) {
+        <div class="col-12 col-md-4">
+          <input type="text" class="form-control rounded-pill px-3"
+                 [formField]="$any(affiliateForm)[field]" [placeholder]="field === 'postalCode' ? 'Postal Code' : (field | titlecase)">
+          @if (submitted() && $any(affiliateForm)[field]().errors(); as errors) {
+            @for (error of errors; track error.kind) {
+              @if (error.kind === 'required' || error.kind === 'pattern') {
+                <div class="invalid-feedback ps-3 text-start d-block">{{ error.message }}</div>
+              }
+            }
+          }
+        </div>
+      }
+    </div>
+
+    <div class="text-center">
+      <button type="submit" class="primary-button rounded-pill px-5">Become an affiliate</button>
+    </div>
+  </form>
+</app-form-card>
