@@ -2,10 +2,10 @@ import { Component, signal } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormCard } from '../form-card/form-card';
 import { form, FormField } from '@angular/forms/signals';
-import { INITIAL_AFFILIATE_STATE, type AffiliateForm } from '../models/affiliate.model';
+import { INITIAL_AFFILIATE_STATE, type AffiliateForm } from '../../models/affiliate.model';
 import { AFFILIATE_TAG_SUGGESTIONS } from './affiliate-form.constants';
-import { applyAffiliateFormValidators } from '../validators/affiliate-form.validators';
-import { areSameTag, canonicalizeTag } from '../utils/affiliate-tag.utils';
+import { applyAffiliateFormValidators } from '../../validators/affiliate-form.validators';
+import { areSameTag, canonicalizeTag } from '../../utils/affiliate-tag.utils';
 import { TitleCasePipe } from '@angular/common';
 
 @Component({

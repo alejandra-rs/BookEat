@@ -1,5 +1,8 @@
 import { email, pattern, required, validate } from '@angular/forms/signals';
-import { PHONE_PATTERN, POSTAL_CODE_PATTERN } from '../affiliate-form/affiliate-form.constants';
+import {
+  PHONE_PATTERN,
+  POSTAL_CODE_PATTERN,
+} from '../components/affiliate-form/affiliate-form.constants';
 import { affiliateFields } from '../models/affiliate.model';
 
 export function applyAffiliateFormValidators(path: any): void {
