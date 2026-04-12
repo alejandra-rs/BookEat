@@ -1,4 +1,4 @@
-* {
+*{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -73,40 +73,29 @@ body a > button {
   text-decoration: none;
 }
 
-.custom-icon {
+body button img.icon {
   width: 2em;
   height: 2em;
   color: var(--text-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
 }
 
-.vr {
-  opacity: 1;
-}
-
-.btn-custom-secondary {
+.secondary-button {
   color: var(--text-primary);
   background-color: var(--button-primary);
   border: solid 0.1em var(--text-primary);
 }
 
-.btn-custom-secondary:focus,
-.btn-custom-secondary:active,
-.btn-custom-secondary:focus-visible{
+.secondary-button:active{
   background-color: var(--shadow);
-  border: solid 0.1em var(--text-primary);
 }
 
-.btn-custom-primary{
+.primary-button{
   color: var(--text-quaternary);
   background-color: var(--button-secondary);
   border: solid 0.1em var(--button-secondary);
 }
 
-.btn-custom-primary:active{
+.primary-button:active{
   background-color: var(--shadow);
 }
 
@@ -150,18 +139,27 @@ body.hide-searcher .header__search {
 body.dark-mode .icon{
   filter: invert(1) sepia(1) grayscale(1) brightness(0.9);
 }
-:root {
-  /* Tu nuevo color principal (Ejemplo: un naranja tipo TheFork) */
-  --bs-primary: #f25c05;
 
-  --bs-primary-rgb: 242, 92, 5;
+.input-error {
+  border: 2px solid #ff4d4d !important;
+  background-color: #fff0f0;
 }
 
-.btn-primary {
-  --bs-btn-bg: var(--bs-primary);
-  --bs-btn-border-color: var(--bs-primary);
-  --bs-btn-hover-bg: #d95304;
-  --bs-btn-hover-border-color: #d95304;
-  --bs-btn-active-bg: #c04903;
-  --bs-btn-active-border-color: #c04903;
+.error-message {
+  color: #ff4d4d;
+  font-size: 0.8rem;
+  display: block;
+  margin-top: 0.2rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+dialog {
+  border: none;
+  background: transparent;
+  margin: auto;
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
 }
