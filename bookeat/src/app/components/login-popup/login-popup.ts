@@ -1,10 +1,11 @@
-import { Component, ElementRef, signal, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, signal, ViewChild } from '@angular/core';
 import { FormCard } from '../form-card/form-card';
 import { INITIAL_LOGIN_STATE, loginFields, loginForm } from '../../models/login.model';
 import { TitleCasePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { form, FormField } from '@angular/forms/signals';
 import { applyLoginValidators } from '../../validators/login-popup.validators';
+import { AuthService } from '../../services/jsonserver/auth.service';
 
 @Component({
   selector: 'app-login-popup',
@@ -13,9 +14,11 @@ import { applyLoginValidators } from '../../validators/login-popup.validators';
   styleUrl: './login-popup.css',
 })
 export class LoginPopup {
+  private authService = inject(AuthService);
+
+  error = signal<string | null>(null);
   loginModel = signal<loginForm>(INITIAL_LOGIN_STATE);
   submitted = signal(false);
-
   @ViewChild('DialogLogin') dialogRef!: ElementRef<HTMLDialogElement>;
 
   fields = loginFields;
@@ -24,8 +27,6 @@ export class LoginPopup {
   });
 
   open() {
-    console.log('Opening login dialog');
-    console.log('Dialog reference:', this.dialogRef);
     this.dialogRef.nativeElement.showModal();
   }
   close() {
@@ -44,12 +45,23 @@ export class LoginPopup {
 
   async onSubmit(event: Event) {
     event.preventDefault();
+    this.error.set(null);
     this.submitted.set(true);
-
-    if (this.loginForm().invalid()) {
-      return;
+    try {
+      await this.authService
+        .login(this.loginModel())
+        .then(() => {
+          this.close();
+          this.submitted.set(false);
+        })
+        .catch((err) => {
+          this.error.set(err);
+          console.log('Login error:', err);
+        });
+    } catch (err: any) {
+      this.error.set(err.message || 'An error occurred while trying to log in');
+    } finally {
+      this.submitted.set(false);
     }
-
-    console.log('Login successful');
   }
 }

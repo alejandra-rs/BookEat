@@ -25,9 +25,15 @@
             }
           </div>
         }
+            @if (error()) {
+              <div class="alert alert-danger py-2 px-3 border-0 rounded-3 mb-3 small text-start shadow-sm d-flex align-items-center">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                {{ error() }}
+              </div>
+            }
       </div>
-      <button type="submit" class="btn btn-dark w-100 py-2 rounded-pill fw-bold mb-2 shadow-sm">
-        Login
+      <button type="submit" class="btn btn-dark w-100 py-2 rounded-pill fw-bold mb-2 shadow-sm" [disabled]="submitted()">
+        {{submitted() ? 'Login in...' : 'Login'}}
       </button>
     </form>
 
