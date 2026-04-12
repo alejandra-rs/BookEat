@@ -1,9 +1,9 @@
 import { email, pattern, required, validate } from '@angular/forms/signals';
-import { PHONE_PATTERN, POSTAL_CODE_PATTERN } from './affiliate-form.constants';
-import { fields } from './affiliate.model';
+import { PHONE_PATTERN, POSTAL_CODE_PATTERN } from '../affiliate-form/affiliate-form.constants';
+import { affiliateFields } from '../models/affiliate.model';
 
 export function applyAffiliateFormValidators(path: any): void {
-  fields.forEach((field) => {
+  affiliateFields.forEach((field) => {
     required(path[field], {
       message: `${field.charAt(0).toUpperCase() + field.slice(1)} is required`,
     });

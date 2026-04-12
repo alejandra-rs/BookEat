@@ -29,7 +29,7 @@ export const INITIAL_AFFILIATE_STATE: AffiliateForm = {
   tags: [],
 };
 
-export const fields = [
+export const affiliateFields = [
   'name',
   'surname',
   'email',
