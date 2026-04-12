@@ -20,6 +20,6 @@ export class UserMenu {
   private router = inject(Router);
 
   logout() {
-    this.router.navigate(['']).then((r) => this.authService.logout());
+    this.router.navigate(['']).then(() => this.authService.logout());
   }
 }
