@@ -1,0 +1,35 @@
+<form class="form" (submit)="onSubmit($event)">
+  <div class="form__row">
+    <label>
+      <input [formField]="registerForm.name" type="text" placeholder="Name">
+    </label>
+    <label>
+      <input [formField]="registerForm.surname" type="text" placeholder="Surname">
+    </label>
+  </div>
+
+  <div class="form__row">
+    <label>
+      <input [formField]="registerForm.phoneNumber" type="tel" placeholder="Phone Number">
+    </label>
+    <label>
+      <input [formField]="registerForm.birthdate" type="date" placeholder="Birthdate">
+    </label>
+  </div>
+
+  <label class="form__row">
+    <input [formField]="registerForm.email" type="email" placeholder="Email">
+  </label>
+
+  <label class="form__row">
+    <input [formField]="registerForm.password" type="password" placeholder="Password">
+  </label>
+
+  <label class="form__row">
+    <input [formField]="registerForm.confirmPassword" type="password" placeholder="Confirm Password">
+  </label>
+
+  <button class="primary-button" type="submit" [disabled]="registerForm().invalid()">
+    Register
+  </button>
+</form>

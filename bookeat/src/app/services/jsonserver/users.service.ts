@@ -12,4 +12,8 @@ export class UsersService {
   getAll() {
     return this.http.get<User[]>(`${this.BASE_URL}/users`);
   }
+
+  post(user: Omit<User, 'id'> & {password: string}) {
+    return this.http.post<User>(`${this.BASE_URL}/users`, user);
+  }
 }
