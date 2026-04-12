@@ -1,18 +1,41 @@
-import {Component, inject, signal} from '@angular/core';
+import {Component, ElementRef, inject, signal, viewChild} from '@angular/core';
 import {RegisterForm, User} from '../../models/users.model'
 import {form, FormField, required} from '@angular/forms/signals';
 import {checkBirthdate, checkEmail, checkMatch, checkPassword, checkPhone} from '../../validators/form.validators';
 import {UsersService} from '../../services/jsonserver/users.service';
+import {FormCard} from '../form-card/form-card';
 
 @Component({
   selector: 'app-create-an-account',
   standalone: true,
-  imports: [FormField],
+  imports: [FormField, FormCard],
   templateUrl: './create-an-account.html',
   styleUrl: './create-an-account.css',
 })
 export class CreateAnAccount {
   service = inject(UsersService)
+
+  dialogRef = viewChild.required<ElementRef<HTMLDialogElement>>('CreateAnAccount');
+
+  openModal(){
+    this.dialogRef().nativeElement.showModal()
+  }
+
+  closeModal(){
+    this.dialogRef().nativeElement.close()
+  }
+
+  closeOnBackdrop(event: MouseEvent) {
+    const rect = this.dialogRef().nativeElement.getBoundingClientRect();
+    const clickedOutside =
+      event.clientX < rect.left ||
+      event.clientX > rect.right ||
+      event.clientY < rect.top ||
+      event.clientY > rect.bottom;
+
+    if (clickedOutside) this.closeModal();
+  }
+
   registerData = signal<RegisterForm>({
     name: '',
     surname: '',
