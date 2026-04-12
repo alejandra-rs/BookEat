@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="row  gap-2 row-cols-auto">
+    @for (hour of ranges(); track hour) {
+      <div class="col">
+        <button class="btn btn-outline-primary">{{ hour }}</button>
+      </div>
+    }
+  </div>
+</div>

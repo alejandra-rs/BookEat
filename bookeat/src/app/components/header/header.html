@@ -38,10 +38,11 @@
           <app-user-menu-popup> </app-user-menu-popup>
         } @else {
           <button class="btn-custom-secondary" (click)="openLogin()">Sign in</button>
-          <button class="btn-custom-primary">Register</button>
+          <button class="btn-custom-primary" (click)="openRegister()">Register</button>
         }
       </div>
     </div>
   </div>
 </header>
 <app-login-popup #loginPopup></app-login-popup>
+<app-create-an-account></app-create-an-account>

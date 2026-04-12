@@ -15,13 +15,13 @@ import {FormCard} from '../form-card/form-card';
 export class CreateAnAccount {
   service = inject(UsersService)
 
-  dialogRef = viewChild.required<ElementRef<HTMLDialogElement>>('CreateAnAccount');
+  dialogRef = viewChild.required<ElementRef<HTMLDialogElement>>('registerDialog');
 
-  openModal(){
+  open(){
     this.dialogRef().nativeElement.showModal()
   }
 
-  closeModal(){
+  close(){
     this.dialogRef().nativeElement.close()
   }
 
@@ -33,7 +33,7 @@ export class CreateAnAccount {
       event.clientY < rect.top ||
       event.clientY > rect.bottom;
 
-    if (clickedOutside) this.closeModal();
+    if (clickedOutside) this.close();
   }
 
   registerData = signal<RegisterForm>({
