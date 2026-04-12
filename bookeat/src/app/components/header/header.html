@@ -33,9 +33,15 @@
       </button>
     </div>
     <div class="d-flex gap-2">
-      <button class="btn-custom-secondary px-3" id="loginButton" data-opens="login-popup">Sign in</button>
-      <button class="btn-custom-primary px-3" id="registerButton" data-opens="register-popup">Register</button>
+      <div class="d-flex align-items-center gap-3">
+        @if (authService.isAuthenticated()) {
+          <app-user-menu-popup> </app-user-menu-popup>
+        } @else {
+          <button class="btn-custom-secondary" (click)="openLogin()">Sign in</button>
+          <button class="btn-custom-primary">Register</button>
+        }
+      </div>
     </div>
   </div>
-
 </header>
+<app-login-popup #loginPopup></app-login-popup>
