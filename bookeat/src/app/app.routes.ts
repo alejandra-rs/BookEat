@@ -4,6 +4,7 @@ import {RestaurantInfoPage} from './pages/restaurant-info-page/restaurant-info-p
 import {BookingDetailsPage} from './pages/booking-details-page/booking-details-page';
 import {RestaurantReviewsPage} from './pages/restaurant-reviews-page/restaurant-reviews-page';
 import {AffiliateFormComponent} from './components/affiliate-form/affiliate-form';
+import {CreateAnAccount} from './components/create-an-account/create-an-account';
 
 export const routes: Routes = [
   {
@@ -25,6 +26,12 @@ export const routes: Routes = [
     path: 'become-an-affiliate',
     pathMatch: 'full',
     component: AffiliateFormComponent
+  },
+
+  {
+    path: 'register',
+    pathMatch: 'full',
+    component: CreateAnAccount
   },
   {
     path: ':id',
