@@ -1,0 +1,53 @@
+
+<footer class="footer">
+  <div class="footer__wrapper">
+    <div class="footer__column footer__column--logo">
+      <img
+        src="../../assets/icons/logo.svg"
+        alt="BookEat"
+        class="icon footer__logo-img"
+      />
+    </div>
+
+    <div class="footer__column footer__column--affiliate">
+        <h3 [routerLink]="['/', 'Become-an-affiliate']">Become an affiliate</h3>
+    </div>
+    @if (links){
+    <div class="footer__column footer__column--links">
+      <input
+        type="checkbox"
+        id="footer-links-toggle"
+        class="footer__toggle"
+      />
+      <label for="footer-links-toggle" class="footer__label">
+        Links
+        <span class="footer__toggle-icon"></span>
+      </label>
+      <ul class="footer__list footer__content">
+        @for (link of links; track link){
+          <li>link</li>
+        }
+      </ul>
+    </div>
+    }
+
+    @if (contacts){
+    <div class="footer__column footer__column--contact">
+      <input
+        type="checkbox"
+        id="footer-contact-toggle"
+        class="footer__toggle"
+      />
+      <label for="footer-contact-toggle" class="footer__label">
+        Contact
+        <span class="footer__toggle-icon"></span>
+      </label>
+      <div class="footer__content">
+        @for (contact of contacts; track contact){
+          <p>contact</p>
+        }
+      </div>
+    </div>
+    }
+  </div>
+</footer>

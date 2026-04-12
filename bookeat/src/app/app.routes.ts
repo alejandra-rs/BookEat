@@ -3,6 +3,7 @@ import {LandingPage} from './pages/landing-page/landing-page';
 import {RestaurantInfoPage} from './pages/restaurant-info-page/restaurant-info-page';
 import {BookingDetailsPage} from './pages/booking-details-page/booking-details-page';
 import {RestaurantReviewsPage} from './pages/restaurant-reviews-page/restaurant-reviews-page';
+import {AffiliateFormComponent} from './components/affiliate-form/affiliate-form';
 
 export const routes: Routes = [
   {
@@ -24,5 +25,10 @@ export const routes: Routes = [
     path: ':id',
     pathMatch: 'full',
     component: RestaurantInfoPage
+  },
+  {
+    path: 'Become-an-affiliate',
+    pathMatch: 'full',
+    component: AffiliateFormComponent
   }
 ];
