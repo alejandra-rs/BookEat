@@ -2,15 +2,13 @@
 <footer class="footer">
   <div class="footer__wrapper">
     <div class="footer__column footer__column--logo">
-      <img
-        src="../../assets/icons/logo.svg"
-        alt="BookEat"
-        class="icon footer__logo-img"
-      />
+      <i class="bi bi-x-lg fs-1"></i>
     </div>
 
-    <div class="footer__column footer__column--affiliate">
-        <h3 [routerLink]="['/', 'Become-an-affiliate']">Become an affiliate</h3>
+    <div
+      [routerLink]="['/', 'become-an-affiliate']"
+      class="footer__column footer__column--affiliate">
+        <h3>Become an affiliate</h3>
     </div>
     @if (links){
     <div class="footer__column footer__column--links">
@@ -25,7 +23,7 @@
       </label>
       <ul class="footer__list footer__content">
         @for (link of links; track link){
-          <li>link</li>
+          <li>{{ link }}</li>
         }
       </ul>
     </div>
@@ -44,7 +42,7 @@
       </label>
       <div class="footer__content">
         @for (contact of contacts; track contact){
-          <p>contact</p>
+          <p>{{ contact }}</p>
         }
       </div>
     </div>

@@ -10,6 +10,6 @@ import {RouterLink} from '@angular/router';
   styleUrl: './footer.css',
 })
 export class Footer {
-  links: string[] = ["lorem Ipsum", "lorm 2", "lorm 3"];
+  links: string[] = ["Lorem Ipsum Dolor 1", "Lorem Ipsum Dolor 2", "Lorem Ipsum Dolor 3"];
   contacts: string[] = ["Email: lorem@ipsum.com", "Tel: 123456789"];
 }

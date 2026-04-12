@@ -22,13 +22,13 @@ export const routes: Routes = [
     component: RestaurantReviewsPage
   },
   {
+    path: 'become-an-affiliate',
+    pathMatch: 'full',
+    component: AffiliateFormComponent
+  },
+  {
     path: ':id',
     pathMatch: 'full',
     component: RestaurantInfoPage
-  },
-  {
-    path: 'Become-an-affiliate',
-    pathMatch: 'full',
-    component: AffiliateFormComponent
   }
 ];

@@ -6,10 +6,11 @@ import {Header} from './components/header/header';
 import {EditProperty} from './components/edit-property/edit-property';
 import {CategoriesService} from './services/jsonserver/categories.service';
 import {UserReview} from './components/user-review/user-review';
+import {Footer} from './components/footer/footer';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Header, UserReview],
+  imports: [RouterOutlet, Header, Footer],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
