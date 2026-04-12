@@ -33,9 +33,11 @@
       </button>
     </div>
     <div class="d-flex gap-2">
-      <button class="btn-custom-secondary px-3" id="loginButton" data-opens="login-popup">Sign in</button>
+      <button class="btn-custom-secondary px-3" id="loginButton" (click)="openLogin()" >Sign in</button>
       <button class="btn-custom-primary px-3" id="registerButton" data-opens="register-popup">Register</button>
     </div>
   </div>
 
 </header>
+
+<app-login-popup></app-login-popup>
