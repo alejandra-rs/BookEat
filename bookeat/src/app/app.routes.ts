@@ -12,5 +12,10 @@ export const routes: Routes = [
     path: ':id',
     pathMatch: 'full',
     component: RestaurantInfoPage
+  },
+  {
+    path: 'Become-an-affiliate',
+    pathMatch: 'full',
+    component: LandingPage
   }
 ];
