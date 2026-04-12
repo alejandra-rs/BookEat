@@ -10,9 +10,10 @@ export class AuthService {
   private BASE_URL = 'http://localhost:3000';
 
   private _currentUser = signal<AuthUser>(null as any);
-
+  public readonly currentUser = this._currentUser.asReadonly();
+  public readonly isAuthenticated = computed(() => !!this._currentUser());
   constructor() {
-    afterNextRender(() => this.loadSession(null as any));
+    afterNextRender(() => this.loadSession());
   }
 
   getByEmail(email: string): Observable<AuthUser | null> {
@@ -63,10 +64,15 @@ export class AuthService {
     }
   }
 
-  private loadSession(user: AuthUser) {
-    const savedSession = sessionStorage.getItem('currentSession');
-    if (savedSession) {
-      this._currentUser.set(JSON.parse(savedSession));
+  private loadSession() {
+    try {
+      const savedSession = sessionStorage.getItem('currentSession');
+      if (savedSession) {
+        this._currentUser.set(JSON.parse(savedSession));
+      }
+    } catch (error) {
+      console.error('Error parsing session', error);
+      sessionStorage.removeItem('currentSession');
     }
   }
 
