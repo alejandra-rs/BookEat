@@ -1,13 +1,15 @@
 .restaurant-info__image {
-  height: 25rem;
+  width: 100%;
   aspect-ratio: 1.3 / 1;
-  width: 45%;
+  object-fit: cover;
+  max-height: 25rem;
 }
 
 .restaurant-info__content {
-  width: 55%;
+  width: 100%;
   color: var(--text-secondary);
 }
+
 
 .restaurant-info__badge {
   background-color: var(--bg-secondary);
@@ -17,9 +19,18 @@
   white-space: nowrap;
 }
 
-@media (max-width: 1024px) {
-  .restaurant-info__image,
+.restaurant-info__carousel {
+  max-height: 10rem;
+  width: auto;
+}
+
+@media (min-width: 992px) {
+  .restaurant-info__image {
+    width: 45%;
+    max-height: none;
+  }
+
   .restaurant-info__content {
-    width: 100%;
+    width: 55%;
   }
 }

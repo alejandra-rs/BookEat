@@ -1,21 +1,18 @@
-import {Component, inject, Input} from '@angular/core';
-import {Restaurant} from '../../models/restaurant.model';
-import {RestaurantItem} from '../restaurant-item/restaurant-item';
-import {RestaurantsService} from '../../services/jsonserver/restaurants.service';
-import {AsyncPipe} from '@angular/common';
+import { Component, inject, input } from '@angular/core';
+import { AsyncPipe, SlicePipe } from '@angular/common';
+import { RestaurantItem } from '../restaurant-item/restaurant-item';
+import { RestaurantsService } from '../../services/jsonserver/restaurants.service';
+import { ShufflePipe } from '../../pipes/shuffle.pipe';
 
 @Component({
   selector: 'app-restaurant-carousel',
-  imports: [
-    RestaurantItem,
-    AsyncPipe
-  ],
+  imports: [RestaurantItem, AsyncPipe, ShufflePipe, SlicePipe],
   templateUrl: './restaurant-carousel.html',
   styleUrl: './restaurant-carousel.css',
 })
 export class RestaurantCarousel {
-  restaurantsService = inject(RestaurantsService);
-  @Input({required: true}) title!: string;
+  private restaurantsService = inject(RestaurantsService);
+  title = input.required<string>();
 
-  restaurants$ = this.restaurantsService.getRandom(15);
+  restaurants$ = this.restaurantsService.getAll();
 }

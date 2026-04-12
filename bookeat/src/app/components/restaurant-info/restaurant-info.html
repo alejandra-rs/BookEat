@@ -1,39 +1,46 @@
-<article class="d-flex flex-column flex-lg-row gap-4">
+<article class="d-flex flex-column gap-4">
+  <section class="d-flex flex-column flex-lg-row gap-4">
+    <img [src]="restaurant().image || '../../assets/img/restaurant-item.png'"
+         alt="Imagen de {{ restaurant().name }}"
+         class="restaurant-info__image object-fit-cover rounded-3">
 
-  <img [src]="restaurant().image || '../../assets/img/restaurant-item.png'"
-       alt="Imagen de {{ restaurant().name }}"
-       class="restaurant-info__image object-fit-cover rounded-3">
+    <div class="d-flex flex-column justify-content-between restaurant-info__content">
 
-  <div class="d-flex flex-column justify-content-between restaurant-info__content">
+      <header class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-2 mb-2">
+        <h1 class="m-0 fs-2 fw-bold">{{ restaurant().name }}</h1>
+        <app-user-score [size]="'2.5rem'" [score]="restaurant().rating | averageRating" />
+      </header>
 
-    <header class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-2 mb-2">
-      <h1 class="m-0 fs-2 fw-bold">{{ restaurant().name }}</h1>
-      <app-user-score [size]="'2.5rem'" [score]="computeAverageRating(restaurant().rating)" />
-    </header>
+      <p class="d-flex align-items-center fs-5 text-muted gap-2 mb-2">
+        <i class="bi bi-geo-alt fs-4"></i>
+        <span>{{ restaurant().address }}</span>
+      </p>
 
-    <p class="d-flex align-items-center fs-5 text-muted gap-2 mb-2">
-      <i class="bi bi-geo-alt fs-4"></i>
-      <span>{{ restaurant().address }}</span>
-    </p>
+      <p class="text-muted">{{ restaurant().description }}</p>
 
-    <p class="text-muted">{{ restaurant().description }}</p>
+      <section class="d-flex flex-wrap gap-2 mb-3">
+        @for (category of categories(); track category.id) {
+          <span class="badge rounded-pill border px-3 py-2 fw-medium restaurant-info__badge">
+            {{ category.name }}
+          </span>
+        }
+      </section>
 
-    <section class="d-flex flex-wrap gap-2 mb-3">
-      @for (category of categories(); track category.id) {
-        <span class="badge rounded-pill border px-3 py-2 fw-medium restaurant-info__badge">
-          {{ category.name }}
-        </span>
-      }
-    </section>
-
-    <div class="d-flex flex-row-reverse gap-2 p-3">
-      <button id="menu-icon" class="btn-custom-secondary py-2 fs-4" (click)="openMenu()"  >
-        <i class="bi bi-book"></i>
-      </button>
-      <button [routerLink]="['/booking-details', restaurant().id]" class="btn-custom-primary px-3 fs-5">
-        Book
-      </button>
+      <div class="d-flex flex-row-reverse gap-2 p-3">
+        <button id="menu-icon" class="btn-custom-secondary py-2 fs-4" (click)="openMenu()">
+          <i class="bi bi-book"></i>
+        </button>
+        <button [routerLink]="['/booking-details', restaurant().id]" class="btn-custom-primary px-3 fs-5">
+          Book
+        </button>
+      </div>
     </div>
+  </section>
+  <div class="d-flex overflow-x-scroll gap-3">
+    @for (image of restaurant().gallery; track image) {
+      <img [src]="image" [alt]="`Imagen de ${restaurant().name}`"
+           class="restaurant-info__carousel object-fit-cover flex-shrink-0">
+    }
   </div>
 </article>
 

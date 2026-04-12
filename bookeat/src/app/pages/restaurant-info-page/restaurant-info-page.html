@@ -1,5 +1,15 @@
-<div class="p-5">
+<div class="d-flex flex-column p-5 gap-4">
   @if (restaurant$ | async; as restaurant) {
     <app-restaurant-info [restaurant]="restaurant" />
   }
+  @if (reviews$ | async; as reviews) {
+    @for (review of reviews | sortByRating | slice:0:3; track review.id) {
+      <app-user-review [review]="review" />
+    }
+  }
+  <div class="d-flex justify-content-center fs-4">
+    <button [routerLink]="['/reviews', id]" class="btn-custom-secondary">
+      Read more
+    </button>
+  </div>
 </div>

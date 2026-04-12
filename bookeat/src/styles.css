@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -79,23 +79,40 @@ body button img.icon {
   color: var(--text-primary);
 }
 
-.secondary-button {
+.custom-icon {
+  width: 2em;
+  height: 2em;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.vr {
+  opacity: 1;
+}
+
+.btn-custom-secondary {
   color: var(--text-primary);
   background-color: var(--button-primary);
   border: solid 0.1em var(--text-primary);
 }
 
-.secondary-button:active{
+.btn-custom-secondary:focus,
+.btn-custom-secondary:active,
+.btn-custom-secondary:focus-visible{
   background-color: var(--shadow);
+  border: solid 0.1em var(--text-primary);
 }
 
-.primary-button{
+.btn-custom-primary{
   color: var(--text-quaternary);
   background-color: var(--button-secondary);
   border: solid 0.1em var(--button-secondary);
 }
 
-.primary-button:active{
+.btn-custom-primary:active{
   background-color: var(--shadow);
 }
 
@@ -132,14 +149,6 @@ body button img.icon {
   transform: translateX(-50%) translateY(0);
 }
 
-body.hide-searcher .header__search {
-  display: none;
-}
-
-body.dark-mode .icon{
-  filter: invert(1) sepia(1) grayscale(1) brightness(0.9);
-}
-
 .input-error {
   border: 2px solid #ff4d4d !important;
   background-color: #fff0f0;
@@ -162,4 +171,12 @@ dialog {
 dialog::backdrop {
   background-color: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(4px);
+}
+
+body.hide-searcher .header__search {
+  display: none;
+}
+
+body.dark-mode .icon{
+  filter: invert(1) sepia(1) grayscale(1) brightness(0.9);
 }
