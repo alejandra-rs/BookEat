@@ -1,9 +1,5 @@
-<div class="container mt-5">
-  <h1 class="mb-4 text-center">Restaurantes Destacados</h1>
-
-  <div class="d-flex flex-column overflow-auto gap-3">
-
-    <app-restaurant-carousel title="titulaso"  [restaurants]="restaurantesDestacados" ></app-restaurant-carousel>
-
-  </div>
+<div class="p-5">
+  @if (restaurant$ | async; as restaurant) {
+    <app-restaurant-info [restaurant]="restaurant" />
+  }
 </div>

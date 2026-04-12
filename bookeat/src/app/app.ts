@@ -1,13 +1,21 @@
-import { Component, signal } from '@angular/core';
+import {Component, afterNextRender, inject, signal} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import {RestaurantInfoPage} from './pages/restaurant-info-page/restaurant-info-page';
+import {WriteReviewPopup} from './components/write-review-popup/write-review-popup';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {Header} from './components/header/header';
+import {EditProperty} from './components/edit-property/edit-property';
+import {CategoriesService} from './services/jsonserver/categories.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RestaurantInfoPage],
+  imports: [RouterOutlet, Header],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
   protected readonly title = signal('bookeat');
+
+  constructor() {
+    inject(CategoriesService).load();
+  }
 }
