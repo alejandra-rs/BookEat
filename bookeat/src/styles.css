@@ -1,4 +1,155 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: inherit;
+}
+
+body:has(dialog[open]) {
+  overflow: hidden;
+}
+html, body {
+  height: 100%;
+}
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+main{
+  flex-grow: 1;
+  background-color: var(--bg-primary);
+}
+
+header, footer {flex-shrink: 0;}
+main { flex: 1; }
+
+:root {
+  --bg-primary: #fafafa;
+  --bg-secondary: #eaeaea;
+  --text-primary: #333;
+  --text-secondary: #555;
+  --text-tertiary: #666;
+  --text-quaternary: #fff;
+  --border-color: #000;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --border-padding: 20px;
+  --button-primary: #d8d7d7;
+  --button-secondary: #2c2c2c;
+}
+
+body.dark-mode {
+  --bg-primary:  #2d2d2d;
+  --bg-secondary: #1a1a1a;
+  --text-primary: #e0e0e0;
+  --text-secondary: #b0b0b0;
+  --text-tertiary: #909090;
+  --text-quaternary: #000;
+  --border-color: #404040;
+  --shadow: rgba(0, 0, 0, 0.3);
+  --button-primary: #2c2c2c;
+  --button-secondary: #acacac;
+}
+
+body button {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 12px;
+  gap: 0.5rem;
+  padding: 0.3rem 1rem;
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+
+}
+body a > button {
+  text-decoration: none;
+}
+
+.custom-icon {
+  width: 2em;
+  height: 2em;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.vr {
+  opacity: 1;
+}
+
+.btn-custom-secondary {
+  color: var(--text-primary);
+  background-color: var(--button-primary);
+  border: solid 0.1em var(--text-primary);
+}
+
+.btn-custom-secondary:focus,
+.btn-custom-secondary:active,
+.btn-custom-secondary:focus-visible{
+  background-color: var(--shadow);
+  border: solid 0.1em var(--text-primary);
+}
+
+.btn-custom-primary{
+  color: var(--text-quaternary);
+  background-color: var(--button-secondary);
+  border: solid 0.1em var(--button-secondary);
+}
+
+.btn-custom-primary:active{
+  background-color: var(--shadow);
+}
+
+.blur-effect{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: none;
+}
+.block-scroll {
+  overflow:hidden;
+}
+
+.toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background-color: var(--bg-primary, #333);
+  color: var(--text-primary);
+  padding: 12px 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 100000;
+  transition: transform 0.3s ease-out;
+  font-weight: 500;
+}
+
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+}
+
+body.hide-searcher .header__search {
+  display: none;
+}
+
+body.dark-mode .icon{
+  filter: invert(1) sepia(1) grayscale(1) brightness(0.9);
+}
 :root {
   /* Tu nuevo color principal (Ejemplo: un naranja tipo TheFork) */
   --bs-primary: #f25c05;

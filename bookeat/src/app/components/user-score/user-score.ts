@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-user-score',
@@ -7,5 +7,6 @@ import {Component, Input} from '@angular/core';
   styleUrl: './user-score.css',
 })
 export class UserScore {
-  @Input({required: true}) score? : number|string;
+  score = input<number | string>();
+  size = input<string>('1.2rem');
 }

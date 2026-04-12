@@ -1,4 +1,4 @@
-<span class="fs-5">
-  {{ score || '-,-' }}
+<span class="d-inline-flex align-items-center gap-1 fw-semibold" [style.font-size]="size()">
+  {{ score() ?? '-.-' }}
   <i class="bi bi-star"></i>
 </span>
