@@ -1,20 +1,22 @@
-import { Component, signal } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
-import { FormCard } from '../form-card/form-card';
-import { form, FormField } from '@angular/forms/signals';
-import { INITIAL_AFFILIATE_STATE, type AffiliateForm } from '../../models/affiliate.model';
-import { AFFILIATE_TAG_SUGGESTIONS } from './affiliate-form.constants';
-import { applyAffiliateFormValidators } from '../../validators/affiliate-form.validators';
-import { areSameTag, canonicalizeTag } from '../../utils/affiliate-tag.utils';
-import { TitleCasePipe } from '@angular/common';
+import {Component, inject, signal} from '@angular/core';
+import {ReactiveFormsModule} from '@angular/forms';
+import {FormCard} from '../form-card/form-card';
+import {form, FormField} from '@angular/forms/signals';
+import {INITIAL_AFFILIATE_STATE, type AffiliateForm} from '../../models/affiliate.model';
+import {AFFILIATE_TAG_SUGGESTIONS} from './affiliate-form.constants';
+import {applyAffiliateFormValidators} from '../../validators/affiliate-form.validators';
+import {TitleCasePipe} from '@angular/common';
+import {areSameTag, CanonicalizeTagPipe} from '../../pipes/canonicalize-tag.pipe';
 
 @Component({
   selector: 'app-affiliate-form',
   standalone: true,
   imports: [ReactiveFormsModule, FormCard, FormField, TitleCasePipe],
+  providers: [CanonicalizeTagPipe],
   templateUrl: './affiliate-form.html',
 })
 export class AffiliateFormComponent {
+  private canonicalizeTag = inject(CanonicalizeTagPipe);
   affiliateModel = signal<AffiliateForm>(INITIAL_AFFILIATE_STATE);
   submitted = signal(false);
   availableTags = signal<string[]>(AFFILIATE_TAG_SUGGESTIONS);
@@ -26,50 +28,34 @@ export class AffiliateFormComponent {
   onSubmit(event: Event) {
     event.preventDefault();
     this.submitted.set(true);
-    if (this.affiliateForm().invalid()) {
-      return;
-    }
+    if (this.affiliateForm().invalid()) return;
     console.log('Valores a enviar:', this.affiliateForm().value());
   }
 
-  tags() {
-    return this.affiliateModel().tags;
-  }
+  tags() { return this.affiliateModel().tags; }
 
   addTag(value: string) {
-    const tag = canonicalizeTag(value, this.availableTags());
-
+    const tag = this.canonicalizeTag.transform(value, this.availableTags());
     if (!tag) return;
 
     this.affiliateModel.update((currentModel) => {
       const alreadyExists = currentModel.tags.some((currentTag) => areSameTag(currentTag, tag));
-
-      if (alreadyExists) {
-        return currentModel;
-      }
-
-      return {
-        ...currentModel,
-
-        tags: [...currentModel.tags, tag],
-      };
+      if (alreadyExists) return currentModel;
+      return { ...currentModel, tags: [...currentModel.tags, tag], };
     });
   }
 
   removeTag(tagToRemove: string) {
     this.affiliateModel.update((currentModel) => ({
       ...currentModel,
-
       tags: currentModel.tags.filter((tag) => !areSameTag(tag, tagToRemove)),
     }));
   }
 
   onTagInput(input: HTMLInputElement) {
     const tag = input.value.trim();
-
     if (tag) {
       this.addTag(tag);
-
       input.value = '';
     }
   }

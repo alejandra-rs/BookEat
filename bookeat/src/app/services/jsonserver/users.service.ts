@@ -1,6 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {User} from '../../models/users.model';
+import {RegisterForm, User} from '../../models/users.model';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +13,7 @@ export class UsersService {
     return this.http.get<User[]>(`${this.BASE_URL}/users`);
   }
 
-  post(user: Omit<User, 'id'> & {password: string}) {
+  post(user: Omit<RegisterForm, 'confirmPassword'> & { image: string }) {
     return this.http.post<User>(`${this.BASE_URL}/users`, user);
   }
 }

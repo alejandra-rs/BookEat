@@ -1,5 +1,5 @@
 import {Component, ElementRef, inject, signal, viewChild} from '@angular/core';
-import {RegisterForm, User} from '../../models/users.model'
+import {RegisterForm} from '../../models/users.model'
 import {form, FormField, required} from '@angular/forms/signals';
 import {checkBirthdate, checkEmail, checkMatch, checkPassword, checkPhone} from '../../validators/form.validators';
 import {UsersService} from '../../services/jsonserver/users.service';
@@ -42,7 +42,7 @@ export class CreateAnAccount {
     birthdate: '',
     accountName: '',
     email: '',
-    phoneNumber: 0,
+    phoneNumber: '',
     password: '',
     confirmPassword: ''
   });
@@ -63,7 +63,7 @@ export class CreateAnAccount {
     if (this.registerForm().invalid()) return;
 
     const form = this.registerData()
-    const user: Omit<User, 'id'> & {password: string} = {
+    const user = {
       name: form.name,
       surname: form.surname,
       birthdate:form.birthdate,
@@ -73,8 +73,6 @@ export class CreateAnAccount {
       phoneNumber: `+34 ${form.phoneNumber}`,
       image: '',
     }
-
     this.service.post(user)
   }
-
 }

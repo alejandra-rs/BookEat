@@ -5,11 +5,11 @@ import { DinersSelector } from '../diners-selector/diners-selector';
 import { RouterLink } from '@angular/router';
 import { LoginPopup } from '../login-popup/login-popup';
 import { AuthService } from '../../services/jsonserver/auth.service';
-import { UserMenu } from '../user-account-popup/user-menu';
+import { MyAccount } from '../my-account/my-account';
 
 @Component({
   selector: 'app-header',
-  imports: [DateSelector, HourSelector, DinersSelector, RouterLink, LoginPopup, UserMenu],
+  imports: [DateSelector, HourSelector, DinersSelector, RouterLink, LoginPopup, MyAccount],
   templateUrl: './header.html',
   styleUrl: './header.css',
 })

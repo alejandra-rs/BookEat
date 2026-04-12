@@ -1,7 +1,7 @@
 import {Component, computed, input} from '@angular/core';
 import { Restaurant } from '../../models/restaurant.model';
 import { AverageRatingPipe } from '../../pipes/average-rating.pipe';
-import {UserScore} from '../user-score/user-score';
+import { UserScore } from '../user-score/user-score';
 
 @Component({
   selector: 'app-rating-breakdown',
