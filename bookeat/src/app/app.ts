@@ -5,10 +5,11 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Header} from './components/header/header';
 import {EditProperty} from './components/edit-property/edit-property';
 import {CategoriesService} from './services/jsonserver/categories.service';
+import {UserReview} from './components/user-review/user-review';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Header],
+  imports: [RouterOutlet, Header, UserReview],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
