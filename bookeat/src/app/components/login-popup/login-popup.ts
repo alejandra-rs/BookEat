@@ -1,10 +1,10 @@
 import { Component, ElementRef, signal, ViewChild } from '@angular/core';
 import { FormCard } from '../form-card/form-card';
-import { INITIAL_LOGIN_STATE, loginFields, loginForm } from '../models/login.model';
+import { INITIAL_LOGIN_STATE, loginFields, loginForm } from '../../models/login.model';
 import { TitleCasePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { form, FormField } from '@angular/forms/signals';
-import { applyLoginValidators } from '../validators/login-popup.validators';
+import { applyLoginValidators } from '../../validators/login-popup.validators';
 
 @Component({
   selector: 'app-login-popup',
