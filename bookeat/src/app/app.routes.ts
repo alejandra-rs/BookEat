@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import {LandingPage} from './pages/landing-page/landing-page';
 import {RestaurantInfoPage} from './pages/restaurant-info-page/restaurant-info-page';
+import {AffiliateFormComponent} from './components/affiliate-form/affiliate-form';
 
 export const routes: Routes = [
   {
@@ -16,6 +17,6 @@ export const routes: Routes = [
   {
     path: 'Become-an-affiliate',
     pathMatch: 'full',
-    component: LandingPage
+    component: AffiliateFormComponent
   }
 ];
