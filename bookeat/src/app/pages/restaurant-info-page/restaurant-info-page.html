@@ -3,7 +3,7 @@
     <app-restaurant-info [restaurant]="restaurant" />
   }
   @if (reviews$ | async; as reviews) {
-    @for (review of reviews | sortByRating | slice:0:3; track review.id) {
+    @for (review of reviews | sortReviews:bestComparator | slice:0:3; track review.id) {
       <app-user-review [review]="review" />
     }
   }

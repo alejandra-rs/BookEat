@@ -4,6 +4,7 @@ export interface Rating {
   "3": number;
   "4": number;
   "5": number;
+  [key: string]: number;
 }
 
 export interface TimeSlot {

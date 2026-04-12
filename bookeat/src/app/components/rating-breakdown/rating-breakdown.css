@@ -1,0 +1,26 @@
+.rating-breakdown__mean,
+.rating-breakdown__bars {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  min-width: 250px;
+}
+
+.rating-breakdown__mean__score {
+  font-size: 4rem;
+  line-height: 1;
+}
+
+.rating-breakdown__fill {
+  background-color: var(--text-primary);
+}
+
+.rating-breakdown__count {
+  min-width: 35px;
+}
+
+@media (max-width: 1024px) {
+  .rating-breakdown__mean,
+  .rating-breakdown__bars {
+    padding: 2rem !important;
+  }
+}
