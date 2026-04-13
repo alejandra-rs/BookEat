@@ -1,7 +1,7 @@
 <app-form-card
   title="Become an Affiliate"
   subtitle="Join our network of restaurants"
-  classname="d-flex flex-column align-items-center w-100 text-center"
+  classname="d-flex flex-column align-items-center h-100 w-100 text-center"
   styles="background: transparent; box-shadow: none; padding: 2rem; gap: 1rem; color: var(--text-primary)"
 >
   <form (submit)="onSubmit($event)">
@@ -10,8 +10,8 @@
         <div class="col-12 col-md-4">
           <input type="text" class="form-control rounded-pill px-3"
                  [formField]="$any(affiliateForm)[field]" [placeholder]="field | titlecase">
-          @if (submitted() && $any(affiliateForm)[field]().errors(); as errors) {
-            @for (error of errors; track error.kind) {
+          @if (submitted() || $any(affiliateForm)[field]().touched()) {
+            @for (error of $any(affiliateForm)[field]().errors(); track error.kind) {
               @if (error.kind === 'pattern') {
                 <div class="invalid-feedback ps-3 text-start d-block">{{ error.message }}</div>
               } @else {
@@ -40,10 +40,10 @@
     <div class="row g-2 mb-2">
         @for (field of ['password', 'confirmPassword']; track field) {
           <div class="col-12 col-md-6">
-            <input type="text" class="form-control rounded-pill px-3"
+            <input type="password" class="form-control rounded-pill px-3"
                    [formField]="$any(affiliateForm)[field]" [placeholder]="field === 'confirmPassword' ? 'Confirm Password' : 'Password'" autocomplete="new-password">
-            @if (submitted() && $any(affiliateForm)[field]().errors(); as errors) {
-              @for (error of errors; track error.kind) {
+            @if (submitted() || $any(affiliateForm)[field]().touched()) {
+              @for (error of $any(affiliateForm)[field]().errors(); track error.kind) {
                   @if (error.kind === 'required') {
                   <div class="invalid-feedback ps-3 text-start d-block">{{ error.message }}</div>
                     @if (error.kind === 'mismatch') {
@@ -85,10 +85,9 @@
             }
           }
         }
-
         <datalist id="tagsList">
-          @for (tag of availableTags(); track tag) {
-            <option [value]="tag"></option>
+          @for (cat of availableTags(); track cat.id) {
+            <option [value]="cat.name"></option>
           }
         </datalist>
       </div>
@@ -98,7 +97,7 @@
       <div class="d-flex flex-wrap gap-2 mb-2">
         @for (tag of tags(); track tag) {
           <span class="badge rounded-pill bg-secondary d-flex align-items-center gap-1">
-            {{ tag }}
+            {{ getTagName(tag) }}
             <i class="bi bi-x" style="cursor:pointer" (click)="removeTag(tag)"></i>
           </span>
         }
@@ -109,8 +108,8 @@
       <div class="mb-2">
         <input type="text" class="form-control rounded-pill px-3"
                [formField]="$any(affiliateForm)[field]" placeholder="Restaurant address (line {{ field === 'addressLine1' ? '1' : '2' }})">
-        @if (submitted() && $any(affiliateForm)[field]().errors(); as errors) {
-          @for (error of errors; track error.kind) {
+        @if (submitted() || $any(affiliateForm)[field]().touched()) {
+          @for (error of $any(affiliateForm)[field]().errors(); track error.kind) {
             @if (error.kind === 'required') {
               <div class="invalid-feedback ps-3 text-start d-block">{{ error.message }}</div>
               @if (error.kind === 'mismatch') {
@@ -127,8 +126,8 @@
         <div class="col-12 col-md-4">
           <input type="text" class="form-control rounded-pill px-3"
                  [formField]="$any(affiliateForm)[field]" [placeholder]="field === 'postalCode' ? 'Postal Code' : (field | titlecase)">
-          @if (submitted() && $any(affiliateForm)[field]().errors(); as errors) {
-            @for (error of errors; track error.kind) {
+          @if (submitted() || $any(affiliateForm)[field]().touched(); as errors) {
+            @for (error of $any(affiliateForm)[field]().errors(); track error.kind) {
               @if (error.kind === 'required' || error.kind === 'pattern') {
                 <div class="invalid-feedback ps-3 text-start d-block">{{ error.message }}</div>
               }
@@ -138,8 +137,14 @@
       }
     </div>
 
+    @if (error()) {
+      <div class="alert alert-danger text-start mb-3" role="alert">
+        {{ error() }}
+      </div>
+    }
+
     <div class="text-center">
-      <button type="submit" class="primary-button rounded-pill px-5">Become an affiliate</button>
+      <button type="submit" class="primary-button px-5">Become an affiliate</button>
     </div>
   </form>
 </app-form-card>
