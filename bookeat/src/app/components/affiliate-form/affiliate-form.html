@@ -126,7 +126,7 @@
         <div class="col-12 col-md-4">
           <input type="text" class="form-control rounded-pill px-3"
                  [formField]="$any(affiliateForm)[field]" [placeholder]="field === 'postalCode' ? 'Postal Code' : (field | titlecase)">
-          @if (submitted() || $any(affiliateForm)[field]().touched(); as errors) {
+          @if (submitted() || $any(affiliateForm)[field]().touched()) {
             @for (error of $any(affiliateForm)[field]().errors(); track error.kind) {
               @if (error.kind === 'required' || error.kind === 'pattern') {
                 <div class="invalid-feedback ps-3 text-start d-block">{{ error.message }}</div>
