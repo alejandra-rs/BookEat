@@ -6,6 +6,7 @@ import { RouterLink } from '@angular/router';
 import { LoginPopup } from '../login-popup/login-popup';
 import { AuthService } from '../../services/jsonserver/auth.service';
 import { UserMenu } from '../user-account-popup/user-menu';
+import {SessionService} from '../../services/jsonserver/session.service';
 
 @Component({
   selector: 'app-header',
@@ -15,6 +16,7 @@ import { UserMenu } from '../user-account-popup/user-menu';
 })
 export class Header {
   public authService = inject(AuthService);
+  public sessionService = inject(SessionService);
   @ViewChild('loginPopup') loginPopup!: LoginPopup;
 
   openLogin() {
