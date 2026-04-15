@@ -16,6 +16,7 @@ export class SessionService {
   constructor(@Inject(DOCUMENT) private document: Document,@Inject(PLATFORM_ID) platformId: Object) {    this.loadInitialState()
     this.isBrowser = isPlatformBrowser(platformId);
     this.loadInitialState();
+
     effect(() => {
       const currentTheme = this.theme();
       if (this.isBrowser){
@@ -27,14 +28,10 @@ export class SessionService {
           this.document.body.classList.remove('dark-mode');
           this.document.body.classList.add('light-mode');
         }
-      }
-    });
-
-    effect(() => {
-      if (this.isBrowser){
         sessionStorage.setItem('pendingBooking',JSON.stringify(this.booking()));
       }
     });
+
   }
   private loadInitialState(){
     if (!this.isBrowser) {
@@ -50,12 +47,7 @@ export class SessionService {
   }
 
   toggleTheme() {
-    const currentTheme = this._theme();
-    if (currentTheme === 'light') {
-      this._theme.set('dark'); // Forzamos a oscuro
-    } else {
-      this._theme.set('light'); // Forzamos a claro
-    }
+    this._theme.update(current => current === 'light' ? 'dark' : 'light');
   }
 
   updateBooking(newValue: Partial<BookingState>) {
