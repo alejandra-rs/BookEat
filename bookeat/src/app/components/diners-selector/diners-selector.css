@@ -1,7 +1,8 @@
 .diners-pill {
-  border: 0.1rem solid black;
+  border: 0.1rem solid var(--text-primary);
   border-radius: 1.5rem;
   padding: 0.3rem;
+
 }
 
 .diners-btn {

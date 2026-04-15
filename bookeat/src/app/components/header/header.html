@@ -24,11 +24,11 @@
 
   <div class="d-flex align-items-center gap-3 flex-shrink-0">
     <div class="d-flex align-items-center gap-2">
-      <button class="btn border-0 p-1" id="language-button">
-        <i class="bi bi-globe fs-4"></i>
+      <button class="btn border-0 p-1 text-reset" id="language-button">
+        <i class="bi bi-globe fs-4 "></i>
       </button>
       <div class="vr align-self-stretch"></div>
-      <button class="btn border-0 p-1" id="dark-mode-toggle" (click)="sessionService.toggleTheme()">
+      <button class="btn border-0 p-1 text-reset" id="dark-mode-toggle" (click)="sessionService.toggleTheme()">
         <i [class]="sessionService.theme() === 'dark' ? 'bi bi-sun fs-4' : 'bi bi-moon fs-4'" id="dark-mode-icon"></i>
       </button>
     </div>
