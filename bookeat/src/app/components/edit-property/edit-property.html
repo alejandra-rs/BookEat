@@ -1,7 +1,8 @@
 <div class="d-flex align-items-center gap-3">
-  <i class="bi bi-x-lg fs-2"></i>
-  <div class="edit-property d-flex align-items-center justify-content-between p-2 rounded-3">
-    <input class="border-0 p-1 bg-transparent" placeholder="Property">
-    <app-edit-button></app-edit-button>
+  <i class="bi bi-{{iconClass()}} fs-2"></i>
+  <span>{{propertyTitle()}}</span>
+  <div class="edit-property d-flex align-items-center justify-content-between p-2 rounded-3 flex-grow-1">
+    <input #field class="border-0 p-1 bg-transparent" [value]="propertyValue" [disabled]="!editing()">
+    <app-edit-button [editing]="editing()" (clicked)="toggleEdit(field.value)" />
   </div>
 </div>

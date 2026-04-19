@@ -93,7 +93,8 @@
     display: block;
   }
 
-  .footer__affiliate-link {
+  .footer__affiliate-link,
+  .footer__column--affiliate{
     flex-direction: row;
     align-items: center;
     justify-content: center;
