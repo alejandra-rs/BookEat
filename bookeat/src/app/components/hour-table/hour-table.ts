@@ -1,5 +1,5 @@
-import {Component, computed, input, Input} from '@angular/core';
-import {OpeningHours, Restaurant, TimeSlot} from '../../models/restaurant.model';
+import {Component, computed, input, output} from '@angular/core';
+import {OpeningHours, Restaurant} from '../../models/restaurant.model';
 import {NgbDate} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -8,16 +8,21 @@ import {NgbDate} from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './hour-table.html',
   styleUrl: './hour-table.css',
 })
-
 export class HourTable {
 
   restaurant = input.required<Restaurant>()
-  date = input(new Date().getDay(),{
+  date = input(new Date().getDay(), {
     transform: (ngbDate: NgbDate | null) => {
       if (ngbDate) return new Date(ngbDate.year, ngbDate.month - 1, ngbDate.day).getDay()
-      return new Date().getDay() ;
+      return new Date().getDay();
     }
   })
+  selectedTime = input<string | null>(null);
+  timeSelected = output<string>();
+
+  selectTime(time: string) {
+    this.timeSelected.emit(time);
+  }
 
   ranges = computed(() =>{
     const currentRest = this.restaurant();

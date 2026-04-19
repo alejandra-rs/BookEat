@@ -3,7 +3,6 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {FormCard} from '../form-card/form-card';
 import {form, FormField} from '@angular/forms/signals';
 import {INITIAL_AFFILIATE_STATE, type AffiliateForm} from '../../models/affiliate.model';
-import {AFFILIATE_TAG_SUGGESTIONS} from './affiliate-form.constants';
 import {applyAffiliateFormValidators} from '../../validators/affiliate-form.validators';
 import {areSameTag,  toTitleCase} from '../../pipes/canonicalize-tag.pipe';
 import { TitleCasePipe } from '@angular/common';
@@ -86,7 +85,7 @@ export class AffiliateFormComponent {
   onTagInput(input: HTMLInputElement) {
     const tag = input.value.trim();
     if (tag) {
-      this.addTag(tag);
+      this.addTag(tag).then();
       input.value = '';
     }
   }

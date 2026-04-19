@@ -1,6 +1,6 @@
-import {DOCUMENT, effect, Inject, Injectable, PLATFORM_ID, signal} from '@angular/core';
-import {BookingState,  INITIAL_SESSION_STATE} from '../../models/session.model';
-import {isPlatformBrowser} from '@angular/common';
+import { DOCUMENT, effect, Inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
+import { BookingState, INITIAL_SESSION_STATE } from '../../models/session.model';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
@@ -11,39 +11,31 @@ export class SessionService {
   private _booking = signal<BookingState>(INITIAL_SESSION_STATE);
   public readonly booking = this._booking.asReadonly();
 
-  private isBrowser: boolean;
+  private readonly isBrowser: boolean;
 
-  constructor(@Inject(DOCUMENT) private document: Document,@Inject(PLATFORM_ID) platformId: Object) {    this.loadInitialState()
+  constructor(@Inject(DOCUMENT) private document: Document, @Inject(PLATFORM_ID) platformId: Object) {
     this.isBrowser = isPlatformBrowser(platformId);
     this.loadInitialState();
 
     effect(() => {
-      const currentTheme = this.theme();
-      if (this.isBrowser){
-        sessionStorage.setItem('theme', currentTheme);
-        if (currentTheme === 'dark') {
-          this.document.body.classList.remove('light-mode');
-          this.document.body.classList.add('dark-mode');
-        }else{
-          this.document.body.classList.remove('dark-mode');
-          this.document.body.classList.add('light-mode');
-        }
-        sessionStorage.setItem('pendingBooking',JSON.stringify(this.booking()));
-      }
+      if (!this.isBrowser) return;
+      const theme = this.theme();
+      sessionStorage.setItem('theme', theme);
+      this.document.body.classList.toggle('dark-mode', theme === 'dark');
+      this.document.body.classList.toggle('light-mode', theme === 'light');
     });
 
+    effect(() => {
+      if (!this.isBrowser) return;
+      sessionStorage.setItem('pendingBooking', JSON.stringify(this.booking()));
+    });
   }
-  private loadInitialState(){
-    if (!this.isBrowser) {
-      return;
-    }
-    const saveTheme = (sessionStorage.getItem('theme') as 'light' |'dark') || 'light';
-    this._theme.set(saveTheme);
 
+  private loadInitialState() {
+    if (!this.isBrowser) return;
+    this._theme.set((sessionStorage.getItem('theme') as 'light' | 'dark') || 'light');
     const savedBooking = sessionStorage.getItem('pendingBooking');
-    if (savedBooking) {
-      this._booking.set(JSON.parse(savedBooking));
-    }
+    if (savedBooking) this._booking.set(JSON.parse(savedBooking));
   }
 
   toggleTheme() {
@@ -51,7 +43,6 @@ export class SessionService {
   }
 
   updateBooking(newValue: Partial<BookingState>) {
-    this._booking.update(current=>({...current, ...newValue}))
+    this._booking.update(current => ({ ...current, ...newValue }));
   }
-
 }

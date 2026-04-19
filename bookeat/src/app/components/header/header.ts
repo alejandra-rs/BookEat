@@ -1,13 +1,15 @@
-import {Component, inject, viewChild} from '@angular/core';
+import { Component, inject, viewChild } from '@angular/core';
 import { DateSelector } from '../date-selector/date-selector';
 import { HourSelector } from '../hour-selector/hour-selector';
 import { DinersSelector } from '../diners-selector/diners-selector';
-import { RouterLink } from '@angular/router';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { LoginPopup } from '../login-popup/login-popup';
 import { AuthService } from '../../services/jsonserver/auth.service';
 import { MyAccount } from '../my-account/my-account';
-import {CreateAnAccount} from '../create-an-account/create-an-account';
-import {SessionService} from '../../services/jsonserver/session.service';
+import { CreateAnAccount } from '../create-an-account/create-an-account';
+import { SessionService } from '../../services/jsonserver/session.service';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { filter, map, startWith } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -18,8 +20,21 @@ import {SessionService} from '../../services/jsonserver/session.service';
 export class Header {
   public authService = inject(AuthService);
   public sessionService = inject(SessionService);
-  registerPopup = viewChild.required(CreateAnAccount)
-  loginPopup = viewChild.required(LoginPopup)
+  private router = inject(Router);
+  registerPopup = viewChild.required(CreateAnAccount);
+  loginPopup = viewChild.required(LoginPopup);
+
+  private isBookingRoute = () =>
+    this.router.url.startsWith('/booking-details') || this.router.url.startsWith('/book-table');
+
+  readonly userIsBooking = toSignal(
+    this.router.events.pipe(
+      filter(e => e instanceof NavigationEnd),
+      map(() => this.isBookingRoute()),
+      startWith(this.isBookingRoute())
+    ),
+    { initialValue: false }
+  );
 
   openLogin() {
     this.loginPopup().open();

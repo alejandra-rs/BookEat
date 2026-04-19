@@ -13,9 +13,7 @@ export class DinersSelector {
   constructor(public sessionService: SessionService) {
     effect(() => {
       const stateDiners = this.sessionService.booking().diners;
-      if (stateDiners.length > 1) {
-        this.diners.set(Number(stateDiners));
-      }
+      this.diners.set(Number(stateDiners) || 1);
     });
   }
   updateDinner(){
