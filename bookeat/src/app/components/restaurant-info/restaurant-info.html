@@ -11,12 +11,12 @@
         <app-user-score [size]="'2.5rem'" [score]="restaurant().rating | averageRating" />
       </header>
 
-      <p class="d-flex align-items-center fs-5 text-muted gap-2 mb-3">
-        <i class="bi bi-geo-alt fs-4"></i>
+      <p class="d-flex align-items-center fs-5 text-muted gap-2 mb-3 text-reset">
+        <i class="bi bi-geo-alt fs-4 text-reset"></i>
         <span>{{ restaurant().address }}</span>
       </p>
 
-      <p class="text-muted">{{ restaurant().description }}</p>
+      <p class="text-muted text-reset">{{ restaurant().description }}</p>
 
       <section class="d-flex flex-wrap gap-2 mt-auto mb-2">
         @for (category of categories(); track category.id) {

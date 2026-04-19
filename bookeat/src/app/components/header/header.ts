@@ -1,4 +1,4 @@
-import {Component, inject, viewChild, ViewChild} from '@angular/core';
+import {Component, inject, viewChild} from '@angular/core';
 import { DateSelector } from '../date-selector/date-selector';
 import { HourSelector } from '../hour-selector/hour-selector';
 import { DinersSelector } from '../diners-selector/diners-selector';
@@ -7,6 +7,7 @@ import { LoginPopup } from '../login-popup/login-popup';
 import { AuthService } from '../../services/jsonserver/auth.service';
 import { MyAccount } from '../my-account/my-account';
 import {CreateAnAccount} from '../create-an-account/create-an-account';
+import {SessionService} from '../../services/jsonserver/session.service';
 
 @Component({
   selector: 'app-header',
@@ -16,8 +17,10 @@ import {CreateAnAccount} from '../create-an-account/create-an-account';
 })
 export class Header {
   public authService = inject(AuthService);
+  public sessionService = inject(SessionService);
   registerPopup = viewChild.required(CreateAnAccount)
   loginPopup = viewChild.required(LoginPopup)
+
   openLogin() {
     this.loginPopup().open();
   }
