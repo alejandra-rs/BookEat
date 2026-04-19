@@ -53,6 +53,11 @@ export class AuthService {
     }
   }
 
+  updateImage(url: string) {
+    const current = this._currentUser();
+    if (current) this._currentUser.set({ ...current, image: url });
+  }
+
   logout() {
     this._currentUser.set(null);
     sessionStorage.removeItem(SESSION_KEY);

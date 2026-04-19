@@ -1,7 +1,7 @@
 <dialog #DialogEditProfileImage
         class="edit-profile-image-dialog border-0 rounded-4"
-        (click)="closeOnBackdrop($event)">
-  <div class="d-flex flex-column p-5 gap-4">
+        (click)="close()">
+  <div class="d-flex flex-column p-5 gap-4" (click)="$event.stopPropagation()">
     <section class="d-flex flex-column align-items-center gap-3">
       <h2>Edit your profile image</h2>
       <app-insert-image (imageSelected)="pendingUrl.set($event)"/>

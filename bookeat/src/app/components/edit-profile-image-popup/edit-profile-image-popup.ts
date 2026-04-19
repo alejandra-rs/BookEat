@@ -11,7 +11,8 @@ import {AuthService} from '../../services/jsonserver/auth.service';
 })
 export class EditProfileImagePopup {
   private usersService = inject(UsersService);
-  private session = inject(AuthService).currentUser();
+  private authService = inject(AuthService);
+  private session = this.authService.currentUser();
 
   @ViewChild('DialogEditProfileImage') dialogRef!: ElementRef<HTMLDialogElement>;
 
@@ -20,18 +21,11 @@ export class EditProfileImagePopup {
   open() { this.dialogRef.nativeElement.showModal(); }
   close() { this.dialogRef.nativeElement.close(); }
 
-  closeOnBackdrop(event: MouseEvent) {
-    const rect = this.dialogRef.nativeElement.getBoundingClientRect();
-    const clickedOutside =
-      event.clientX < rect.left || event.clientX > rect.right ||
-      event.clientY < rect.top  || event.clientY > rect.bottom;
-    if (clickedOutside) this.close();
-  }
-
   save() {
     const url = this.pendingUrl();
     if (!url || !this.session) return;
     this.usersService.patch(this.session.id, this.session.role, { image: url }).subscribe();
+    this.authService.updateImage(url);
     this.close();
   }
 }
