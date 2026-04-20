@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDate, NgbDatepicker, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { RestaurantsService } from '../../services/jsonserver/restaurants.service';
-import { SessionService } from '../../services/jsonserver/session.service';
+import { SessionService } from '../../services/session.service';
 import { DinersSelector } from '../../components/diners-selector/diners-selector';
 import { HourTable } from '../../components/hour-table/hour-table';
 import { OpeningHours, Restaurant } from '../../models/restaurant.model';
@@ -47,8 +47,24 @@ export class BookingDetailsPage {
     this.restaurantsService.getById(this.id).subscribe(r => this.restaurant.set(r));
   }
 
-  isWithinBounds() {
-    return true;
+  isWithinBounds(): boolean {
+    const restaurant = this.restaurant();
+    const booking = this.sessionService.booking();
+    if (!restaurant || !booking.time || !booking.date) return false;
+
+    const [year, month, day] = booking.date.split('-').map(Number);
+    const dayLetter = this.dayMap[new Date(year, month - 1, day).getDay()];
+    const ranges = restaurant.hours[dayLetter];
+    if (!ranges || ranges.length === 0) return false;
+
+    const [hh, mm] = booking.time.split(':').map(Number);
+    const selected = hh * 60 + mm;
+
+    return ranges.some(range => {
+      const [fh, fm] = range.from.split(':').map(Number);
+      const [th, tm] = range.to.split(':').map(Number);
+      return selected >= fh * 60 + fm && selected <= th * 60 + tm;
+    });
   }
 
   isDateDisabled = (date: NgbDateStruct) => {

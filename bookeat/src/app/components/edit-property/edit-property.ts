@@ -3,6 +3,7 @@ import {EditButton} from '../edit-button/edit-button';
 import {User} from '../../models/users.model';
 import {UsersService} from '../../services/jsonserver/users.service';
 import {AuthService} from '../../services/jsonserver/auth.service';
+import { showToast } from '../toast/toast';
 
 @Component({
   selector: 'app-edit-property',
@@ -13,7 +14,6 @@ import {AuthService} from '../../services/jsonserver/auth.service';
 export class EditProperty {
   private usersService = inject(UsersService);
   private session = inject(AuthService).currentUser();
-
   iconClass = input<string>();
   propertyTitle = input<string>();
   propertyName = input.required<string>();
@@ -33,7 +33,7 @@ export class EditProperty {
       if (customHandler) customHandler(value);
       else if (this.session) this.usersService
                                  .patch(this.session.id, this.session.role, { [this.propertyName()]: value })
-                                 .subscribe();
+                                 .subscribe(() => showToast(`${this.propertyTitle() ?? this.propertyName()} updated successfully.`));
     }
     this.editing.update(v => !v);
   }

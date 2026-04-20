@@ -1,5 +1,5 @@
 import { DOCUMENT, effect, Inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
-import { BookingState, INITIAL_SESSION_STATE } from '../../models/session.model';
+import { BookingState, INITIAL_SESSION_STATE } from '../models/session.model';
 import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({

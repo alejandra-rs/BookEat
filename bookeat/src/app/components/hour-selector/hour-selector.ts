@@ -1,6 +1,6 @@
 import {Component, effect, model, ModelSignal} from '@angular/core';
 import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
-import {SessionService} from '../../services/jsonserver/session.service';
+import {SessionService} from '../../services/session.service';
 
 @Component({
   selector: 'app-hour-selector',

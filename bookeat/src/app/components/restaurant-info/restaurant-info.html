@@ -7,7 +7,14 @@
     <div class="d-flex flex-column restaurant-info__content">
 
       <header class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-1">
-        <h1 class="m-0 fs-2 fw-bold">{{ restaurant().name }}</h1>
+        @if (editMode()) {
+          <input class="form-control fs-2 fw-bold mb-1"
+                 [value]="editName() ?? restaurant().name"
+                 (input)="editName.set($any($event.target).value)"
+                 placeholder="Restaurant name" />
+        } @else {
+          <h1 class="m-0 fs-2 fw-bold">{{ restaurant().name }}</h1>
+        }
         <app-user-score [size]="'2.5rem'" [score]="restaurant().rating | averageRating" />
       </header>
 
@@ -16,7 +23,14 @@
         <span>{{ restaurant().address }}</span>
       </p>
 
-      <p class="text-muted text-reset">{{ restaurant().description }}</p>
+      @if (editMode()) {
+        <textarea class="form-control mb-2" rows="4"
+                  [value]="editDescription() ?? restaurant().description"
+                  (input)="editDescription.set($any($event.target).value)"
+                  placeholder="Description"></textarea>
+      } @else {
+        <p class="text-muted text-reset">{{ restaurant().description }}</p>
+      }
 
       <section class="d-flex flex-wrap gap-2 mt-auto mb-2">
         @for (category of categories(); track category.id) {
@@ -30,9 +44,15 @@
         <button id="menu-icon" class="btn-custom-secondary py-2 fs-4" (click)="openMenu()">
           <i class="bi bi-book"></i>
         </button>
-        <button [routerLink]="['/booking-details', restaurant().id]" class="btn-custom-primary px-3 fs-5">
-          Book
-        </button>
+        @if (editMode()) {
+          <button class="btn-custom-primary px-3 fs-5" (click)="emitSave()">
+            Save Changes
+          </button>
+        } @else {
+          <button [routerLink]="['/booking-details', restaurant().id]" class="btn-custom-primary px-3 fs-5">
+            Book
+          </button>
+        }
       </div>
     </div>
   </section>
