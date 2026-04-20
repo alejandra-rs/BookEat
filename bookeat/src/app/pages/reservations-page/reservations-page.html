@@ -1,0 +1,11 @@
+@if (item(); as resolvedItem){
+  @for (book of bookings()!; track book.id){
+    @if (type(); as type){
+    <app-overview [type]="type" [item]="resolvedItem" [booking]="book"></app-overview>
+    }
+  } @empty {
+  <P>There aren't reservations</P>
+  }
+} @else {
+  <P>Loading...</P>
+}
