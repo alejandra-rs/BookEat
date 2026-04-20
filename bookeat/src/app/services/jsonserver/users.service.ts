@@ -14,7 +14,7 @@ export class UsersService {
     return this.http.get<User[]>(`${this.BASE_URL}/users`);
   }
 
-  getById(id: string, role: UserRole) {
+  getById(id: string, role: UserRole |string) {
     return role == "USER" ? this.http.get<User>(`${this.BASE_URL}/users/${id}`)
                           : this.http.get<User>(`${this.BASE_URL}/restaurant-profiles/${id}`);
   }

@@ -1,6 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { firstValueFrom } from 'rxjs';
 import { RestaurantsService } from '../../services/jsonserver/restaurants.service';
 import { BookingsService } from '../../services/jsonserver/bookings.service';
 import { AuthService } from '../../services/jsonserver/auth.service';
@@ -56,8 +55,9 @@ export class BookTablePage {
 
     const booking = this.sessionService.booking();
     const payload = {
-      restaurantId: String(this.id),
-      userId: String(user.id),
+      date: this.bookingsService.toDate(booking.date),
+      restaurantId: Number(this.id),
+      userId: Number(user.id),
       datetime: `${booking.date} ${booking.time}`,
       guests: booking.diners,
       tables: Array.from(this.selectedTables()),
@@ -65,7 +65,7 @@ export class BookTablePage {
     };
 
     try {
-      await firstValueFrom(this.bookingsService.post(payload));
+      //await firstValueFrom(this.bookingsService.post(payload));
       this.sessionService.updateBooking({ date: '', time: '', diners: '1' });
       this.confirmation.set({
         restaurantName: restaurant.name,
