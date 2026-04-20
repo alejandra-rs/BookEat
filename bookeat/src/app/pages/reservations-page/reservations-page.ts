@@ -34,7 +34,7 @@ export class ReservationsPage {
       if (user!.role === 'USER') {
         return this.userService.getById(user!.id, "USER");
       }
-      return this.restaurantsService.getById(Number(user!.id));
+      return this.restaurantsService.getById(user!.id);
     })
   );
 

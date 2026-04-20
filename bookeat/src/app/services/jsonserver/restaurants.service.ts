@@ -14,7 +14,7 @@ export class RestaurantsService {
     return this.http.get<Restaurant[]>(`${this.BASE_URL}/restaurants`);
   }
 
-  getById(id: number): Observable<Restaurant> {
+  getById(id: string): Observable<Restaurant> {
     return this.http.get<Restaurant>(`${this.BASE_URL}/restaurants/${id}`);
   }
 

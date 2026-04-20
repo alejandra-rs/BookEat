@@ -26,9 +26,9 @@ export class RestaurantReviewsPage {
   private reviewsService = inject(ReviewsService);
   private route = inject(ActivatedRoute);
 
-  readonly id = Number(this.route.snapshot.paramMap.get('id'));
-  readonly restaurant$ = this.restaurantsService.getById(this.id);
-  readonly reviews = toSignal(this.reviewsService.getReviewsOf(this.id), { initialValue: [] });
+  readonly id = this.route.snapshot.paramMap.get('id');
+  readonly restaurant$ = this.restaurantsService.getById(this.id!);
+  readonly reviews = toSignal(this.reviewsService.getReviewsOf(this.id!), { initialValue: [] });
 
   ratingFilter = signal<number | null>(null);
   onlyPicturesFilter = signal<boolean>(false);

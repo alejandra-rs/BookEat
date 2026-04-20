@@ -53,7 +53,7 @@ export interface TableMap {
 }
 
 export interface Restaurant {
-  id: string | number;
+  id: string;
   name: string;
   description: string;
   hours: OpeningHours;
