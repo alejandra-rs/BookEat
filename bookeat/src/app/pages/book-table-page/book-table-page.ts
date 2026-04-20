@@ -7,6 +7,8 @@ import { SessionService } from '../../services/jsonserver/session.service';
 import { TableMapComponent } from '../../components/table-map/table-map';
 import { LoginPopup } from '../../components/login-popup/login-popup';
 import { Restaurant } from '../../models/restaurant.model';
+import {firstValueFrom} from 'rxjs';
+import {Booking} from '../../models/booking.model';
 
 interface ConfirmationData {
   restaurantName: string;
@@ -27,7 +29,7 @@ export class BookTablePage {
   private authService = inject(AuthService);
   private sessionService = inject(SessionService);
 
-  readonly id = Number(this.route.snapshot.paramMap.get('id'));
+  readonly id = String(this.route.snapshot.paramMap.get('id'));
   restaurant = signal<Restaurant | null>(null);
   occupiedIds = signal<number[]>([]);
   selectedTables = signal<Set<number>>(new Set());
@@ -54,18 +56,18 @@ export class BookTablePage {
     if (!user || !restaurant || this.selectedTables().size === 0) return;
 
     const booking = this.sessionService.booking();
-    const payload = {
+    const payload: Omit<Booking, 'id'>= {
       date: this.bookingsService.toDate(booking.date),
-      restaurantId: Number(this.id),
-      userId: Number(user.id),
+      restaurantId: this.id,
+      userId: user.id,
       datetime: `${booking.date} ${booking.time}`,
-      guests: booking.diners,
+      guests: Number(booking.diners),
       tables: Array.from(this.selectedTables()),
       status: 'incoming' as const,
     };
 
     try {
-      //await firstValueFrom(this.bookingsService.post(payload));
+      await firstValueFrom(this.bookingsService.post(payload));
       this.sessionService.updateBooking({ date: '', time: '', diners: '1' });
       this.confirmation.set({
         restaurantName: restaurant.name,

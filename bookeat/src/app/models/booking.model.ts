@@ -3,9 +3,9 @@ import {User} from './users.model';
 
 export interface Booking{
   date: Date;
-  id: number,
-  restaurantId: number,
-  userId: number,
+  id: string,
+  restaurantId: string,
+  userId: string,
   tables: number[]
   datetime: string,
   guests: number,
@@ -14,9 +14,9 @@ export interface Booking{
 
 export interface BookingExpanded{
   date: Date;
-  id: number,
-  restaurantId: number,
-  userId: number,
+  id: string,
+  restaurantId: string,
+  userId: string,
   tables: number[]
   datetime: string,
   guests: number,

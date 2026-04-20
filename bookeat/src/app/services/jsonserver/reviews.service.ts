@@ -12,7 +12,7 @@ export class ReviewsService {
   private BASE_URL = 'http://localhost:3000';
   private usersService = inject(UsersService);
 
-  getReviewsOf(restaurantId: Number): Observable<ReviewWithUser[]> {
+  getReviewsOf(restaurantId: string): Observable<ReviewWithUser[]> {
     return forkJoin({
       reviews: this.http.get<Review[]>(`${this.BASE_URL}/reviews?restaurantId=${restaurantId}`),
       users:   this.usersService.getAll()
