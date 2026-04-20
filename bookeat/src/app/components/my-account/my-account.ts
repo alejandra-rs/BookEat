@@ -26,7 +26,7 @@ export class MyAccount {
   constructor() {
     const u = this.authService.currentUser();
     if (u?.role === 'RESTAURANT') {
-      firstValueFrom(this.authService.getRestaurantById(Number(u.id)))
+      firstValueFrom(this.authService.getRestaurantById(u.id))
         .then(profile => {
           if (profile) this.myRestaurantId.set(Number((profile as RestaurantProfile).restaurantId));
         })

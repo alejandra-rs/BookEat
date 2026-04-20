@@ -18,7 +18,7 @@ export class RestaurantsService {
     return this.http.get<Restaurant>(`${this.BASE_URL}/restaurants/${id}`);
   }
 
-  patch(id: number, changes: Partial<Pick<Restaurant, 'name' | 'description'>>): Observable<Restaurant> {
+  patch(id: string, changes: Partial<Pick<Restaurant, 'name' | 'description'>>): Observable<Restaurant> {
     return this.http.patch<Restaurant>(`${this.BASE_URL}/restaurants/${id}`, changes);
   }
 }

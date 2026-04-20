@@ -71,7 +71,7 @@ export class AuthService {
     }
 
     const restaurantId = await this.getNextNumericId('restaurants');
-    const restaurantPayload = this.buildRestaurantPayload(data, restaurantId);
+    const restaurantPayload = this.buildRestaurantPayload(data, String(restaurantId));
     await firstValueFrom(this.http.post(`${this.BASE_URL}/restaurants`, restaurantPayload));
 
     const profileId = await this.getNextNumericId('restaurant-profiles');
@@ -94,7 +94,7 @@ export class AuthService {
     return maxId + 1;
   }
 
-  private buildRestaurantPayload(data: AffiliateForm, restaurantId: number): Restaurant {
+  private buildRestaurantPayload(data: AffiliateForm, restaurantId: string): Restaurant {
     return {
       id: restaurantId,
       name: data.restaurantName,
@@ -139,11 +139,11 @@ export class AuthService {
       .join(', ');
   }
 
-  getUserById(id: number): Observable<AuthUser | null> {
+  getUserById(id: string): Observable<AuthUser | null> {
     return this.http.get<AuthUser>(`${this.BASE_URL}/users/${id}`);
   }
 
-  getRestaurantById(id: number): Observable<AuthUser | null> {
+  getRestaurantById(id: string): Observable<AuthUser | null> {
     return this.http.get<AuthUser>(`${this.BASE_URL}/restaurant-profiles/${id}`);
   }
 }

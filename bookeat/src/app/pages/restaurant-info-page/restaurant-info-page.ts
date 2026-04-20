@@ -25,15 +25,15 @@ export class RestaurantInfoPage {
   private authService = inject(AuthService);
   private route = inject(ActivatedRoute);
 
-  readonly id = Number(this.route.snapshot.paramMap.get('id'));
+  readonly id = this.route.snapshot.paramMap.get('id');
   readonly bestComparator = (a: ReviewWithUser, b: ReviewWithUser) => b.rating - a.rating;
 
   restaurant = signal<Restaurant | null>(null);
   isEditMode = signal(false);
-  reviews$ = this.reviewsService.getReviewsOf(this.id);
+  reviews$ = this.reviewsService.getReviewsOf(this.id!);
 
   constructor() {
-    this.restaurantsService.getById(this.id).subscribe(r => this.restaurant.set(r));
+    this.restaurantsService.getById(this.id!).subscribe(r => this.restaurant.set(r));
     if (this.route.snapshot.queryParamMap.get('edit') === 'true') this.verifyEditAccess().then();
   }
 
@@ -42,13 +42,13 @@ export class RestaurantInfoPage {
     if (!user || user.role !== 'RESTAURANT') return;
 
     try {
-      const profile = await firstValueFrom(this.authService.getRestaurantById(Number(user.id))) as RestaurantProfile;
+      const profile = await firstValueFrom(this.authService.getRestaurantById(user.id!)) as RestaurantProfile;
       if (String(profile.restaurantId) === String(this.id)) this.isEditMode.set(true);
     } catch {}
   }
 
   saveInfo(data: { name: string; description: string }) {
-    this.restaurantsService.patch(this.id, data).subscribe(updated => {
+    this.restaurantsService.patch(this.id!, data).subscribe(updated => {
       this.restaurant.set(updated);
       showToast('Restaurant info updated successfully.');
     });

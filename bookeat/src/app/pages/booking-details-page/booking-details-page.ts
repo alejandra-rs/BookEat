@@ -21,7 +21,7 @@ export class BookingDetailsPage {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
 
-  readonly id = Number(this.route.snapshot.paramMap.get('id'));
+  readonly id = this.route.snapshot.paramMap.get('id');
   restaurant = signal<Restaurant | null>(null);
 
   selectedDate = computed<NgbDate | null>(() => {
@@ -44,7 +44,7 @@ export class BookingDetailsPage {
   constructor() {
     const today = new Date();
     this.minDate = new NgbDate(today.getFullYear(), today.getMonth() + 1, today.getDate());
-    this.restaurantsService.getById(this.id).subscribe(r => this.restaurant.set(r));
+    this.restaurantsService.getById(this.id!).subscribe(r => this.restaurant.set(r));
   }
 
   isWithinBounds(): boolean {
