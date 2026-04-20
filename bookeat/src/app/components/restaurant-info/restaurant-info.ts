@@ -5,7 +5,7 @@ import { Category } from '../../models/category.model';
 import { UserScore } from '../user-score/user-score';
 import { MenuPopup } from '../menu-popup/menu-popup';
 import { AverageRatingPipe } from '../../pipes/average-rating.pipe';
-import { CategoriesService } from '../../services/jsonserver/categories.service';
+import { CategoriesService } from '../../services/firebase/categories.service';
 
 @Component({
   selector: 'app-restaurant-info',
@@ -22,13 +22,14 @@ export class RestaurantInfo {
   infoSaved = output<{ name: string; description: string }>();
 
   categories = computed<Category[]>(() =>
-    this.categoriesService.resolve(this.restaurant().categories),
+    this.categoriesService.resolve(this.restaurant().categories)
   );
 
   editName = signal<string | null>(null);
   editDescription = signal<string | null>(null);
 
   constructor() {
+    this.categoriesService.load();
     effect(() => {
       if (!this.editMode()) {
         this.editName.set(null);

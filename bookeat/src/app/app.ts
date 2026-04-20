@@ -4,7 +4,7 @@ import {WriteReviewPopup} from './components/write-review-popup/write-review-pop
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Header} from './components/header/header';
 import {EditProperty} from './components/edit-property/edit-property';
-import {CategoriesService} from './services/jsonserver/categories.service';
+import {CategoriesService} from './services/firebase/categories.service';
 import {UserReview} from './components/user-review/user-review';
 import {Footer} from './components/footer/footer';
 import {Toast} from './components/toast/toast';

@@ -1,7 +1,7 @@
 import { Component, inject, input } from '@angular/core';
 import { AsyncPipe, SlicePipe } from '@angular/common';
 import { RestaurantItem } from '../restaurant-item/restaurant-item';
-import { RestaurantsService } from '../../services/jsonserver/restaurants.service';
+import { RestaurantsService } from '../../services/firebase/restaurants.service';
 import { ShufflePipe } from '../../pipes/shuffle.pipe';
 
 @Component({

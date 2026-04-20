@@ -1,9 +1,9 @@
 import { Component, inject, signal } from '@angular/core';
 import { AsyncPipe, SlicePipe } from '@angular/common';
 import { RestaurantInfo } from '../../components/restaurant-info/restaurant-info';
-import { RestaurantsService } from '../../services/jsonserver/restaurants.service';
+import { RestaurantsService } from '../../services/firebase/restaurants.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { ReviewsService } from '../../services/jsonserver/reviews.service';
+import { ReviewsService } from '../../services/firebase/reviews.service';
 import { UserReview } from '../../components/user-review/user-review';
 import { SortReviewsPipe } from '../../pipes/sort-reviews.pipe';
 import { ReviewWithUser } from '../../models/review.model';

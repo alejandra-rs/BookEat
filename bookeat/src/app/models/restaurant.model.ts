@@ -62,7 +62,7 @@ export interface Restaurant {
   minPrice: number;
   maxPrice: number;
   coordinates: [number, number];
-  categories: number[];
+  categories: string[];
   rating: Rating;
   menu: MenuSection[];
   tableMap: TableMap;

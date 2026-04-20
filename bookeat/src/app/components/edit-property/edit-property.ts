@@ -1,7 +1,7 @@
 import {Component, inject, input, signal} from '@angular/core';
 import {EditButton} from '../edit-button/edit-button';
 import {User} from '../../models/users.model';
-import {UsersService} from '../../services/jsonserver/users.service';
+import {UsersService} from '../../services/firebase/users.service';
 import {AuthService} from '../../services/jsonserver/auth.service';
 import { showToast } from '../toast/toast';
 

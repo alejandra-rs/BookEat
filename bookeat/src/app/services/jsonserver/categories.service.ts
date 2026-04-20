@@ -18,8 +18,8 @@ export class CategoriesService {
     });
   }
 
-  resolve(ids: number[]): Category[] {
-    return this._categories().filter(c => ids.includes(Number(c.id)));
+  resolve(ids: string[]): Category[] {
+    return this._categories().filter(c => ids.includes(c.id));
   }
 
   async create(name: string): Promise<Category> {

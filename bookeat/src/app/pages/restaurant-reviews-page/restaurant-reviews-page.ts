@@ -1,8 +1,8 @@
 import {Component, inject, signal} from '@angular/core';
 import {toSignal} from '@angular/core/rxjs-interop';
 import {RatingBreakdown} from '../../components/rating-breakdown/rating-breakdown';
-import {RestaurantsService} from '../../services/jsonserver/restaurants.service';
-import {ReviewsService} from '../../services/jsonserver/reviews.service';
+import {RestaurantsService} from '../../services/firebase/restaurants.service';
+import {ReviewsService} from '../../services/firebase/reviews.service';
 import {ActivatedRoute} from '@angular/router';
 import {AsyncPipe} from '@angular/common';
 import {RestaurantInfo} from '../../components/restaurant-info/restaurant-info';

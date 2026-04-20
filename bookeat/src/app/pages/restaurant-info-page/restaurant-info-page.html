@@ -1,5 +1,7 @@
 <div class="d-flex flex-column p-5 gap-4">
-  <app-restaurant-info [restaurant]="restaurant()!" [editMode]="isEditMode()" (infoSaved)="saveInfo($event)" />
+  @if (restaurant(); as r) {
+    <app-restaurant-info [restaurant]="r" [editMode]="isEditMode()" (infoSaved)="saveInfo($event)" />
+  }
   @if (reviews$ | async; as reviews) {
     @for (review of reviews | sortReviews:bestComparator | slice:0:3; track review.id) {
       <app-user-review [review]="review" />

@@ -8,7 +8,7 @@ import {areSameTag,  toTitleCase} from '../../pipes/canonicalize-tag.pipe';
 import { TitleCasePipe } from '@angular/common';
 import { AuthService } from '../../services/jsonserver/auth.service';
 import {Router} from '@angular/router';
-import {CategoriesService} from '../../services/jsonserver/categories.service';
+import {CategoriesService} from '../../services/firebase/categories.service';
 
 @Component({
   selector: 'app-affiliate-form',

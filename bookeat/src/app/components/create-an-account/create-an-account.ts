@@ -2,7 +2,7 @@ import {Component, ElementRef, inject, signal, viewChild} from '@angular/core';
 import {RegisterForm} from '../../models/users.model'
 import {form, FormField, required} from '@angular/forms/signals';
 import {checkBirthdate, checkEmail, checkMatch, checkPassword, checkPhone} from '../../validators/form.validators';
-import {UsersService} from '../../services/jsonserver/users.service';
+import {UsersService} from '../../services/firebase/users.service';
 import {FormCard} from '../form-card/form-card';
 
 @Component({

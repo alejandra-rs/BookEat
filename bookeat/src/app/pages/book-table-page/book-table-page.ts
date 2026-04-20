@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { RestaurantsService } from '../../services/jsonserver/restaurants.service';
+import { RestaurantsService } from '../../services/firebase/restaurants.service';
 import { BookingsService } from '../../services/jsonserver/bookings.service';
 import { AuthService } from '../../services/jsonserver/auth.service';
 import { SessionService } from '../../services/session.service';

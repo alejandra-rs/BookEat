@@ -2,7 +2,7 @@ import {Component, computed, inject, viewChild} from '@angular/core';
 import {EditProperty} from '../../components/edit-property/edit-property';
 import {EditButton} from '../../components/edit-button/edit-button';
 import {AuthService} from '../../services/jsonserver/auth.service';
-import {UsersService} from '../../services/jsonserver/users.service';
+import {UsersService} from '../../services/firebase/users.service';
 import {AsyncPipe} from '@angular/common';
 import {EditProfileImagePopup} from '../../components/edit-profile-image-popup/edit-profile-image-popup';
 

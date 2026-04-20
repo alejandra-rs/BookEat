@@ -4,8 +4,8 @@ import {BookingsService} from '../../services/jsonserver/bookings.service';
 import {AuthService} from '../../services/jsonserver/auth.service';
 import {ActivatedRoute} from '@angular/router';
 import {toObservable, toSignal} from '@angular/core/rxjs-interop';
-import {UsersService} from '../../services/jsonserver/users.service';
-import {RestaurantsService} from '../../services/jsonserver/restaurants.service';
+import {UsersService} from '../../services/firebase/users.service';
+import {RestaurantsService} from '../../services/firebase/restaurants.service';
 import {filter, map, switchMap} from 'rxjs';
 
 @Component({
