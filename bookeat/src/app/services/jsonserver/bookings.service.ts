@@ -53,7 +53,7 @@ export class BookingsService {
         })
       );
     } else {
-      return this.userService.getById(String(booking.userId), this.user()?.role ?? "RESTAURANT").pipe(
+      return this.userService.getById(booking.userId, this.user()?.role ?? "RESTAURANT").pipe(
         map((user: User) => {
           return {
             ...booking,
@@ -65,7 +65,7 @@ export class BookingsService {
   }
 
 
-  getByRestaurantAndDatetime(restaurantId: number, datetime: string): Observable<Booking[]> {
+  getByRestaurantAndDatetime(restaurantId: string, datetime: string): Observable<Booking[]> {
     const encoded = encodeURIComponent(datetime);
     return this.http.get<Booking[]>(`${this.BASE_URL}/bookings?restaurantId=${restaurantId}&datetime=${encoded}`);
   }
