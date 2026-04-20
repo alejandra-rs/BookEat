@@ -43,27 +43,21 @@ export class BookingsService {
   }
 
   private expandBooking(booking: Booking) {
-    if ( this.getRole() === 'user') {
-      return this.restaurantsService.getById(booking.restaurantId).pipe(
-        map((restaurant: Restaurant) => {
-          return {
-            ...booking,
-            expand: restaurant
-          } as BookingExpanded;
-        })
-      );
-    } else {
-      return this.userService.getById(booking.userId, this.user()?.role ?? "RESTAURANT").pipe(
-        map((user: User) => {
-          return {
-            ...booking,
-            expand: user
-          } as BookingExpanded;
-        })
+    return this.getRole() === 'user' ?
+      this.restaurantsService.getById(booking.restaurantId).pipe(
+        map((restaurant: Restaurant) => this.expand(booking, restaurant))
+      ):
+      this.userService.getById(booking.userId, this.user()?.role ?? "USER").pipe(
+        map((user: User) => this.expand(booking, user))
       );
     }
-  }
 
+  private expand(booking: Booking, item: Restaurant|User ) {
+    return {
+      ...booking,
+      expand: item
+    } as BookingExpanded;
+  }
 
   getByRestaurantAndDatetime(restaurantId: string, datetime: string): Observable<Booking[]> {
     const encoded = encodeURIComponent(datetime);
@@ -74,9 +68,6 @@ export class BookingsService {
     return this.http.post<Booking>(`${this.BASE_URL}/bookings`, booking);
   }
 
-  getIncomingReservation() {
-    return this.http.get<Booking[]>(`${this.BASE_URL}bookings?status=Incoming&${this.getRestUser()}`)
-  }
   getBetween( start: Date, end: Date ) {
     return this.http.get<Booking[]>(`${this.BASE_URL}bookings?${this.getRestUser()}`).pipe(
       map(bookings => {
