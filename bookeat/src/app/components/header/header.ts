@@ -7,7 +7,7 @@ import { LoginPopup } from '../login-popup/login-popup';
 import { AuthService } from '../../services/jsonserver/auth.service';
 import { MyAccount } from '../my-account/my-account';
 import { CreateAnAccount } from '../create-an-account/create-an-account';
-import { SessionService } from '../../services/jsonserver/session.service';
+import { SessionService } from '../../services/session.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { filter, map, startWith } from 'rxjs';
 

@@ -24,9 +24,10 @@
         </button>
       </li>
 
-      @if (u.role === 'RESTAURANT') {
+      @if (u.role === 'RESTAURANT' && myRestaurantId()) {
         <li>
-          <button ngbDropdownItem class="dropdown-item d-flex align-items-center gap-3 py-2" [routerLink]="['/my-restaurant-page']">
+          <button ngbDropdownItem class="dropdown-item d-flex align-items-center gap-3 py-2"
+                  [routerLink]="['/', myRestaurantId()]" [queryParams]="{edit: true}">
             <i class="bi bi-shop fs-5"></i> My Restaurant
           </button>
         </li>

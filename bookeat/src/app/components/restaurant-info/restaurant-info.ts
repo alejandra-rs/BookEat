@@ -1,4 +1,4 @@
-import { Component, computed, inject, input, ViewChild } from '@angular/core';
+import { Component, computed, effect, inject, input, output, signal, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Restaurant } from '../../models/restaurant.model';
 import { Category } from '../../models/category.model';
@@ -18,12 +18,33 @@ export class RestaurantInfo {
   @ViewChild(MenuPopup) menuPopup!: MenuPopup;
 
   restaurant = input.required<Restaurant>();
+  editMode = input<boolean>(false);
+  infoSaved = output<{ name: string; description: string }>();
 
   categories = computed<Category[]>(() =>
     this.categoriesService.resolve(this.restaurant().categories),
   );
 
+  editName = signal<string | null>(null);
+  editDescription = signal<string | null>(null);
+
+  constructor() {
+    effect(() => {
+      if (!this.editMode()) {
+        this.editName.set(null);
+        this.editDescription.set(null);
+      }
+    });
+  }
+
   openMenu() {
     this.menuPopup.open();
+  }
+
+  emitSave() {
+    this.infoSaved.emit({
+      name: this.editName() ?? this.restaurant().name,
+      description: this.editDescription() ?? this.restaurant().description,
+    });
   }
 }

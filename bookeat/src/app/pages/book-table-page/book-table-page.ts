@@ -3,7 +3,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { RestaurantsService } from '../../services/jsonserver/restaurants.service';
 import { BookingsService } from '../../services/jsonserver/bookings.service';
 import { AuthService } from '../../services/jsonserver/auth.service';
-import { SessionService } from '../../services/jsonserver/session.service';
+import { SessionService } from '../../services/session.service';
 import { TableMapComponent } from '../../components/table-map/table-map';
 import { LoginPopup } from '../../components/login-popup/login-popup';
 import { Restaurant } from '../../models/restaurant.model';

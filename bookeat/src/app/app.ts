@@ -7,10 +7,11 @@ import {EditProperty} from './components/edit-property/edit-property';
 import {CategoriesService} from './services/jsonserver/categories.service';
 import {UserReview} from './components/user-review/user-review';
 import {Footer} from './components/footer/footer';
+import {Toast} from './components/toast/toast';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Header, Footer],
+  imports: [RouterOutlet, Header, Footer, Toast],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

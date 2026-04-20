@@ -1,5 +1,5 @@
 import {Component, effect, signal} from '@angular/core';
-import {SessionService} from '../../services/jsonserver/session.service';
+import {SessionService} from '../../services/session.service';
 
 @Component({
   selector: 'app-diners-selector',

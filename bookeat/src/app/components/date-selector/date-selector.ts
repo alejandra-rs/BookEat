@@ -1,7 +1,7 @@
 import { Component, effect, signal } from '@angular/core';
 import { NgbDate, NgbInputDatepicker } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
-import { SessionService } from '../../services/jsonserver/session.service';
+import { SessionService } from '../../services/session.service';
 
 @Component({
   selector: 'app-date-selector',
