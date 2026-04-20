@@ -1,0 +1,58 @@
+<p>overview works!</p>
+<article class="overview">
+  <div class="overview__image">
+    @if (type() === 'past' || type() === 'incoming'){
+    <img [src]="booking()?.expand!.image" alt="image">
+    } @else {
+    <img [src]="item().image" alt="image">
+    }
+  </div>
+
+  <div class="overview__content">
+    <header>
+      <div class="overview__content__title">
+        @if (type() === 'past' || type() === 'incoming'){
+          <h1 data-template="text-self">{{ booking()?.expand!.name }}</h1>
+        } @else {
+          <h1 data-template="text-self">{{ item().name }}</h1>
+        }
+        @if (booking()?.date){
+          <span class="overview__content__title__date" data-template="text-datetime"> {{ booking()?.date }} </span>
+        } @else {
+          <span>{{ booking()?.datetime }}</span>
+        }
+      </div>
+    </header>
+    @if (booking()?.guests){
+    <p class="overview__content__description" data-template="text-description">
+      "booking for {{ booking()?.guests }} guests"
+    </p>
+    } @else {
+      <p>
+
+      </p>
+    }
+
+    <div class="overview__content__buttons">
+      @switch (type()) {
+        @case ('incoming') {
+          <button class="secondary-button">Cancel Reservation</button>
+          <button routerLink="/register" class="secondary-button">Read Reviews</button>
+        }
+        @case ('past') {
+          <button class="secondary-button btn-write-review">Write a Review</button>
+          <button class="secondary-button">Read Reviews</button>
+        }
+        @case ('restaurant-incoming') {
+          <button class="btn-primary btn-booked-tables">Booked tables</button>
+        }
+        @default {
+          <button class="secondary-button read-more"> Go </button>
+        }
+      }
+    </div>
+
+  </div>
+</article>
+
+

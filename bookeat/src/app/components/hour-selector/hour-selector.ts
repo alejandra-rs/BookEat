@@ -1,5 +1,6 @@
-import {Component, model, ModelSignal} from '@angular/core';
+import {Component, effect, model, ModelSignal} from '@angular/core';
 import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
+import {SessionService} from '../../services/jsonserver/session.service';
 
 @Component({
   selector: 'app-hour-selector',
@@ -10,6 +11,14 @@ import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
 export class HourSelector {
   selectedHour = model<string|null>(null);
 
+  constructor(public sessionService: SessionService) {
+    effect(() => {
+      const stateHour = this.sessionService.booking().time;
+      if (stateHour) {
+        this.selectedHour.set(stateHour);
+      }
+    });
+  }
   hours = [
     "12:00", "12:30", "13:00", "13:30",
     "14:00", "14:30", "15:00", "15:30",
@@ -21,5 +30,6 @@ export class HourSelector {
 
   select(hour: string) {
     this.selectedHour.set(hour);
+    this.sessionService.updateBooking({ time: `${hour}` });
   }
 }

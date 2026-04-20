@@ -2,19 +2,19 @@
   <input class="d-none"
          ngbDatepicker
          #picker="ngbDatepicker"
-         [(ngModel)]="selectedDate"
+         [ngModel]="selectedDate()"
          (dateSelect)="onDateSelected($event)"
          [positionTarget]="calendarBtn"
+         [minDate]="minDate"
          placement="bottom-start"
   >
-  <button #calendarBtn class="btn gap-3 d-flex" type="button" (click)="picker.toggle()">
+  <button #calendarBtn class="btn gap-3 d-flex text-reset" type="button" (click)="picker.toggle()">
     <i class="bi bi-calendar fs-5"></i>
-    @if (selectedDate) {
-      <span>{{ selectedDate.day }}/{{ selectedDate.month }}/{{ selectedDate.year }}</span>
+    @if (selectedDate()) {
+      <span>{{ selectedDate()!.day }}/{{ selectedDate()!.month }}/{{ selectedDate()!.year }}</span>
     } @else {
       <span>Date</span>
     }
     <i class="bi bi-chevron-down"></i>
   </button>
-
 </div>

@@ -1,0 +1,8 @@
+.map-viewport {
+  width: 90%;
+  height: 80vh;
+  margin: 0 auto;
+  overflow: hidden;
+  background-color: var(--bg-primary);
+  flex-shrink: 0;
+}

@@ -1,0 +1,16 @@
+<div class="container-fluid p-0">
+  @if (ranges().length === 0) {
+    <p class="fst-italic text-secondary text-center">No availability on this day.</p>
+  } @else {
+    <div class="d-flex flex-wrap gap-2 justify-content-center">
+      @for (hour of ranges(); track hour) {
+        <button
+          class="btn"
+          [class.btn-custom-primary]="selectedTime() === hour"
+          [class.btn-custom-secondary]="selectedTime() !== hour"
+          (click)="selectTime(hour)"
+        >{{ hour }}</button>
+      }
+    </div>
+  }
+</div>

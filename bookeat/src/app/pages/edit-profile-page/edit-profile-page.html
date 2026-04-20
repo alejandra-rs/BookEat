@@ -1,0 +1,32 @@
+<main class="edit-profile-page container py-4 py-lg-5">
+  <div class="row g-4 g-lg-5 align-items-start">
+    @if (currentUser$ | async; as currentUser) {
+      <section class="col-12 d-flex flex-column align-items-center gap-4">
+        <div class="position-relative">
+          <img class="edit-profile-page__avatar" [src]="profileImage() || currentUser.image" [alt]="currentUser.id">
+          <div class="position-absolute bottom-0 end-0 fs-1">
+            <app-edit-button (click)="openPopup()"/>
+          </div>
+        </div>
+        <app-edit-property [propertyName]="'accountName'" [user]="currentUser"/>
+      </section>
+
+      <section class="col-12 d-flex flex-column w-100 gap-3">
+        <h2 class="mb-2 fs-1">Account Management</h2>
+        <div class="row g-3">
+          <app-edit-property [iconClass]="'person-vcard'"
+                             [propertyTitle]="'Name'" [propertyName]="'name'" [user]="currentUser"/>
+          <app-edit-property [iconClass]="'person-vcard'"
+                             [propertyTitle]="'Surname'" [propertyName]="'surname'" [user]="currentUser"/>
+          <app-edit-property [iconClass]="'lock'"
+                             [propertyTitle]="'Password'" [propertyName]="'password'" [user]="currentUser"/>
+          <app-edit-property [iconClass]="'envelope'"
+                             [propertyTitle]="'E-mail'" [propertyName]="'email'" [user]="currentUser"/>
+          <app-edit-property [iconClass]="'telephone'"
+                             [propertyTitle]="'Phone Number'" [propertyName]="'phoneNumber'" [user]="currentUser"/>
+        </div>
+      </section>
+    }
+  </div>
+</main>
+<app-edit-profile-image-popup/>

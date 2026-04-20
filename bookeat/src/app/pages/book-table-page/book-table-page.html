@@ -1,0 +1,21 @@
+<div class="d-flex flex-column px-4 py-4 gap-4">
+  <a [routerLink]="['/booking-details', id]" class="d-inline-flex align-items-center gap-2 text-reset text-decoration-none">
+    <i class="bi bi-arrow-left fs-5"></i>
+    <span>Back to booking details: <strong>{{ restaurant()?.name }}</strong></span>
+  </a>
+
+  <h2 class="text-center fst-italic fs-1"> Select your tables at <strong>{{ restaurant()?.name }}</strong> </h2>
+
+  <app-table-map [tableMap]="restaurant()!.tableMap" [occupiedIds]="occupiedIds()"
+                   (selectionChanged)="onSelectionChanged($event)" (authRequired)="loginPopup.open()"/>
+
+  @if (selectedTables().size > 0) {
+    <div class="d-flex justify-content-center pb-2">
+      <button class="btn btn-custom-primary px-5 py-3 fs-5" (click)="bookSelected()">
+        Book Selected ({{ selectedTables().size }})
+      </button>
+    </div>
+  }
+</div>
+
+<app-login-popup #loginPopup/>

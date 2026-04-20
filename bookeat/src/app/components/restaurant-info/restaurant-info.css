@@ -7,9 +7,8 @@
 
 .restaurant-info__content {
   width: 100%;
-  color: var(--text-secondary);
+  color: var(--text-primary);
 }
-
 
 .restaurant-info__badge {
   background-color: var(--bg-secondary);

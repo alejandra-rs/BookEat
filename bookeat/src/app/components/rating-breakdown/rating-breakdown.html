@@ -1,0 +1,29 @@
+<section class="row g-3 g-lg-4 justify-content-center align-items-stretch">
+
+  <div class="col-12 col-lg-auto">
+    <div class="rating-breakdown__mean d-flex flex-column align-items-center justify-content-center h-100 rounded-3 px-5 py-4">
+      <app-user-score [score]="restaurant()?.rating! | averageRating" [size]="'2.5rem'"></app-user-score>
+      <span class="text-secondary fs-5">
+        {{ total() }} reviews
+      </span>
+    </div>
+  </div>
+
+  <div class="col-12 col-lg-4">
+    <div class="rating-breakdown__bars d-flex flex-column gap-3 rounded-3 px-4 px-lg-5 py-4 h-100">
+      @for (stars of ['5','4','3','2','1']; track stars) {
+        <div class="d-flex align-items-center gap-2 fs-5">
+          <span>{{ stars }}</span>
+          <i class="bi bi-star"></i>
+          <div class="progress flex-grow-1 bg-transparent" style="height: 0.2rem;">
+            <div class="progress-bar rating-breakdown__fill" [style.width.%]="percent(stars)"></div>
+          </div>
+          <span class="rating-breakdown__count text-end">
+            {{ restaurant()?.rating?.[stars] ?? 0 }}
+          </span>
+        </div>
+      }
+    </div>
+  </div>
+
+</section>

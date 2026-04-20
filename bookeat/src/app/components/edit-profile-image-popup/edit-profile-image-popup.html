@@ -1,0 +1,14 @@
+<dialog #DialogEditProfileImage
+        class="edit-profile-image-dialog border-0 rounded-4"
+        (click)="close()">
+  <div class="d-flex flex-column p-5 gap-4" (click)="$event.stopPropagation()">
+    <section class="d-flex flex-column align-items-center gap-3">
+      <h2>Edit your profile image</h2>
+      <app-insert-image (imageSelected)="pendingUrl.set($event)"/>
+    </section>
+    <footer class="d-flex w-100 justify-content-end gap-2">
+      <button class="btn-custom-secondary fs-5 px-4" (click)="close()">Cancel</button>
+      <button class="btn-custom-primary fs-5 px-4" (click)="save()">Save</button>
+    </footer>
+  </div>
+</dialog>

@@ -1,86 +1,67 @@
-import { afterNextRender, computed, inject, Injectable, signal } from '@angular/core';
-import { AuthUser, RestaurantProfile, UserProfile } from '../../models/auth.model';
+import {afterNextRender, computed, inject, Injectable, signal} from '@angular/core';
+import {AuthUser, RestaurantProfile, UserProfile} from '../../models/auth.model';
+import {SessionUser} from '../../models/users.model';
 import { AffiliateForm } from '../../models/affiliate.model';
-import { loginForm } from '../../models/login.model';
 import { Restaurant } from '../../models/restaurant.model';
-import { HttpClient } from '@angular/common/http';
-import { catchError, firstValueFrom, forkJoin, map, Observable, throwError } from 'rxjs';
+import {loginForm} from '../../models/login.model';
+import {HttpClient} from '@angular/common/http';
+import {catchError, firstValueFrom, forkJoin, map, Observable, throwError} from 'rxjs';
+const SESSION_KEY = 'currentSession';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private http = inject(HttpClient);
   private BASE_URL = 'http://localhost:3000';
 
-  private _currentUser = signal<AuthUser>(null as any);
-  public readonly currentUser = this._currentUser.asReadonly();
-  public readonly isAuthenticated = computed(() => !!this._currentUser());
-  constructor() {
-    afterNextRender(() => this.loadSession());
-  }
+  private _currentUser = signal<SessionUser | null>(null);
+  readonly currentUser = this._currentUser.asReadonly();
+  readonly isAuthenticated = computed(() => !!this._currentUser());
+
+  constructor() { afterNextRender(() => this.loadSession()); }
 
   getByEmail(email: string): Observable<AuthUser | null> {
     return forkJoin({
-      users: this.http.get<AuthUser[]>(`${this.BASE_URL}/users`),
-      restaurants: this.http.get<any[]>(`${this.BASE_URL}/restaurant-profiles`),
+      users: this.http.get<UserProfile[]>(`${this.BASE_URL}/users?email=${email}`),
+      restaurants: this.http.get<RestaurantProfile[]>(`${this.BASE_URL}/restaurant-profiles?email=${email}`),
     }).pipe(
       map(({ users, restaurants }) => {
-        const user = users.find((u) => u.email === email);
-        if (user) return { ...user, role: 'USER' } as UserProfile;
-        const restaurantProfile = restaurants.find((r) => r.email === email);
-        if (restaurantProfile)
-          return { ...restaurantProfile, role: 'RESTAURANT' } as RestaurantProfile;
+        if (users[0]) return { ...users[0], role: 'USER' as const };
+        if (restaurants[0]) return { ...restaurants[0], role: 'RESTAURANT' as const };
         return null;
       }),
-      catchError((err) => {
-        console.log('conexion error', err);
-        return throwError(() => new Error('An error occurred while trying to fetch user data'));
-      }),
+      catchError(() => throwError(() => new Error('An error occurred while trying to fetch user data'))),
     );
   }
 
   async login({ email, password }: loginForm): Promise<void> {
-    return new Promise((resolve, reject) => {
-      this.getByEmail(email).subscribe({
-        next: (userFound) => {
-          if (userFound && (userFound as any).password === password) {
-            this.saveSession(userFound);
-            resolve();
-          } else {
-            reject('invalid email or password');
-          }
-        },
-        error: () => reject('An error occurred while trying to log in'),
-      });
-    });
+    const user = await firstValueFrom(this.getByEmail(email));
+    if (!user || user.password !== password) throw new Error('invalid email or password');
+    this.saveSession(user);
   }
 
   private saveSession(user: AuthUser) {
-    const session = {
-      role: user.role,
-      id: user.id,
-      image: user.image,
-    };
-    this._currentUser.set(session as any);
-    if (typeof window !== 'undefined') {
-      sessionStorage.setItem('currentSession', JSON.stringify(session));
-    }
+    const session: SessionUser = { id: user.id, role: user.role, image: user.image };
+    this._currentUser.set(session);
+    if (typeof window !== 'undefined') sessionStorage.setItem(SESSION_KEY, JSON.stringify(session));
   }
 
   private loadSession() {
     try {
-      const savedSession = sessionStorage.getItem('currentSession');
-      if (savedSession) {
-        this._currentUser.set(JSON.parse(savedSession));
-      }
-    } catch (error) {
-      console.error('Error parsing session', error);
-      sessionStorage.removeItem('currentSession');
+      const saved = sessionStorage.getItem(SESSION_KEY);
+      if (saved) this._currentUser.set(JSON.parse(saved) as SessionUser);
+    } catch {
+      sessionStorage.removeItem(SESSION_KEY);
     }
   }
 
+  updateImage(url: string) {
+    const current = this._currentUser();
+    if (current) this._currentUser.set({ ...current, image: url });
+  }
+
   logout() {
-    this._currentUser.set(null as any);
-    sessionStorage.removeItem('currentSession');
+    this._currentUser.set(null);
+    sessionStorage.removeItem(SESSION_KEY);
   }
 
   async postRestaurantProfile(data: AffiliateForm): Promise<void> {
@@ -161,6 +142,7 @@ export class AuthService {
   getUserById(id: number): Observable<AuthUser | null> {
     return this.http.get<AuthUser>(`${this.BASE_URL}/users/${id}`);
   }
+
   getRestaurantById(id: number): Observable<AuthUser | null> {
     return this.http.get<AuthUser>(`${this.BASE_URL}/restaurant-profiles/${id}`);
   }

@@ -1,10 +1,13 @@
-export interface User {
-  id: string | number;
-  name: string;
-  surname: string;
-  birthdate: string;
-  accountName: string;
-  email: string;
-  phoneNumber: string;
+import {UserProfile, UserRole} from './auth.model';
+
+export interface SessionUser {
+  id: string;
+  role: UserRole;
   image: string;
+}
+
+export type User = Omit<UserProfile, 'password' | 'role'>;
+
+export interface RegisterForm extends Omit<UserProfile, 'id' | 'image' | 'role'> {
+  confirmPassword: string;
 }

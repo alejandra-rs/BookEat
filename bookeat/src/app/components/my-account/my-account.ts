@@ -11,10 +11,10 @@ import {
 @Component({
   selector: 'app-user-menu-popup',
   imports: [RouterLink, NgbDropdownToggle, NgbDropdown, NgbDropdownMenu, NgbDropdownItem],
-  templateUrl: './user-menu.html',
-  styleUrl: './user-menu.css',
+  templateUrl: './my-account.html',
+  styleUrl: './my-account.css',
 })
-export class UserMenu {
+export class MyAccount {
   authService = inject(AuthService);
   user = this.authService.currentUser;
   private router = inject(Router);

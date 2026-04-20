@@ -1,10 +1,10 @@
-import { Component, inject, signal } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
-import { FormCard } from '../form-card/form-card';
-import { form, FormField } from '@angular/forms/signals';
-import { INITIAL_AFFILIATE_STATE, type AffiliateForm } from '../../models/affiliate.model';
-import { applyAffiliateFormValidators } from '../../validators/affiliate-form.validators';
-import {areSameTag,  toTitleCase} from '../../utils/affiliate-tag.utils';
+import {Component, inject, signal} from '@angular/core';
+import {ReactiveFormsModule} from '@angular/forms';
+import {FormCard} from '../form-card/form-card';
+import {form, FormField} from '@angular/forms/signals';
+import {INITIAL_AFFILIATE_STATE, type AffiliateForm} from '../../models/affiliate.model';
+import {applyAffiliateFormValidators} from '../../validators/affiliate-form.validators';
+import {areSameTag,  toTitleCase} from '../../pipes/canonicalize-tag.pipe';
 import { TitleCasePipe } from '@angular/common';
 import { AuthService } from '../../services/jsonserver/auth.service';
 import {Router} from '@angular/router';
@@ -33,9 +33,7 @@ export class AffiliateFormComponent {
   async onSubmit(event: Event) {
     event.preventDefault();
     this.submitted.set(true);
-    if (this.affiliateForm().invalid()) {
-      return;
-    }
+    if (this.affiliateForm().invalid()) return;
     this.error.set(null);
     try {
       await this.authService.postRestaurantProfile(this.affiliateForm().value() as AffiliateForm);
@@ -47,9 +45,7 @@ export class AffiliateFormComponent {
     }
   }
 
-  tags() {
-    return this.affiliateModel().tags;
-  }
+  tags() { return this.affiliateModel().tags; }
 
   getTagName(id: string): string {
     const category = this.categoriesService.categories().find(c => c.id.toString() === id);
@@ -82,16 +78,14 @@ export class AffiliateFormComponent {
   removeTag(tagToRemove: string) {
     this.affiliateModel.update((currentModel) => ({
       ...currentModel,
-
       tags: currentModel.tags.filter((tag) => !areSameTag(tag, tagToRemove)),
     }));
   }
 
   onTagInput(input: HTMLInputElement) {
     const tag = input.value.trim();
-
     if (tag) {
-      this.addTag(tag);
+      this.addTag(tag).then();
       input.value = '';
     }
   }

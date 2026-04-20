@@ -4,7 +4,8 @@
     <i routerLink="" class="header__logo bi bi-x-lg fs-2"></i>
   </a>
 
-  <div class="header__search d-flex align-items-center rounded-pill px-1 py-1 gap-3 flex-grow-1">
+  <div class="header__search d-flex align-items-center rounded-pill px-1 py-1 gap-3 flex-grow-1"
+       [class.d-none]="userIsBooking()">
     <div class="d-flex align-items-center gap-3 px-3 flex-grow-1">
       <i class="bi bi-search fs-5"></i>
       <input type="text" placeholder="Search..." class="header__input border-0 bg-transparent flex-grow-1"/>
@@ -24,12 +25,12 @@
 
   <div class="d-flex align-items-center gap-3 flex-shrink-0">
     <div class="d-flex align-items-center gap-2">
-      <button class="btn border-0 p-1" id="language-button">
-        <i class="bi bi-globe fs-4"></i>
+      <button class="btn border-0 p-1 text-reset" id="language-button">
+        <i class="bi bi-globe fs-4 "></i>
       </button>
       <div class="vr align-self-stretch"></div>
-      <button class="btn border-0 p-1" id="dark-mode-toggle">
-        <i class="bi bi-moon fs-4" id="dark-mode-icon"></i>
+      <button class="btn border-0 p-1 text-reset" id="dark-mode-toggle" (click)="sessionService.toggleTheme()">
+        <i [class]="sessionService.theme() === 'dark' ? 'bi bi-sun fs-4' : 'bi bi-moon fs-4'" id="dark-mode-icon"></i>
       </button>
     </div>
     <div class="d-flex gap-2">
@@ -38,10 +39,11 @@
           <app-user-menu-popup> </app-user-menu-popup>
         } @else {
           <button class="btn-custom-secondary" (click)="openLogin()">Sign in</button>
-          <button class="btn-custom-primary">Register</button>
+          <button class="btn-custom-primary" (click)="openRegister()">Register</button>
         }
       </div>
     </div>
   </div>
 </header>
-<app-login-popup #loginPopup></app-login-popup>
+<app-login-popup></app-login-popup>
+<app-create-an-account></app-create-an-account>

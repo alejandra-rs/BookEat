@@ -4,6 +4,10 @@ import {RestaurantInfoPage} from './pages/restaurant-info-page/restaurant-info-p
 import {BookingDetailsPage} from './pages/booking-details-page/booking-details-page';
 import {RestaurantReviewsPage} from './pages/restaurant-reviews-page/restaurant-reviews-page';
 import {AffiliateFormComponent} from './components/affiliate-form/affiliate-form';
+import {CreateAnAccount} from './components/create-an-account/create-an-account';
+import {EditProfilePage} from './pages/edit-profile-page/edit-profile-page';
+import {BookTablePage} from './pages/book-table-page/book-table-page';
+import {ReservationsPage} from './pages/reservations-page/reservations-page';
 
 export const routes: Routes = [
   {
@@ -17,6 +21,11 @@ export const routes: Routes = [
     component: BookingDetailsPage
   },
   {
+    path: 'book-table/:id',
+    pathMatch: 'full',
+    component: BookTablePage
+  },
+  {
     path: 'reviews/:id',
     pathMatch: 'full',
     component: RestaurantReviewsPage
@@ -25,6 +34,21 @@ export const routes: Routes = [
     path: 'become-an-affiliate',
     pathMatch: 'full',
     component: AffiliateFormComponent
+  },
+  {
+    path: 'edit-profile',
+    pathMatch: 'full',
+    component: EditProfilePage
+  },
+  {
+    path: 'register',
+    pathMatch: 'full',
+    component: CreateAnAccount
+  },
+  {
+    path: 'reservations-page',
+    pathMatch: 'full',
+    component: ReservationsPage,
   },
   {
     path: ':id',
