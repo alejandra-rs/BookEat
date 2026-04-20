@@ -13,7 +13,8 @@ export class SessionService {
 
   private readonly isBrowser: boolean;
 
-  constructor(@Inject(DOCUMENT) private document: Document, @Inject(PLATFORM_ID) platformId: Object) {
+  constructor(@Inject(DOCUMENT) private document: Document,
+              @Inject(PLATFORM_ID) platformId: Object) {
     this.isBrowser = isPlatformBrowser(platformId);
     this.loadInitialState();
 

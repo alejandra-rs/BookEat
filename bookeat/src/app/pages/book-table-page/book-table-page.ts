@@ -1,9 +1,80 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { firstValueFrom } from 'rxjs';
+import { RestaurantsService } from '../../services/jsonserver/restaurants.service';
+import { BookingsService } from '../../services/jsonserver/bookings.service';
+import { AuthService } from '../../services/jsonserver/auth.service';
+import { SessionService } from '../../services/jsonserver/session.service';
+import { TableMapComponent } from '../../components/table-map/table-map';
+import { LoginPopup } from '../../components/login-popup/login-popup';
+import { Restaurant } from '../../models/restaurant.model';
+
+interface ConfirmationData {
+  restaurantName: string;
+  datetime: string;
+  address: string;
+}
 
 @Component({
   selector: 'app-book-table-page',
-  imports: [],
+  imports: [RouterLink, TableMapComponent, LoginPopup],
   templateUrl: './book-table-page.html',
   styleUrl: './book-table-page.css',
 })
-export class BookTablePage {}
+export class BookTablePage {
+  private route = inject(ActivatedRoute);
+  private restaurantsService = inject(RestaurantsService);
+  private bookingsService = inject(BookingsService);
+  private authService = inject(AuthService);
+  private sessionService = inject(SessionService);
+
+  readonly id = Number(this.route.snapshot.paramMap.get('id'));
+  restaurant = signal<Restaurant | null>(null);
+  occupiedIds = signal<number[]>([]);
+  selectedTables = signal<Set<number>>(new Set());
+  confirmation = signal<ConfirmationData | null>(null);
+
+  constructor() {
+    this.restaurantsService.getById(this.id).subscribe(r => {
+      this.restaurant.set(r);
+      const booking = this.sessionService.booking();
+      const datetime = `${booking.date} ${booking.time}`;
+      this.bookingsService.getByRestaurantAndDatetime(this.id, datetime).subscribe(bookings => {
+        this.occupiedIds.set(bookings.flatMap(b => b.tables));
+      });
+    });
+  }
+
+  onSelectionChanged(ids: Set<number>) {
+    this.selectedTables.set(new Set(ids));
+  }
+
+  async bookSelected() {
+    const user = this.authService.currentUser();
+    const restaurant = this.restaurant();
+    if (!user || !restaurant || this.selectedTables().size === 0) return;
+
+    const booking = this.sessionService.booking();
+    const payload = {
+      restaurantId: String(this.id),
+      userId: String(user.id),
+      datetime: `${booking.date} ${booking.time}`,
+      guests: booking.diners,
+      tables: Array.from(this.selectedTables()),
+      status: 'incoming' as const,
+    };
+
+    try {
+      await firstValueFrom(this.bookingsService.post(payload));
+      this.sessionService.updateBooking({ date: '', time: '', diners: '1' });
+      this.confirmation.set({
+        restaurantName: restaurant.name,
+        datetime: payload.datetime,
+        address: restaurant.address,
+      });
+    } catch {
+      console.error('Failed to complete booking. Please try again.');
+    }
+  }
+
+}

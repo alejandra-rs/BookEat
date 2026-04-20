@@ -33,7 +33,7 @@ export class BookingDetailsPage {
 
   selectedTime = computed(() => this.sessionService.booking().time || null);
   canConfirm = computed(() => !!this.sessionService.booking().date &&
-                                                      !!this.sessionService.booking().time);
+                                                !!this.sessionService.booking().time && this.isWithinBounds());
 
   readonly minDate: NgbDate;
 
@@ -45,6 +45,10 @@ export class BookingDetailsPage {
     const today = new Date();
     this.minDate = new NgbDate(today.getFullYear(), today.getMonth() + 1, today.getDate());
     this.restaurantsService.getById(this.id).subscribe(r => this.restaurant.set(r));
+  }
+
+  isWithinBounds() {
+    return true;
   }
 
   isDateDisabled = (date: NgbDateStruct) => {
