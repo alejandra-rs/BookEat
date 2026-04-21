@@ -70,33 +70,17 @@ export class AuthService {
       throw new Error('This user already exists.');
     }
 
-    const restaurantId = await this.getNextNumericId('restaurants');
-    const restaurantPayload = this.buildRestaurantPayload(data, String(restaurantId));
-    await firstValueFrom(this.http.post(`${this.BASE_URL}/restaurants`, restaurantPayload));
+    const restaurantPayload = this.buildRestaurantPayload(data);
+    const newRestaurant = await firstValueFrom(this.http.post<Restaurant>(`${this.BASE_URL}/restaurants`, restaurantPayload));
 
-    const profileId = await this.getNextNumericId('restaurant-profiles');
-    const profilePayload = this.buildRestaurantProfilePayload(data, profileId, restaurantId);
-    await firstValueFrom(this.http.post(`${this.BASE_URL}/restaurant-profiles`, profilePayload));
+    const profilePayload = this.buildRestaurantProfilePayload(data, newRestaurant.id);
+    const newUser = await firstValueFrom(this.http.post<RestaurantProfile>(`${this.BASE_URL}/restaurant-profiles`, profilePayload));
 
-    this.saveSession(profilePayload);
+    this.saveSession(newUser as AuthUser);
   }
 
-  private async getNextNumericId(endpoint: 'restaurants' | 'restaurant-profiles'): Promise<number> {
-    const items = await firstValueFrom(
-      this.http.get<Array<{ id: number | string }>>(`${this.BASE_URL}/${endpoint}`),
-    );
-
-    const maxId = items.reduce((acc, item) => {
-      const numericId = Number(item.id);
-      return Number.isNaN(numericId) ? acc : Math.max(acc, numericId);
-    }, 0);
-
-    return maxId + 1;
-  }
-
-  private buildRestaurantPayload(data: AffiliateForm, restaurantId: string): Restaurant {
+  private buildRestaurantPayload(data: AffiliateForm): Omit<Restaurant, "id"> {
     return {
-      id: restaurantId,
       name: data.restaurantName,
       description: '',
       hours: { L: [], M: [], X: [], J: [], V: [], S: [], D: [] },
@@ -116,11 +100,9 @@ export class AuthService {
 
   private buildRestaurantProfilePayload(
     data: AffiliateForm,
-    profileId: number,
-    restaurantId: number,
-  ): RestaurantProfile {
+    restaurantId: string,
+  ): Omit<RestaurantProfile, "id"> {
     return {
-      id: String(profileId),
       name: data.name,
       surname: data.surname,
       accountName: data.name,
