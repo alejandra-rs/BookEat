@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { AuthService } from '../../services/jsonserver/auth.service';
+import { AuthService } from '../../services/firebase/auth.service';
 import { RestaurantProfile } from '../../models/auth.model';
 import { firstValueFrom } from 'rxjs';
 import {
@@ -21,14 +21,14 @@ export class MyAccount {
   user = this.authService.currentUser;
   private router = inject(Router);
 
-  myRestaurantId = signal<number | null>(null);
+  myRestaurantId = signal<string | null>(null);
 
   constructor() {
     const u = this.authService.currentUser();
     if (u?.role === 'RESTAURANT') {
       firstValueFrom(this.authService.getRestaurantById(u.id))
         .then(profile => {
-          if (profile) this.myRestaurantId.set(Number((profile as RestaurantProfile).restaurantId));
+          if (profile) this.myRestaurantId.set((profile as RestaurantProfile).restaurantId);
         })
         .catch(() => {});
     }

@@ -7,7 +7,7 @@ import { ReviewsService } from '../../services/firebase/reviews.service';
 import { UserReview } from '../../components/user-review/user-review';
 import { SortReviewsPipe } from '../../pipes/sort-reviews.pipe';
 import { ReviewWithUser } from '../../models/review.model';
-import { AuthService } from '../../services/jsonserver/auth.service';
+import { AuthService } from '../../services/firebase/auth.service';
 import { RestaurantProfile } from '../../models/auth.model';
 import { Restaurant } from '../../models/restaurant.model';
 import { showToast } from '../../components/toast/toast';

@@ -1,7 +1,7 @@
 import {Component, inject} from '@angular/core';
 import {Overview} from '../../components/overview/overview';
 import {BookingsService} from '../../services/jsonserver/bookings.service';
-import {AuthService} from '../../services/jsonserver/auth.service';
+import {AuthService} from '../../services/firebase/auth.service';
 import {ActivatedRoute} from '@angular/router';
 import {toObservable, toSignal} from '@angular/core/rxjs-interop';
 import {UsersService} from '../../services/firebase/users.service';

@@ -2,7 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { RestaurantsService } from '../../services/firebase/restaurants.service';
 import { BookingsService } from '../../services/jsonserver/bookings.service';
-import { AuthService } from '../../services/jsonserver/auth.service';
+import { AuthService } from '../../services/firebase/auth.service';
 import { SessionService } from '../../services/session.service';
 import { TableMapComponent } from '../../components/table-map/table-map';
 import { LoginPopup } from '../../components/login-popup/login-popup';

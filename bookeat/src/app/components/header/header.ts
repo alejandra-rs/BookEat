@@ -4,7 +4,7 @@ import { HourSelector } from '../hour-selector/hour-selector';
 import { DinersSelector } from '../diners-selector/diners-selector';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { LoginPopup } from '../login-popup/login-popup';
-import { AuthService } from '../../services/jsonserver/auth.service';
+import { AuthService } from '../../services/firebase/auth.service';
 import { MyAccount } from '../my-account/my-account';
 import { CreateAnAccount } from '../create-an-account/create-an-account';
 import { SessionService } from '../../services/session.service';

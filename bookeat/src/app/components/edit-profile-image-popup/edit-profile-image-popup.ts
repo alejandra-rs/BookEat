@@ -1,7 +1,7 @@
 import {Component, ElementRef, inject, signal, ViewChild} from '@angular/core';
 import {InsertImage} from '../insert-image/insert-image';
 import {UsersService} from '../../services/firebase/users.service';
-import {AuthService} from '../../services/jsonserver/auth.service';
+import {AuthService} from '../../services/firebase/auth.service';
 
 @Component({
   selector: 'app-edit-profile-image-popup',
