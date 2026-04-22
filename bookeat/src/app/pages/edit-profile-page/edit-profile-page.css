@@ -7,4 +7,5 @@
   height: min(70vw, 20rem);
   object-fit: cover;
   border-radius: 100%;
+  font-size: 15em;
 }
