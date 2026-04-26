@@ -27,7 +27,7 @@ export class UsersService {
   }
 
   patch(id: string, role: UserRole, changes: Partial<User>) {
-    const ref = doc(this.firestore, role === 'USER' ? 'users' : 'restaurant-profiles', id);
+    const ref = doc(this.firestore, role === 'USER' ? 'users' : 'restaurantProfiles', id);
     return from(updateDoc(ref, changes)).pipe(
       map(() => ({ id, ...changes } as User))
     );

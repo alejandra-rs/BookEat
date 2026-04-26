@@ -5,7 +5,7 @@ import {TitleCasePipe} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {form, FormField} from '@angular/forms/signals';
 import {applyLoginValidators} from '../../validators/login-popup.validators';
-import {AuthService} from '../../services/jsonserver/auth.service';
+import {AuthService} from '../../services/firebase/auth.service';
 
 @Component({
   selector: 'app-login-popup',

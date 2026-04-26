@@ -2,7 +2,7 @@ import { AfterViewInit, Component, computed, ElementRef, inject, input, OnDestro
 import { isPlatformBrowser } from '@angular/common';
 import { PanzoomObject } from '@panzoom/panzoom';
 import { TableMap as TableMapModel } from '../../models/restaurant.model';
-import { AuthService } from '../../services/jsonserver/auth.service';
+import { AuthService } from '../../services/firebase/auth.service';
 
 @Component({
   selector: 'app-table-map',

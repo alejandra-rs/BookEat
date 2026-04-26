@@ -6,7 +6,7 @@ import {INITIAL_AFFILIATE_STATE, type AffiliateForm} from '../../models/affiliat
 import {applyAffiliateFormValidators} from '../../validators/affiliate-form.validators';
 import {areSameTag,  toTitleCase} from '../../pipes/canonicalize-tag.pipe';
 import { TitleCasePipe } from '@angular/common';
-import { AuthService } from '../../services/jsonserver/auth.service';
+import { AuthService } from '../../services/firebase/auth.service';
 import {Router} from '@angular/router';
 import {CategoriesService} from '../../services/firebase/categories.service';
 

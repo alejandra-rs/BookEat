@@ -1,7 +1,7 @@
 import {Component, inject, input, output, signal} from '@angular/core';
 import {InsertImage} from '../insert-image/insert-image';
 import {UsersService} from '../../services/firebase/users.service';
-import {AuthService} from '../../services/jsonserver/auth.service';
+import {AuthService} from '../../services/firebase/auth.service';
 import {Storage, ref, uploadBytes, getDownloadURL} from '@angular/fire/storage';
 
 @Component({
