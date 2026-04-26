@@ -3,9 +3,9 @@
     "api": "json-server --watch data/db.json --port 3000"
   },
   "dependencies": {
+    "@panzoom/panzoom": "4.6.0",
     "bootstrap": "^5.3.8",
     "flatpickr": "^4.6.13",
-    "@panzoom/panzoom": "4.6.0",
     "json-server": "^0.17.4",
     "proj4": "^2.20.4"
   }

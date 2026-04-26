@@ -4,47 +4,28 @@
     <app-rating-breakdown [restaurant]="restaurant"></app-rating-breakdown>
   }
 
-  <section class="filters row g-4 g-lg-3 justify-content-between align-items-center">
+  <section class="row g-4 g-lg-3 justify-content-between align-items-center">
     <div class="col-12 col-lg-8 d-flex flex-column flex-lg-row align-items-center gap-3">
-      <h2>Filter</h2>
-      <div class="filters__buttons">
-        <button class="filters__button"
-          [class.active]="ratingFilter() === null"
-          (click)="ratingFilter.set(null)">All</button>
-        <button class="filters__button"
-          [class.active]="ratingFilter() === 5"
-          (click)="ratingFilter.set(5)">5 Stars</button>
-        <button class="filters__button"
-          [class.active]="ratingFilter() === 4"
-          (click)="ratingFilter.set(4)">4 Stars</button>
-        <button class="filters__button"
-          [class.active]="ratingFilter() === 3"
-          (click)="ratingFilter.set(3)">3 Stars</button>
-        <button class="filters__button"
-          [class.active]="ratingFilter() === 2"
-          (click)="ratingFilter.set(2)">2 Stars</button>
-        <button class="filters__button"
-          [class.active]="ratingFilter() === 1"
-          (click)="ratingFilter.set(1)">1 Star</button>
-        <button class="filters__button"
-          [class.active]="onlyPicturesFilter()"
-          (click)="togglePhotos()">With Photos</button>
+      <h2 class="m-0">Filter</h2>
+      <div class="row row-cols-2 g-2 w-100">
+        <div class="col"><button class="filters__button w-100" [class.active]="ratingFilter() === null" (click)="ratingFilter.set(null)">All</button></div>
+        <div class="col"><button class="filters__button w-100" [class.active]="ratingFilter() === 5"    (click)="ratingFilter.set(5)">5 Stars</button></div>
+        <div class="col"><button class="filters__button w-100" [class.active]="ratingFilter() === 4"    (click)="ratingFilter.set(4)">4 Stars</button></div>
+        <div class="col"><button class="filters__button w-100" [class.active]="ratingFilter() === 3"    (click)="ratingFilter.set(3)">3 Stars</button></div>
+        <div class="col"><button class="filters__button w-100" [class.active]="ratingFilter() === 2"    (click)="ratingFilter.set(2)">2 Stars</button></div>
+        <div class="col"><button class="filters__button w-100" [class.active]="ratingFilter() === 1"    (click)="ratingFilter.set(1)">1 Star</button></div>
+        <div class="col"><button class="filters__button w-100" [class.active]="onlyPicturesFilter()"   (click)="togglePhotos()">With Photos</button></div>
       </div>
     </div>
-    <div
-      class="restaurant-reviews-page__filters__sort-by
-              col-12 col-lg-4 d-flex flex-column flex-lg-row align-items-center gap-3 justify-content-lg-end">
-      <h2>Sort by</h2>
-      <div class="restaurant-reviews-page__filters__sort-by__dropdown">
-        <label class="w-100">
-          <select id="sort-reviews" name="sort-by" class="form-select" (change)="setSorting($event)">
-            <option value="newest">Newest First</option>
-            <option value="oldest">Oldest First</option>
-            <option value="best">Best First</option>
-            <option value="worst">Worst First</option>
-          </select>
-        </label>
-      </div>
+
+    <div class="col-12 col-lg-4 d-flex flex-column flex-lg-row align-items-center justify-content-lg-end gap-3">
+      <h2 class="m-0">Sort by</h2>
+      <select class="form-select w-auto" (change)="setSorting($event)">
+        <option value="newest">Newest First</option>
+        <option value="oldest">Oldest First</option>
+        <option value="best">Best First</option>
+        <option value="worst">Worst First</option>
+      </select>
     </div>
   </section>
 

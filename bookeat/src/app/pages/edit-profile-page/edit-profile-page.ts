@@ -1,4 +1,4 @@
-import {Component, computed, inject, viewChild} from '@angular/core';
+import {Component, computed, inject, signal} from '@angular/core';
 import {EditProperty} from '../../components/edit-property/edit-property';
 import {EditButton} from '../../components/edit-button/edit-button';
 import {AuthService} from '../../services/jsonserver/auth.service';
@@ -19,9 +19,5 @@ export class EditProfilePage {
   readonly currentUser$ = this.usersService.getById(this.session()?.id!, this.session()?.role!);
   readonly profileImage = computed(() => this.authService.currentUser()?.image ?? '');
 
-  popup = viewChild.required(EditProfileImagePopup);
-
-  openPopup() {
-    this.popup().open();
-  }
+  popupOpen = signal(false);
 }

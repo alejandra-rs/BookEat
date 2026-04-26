@@ -1,18 +1,17 @@
-<section class="d-flex flex-column align-items-center gap-3 p-2 bg-transparent">
-
+<section class="d-flex flex-column align-items-center gap-3 p-2">
   <header>
-    <h2 class="fs-1 fw-semibold text-primary-custom">{{ sectionName }}</h2>
+    <h2 class="fs-1 fw-semibold">{{ sectionName }}</h2>
   </header>
-
-  <div class="w-100 menu-section__items">
+  <div class="row row-cols-1 row-cols-lg-2 g-4 w-100">
     @for (item of items; track item.name) {
-      <app-menu-item
-        [name]="item.name"
-        [price]="item.price"
-        [description]="item.description"
-        [image]="item.image"
-      />
+      <div class="col">
+        <app-menu-item
+          [name]="item.name"
+          [price]="item.price"
+          [description]="item.description"
+          [image]="item.image"
+        />
+      </div>
     }
   </div>
-
 </section>

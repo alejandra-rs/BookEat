@@ -8,6 +8,7 @@ import {CreateAnAccount} from './components/create-an-account/create-an-account'
 import {EditProfilePage} from './pages/edit-profile-page/edit-profile-page';
 import {BookTablePage} from './pages/book-table-page/book-table-page';
 import {ReservationsPage} from './pages/reservations-page/reservations-page';
+import {SearchPage} from './pages/search-page/search-page';
 
 export const routes: Routes = [
   {
@@ -49,6 +50,11 @@ export const routes: Routes = [
     path: 'reservations-page',
     pathMatch: 'full',
     component: ReservationsPage,
+  },
+  {
+    path: 'search',
+    pathMatch: 'full',
+    component: SearchPage,
   },
   {
     path: ':id',

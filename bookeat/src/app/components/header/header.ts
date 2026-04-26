@@ -1,15 +1,15 @@
-import { Component, inject, viewChild } from '@angular/core';
-import { DateSelector } from '../date-selector/date-selector';
-import { HourSelector } from '../hour-selector/hour-selector';
-import { DinersSelector } from '../diners-selector/diners-selector';
-import { NavigationEnd, Router, RouterLink } from '@angular/router';
-import { LoginPopup } from '../login-popup/login-popup';
-import { AuthService } from '../../services/jsonserver/auth.service';
-import { MyAccount } from '../my-account/my-account';
-import { CreateAnAccount } from '../create-an-account/create-an-account';
-import { SessionService } from '../../services/session.service';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { filter, map, startWith } from 'rxjs';
+import {Component, inject, signal} from '@angular/core';
+import {DateSelector} from '../date-selector/date-selector';
+import {HourSelector} from '../hour-selector/hour-selector';
+import {DinersSelector} from '../diners-selector/diners-selector';
+import {NavigationEnd, Router, RouterLink} from '@angular/router';
+import {LoginPopup} from '../login-popup/login-popup';
+import {AuthService} from '../../services/jsonserver/auth.service';
+import {MyAccount} from '../my-account/my-account';
+import {CreateAnAccount} from '../create-an-account/create-an-account';
+import {SessionService} from '../../services/session.service';
+import {toSignal} from '@angular/core/rxjs-interop';
+import {filter, map, startWith} from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -21,8 +21,9 @@ export class Header {
   public authService = inject(AuthService);
   public sessionService = inject(SessionService);
   private router = inject(Router);
-  registerPopup = viewChild.required(CreateAnAccount);
-  loginPopup = viewChild.required(LoginPopup);
+
+  loginOpen = signal(false);
+  registerOpen = signal(false);
 
   private isBookingRoute = () =>
     this.router.url.startsWith('/booking-details') || this.router.url.startsWith('/book-table');
@@ -36,11 +37,10 @@ export class Header {
     { initialValue: false }
   );
 
-  openLogin() {
-    this.loginPopup().open();
+  search(query: string) {
+    this.router.navigate(['/search'], { queryParams: { q: query.trim() } });
   }
 
-  openRegister() {
-    this.registerPopup().open();
-  }
+  openLogin() { this.loginOpen.set(true); }
+  openRegister() { this.registerOpen.set(true); }
 }

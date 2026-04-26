@@ -1,9 +1,17 @@
 <div class="d-flex flex-column align-items-center gap-3">
-  @if (previewUrl()) {
-    <img [src]="previewUrl()" class="insert-image__preview rounded-circle object-fit-cover" alt="Preview">
+  @if (items().length) {
+    <div class="d-flex flex-wrap gap-2 justify-content-center">
+      @for (item of items(); track item.preview; let i = $index) {
+        <div class="position-relative">
+          <img [src]="item.preview" class="insert-image__preview rounded-3 object-fit-cover" alt="Preview">
+          <button type="button" class="btn-close insert-image__remove position-absolute top-0 end-0 m-1" (click)="remove(i)"></button>
+        </div>
+      }
+    </div>
   }
-  <input #fileInput type="file" accept="image/*" class="d-none" (change)="onFileChange(fileInput)">
-  <button class="btn-custom-secondary fs-5 d-flex align-items-center gap-2" (click)="fileInput.click()">
+  <input #fileInput type="file" accept="image/*" multiple class="d-none"
+         (click)="$event.stopPropagation()" (change)="onFileChange(fileInput)">
+  <button type="button" class="btn-custom-secondary fs-5 d-flex align-items-center gap-2" (click)="fileInput.click()">
     <i class="bi bi-upload"></i>
     <span>Insert Image</span>
   </button>

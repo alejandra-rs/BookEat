@@ -1,18 +1,31 @@
-import { Component, inject, ViewEncapsulation } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { StarSelector } from '../star-selector/star-selector';
+import {Component, inject, input, output, signal} from '@angular/core';
+import {StarSelector} from '../star-selector/star-selector';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {InsertImage} from '../insert-image/insert-image';
+import {Restaurant} from '../../models/restaurant.model';
+import {ReviewsService} from '../../services/firebase/reviews.service';
+import {AuthService} from '../../services/jsonserver/auth.service';
+import {Storage, ref, uploadBytes, getDownloadURL} from '@angular/fire/storage';
 
 @Component({
   selector: 'app-write-review-popup',
   imports: [StarSelector, ReactiveFormsModule, InsertImage],
   templateUrl: './write-review-popup.html',
   styleUrl: './write-review-popup.css',
-  encapsulation: ViewEncapsulation.None,
 })
 export class WriteReviewPopup {
-  activeModal = inject(NgbActiveModal);
+  private reviewsService = inject(ReviewsService);
+  private auth = inject(AuthService);
+  private storage = inject(Storage);
+
+  restaurant = input.required<Restaurant>();
+  open = input(false);
+  closed = output<void>();
+
+  pendingFiles = signal<File[]>([]);
+  submitting = signal(false);
+  submitted = signal(false);
+  uploadError = signal<string | null>(null);
 
   form = new FormGroup({
     title: new FormControl('', [Validators.required]),
@@ -20,9 +33,41 @@ export class WriteReviewPopup {
     pros: new FormControl('', [Validators.required]),
     cons: new FormControl('', [Validators.required]),
     rating: new FormControl(1, [Validators.required]),
-  })
+  });
 
-  submit() {
-    if (this.form.valid) this.activeModal.close(this.form.value);
+  close() { this.closed.emit(); }
+
+  async submit() {
+    this.submitted.set(true);
+    this.form.markAllAsTouched();
+    if (!this.form.valid || this.submitting()) return;
+    const userId = this.auth.currentUser()?.id;
+    if (!userId) return;
+
+    this.submitting.set(true);
+    this.uploadError.set(null);
+    try {
+      const imageUrls = await Promise.all(
+        this.pendingFiles().map(async file => {
+          const storageRef = ref(this.storage, `reviews/${userId}/${Date.now()}_${file.name}`);
+          const result = await uploadBytes(storageRef, file);
+          return getDownloadURL(result.ref);
+        })
+      );
+      await this.reviewsService.create({
+        ...this.form.value as any,
+        userId,
+        restaurantId: this.restaurant().id,
+        datetime: new Date().toISOString(),
+        images: imageUrls,
+      });
+      this.form.reset({ rating: 1 });
+      this.pendingFiles.set([]);
+      this.close();
+    } catch (e: any) {
+      this.uploadError.set(e?.message ?? 'Upload failed. Check Firebase Storage permissions.');
+    } finally {
+      this.submitting.set(false);
+    }
   }
 }

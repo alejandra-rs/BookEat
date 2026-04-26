@@ -1,17 +1,13 @@
-.write-review-modal .modal-dialog {
-  max-width: 700px;
-  width: calc(95% - 20vw);
-  max-height: 90%;
-  overflow-y: scroll;
-}
-
-.write-review-modal .modal-content {
+.write-review-modal {
+  width: min(600px, 95vw);
+  max-height: 90vh;
+  overflow-y: auto;
   background-color: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 .write-review__field {
   background-color: var(--bg-secondary);
-  color: var(--text-secondary);
   padding: 0.5rem;
 }
 

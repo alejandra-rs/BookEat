@@ -1,0 +1,52 @@
+.date-range__btn {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.4rem 0.75rem;
+  background-color: var(--bg-primary);
+  font-size: 0.9rem;
+}
+
+.date-range__clear {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.4rem 0.6rem;
+  background-color: var(--bg-primary);
+  color: var(--text-secondary);
+}
+
+.date-range__day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.date-range__day.range {
+  background-color: var(--bg-secondary);
+  border-radius: 0;
+}
+
+.date-range__day.from,
+.date-range__day.to {
+  background-color: var(--button-secondary);
+  color: var(--text-quaternary);
+  border-radius: 50%;
+}
+
+.date-range__day.faded {
+  opacity: 0.6;
+}
+
+.date-range__day.focused {
+  outline: 2px solid var(--button-secondary);
+}
+
+.date-range__day.disabled {
+  color: var(--text-tertiary);
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}

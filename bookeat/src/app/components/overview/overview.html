@@ -1,58 +1,47 @@
-<p>overview works!</p>
-<article class="overview">
-  <div class="overview__image">
-    @if (type() === 'past' || type() === 'incoming'){
-    <img [src]="booking()?.expand!.image" alt="image">
-    } @else {
-    <img [src]="item().image" alt="image">
-    }
-  </div>
+<article class="overview d-flex rounded-2 p-3 shadow-sm w-100 gap-3">
+  <img class="overview__image object-fit-cover rounded-2 align-self-center flex-shrink-0"
+       [src]="(type() === 'past' || type() === 'incoming') ? booking()?.expand!.image : item().image"
+       alt="" />
 
-  <div class="overview__content">
+  <div class="d-flex flex-column w-100 gap-2">
     <header>
-      <div class="overview__content__title">
-        @if (type() === 'past' || type() === 'incoming'){
-          <h1 data-template="text-self">{{ booking()?.expand!.name }}</h1>
-        } @else {
-          <h1 data-template="text-self">{{ item().name }}</h1>
-        }
-        @if (booking()?.date){
-          <span class="overview__content__title__date" data-template="text-datetime"> {{ booking()?.date }} </span>
-        } @else {
-          <span>{{ booking()?.datetime }}</span>
+      <div class="d-flex align-items-center justify-content-between">
+        <h1 class="fs-4 fw-bold m-0">
+          {{ (type() === 'past' || type() === 'incoming') ? booking()?.expand!.name : item().name }}
+        </h1>
+        @if (booking()?.datetime) {
+          <span class="small text-muted ms-2 flex-shrink-0">{{ booking()?.datetime }}</span>
         }
       </div>
     </header>
-    @if (booking()?.guests){
-    <p class="overview__content__description" data-template="text-description">
-      "booking for {{ booking()?.guests }} guests"
-    </p>
-    } @else {
-      <p>
 
-      </p>
+    @if (booking()?.guests) {
+      <p class="text-muted small m-0 overview__description">Booking for {{ booking()?.guests }} guests</p>
+    } @else {
+      <p class="text-muted small m-0 overview__description">{{ $any(item()).description }}</p>
     }
 
-    <div class="overview__content__buttons">
+    <div class="mt-auto d-flex flex-row-reverse justify-content-end gap-2">
       @switch (type()) {
         @case ('incoming') {
-          <button class="secondary-button">Cancel Reservation</button>
-          <button routerLink="/register" class="secondary-button">Read Reviews</button>
+          <button class="btn-custom-secondary">Cancel Reservation</button>
+          <button class="btn-custom-secondary" [routerLink]="['/reviews', booking()?.restaurantId]">Read Reviews</button>
         }
         @case ('past') {
-          <button class="secondary-button btn-write-review">Write a Review</button>
-          <button class="secondary-button">Read Reviews</button>
+          <button class="btn-custom-secondary" (click)="showReview.set(true)">Write a Review</button>
+          <button class="btn-custom-secondary" [routerLink]="['/reviews', booking()?.restaurantId]">Read Reviews</button>
         }
         @case ('restaurant-incoming') {
-          <button class="btn-primary btn-booked-tables">Booked tables</button>
+          <button class="btn-custom-primary">Booked tables</button>
         }
         @default {
-          <button class="secondary-button read-more"> Go </button>
+          <button class="btn-custom-secondary" [routerLink]="['/', item().id]">Go</button>
         }
       }
     </div>
-
   </div>
 </article>
 
-
+@if (type() === 'past') {
+  <app-write-review-popup [restaurant]="$any(booking()?.expand)" [open]="showReview()" (closed)="showReview.set(false)"/>
+}

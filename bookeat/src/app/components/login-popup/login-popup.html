@@ -1,44 +1,44 @@
-<dialog #DialogLogin class="menu-popup border-0 rounded-4 p-0 shadow-lg" (click)="closeOnBackdrop($event)">
-  <app-form-card
-    title="Login or create an account"
-    subtitle="Log in with your BookEat account..."
-    classname="card p-4 d-flex flex-column align-items-center justify-content-center text-center gap-3 bg-transparent border-0"
-    styles="box-shadow: none; color: var(--text-primary)"
-  >
-    <form id="form-login" (submit)="onSubmit($event)" class="w-100">
-
-      <div class="row g-2 mb-4 justify-content-center">
-        @for (field of fields; track field) {
-          <div class="col-12">
-            <input
-              [formField]="$any(loginForm)[field]"
-              [type]="field === 'password' ? 'password' : 'email'"
-              class="form-control form-control-lg custom-input"
-              [placeholder]="field | titlecase">
-
-            @if ((submitted() || $any(loginForm)[field]().touched()) && $any(loginForm)[field]().errors(); as errors) {
-              @for (error of errors; track error.kind) {
-                <div class="invalid-feedback ps-2 text-start d-block small">
-                  {{ field === 'email' && error.kind === 'email' ? 'Invalid email' : error.message }}
-                </div>
-              }
-            }
-          </div>
-        }
-            @if (error()) {
-              <div class="alert alert-danger py-2 px-3 border-0 rounded-3 mb-3 small text-start shadow-sm d-flex align-items-center">
-                <i class="bi bi-exclamation-triangle-fill me-2"></i>
-                {{ error() }}
+@if (open()) {
+  <div class="popup-backdrop" (click)="close()">
+    <div class="menu-popup rounded-4 p-0 shadow-lg" (click)="$event.stopPropagation()">
+      <app-form-card
+        title="Login or create an account"
+        subtitle="Log in with your BookEat account..."
+        classname="card p-4 d-flex flex-column align-items-center justify-content-center text-center gap-3 bg-transparent border-0"
+        styles="box-shadow: none; color: var(--text-primary)"
+      >
+        <form (submit)="onSubmit($event)" class="w-100 d-flex flex-column gap-2">
+          <div class="row g-2 justify-content-center">
+            @for (field of fields; track field) {
+              <div class="col-12">
+                <input
+                  [formField]="$any(loginForm)[field]"
+                  [type]="field === 'password' ? 'password' : 'email'"
+                  class="form-control form-control-lg custom-input"
+                  [placeholder]="field | titlecase">
+                @if ((submitted() || $any(loginForm)[field]().touched()) && $any(loginForm)[field]().errors(); as errors) {
+                  @for (error of errors; track error.kind) {
+                    <div class="invalid-feedback ps-2 text-start d-block small">
+                      {{ field === 'email' && error.kind === 'email' ? 'Invalid email' : error.message }}
+                    </div>
+                  }
+                }
               </div>
             }
-      </div>
-      <button type="submit" class="btn btn-dark w-100 py-2 rounded-pill fw-bold mb-2 shadow-sm" [disabled]="submitted()">
-        {{submitted() ? 'Login in...' : 'Login'}}
-      </button>
-    </form>
-
-    <button type="button" class="btn btn-light w-100 py-2 rounded-pill fw-medium shadow-sm border" id="registerButton">
-      Register
-    </button>
-  </app-form-card>
-</dialog>
+            @if (error()) {
+              <div class="alert alert-danger py-2 px-3 border-0 rounded-3 small text-start shadow-sm d-flex align-items-center w-100">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>{{ error() }}
+              </div>
+            }
+          </div>
+          <button type="submit" class="btn btn-dark w-100 py-2 rounded-pill fw-bold shadow-sm" [disabled]="submitted()">
+            {{ submitted() ? 'Logging in...' : 'Login' }}
+          </button>
+          <button type="button" class="btn btn-light w-100 py-2 rounded-pill fw-medium shadow-sm border" (click)="openRegister.emit()">
+            Register
+          </button>
+        </form>
+      </app-form-card>
+    </div>
+  </div>
+}

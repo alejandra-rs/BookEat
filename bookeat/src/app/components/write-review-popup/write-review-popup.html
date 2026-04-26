@@ -1,33 +1,69 @@
-<div class="modal-header border-0">
-  <h1 class="modal-title fs-4">Review: Restaurant Name</h1>
-  <button type="button" class="btn-close" (click)="activeModal.dismiss()"></button>
-</div>
+@if (open()) {
+  <div class="popup-backdrop" (click)="close()">
+    <div class="write-review-modal border-0 rounded-4 p-0 shadow-lg" (click)="$event.stopPropagation()">
 
-<div class="modal-body">
-  <form id="form-write-review" class="d-flex flex-column gap-3" [formGroup]="form">
-    <div class="write-review__field rounded-3 d-flex flex-column gap-3">
-      <textarea formControlName="title" class="form-control" placeholder="Title" rows="1"></textarea>
-      <textarea formControlName="description" class="form-control" placeholder="Tell us about your experience... What did you eat? How was the service?" required rows="5"></textarea>
-    </div>
-
-    <div class="write-review__pros-cons d-flex gap-3">
-      <div class="write-review__field rounded-3 flex-grow-1">
-        <h2 class="fs-6">Pros</h2>
-        <textarea formControlName="pros" class="form-control" placeholder="What did you love?" rows="3"></textarea>
+      <div class="modal-header border-0 p-4 pb-0">
+        <h1 class="modal-title fs-4">Review: {{ restaurant().name }}</h1>
+        <button type="button" class="btn-close" (click)="close()"></button>
       </div>
-      <div class="flex-grow-1 write-review__field rounded-3">
-        <h2 class="fs-6">Cons</h2>
-        <textarea formControlName="cons" class="form-control" placeholder="What could be better?" rows="3"></textarea>
-      </div>
-    </div>
-    <div class="d-flex flex-column align-items-center gap-3">
-      <app-star-selector [rating]="form.controls.rating.value!" (ratingChange)="form.controls.rating.setValue($event)"></app-star-selector>
-      <app-insert-image></app-insert-image>
-    </div>
-  </form>
-</div>
 
-<div class="modal-footer border-0">
-  <button type="button" class="btn-custom-secondary" (click)="activeModal.dismiss()">Cancel</button>
-  <button type="submit" class="btn-custom-primary" form="form-write-review" (click)="submit()">Submit</button>
-</div>
+      <div class="modal-body p-4">
+        <form class="d-flex flex-column gap-3" [formGroup]="form">
+
+          <div class="write-review__field rounded-3 d-flex flex-column gap-2">
+            <textarea formControlName="title" class="form-control"
+                      [class.is-invalid]="form.controls.title.invalid && (form.controls.title.touched || submitted())"
+                      placeholder="Title" rows="1"></textarea>
+            @if (form.controls.title.invalid && (form.controls.title.touched || submitted())) {
+              <div class="invalid-feedback d-block small ps-1">Title is required.</div>
+            }
+            <textarea formControlName="description" class="form-control"
+                      [class.is-invalid]="form.controls.description.invalid && (form.controls.description.touched || submitted())"
+                      placeholder="Tell us about your experience... What did you eat? How was the service?" rows="5"></textarea>
+            @if (form.controls.description.invalid && (form.controls.description.touched || submitted())) {
+              <div class="invalid-feedback d-block small ps-1">Description is required.</div>
+            }
+          </div>
+
+          <div class="write-review__pros-cons d-flex gap-3">
+            <div class="write-review__field rounded-3 flex-grow-1 d-flex flex-column gap-2">
+              <h2 class="fs-6 mb-0">Pros</h2>
+              <textarea formControlName="pros" class="form-control"
+                        [class.is-invalid]="form.controls.pros.invalid && (form.controls.pros.touched || submitted())"
+                        placeholder="What did you love?" rows="3"></textarea>
+              @if (form.controls.pros.invalid && (form.controls.pros.touched || submitted())) {
+                <div class="invalid-feedback d-block small ps-1">Required.</div>
+              }
+            </div>
+            <div class="write-review__field rounded-3 flex-grow-1 d-flex flex-column gap-2">
+              <h2 class="fs-6 mb-0">Cons</h2>
+              <textarea formControlName="cons" class="form-control"
+                        [class.is-invalid]="form.controls.cons.invalid && (form.controls.cons.touched || submitted())"
+                        placeholder="What could be better?" rows="3"></textarea>
+              @if (form.controls.cons.invalid && (form.controls.cons.touched || submitted())) {
+                <div class="invalid-feedback d-block small ps-1">Required.</div>
+              }
+            </div>
+          </div>
+
+          <div class="d-flex flex-column align-items-center gap-3">
+            <app-star-selector [rating]="form.controls.rating.value!" (ratingChange)="form.controls.rating.setValue($event)" />
+            <app-insert-image (filesChange)="pendingFiles.set($event)" />
+          </div>
+        </form>
+      </div>
+
+      @if (uploadError()) {
+        <div class="alert alert-danger mx-4 mb-0 py-2 small">{{ uploadError() }}</div>
+      }
+
+      <div class="modal-footer border-0 px-4 pb-4">
+        <button type="button" class="btn-custom-secondary" (click)="close()">Cancel</button>
+        <button type="button" class="btn-custom-primary" [disabled]="submitting()" (click)="submit()">
+          @if (submitting()) { <span class="spinner-border spinner-border-sm me-1"></span> } Submit
+        </button>
+      </div>
+
+    </div>
+  </div>
+}

@@ -1,7 +1,7 @@
 import {User} from './users.model';
 
 export interface Review {
-  id: number;
+  id: string;
   title: string;
   description: string;
   rating: number;

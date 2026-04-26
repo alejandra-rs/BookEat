@@ -1,4 +1,10 @@
 .insert-image__preview {
-  width: 10rem;
-  height: 10rem;
+  width: 6rem;
+  height: 6rem;
+}
+
+.insert-image__remove {
+  background-color: white;
+  border-radius: 50%;
+  scale: 0.75;
 }

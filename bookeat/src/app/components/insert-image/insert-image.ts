@@ -7,14 +7,22 @@ import {Component, output, signal} from '@angular/core';
   styleUrl: './insert-image.css',
 })
 export class InsertImage {
-  imageSelected = output<string>();
-  previewUrl = signal<string>('');
+  filesChange = output<File[]>();
+
+  items = signal<{ file: File; preview: string }[]>([]);
 
   onFileChange(input: HTMLInputElement) {
-    const file = input.files?.[0];
-    if (!file) return;
-    const url = URL.createObjectURL(file);
-    this.previewUrl.set(url);
-    this.imageSelected.emit(url);
+    const files = Array.from(input.files ?? []);
+    if (!files.length) return;
+    const newItems = files.map(file => ({ file, preview: URL.createObjectURL(file) }));
+    this.items.update(curr => [...curr, ...newItems]);
+    this.filesChange.emit(this.items().map(i => i.file));
+    input.value = '';
+  }
+
+  remove(index: number) {
+    URL.revokeObjectURL(this.items()[index].preview);
+    this.items.update(curr => curr.filter((_, i) => i !== index));
+    this.filesChange.emit(this.items().map(i => i.file));
   }
 }

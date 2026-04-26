@@ -5,7 +5,7 @@
         <div class="position-relative">
           <img class="edit-profile-page__avatar" [src]="profileImage() || currentUser.image" [alt]="currentUser.id">
           <div class="position-absolute bottom-0 end-0 fs-1">
-            <app-edit-button (click)="openPopup()"/>
+            <app-edit-button (click)="popupOpen.set(true)"/>
           </div>
         </div>
         <app-edit-property [propertyName]="'accountName'" [user]="currentUser"/>
@@ -29,4 +29,4 @@
     }
   </div>
 </main>
-<app-edit-profile-image-popup/>
+<app-edit-profile-image-popup [open]="popupOpen()" (closed)="popupOpen.set(false)"/>

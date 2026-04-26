@@ -1,7 +1,8 @@
-import {Component, ElementRef, inject, signal, ViewChild} from '@angular/core';
+import {Component, inject, input, output, signal} from '@angular/core';
 import {InsertImage} from '../insert-image/insert-image';
 import {UsersService} from '../../services/firebase/users.service';
 import {AuthService} from '../../services/jsonserver/auth.service';
+import {Storage, ref, uploadBytes, getDownloadURL} from '@angular/fire/storage';
 
 @Component({
   selector: 'app-edit-profile-image-popup',
@@ -12,20 +13,36 @@ import {AuthService} from '../../services/jsonserver/auth.service';
 export class EditProfileImagePopup {
   private usersService = inject(UsersService);
   private authService = inject(AuthService);
-  private session = this.authService.currentUser();
+  private storage = inject(Storage);
+  private session = this.authService.currentUser;
 
-  @ViewChild('DialogEditProfileImage') dialogRef!: ElementRef<HTMLDialogElement>;
+  open = input(false);
+  closed = output<void>();
 
-  pendingUrl = signal<string>('');
+  pendingFile = signal<File | null>(null);
+  saving = signal(false);
+  saveError = signal<string | null>(null);
 
-  open() { this.dialogRef.nativeElement.showModal(); }
-  close() { this.dialogRef.nativeElement.close(); }
+  close() { this.closed.emit(); }
 
-  save() {
-    const url = this.pendingUrl();
-    if (!url || !this.session) return;
-    this.usersService.patch(this.session.id, this.session.role, { image: url }).subscribe();
-    this.authService.updateImage(url);
-    this.close();
+  async save() {
+    const file = this.pendingFile();
+    const session = this.session();
+    if (!file || !session || this.saving()) return;
+
+    this.saving.set(true);
+    this.saveError.set(null);
+    try {
+      const storageRef = ref(this.storage, `profiles/${session.id}_${Date.now()}_${file.name}`);
+      const result = await uploadBytes(storageRef, file);
+      const url = await getDownloadURL(result.ref);
+      this.usersService.patch(session.id, session.role, { image: url }).subscribe();
+      this.authService.updateImage(url);
+      this.close();
+    } catch (e: any) {
+      this.saveError.set(e?.message ?? 'Upload failed. Check Firebase Storage permissions.');
+    } finally {
+      this.saving.set(false);
+    }
   }
 }

@@ -5,28 +5,37 @@
   font-size: inherit;
 }
 
-body:has(dialog[open]) {
-  overflow: hidden;
-}
-html, body {
-  height: 100%;
-}
+/* ── Layout ─────────────────────────────────────── */
+
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  min-height: 100vh;
+}
+
+app-root { display: contents; }
+
+.app {
   display: flex;
   flex-direction: column;
-  margin: 0;
+  min-height: 100vh;
 }
 
-main{
-  flex-grow: 1;
-  background-color: var(--bg-primary);
-}
-
-header, footer {flex-shrink: 0;}
 main { flex: 1; }
+
+/* ── Popup backdrop ─────────────────────────────── */
+
+.popup-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  z-index: 1050;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Design tokens ──────────────────────────────── */
 
 :root {
   --bg-primary: #fafafa;
@@ -43,7 +52,7 @@ main { flex: 1; }
 }
 
 body.dark-mode {
-  --bg-primary:  #2d2d2d;
+  --bg-primary: #2d2d2d;
   --bg-secondary: #1a1a1a;
   --text-primary: #e0e0e0;
   --text-secondary: #b0b0b0;
@@ -55,6 +64,21 @@ body.dark-mode {
   --button-secondary: #acacac;
 }
 
+body.dark-mode .icon {
+  filter: invert(1) sepia(1) grayscale(1) brightness(0.9);
+}
+
+/* ── Global elements ────────────────────────────── */
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.vr { opacity: 1; }
+
+/* ── Buttons ────────────────────────────────────── */
+
 body button {
   display: inline-flex;
   align-items: center;
@@ -65,35 +89,6 @@ body button {
   outline: none;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-
-}
-body a > button {
-  text-decoration: none;
-}
-
-body button img.icon {
-  width: 2em;
-  height: 2em;
-  color: var(--text-primary);
-}
-
-.custom-icon {
-  width: 2em;
-  height: 2em;
-  color: var(--text-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-}
-
-.vr {
-  opacity: 1;
-}
-
 .btn-custom-secondary {
   color: var(--text-primary);
   background-color: var(--button-primary);
@@ -102,82 +97,34 @@ body button img.icon {
 
 .btn-custom-secondary:focus,
 .btn-custom-secondary:active,
-.btn-custom-secondary:focus-visible{
+.btn-custom-secondary:focus-visible {
   background-color: var(--shadow);
   border: solid 0.1em var(--text-primary);
 }
 
-.btn-custom-primary{
+.btn-custom-primary {
   color: var(--text-quaternary);
   background-color: var(--button-secondary);
   border: solid 0.1em var(--button-secondary);
 }
 
-.btn-custom-primary:active{
-  background-color: var(--shadow);
-}
+.btn-custom-primary:active { background-color: var(--shadow); }
 
-.blur-effect{
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1000;
-  display: none;
-}
-.block-scroll {
-  overflow:hidden;
-}
+/* ── Toast ──────────────────────────────────────── */
 
 .toast {
   position: fixed;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%) translateY(100px);
-  background-color: var(--bg-primary, #333);
+  background-color: var(--bg-primary);
   color: var(--text-primary);
   padding: 12px 24px;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   z-index: 100000;
   transition: transform 0.3s ease-out;
   font-weight: 500;
 }
 
-.toast.show {
-  transform: translateX(-50%) translateY(0);
-}
-
-.input-error {
-  border: 2px solid #ff4d4d !important;
-  background-color: #fff0f0;
-}
-
-.error-message {
-  color: #ff4d4d;
-  font-size: 0.8rem;
-  display: block;
-  margin-top: 0.2rem;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-}
-dialog {
-  border: none;
-  background: transparent;
-  margin: auto;
-}
-
-dialog::backdrop {
-  background-color: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(4px);
-}
-
-body.hide-searcher .header__search {
-  display: none;
-}
-
-body.dark-mode .icon{
-  filter: invert(1) sepia(1) grayscale(1) brightness(0.9);
-}
+.toast.show { transform: translateX(-50%) translateY(0); }

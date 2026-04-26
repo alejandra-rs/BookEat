@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { combineLatest, map, Observable } from 'rxjs';
 import { UsersService } from './users.service';
 import { Review, ReviewWithUser } from '../../models/review.model';
-import { collection, collectionData, Firestore, query, where } from '@angular/fire/firestore';
+import { addDoc, collection, collectionData, Firestore, query, where } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -24,5 +24,9 @@ export class ReviewsService {
         reviews.map(r => ({ ...r, user: users.find(u => u.id === r.userId) ?? null }))
       )
     );
+  }
+
+  async create(review: Omit<Review, 'id'>): Promise<void> {
+    await addDoc(collection(this.firestore, 'reviews'), review);
   }
 }

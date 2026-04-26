@@ -1,0 +1,49 @@
+<main class="search-page container-fluid row g-0 py-4">
+
+  <aside class="search-page__filters col-12 col-lg-3 px-4 py-2">
+
+    <h3 class="fw-semibold mb-3">Price</h3>
+    <div class="search-page__price d-flex flex-column gap-2 mb-4">
+      <div class="search-page__price-track position-relative">
+        <input class="search-page__range" type="range" min="0" max="50" step="5"
+               [value]="minPrice()" (input)="minPrice.set(+$any($event.target).value)">
+        <input class="search-page__range" type="range" min="0" max="50" step="5"
+               [value]="maxPrice()" (input)="maxPrice.set(+$any($event.target).value)">
+      </div>
+      <div class="d-flex justify-content-between px-1 fw-semibold text-secondary small">
+        <span>{{ minPrice() <= maxPrice() ? minPrice() : maxPrice() }}€</span>
+        <span>{{ minPrice() >= maxPrice() ? minPrice() : maxPrice() }}€</span>
+      </div>
+    </div>
+
+    <h3 class="fw-semibold mb-3">Categories</h3>
+    <div ngbDropdown [autoClose]="'outside'" class="d-inline-block w-100">
+      <button class="btn btn-outline-secondary w-100 d-flex justify-content-between align-items-center"
+              type="button" ngbDropdownToggle>
+        {{ categoryLabel }}
+      </button>
+      <div ngbDropdownMenu class="w-100">
+        @for (cat of categories(); track cat.id) {
+          <label class="dropdown-item d-flex align-items-center gap-2 py-2 cursor-pointer">
+            <input type="checkbox" class="form-check-input m-0"
+                   [checked]="isCategorySelected(cat.id)"
+                   (change)="toggleCategory(cat.id, $any($event.target).checked)">
+            {{ cat.name }}
+          </label>
+        }
+      </div>
+    </div>
+
+  </aside>
+
+  <section class="col-12 col-lg-9 px-4">
+    <div class="d-flex flex-column gap-3">
+      @for (r of filtered(); track r.id) {
+        <app-overview [item]="r" type="default" />
+      } @empty {
+        <p class="text-secondary">No restaurants match your filters.</p>
+      }
+    </div>
+  </section>
+
+</main>

@@ -7,8 +7,9 @@
   <div class="header__search d-flex align-items-center rounded-pill px-1 py-1 gap-3 flex-grow-1"
        [class.d-none]="userIsBooking()">
     <div class="d-flex align-items-center gap-3 px-3 flex-grow-1">
-      <i class="bi bi-search fs-5"></i>
-      <input type="text" placeholder="Search..." class="header__input border-0 bg-transparent flex-grow-1"/>
+      <i class="bi bi-search fs-5" style="cursor:pointer" (click)="search(searchInput.value)"></i>
+      <input #searchInput type="text" placeholder="Search..." class="header__input border-0 bg-transparent flex-grow-1"
+             (keydown.enter)="search(searchInput.value)"/>
     </div>
     <input id="header-search-toggle" class="d-none" type="checkbox"/>
     <label for="header-search-toggle" class="header__search__overflow-toggle">
@@ -45,5 +46,9 @@
     </div>
   </div>
 </header>
-<app-login-popup></app-login-popup>
-<app-create-an-account></app-create-an-account>
+<app-login-popup [open]="loginOpen()" (closed)="loginOpen.set(false)"
+  (openRegister)="loginOpen.set(false); registerOpen.set(true)">
+</app-login-popup>
+<app-create-an-account [open]="registerOpen()" (closed)="registerOpen.set(false)"
+  (openLogin)="registerOpen.set(false); loginOpen.set(true)">
+</app-create-an-account>

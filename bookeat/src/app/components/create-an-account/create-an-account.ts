@@ -1,4 +1,4 @@
-import {Component, ElementRef, inject, signal, viewChild} from '@angular/core';
+import {Component, inject, input, output, signal} from '@angular/core';
 import {RegisterForm} from '../../models/users.model'
 import {form, FormField, required} from '@angular/forms/signals';
 import {checkBirthdate, checkEmail, checkMatch, checkPassword, checkPhone} from '../../validators/form.validators';
@@ -13,28 +13,17 @@ import {FormCard} from '../form-card/form-card';
   styleUrl: './create-an-account.css',
 })
 export class CreateAnAccount {
-  service = inject(UsersService)
+  service = inject(UsersService);
+  open = input(false);
+  closed = output<void>();
+  openLogin = output<void>();
 
-  dialogRef = viewChild.required<ElementRef<HTMLDialogElement>>('registerDialog');
-
-  open(){
-    this.dialogRef().nativeElement.showModal()
+  errors(field: any): string[] {
+    if (!field().invalid() || (!field().touched() && !this.submitted())) return [];
+    return (field().errors() ?? []).map((e: any) => e.message);
   }
 
-  close(){
-    this.dialogRef().nativeElement.close()
-  }
-
-  closeOnBackdrop(event: MouseEvent) {
-    const rect = this.dialogRef().nativeElement.getBoundingClientRect();
-    const clickedOutside =
-      event.clientX < rect.left ||
-      event.clientX > rect.right ||
-      event.clientY < rect.top ||
-      event.clientY > rect.bottom;
-
-    if (clickedOutside) this.close();
-  }
+  close() { this.closed.emit(); }
 
   registerData = signal<RegisterForm>({
     name: '',
@@ -58,8 +47,11 @@ export class CreateAnAccount {
     checkMatch(path.password, path.confirmPassword);
   });
 
+  submitted = signal(false);
+
   onSubmit(event: SubmitEvent) {
     event.preventDefault();
+    this.submitted.set(true);
     if (this.registerForm().invalid()) return;
 
     const form = this.registerData()

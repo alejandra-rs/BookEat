@@ -1,54 +1,57 @@
-import {Component, inject} from '@angular/core';
-import {Overview} from '../../components/overview/overview';
-import {BookingsService} from '../../services/jsonserver/bookings.service';
-import {AuthService} from '../../services/jsonserver/auth.service';
-import {ActivatedRoute} from '@angular/router';
-import {toObservable, toSignal} from '@angular/core/rxjs-interop';
-import {UsersService} from '../../services/firebase/users.service';
-import {RestaurantsService} from '../../services/firebase/restaurants.service';
-import {filter, map, switchMap} from 'rxjs';
+import { Component, inject, signal } from '@angular/core';
+import { Overview } from '../../components/overview/overview';
+import { DateRange, DateRangeValue } from '../../components/date-range/date-range';
+import { BookingsService } from '../../services/jsonserver/bookings.service';
+import { AuthService } from '../../services/jsonserver/auth.service';
+import { ActivatedRoute } from '@angular/router';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { UsersService } from '../../services/firebase/users.service';
+import { RestaurantsService } from '../../services/firebase/restaurants.service';
+import { combineLatest, filter, map, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-reservations-page',
-  imports: [
-    Overview,
-  ],
+  imports: [Overview, DateRange],
   templateUrl: './reservations-page.html',
   styleUrl: './reservations-page.css',
 })
 export class ReservationsPage {
-  private route = inject(ActivatedRoute)
-  private bookingService= inject(BookingsService);
-  private authService= inject(AuthService);
-  private userService= inject(UsersService);
-  private restaurantsService= inject(RestaurantsService);
+  private route = inject(ActivatedRoute);
+  private bookingService = inject(BookingsService);
+  private authService = inject(AuthService);
+  private userService = inject(UsersService);
+  private restaurantsService = inject(RestaurantsService);
 
   private user$ = this.authService.currentUser;
 
-  private userObservable$ = toObservable(this.user$);
+  private itemObservable$ = toObservable(this.user$).pipe(
+    filter(user => !!user),
+    switchMap(user =>
+      user!.role === 'USER'
+        ? this.userService.getById(user!.id, 'USER')
+        : this.restaurantsService.getById(user!.id)
+    )
+  );
 
-  private itemObservable$ = this.userObservable$.pipe(
-    filter(user => !!user && Number(user.id) !== 0),
+  private timeParam$ = this.route.queryParamMap.pipe(map(p => p.get('time')));
 
-    switchMap(user => {
-      if (user!.role === 'USER') {
-        return this.userService.getById(user!.id, "USER");
-      }
-      return this.restaurantsService.getById(user!.id);
+  private bookings$ = this.timeParam$.pipe(
+    switchMap(time => this.bookingService.getReservation(time!))
+  );
+
+  dateRange = signal<DateRangeValue | null>(null);
+
+  private filtered$ = combineLatest([this.bookings$, toObservable(this.dateRange)]).pipe(
+    map(([bookings, range]) => {
+      if (!range) return bookings;
+      return bookings.filter(b => {
+        const date = b.datetime.split(' ')[0];
+        return date >= range.start && date <= range.end;
+      });
     })
   );
 
-  private timeParamObservable$ = this.route.queryParamMap.pipe(
-    map(params => params.get('time'))
-  );
-
-  private bookingsObservable$ = this.timeParamObservable$.pipe(
-    switchMap(time => {
-      return this.bookingService.getReservation(time!);
-    })
-  );
-
-  readonly type = toSignal(this.timeParamObservable$)
-  readonly bookings = toSignal(this.bookingsObservable$, { initialValue: [] });
+  readonly type = toSignal(this.timeParam$, { initialValue: null });
+  readonly bookings = toSignal(this.filtered$, { initialValue: [] });
   readonly item = toSignal(this.itemObservable$);
 }
