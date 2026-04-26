@@ -1,8 +1,0 @@
-.reservations-page__filters {
-  background-color: var(--bg-secondary);
-  border-radius: 0.5rem;
-}
-
-.reservations-page__empty {
-  color: var(--text-secondary);
-}

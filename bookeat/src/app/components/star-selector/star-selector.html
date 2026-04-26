@@ -1,9 +1,0 @@
-<div class="star-checkbox d-inline-flex rounded-pill px-3 py-1 gap-1">
-  @for (star of stars; track star) {
-    <i class="bi star-checkbox__button fs-3"
-       [class.bi-star-fill]="star <= rating()"
-       [class.bi-star]="star > rating()"
-       (click)="select(star)"
-    ></i>
-  }
-</div>
