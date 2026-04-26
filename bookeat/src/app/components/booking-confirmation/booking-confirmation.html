@@ -1,0 +1,41 @@
+<dialog #bookingPopup id="booking-confirmation-popup" class="border-0 rounded-4 p-0 shadow-lg" (click)="closeOnBackdrop($event)">
+  <div class="d-flex flex-column align-items-center justify-content-center gap-1">
+
+  <h2 id="booking-confirmation-popup__title">Booking Confirmation</h2>
+  <p>
+    Congratulations, your reservation has been confirmed!
+  </p>
+  <section class="reservation-details d-flex flex-column">
+    <h3>Reservation Details</h3>
+
+    <div class="reservation-details__content d-flex flex-column flex-md-row gap-1 align-items-center">
+      <figure class="reservation-details__content__media d-flex justify-content-center align-items-center">
+        <iframe data-template="src-map"></iframe>
+      </figure>
+
+      <div class="reservation-details__content__info d-flex flex-column gap-1">
+
+        <p>
+          <i class="bi bi-fork-knife"></i>
+          <span>{{name}}</span>
+        </p>
+
+        <p id="reservation-details__content__info__address">
+          <i class="bi bi-shop"></i>
+          <span>{{address}}</span>
+        </p>
+
+        <p id="reservation-details__content__info__datetime">
+          <i class="bi bi-calendar"></i>
+          <time  datetime="2026-01-01T13:00">{{datetime}}</time>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <button class="secondary-button mt-2 ">
+    <i class="bi bi-download"></i>
+    Download Confirmation (PDF)
+  </button>
+  </div>
+</dialog>
