@@ -1,0 +1,88 @@
+@if (open()) {
+  <div class="popup-backdrop" (click)="close()">
+    <div class="menu-popup rounded-4 p-0 shadow-lg" (click)="$event.stopPropagation()">
+      <app-form-card
+        title="Create an account"
+        subtitle="Join BookEat today..."
+        classname="card p-4 d-flex flex-column align-items-center justify-content-center text-center gap-3 bg-transparent border-0"
+        styles="box-shadow: none; color: var(--text-primary)"
+      >
+        <form [formGroup]="registerForm" (submit)="onSubmit($event)" class="w-100 d-flex flex-column gap-2">
+
+          <div class="row g-2">
+            <div class="col-6">
+              <input formControlName="name" type="text" placeholder="Name"
+                     class="form-control form-control-lg custom-input"
+                     [class.is-invalid]="errors('name').length">
+              @for (msg of errors('name'); track msg) {
+                <div class="invalid-feedback d-block small text-start">{{ msg }}</div>
+              }
+            </div>
+            <div class="col-6">
+              <input formControlName="surname" type="text" placeholder="Surname"
+                     class="form-control form-control-lg custom-input"
+                     [class.is-invalid]="errors('surname').length">
+              @for (msg of errors('surname'); track msg) {
+                <div class="invalid-feedback d-block small text-start">{{ msg }}</div>
+              }
+            </div>
+          </div>
+
+          <div class="row g-2">
+            <div class="col-6">
+              <input formControlName="phoneNumber" type="tel" placeholder="Phone"
+                     class="form-control form-control-lg custom-input"
+                     [class.is-invalid]="errors('phoneNumber').length">
+              @for (msg of errors('phoneNumber'); track msg) {
+                <div class="invalid-feedback d-block small text-start">{{ msg }}</div>
+              }
+            </div>
+            <div class="col-6">
+              <input formControlName="birthdate" type="date"
+                     class="form-control form-control-lg custom-input"
+                     [class.is-invalid]="errors('birthdate').length">
+              @for (msg of errors('birthdate'); track msg) {
+                <div class="invalid-feedback d-block small text-start">{{ msg }}</div>
+              }
+            </div>
+          </div>
+
+          <input formControlName="email" type="email" placeholder="Email"
+                 class="form-control form-control-lg custom-input"
+                 [class.is-invalid]="errors('email').length">
+          @for (msg of errors('email'); track msg) {
+            <div class="invalid-feedback d-block small text-start">{{ msg }}</div>
+          }
+
+          <input formControlName="password" type="password" placeholder="Password"
+                 class="form-control form-control-lg custom-input"
+                 [class.is-invalid]="errors('password').length">
+          @for (msg of errors('password'); track msg) {
+            <div class="invalid-feedback d-block small text-start">{{ msg }}</div>
+          }
+
+          <input formControlName="confirmPassword" type="password" placeholder="Confirm Password"
+                 class="form-control form-control-lg custom-input"
+                 [class.is-invalid]="errors('confirmPassword').length">
+          @for (msg of errors('confirmPassword'); track msg) {
+            <div class="invalid-feedback d-block small text-start">{{ msg }}</div>
+          }
+
+          @if (error()) {
+            <div class="alert alert-danger py-2 px-3 border-0 rounded-3 small text-start">{{ error() }}</div>
+          }
+          <button type="submit" class="btn btn-dark w-100 py-2 rounded-pill fw-bold shadow-sm mt-1">
+            Register
+          </button>
+          <button type="button" class="btn btn-light w-100 py-2 rounded-pill fw-medium shadow-sm border d-flex align-items-center justify-content-center gap-2" (click)="loginWithGoogle()">
+            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="18" height="18" alt="">
+            Continue with Google
+          </button>
+          <button type="button" class="btn btn-light w-100 py-2 rounded-pill fw-medium shadow-sm border" (click)="openLogin.emit()">
+            Sign in
+          </button>
+        </form>
+      </app-form-card>
+    </div>
+  </div>
+}

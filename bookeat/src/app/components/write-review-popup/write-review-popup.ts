@@ -4,7 +4,7 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import {InsertImage} from '../insert-image/insert-image';
 import {Restaurant} from '../../models/restaurant.model';
 import {ReviewsService} from '../../services/firebase/reviews.service';
-import {AuthService} from '../../services/jsonserver/auth.service';
+import {AuthService} from '../../services/firebase/auth.service';
 import {Storage, ref, uploadBytes, getDownloadURL} from '@angular/fire/storage';
 
 @Component({

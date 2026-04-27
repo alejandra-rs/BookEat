@@ -1,87 +1,62 @@
 import {inject, Injectable} from '@angular/core';
-import {Booking, BookingExpanded} from '../../models/booking.model';
-import {parse} from 'date-fns';
-import {User} from '../../models/users.model';
+import {addDoc, collection, collectionData, Firestore, query, where} from '@angular/fire/firestore';
+import {combineLatest, map, Observable, of, switchMap} from 'rxjs';
+import {AuthService} from './auth.service';
 import {UsersService} from './users.service';
 import {RestaurantsService} from './restaurants.service';
+import {Booking, BookingExpanded} from '../../models/booking.model';
 import {Restaurant} from '../../models/restaurant.model';
-import { map, Observable, switchMap, forkJoin, of } from 'rxjs';
-import {AuthService} from '../jsonserver/auth.service';
-import firebase from 'firebase/compat/app';
-import firestore = firebase.firestore;
-import {collection, collectionData, query, where} from "@angular/fire/firestore";
+import {User} from '../../models/users.model';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class BookingsService {
-  private firestore= inject(firestore);
-  private authService= inject(AuthService);
-  private BASE_URL = 'http://localhost:3000/';
-  private userService= inject(UsersService);
-  private restaurantsService= inject(RestaurantsService);
+  private firestore = inject(Firestore);
+  private authService = inject(AuthService);
+  private usersService = inject(UsersService);
+  private restaurantsService = inject(RestaurantsService);
   private user = this.authService.currentUser;
 
-   toDate(date: string): Date {
-    return parse(date, 'dd-MM-yyyy HH:mm:ss', new Date());
-  }
-  getRestUser(){
-    return `${(this.getRole())}Id=${this.user()?.id}`;
-  }
+  private get role() { return this.user()?.role?.toLowerCase(); }
 
-  private getRole() {
-    return this.user()?.role.toLowerCase();
-  }
-  getReservation(time: string) {
-     const ref = collection(this.firestore, 'bookings');
-     const q = query(ref, where('status', '==',  time))
-    return (collectionData(q, {idField: 'id'}) as Observable<Booking[]>).pipe(
-      switchMap((bookings ) => {
-        if(bookings.length === 0) return of([])
-        const expandedBookings$ = bookings.map(booking => this.expandBooking(booking))
-        return forkJoin(expandedBookings$);
+  toDate(date: string): Date { return new Date(date); }
+
+  getReservation(status: string): Observable<BookingExpanded[]> {
+    const user = this.user();
+    if (!user) return of([]);
+
+    const ref = collection(this.firestore, 'bookings');
+    const filterField = user.role === 'USER' ? 'userId' : 'restaurantId';
+    const filterValue = user.role === 'USER' ? user.id : String(user.restaurantId ?? user.id);
+    console.log('[BookingsService] querying', filterField, '==', filterValue, '(type:', typeof filterValue, ')');
+    const q = query(ref, where(filterField, '==', filterValue));
+
+    return (collectionData(q, { idField: 'id' }) as Observable<Booking[]>).pipe(
+      map(bookings => bookings.filter(b => b.status === status)),
+      switchMap(bookings => {
+        if (!bookings.length) return of([]);
+        return combineLatest(bookings.map(b => this.expandBooking(b)));
       })
-
-    )
-   }
-
-
-  private expandBooking(booking: Booking) {
-    return this.getRole() === 'user' ?
-      this.restaurantsService.getById(booking.restaurantId).pipe(
-        map((restaurant: Restaurant) => this.expand(booking, restaurant))
-      ):
-      this.userService.getById(booking.userId, this.user()?.role ?? "USER").pipe(
-        map((user: User) => this.expand(booking, user))
-      );
-    }
-
-  private expand(booking: Booking, item: Restaurant|User ) {
-    return {
-      ...booking,
-      expand: item
-    } as BookingExpanded;
+    );
   }
 
   getByRestaurantAndDatetime(restaurantId: string, datetime: string): Observable<Booking[]> {
-     const ref = collection(this.firestore, 'bookings');
-     const q = query(ref, where('status', '==',  datetime))
-    return (collectionData(q, {idField: 'id'}) as Observable<Booking[]>)
-  }
-
-  getBetween(start: Date, end?: Date): Observable<Booking[]> {
     const ref = collection(this.firestore, 'bookings');
-
-    let q = query(
-      ref,
-      ...(end
-          ? [where('datetime', '>=', start), where('datetime', '<=', end)]
-          : [where('datetime', '==', start)]
-      )
-    )
-
-    return collectionData(q, {idField: 'id'}) as Observable<Booking[]>;
+    const q = query(ref, where('restaurantId', '==', restaurantId), where('datetime', '==', datetime));
+    return collectionData(q, { idField: 'id' }) as Observable<Booking[]>;
   }
 
+  post(booking: Omit<Booking, 'id'>): Observable<Booking> {
+    return new Observable(observer => {
+      addDoc(collection(this.firestore, 'bookings'), booking)
+        .then(ref => { observer.next({ ...booking, id: ref.id } as Booking); observer.complete(); })
+        .catch(err => observer.error(err));
+    });
+  }
 
+  private expandBooking(booking: Booking): Observable<BookingExpanded> {
+    const expand = (item: Restaurant | User) => ({ ...booking, expand: item } as BookingExpanded);
+    return this.role === 'user'
+      ? this.restaurantsService.getById(booking.restaurantId).pipe(map(expand))
+      : this.usersService.getById(booking.userId, 'USER').pipe(map(expand));
+  }
 }

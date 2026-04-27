@@ -1,0 +1,41 @@
+<div class="d-flex align-items-center gap-2">
+  <input class="d-none"
+         ngbDatepicker
+         #picker="ngbDatepicker"
+         [ngModel]="null"
+         [dayTemplate]="t"
+         [autoClose]="false"
+         [minDate]="minDate()!"
+         [maxDate]="maxDate()!"
+         [positionTarget]="btn"
+         placement="bottom-start"
+         (dateSelect)="onDateSelect($event)"
+  />
+
+  <button #btn class="btn d-flex align-items-center gap-2 text-reset date-range__btn"
+          type="button" (click)="picker.toggle()">
+    <i class="bi bi-calendar fs-5"></i>
+    <span>{{ label }}</span>
+    <i class="bi bi-chevron-down"></i>
+  </button>
+
+  @if (hasSelection) {
+    <button class="btn date-range__clear" type="button" (click)="clear($event, picker)">
+      <i class="bi bi-x-lg"></i>
+    </button>
+  }
+</div>
+
+<ng-template #t let-date let-focused="focused" let-disabled="disabled">
+  <span class="date-range__day"
+        [class.focused]="focused"
+        [class.range]="isRange(date)"
+        [class.from]="isFrom(date)"
+        [class.to]="isTo(date)"
+        [class.faded]="isInside(date)"
+        [class.disabled]="disabled"
+        (mouseenter)="hoveredDate = date"
+        (mouseleave)="hoveredDate = null">
+    {{ date.day }}
+  </span>
+</ng-template>

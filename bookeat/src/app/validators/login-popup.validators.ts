@@ -1,9 +1,4 @@
-import { email, required } from '@angular/forms/signals';
+import {ValidatorFn, Validators} from '@angular/forms';
 
-export function applyLoginValidators(path: any): void {
-  required(path.email, { message: 'Email is required' });
-  email(path.email);
-
-  required(path.password, { message: 'Password is required' });
-}
-
+export const loginEmailValidators: ValidatorFn[] = [Validators.required, Validators.email];
+export const loginPasswordValidators: ValidatorFn[] = [Validators.required];

@@ -1,27 +1,7 @@
-#booking-confirmation-popup {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: 0.25em;
-  padding: 2rem;
+.booking-confirmation {
+  background-color: var(--bg-primary);
   color: var(--text-primary);
-}
-
-.reservation-details {
-  background: var(--bg-primary);
-  padding: 1rem;
-  border-radius: 0.25em;
-}
-
-.reservation-details__content__info p{
-  display: flex;
-  flex-direction: row;
-  text-align: left;
-  align-items: center;
-  gap: 3px;
-}
-
-@media (max-width: 768px) {
-  .reservation-details__content {
-    flex-direction: column;
-  }
+  width: min(520px, 95vw);
+  max-height: 90vh;
+  overflow-y: auto;
 }

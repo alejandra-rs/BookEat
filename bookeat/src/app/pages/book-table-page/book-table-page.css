@@ -1,0 +1,11 @@
+.booking-confirmation {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  width: min(520px, 95vw);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.booking-confirmation__map {
+  border: 1px solid var(--bg-secondary);
+}

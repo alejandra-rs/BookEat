@@ -1,0 +1,22 @@
+.user-review {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.user-review__avatar {
+  width: 5rem;
+  height: 5rem;
+}
+
+.user-review__date {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.user-review__score {
+  font-size: 2.5rem;
+}
+
+.min-width-0 {
+  min-width: 0;
+}

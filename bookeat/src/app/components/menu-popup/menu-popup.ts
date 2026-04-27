@@ -1,31 +1,17 @@
-import { Component, Input, ViewChild, ElementRef } from '@angular/core';
-import { MenuSection } from '../menu-section/menu-section';
+import {Component, input, output} from '@angular/core';
+import {MenuSection as MenuSectionComponent} from '../menu-section/menu-section';
+import {MenuSection} from '../../models/restaurant.model';
 
 @Component({
   selector: 'app-menu-popup',
-  imports: [MenuSection],
+  imports: [MenuSectionComponent],
   templateUrl: './menu-popup.html',
   styleUrl: './menu-popup.css',
 })
 export class MenuPopup {
-  @Input() sections: MenuSection[] = [];
+  sections = input<MenuSection[]>([]);
+  open = input(false);
+  closed = output<void>();
 
-  @ViewChild('dialog') dialogRef!: ElementRef<HTMLDialogElement>;
-
-  open() {
-    this.dialogRef.nativeElement.showModal();
-  }
-  close() {
-    this.dialogRef.nativeElement.close();
-  }
-  closeOnBackdrop(event: MouseEvent) {
-    const rect = this.dialogRef.nativeElement.getBoundingClientRect();
-    const clickedOutside =
-      event.clientX < rect.left ||
-      event.clientX > rect.right ||
-      event.clientY < rect.top ||
-      event.clientY > rect.bottom;
-
-    if (clickedOutside) this.close();
-  }
+  close() { this.closed.emit(); }
 }

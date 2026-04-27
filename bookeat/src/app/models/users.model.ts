@@ -4,6 +4,7 @@ export interface SessionUser {
   id: string;
   role: UserRole;
   image: string;
+  restaurantId?: string;
 }
 
 export type User = Omit<UserProfile, 'password' | 'role'>;

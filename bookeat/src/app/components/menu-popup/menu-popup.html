@@ -1,0 +1,11 @@
+@if (open()) {
+  <div class="popup-backdrop" (click)="close()">
+    <div class="menu-popup border-0 rounded-5 p-3 shadow" (click)="$event.stopPropagation()">
+      <div class="menu-popup__scroll d-flex flex-column gap-2">
+        @for (section of sections(); track section.sectionName) {
+          <app-menu-section [sectionName]="section.sectionName" [items]="section.items"/>
+        }
+      </div>
+    </div>
+  </div>
+}

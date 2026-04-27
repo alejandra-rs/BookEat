@@ -1,4 +1,5 @@
-import {Component, ElementRef, Input, ViewChild} from '@angular/core';
+import {Component, input, output} from '@angular/core';
+import {SafeResourceUrl} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-booking-confirmation',
@@ -7,26 +8,13 @@ import {Component, ElementRef, Input, ViewChild} from '@angular/core';
   styleUrl: './booking-confirmation.css',
 })
 export class BookingConfirmation {
-  @Input() name: string = '';
-  @Input() address: string = '';
-  @Input() datetime: string = '';
-  @ViewChild('bookingPopup') dialogRef!: ElementRef<HTMLDialogElement>;
+  open = input(false);
+  closed = output<void>();
 
-  open() {
-    this.dialogRef.nativeElement.showModal();
-  }
-  close(){
-    this.dialogRef.nativeElement.close();
-  }
+  name = input('');
+  address = input('');
+  datetime = input('');
+  mapUrl = input<SafeResourceUrl | null>(null);
 
-  protected closeOnBackdrop(event: PointerEvent) {
-    const rect = this.dialogRef.nativeElement.getBoundingClientRect();
-    const clickedOutside =
-      event.clientX < rect.left ||
-      event.clientX > rect.right ||
-      event.clientY < rect.top ||
-      event.clientY > rect.bottom;
-
-    if (clickedOutside) this.close();
-  }
+  close() { this.closed.emit(); }
 }

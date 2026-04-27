@@ -1,0 +1,17 @@
+<div ngbDropdown class="d-inline-block">
+  <button ngbDropdownToggle class="btn d-flex gap-3 text-reset">
+    <i class="bi bi-clock fs-5"></i>
+    <span>{{ selectedHour() ?? "Time" }}</span>
+    <i class="bi bi-chevron-down"></i>
+  </button>
+  <div ngbDropdownMenu class="hour-menu">
+    @for (hour of hours; track hour) {
+      <button ngbDropdownItem
+              class="btn dropdown-item border d-flex text-center justify-content-center text-reset"
+              (click)="select(hour)"
+      >
+        {{ hour }}
+      </button>
+    }
+  </div>
+</div>

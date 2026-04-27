@@ -1,19 +1,19 @@
 import {Component, inject, signal} from '@angular/core';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {FormCard} from '../form-card/form-card';
-import {form, FormField} from '@angular/forms/signals';
-import {INITIAL_AFFILIATE_STATE, type AffiliateForm} from '../../models/affiliate.model';
-import {applyAffiliateFormValidators} from '../../validators/affiliate-form.validators';
-import {areSameTag,  toTitleCase} from '../../pipes/canonicalize-tag.pipe';
-import { TitleCasePipe } from '@angular/common';
-import { AuthService } from '../../services/firebase/auth.service';
+import {type AffiliateForm} from '../../models/affiliate.model';
+import {areSameTag, toTitleCase} from '../../pipes/canonicalize-tag.pipe';
+import {TitleCasePipe} from '@angular/common';
+import {AuthService} from '../../services/firebase/auth.service';
 import {Router} from '@angular/router';
 import {CategoriesService} from '../../services/firebase/categories.service';
+import {PHONE_PATTERN, POSTAL_CODE_PATTERN} from './affiliate-form.constants';
+import {affiliatePasswordsMatchValidator, tagsRequiredValidator} from '../../validators/affiliate-form.validators';
 
 @Component({
   selector: 'app-affiliate-form',
   standalone: true,
-  imports: [ReactiveFormsModule, FormCard, FormField, TitleCasePipe],
+  imports: [ReactiveFormsModule, FormCard, TitleCasePipe],
   templateUrl: './affiliate-form.html',
 })
 export class AffiliateFormComponent {
@@ -21,31 +21,71 @@ export class AffiliateFormComponent {
   private categoriesService = inject(CategoriesService);
   private router = inject(Router);
 
-  affiliateModel = signal<AffiliateForm>(INITIAL_AFFILIATE_STATE);
   availableTags = this.categoriesService.categories;
   submitted = signal(false);
   error = signal<string | null>(null);
+  tags = signal<string[]>([]);
 
-  affiliateForm = form(this.affiliateModel, (path) => {
-    applyAffiliateFormValidators(path);
-  });
+  affiliateForm = new FormGroup({
+    name: new FormControl('', [Validators.required]),
+    surname: new FormControl('', [Validators.required]),
+    phoneNumber: new FormControl('', [Validators.required, Validators.pattern(PHONE_PATTERN)]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required]),
+    confirmPassword: new FormControl('', [Validators.required]),
+    restaurantName: new FormControl('', [Validators.required]),
+    addressLine1: new FormControl('', [Validators.required]),
+    addressLine2: new FormControl(''),
+    city: new FormControl('', [Validators.required]),
+    province: new FormControl('', [Validators.required]),
+    postalCode: new FormControl('', [Validators.required, Validators.pattern(POSTAL_CODE_PATTERN)]),
+    tags: new FormControl<string[]>([], [tagsRequiredValidator()]),
+  }, { validators: affiliatePasswordsMatchValidator() });
+
+  fieldErrors(controlName: string): string[] {
+    const ctrl = this.affiliateForm.get(controlName)!;
+    if (!ctrl.invalid || (!ctrl.touched && !this.submitted())) return [];
+    const result: string[] = [];
+    for (const [key, val] of Object.entries(ctrl.errors ?? {})) {
+      if (typeof val === 'string') { result.push(val); continue; }
+      if (key === 'required') result.push(`${controlName.charAt(0).toUpperCase() + controlName.slice(1)} is required`);
+      else if (key === 'pattern') {
+        if (controlName === 'phoneNumber') result.push('Phone number must have exactly 9 digits');
+        else if (controlName === 'postalCode') result.push('Postal Code must have exactly 5 digits');
+      }
+      else if (key === 'email') result.push('Please enter a valid email address.');
+    }
+    if (controlName === 'confirmPassword' && this.affiliateForm.hasError('mismatch')) {
+      result.push(this.affiliateForm.errors!['mismatch']);
+    }
+    return result;
+  }
+
+  showErrors(controlName: string): boolean {
+    const ctrl = this.affiliateForm.get(controlName)!;
+    return ctrl.invalid && (ctrl.touched || this.submitted());
+  }
 
   async onSubmit(event: Event) {
     event.preventDefault();
     this.submitted.set(true);
-    if (this.affiliateForm().invalid()) return;
+    this.affiliateForm.get('tags')!.setValue(this.tags());
+    if (this.affiliateForm.invalid) return;
     this.error.set(null);
     try {
-      await this.authService.postRestaurantProfile(this.affiliateForm().value() as AffiliateForm);
-      this.affiliateModel.set(INITIAL_AFFILIATE_STATE);
-      this.submitted.set(false);
+      const f = this.affiliateForm.value;
+      const payload: AffiliateForm = {
+        name: f.name!, surname: f.surname!, email: f.email!,
+        phoneNumber: f.phoneNumber!, password: f.password!, confirmPassword: f.confirmPassword!,
+        restaurantName: f.restaurantName!, addressLine1: f.addressLine1!, addressLine2: f.addressLine2 ?? '',
+        city: f.city!, province: f.province!, postalCode: f.postalCode!, tags: f.tags!,
+      };
+      await this.authService.postRestaurantProfile(payload);
       await this.router.navigate(['/']);
     } catch (error) {
       this.error.set(error instanceof Error ? error.message : 'An unexpected error occurred.');
     }
   }
-
-  tags() { return this.affiliateModel().tags; }
 
   getTagName(id: string): string {
     const category = this.categoriesService.categories().find(c => c.id.toString() === id);
@@ -55,38 +95,20 @@ export class AffiliateFormComponent {
   async addTag(nameValue: string) {
     const name = toTitleCase(nameValue.trim());
     if (!name) return;
-
-    let category = this.categoriesService.categories().find(
-      (c) => c.name.toLowerCase() === name.toLowerCase()
-    );
-
-    if (!category) {
-      category = await this.categoriesService.create(name);
-    }
-
-    this.affiliateModel.update(state => {
-      const categoryIdStr = category!.id.toString();
-      if (state.tags.includes(categoryIdStr)) {
-        return state;
-      }
-      return {
-        ...state,
-        tags: [...state.tags, categoryIdStr]
-      };
+    let category = this.categoriesService.categories().find(c => c.name.toLowerCase() === name.toLowerCase());
+    if (!category) category = await this.categoriesService.create(name);
+    this.tags.update(tags => {
+      const id = category!.id.toString();
+      return tags.includes(id) ? tags : [...tags, id];
     });
   }
+
   removeTag(tagToRemove: string) {
-    this.affiliateModel.update((currentModel) => ({
-      ...currentModel,
-      tags: currentModel.tags.filter((tag) => !areSameTag(tag, tagToRemove)),
-    }));
+    this.tags.update(tags => tags.filter(tag => !areSameTag(tag, tagToRemove)));
   }
 
   onTagInput(input: HTMLInputElement) {
     const tag = input.value.trim();
-    if (tag) {
-      this.addTag(tag).then();
-      input.value = '';
-    }
+    if (tag) { this.addTag(tag).then(); input.value = ''; }
   }
 }

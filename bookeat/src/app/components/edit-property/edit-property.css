@@ -1,0 +1,7 @@
+.edit-property {
+  border: 0.1rem solid var(--border-color);
+}
+
+.edit-property__label {
+  width: 9rem;
+}

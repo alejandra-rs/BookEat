@@ -1,116 +1,139 @@
-import {afterNextRender, computed, inject, Injectable, signal} from '@angular/core';
-import {addDoc, collection, doc, Firestore, getDoc, getDocs, query, where} from '@angular/fire/firestore';
+import {computed, inject, Injectable, signal} from '@angular/core';
+import {
+  Auth, authState,
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+  User
+} from '@angular/fire/auth';
+import {
+  collection, doc, Firestore,
+  setDoc, addDoc, getDoc
+} from '@angular/fire/firestore';
+import {toSignal} from '@angular/core/rxjs-interop';
+import {from, of, switchMap} from 'rxjs';
 import {SessionUser} from '../../models/users.model';
-import {catchError, firstValueFrom, forkJoin, from, map, Observable, throwError} from 'rxjs';
-import {AuthUser, RestaurantProfile, UserProfile} from '../../models/auth.model';
 import {loginForm} from '../../models/login.model';
 import {AffiliateForm} from '../../models/affiliate.model';
 import {Restaurant} from '../../models/restaurant.model';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class AuthService {
+  private auth = inject(Auth);
   private firestore = inject(Firestore);
-  private _currentUser = signal<SessionUser | null>(null);
-  readonly currentUser = this._currentUser.asReadonly();
-  readonly isAuthenticated = computed(() => !!this._currentUser());
 
-  constructor() {
-    afterNextRender(() => this.loadSession());
+  private _imageOverride = signal<string | null>(null);
+
+  private session = toSignal(
+    authState(this.auth).pipe(
+      switchMap(user => user ? from(this.resolveSession(user)) : of(null))
+    ),
+    { initialValue: null }
+  );
+
+  readonly currentUser = computed(() => {
+    const session = this.session();
+    if (!session) return null;
+    const override = this._imageOverride();
+    return override !== null ? { ...session, image: override } : session;
+  });
+
+  readonly isAuthenticated = computed(() => !!this.currentUser());
+
+  async login({ email, password }: loginForm): Promise<void> {
+    await signInWithEmailAndPassword(this.auth, email, password);
   }
 
-  private loadSession() {
-    try {
-      const saved = sessionStorage.getItem('currentSession');
-      if (saved) this._currentUser.set(JSON.parse(saved) as SessionUser);
-    } catch {
-      sessionStorage.removeItem('currentSession');
+  async loginWithGoogle(): Promise<void> {
+    const result = await signInWithPopup(this.auth, new GoogleAuthProvider());
+    const user = result.user;
+    const userDoc = await getDoc(doc(this.firestore, 'users', user.uid));
+    if (!userDoc.exists()) {
+      await setDoc(doc(this.firestore, 'users', user.uid), {
+        name: user.displayName?.split(' ')[0] ?? '',
+        surname: user.displayName?.split(' ').slice(1).join(' ') ?? '',
+        accountName: user.displayName ?? '',
+        email: user.email ?? '',
+        phoneNumber: '',
+        birthdate: '',
+        image: user.photoURL || '',
+        role: 'USER',
+      });
     }
   }
 
-  async login({ email, password }: loginForm): Promise<void> {
-    const user = await firstValueFrom(this.getByEmail(email));
-    if (!user || user.password !== password) throw new Error('Invalid email or password');
-    this.saveSession(user);
+  async register(data: {
+    name: string; surname: string; email: string;
+    password: string; phoneNumber: string; birthdate: string;
+  }): Promise<void> {
+    const cred = await createUserWithEmailAndPassword(this.auth, data.email, data.password);
+    await setDoc(doc(this.firestore, 'users', cred.user.uid), {
+      name: data.name,
+      surname: data.surname,
+      accountName: `${data.name} ${data.surname}`,
+      email: data.email,
+      phoneNumber: `+34 ${data.phoneNumber}`,
+      birthdate: data.birthdate,
+      image: '',
+      role: 'USER',
+    });
   }
 
-  logout(){
-    this._currentUser.set(null);
-    sessionStorage.removeItem('currentSession');
+  async logout(): Promise<void> {
+    await signOut(this.auth);
   }
 
-  getByEmail(email: string): Observable<AuthUser | null> {
-    const userRef = collection(this.firestore, 'users');
-    const profileRef = collection(this.firestore, "restaurantProfiles")
-
-    const userQuery = query(userRef, where('email', '==', email));
-    const profileQuery = query(profileRef, where('email', '==', email));
-
-    return forkJoin({
-      users: from(getDocs(userQuery)).pipe(map(snap => snap.docs.map(d => ({ id: d.id, ...d.data() } as UserProfile)))),
-      restaurants: from(getDocs(profileQuery)).pipe(map(snap => snap.docs.map(d => ({ id: d.id, ...d.data() } as RestaurantProfile)))),
-    }).pipe(
-      map(({ users, restaurants }) => {
-        if (users[0]) return { ...users[0], role: 'USER' as const };
-        if (restaurants[0]) return { ...restaurants[0], role: 'RESTAURANT' as const };
-        return null;
-      }),
-      catchError(() => throwError(() => new Error('Error fetching user from Firestore')))
-    );
+  updateImage(url: string) {
+    this._imageOverride.set(url);
   }
 
-  getRestaurantById(id:string): Observable<AuthUser | null>{
-    const docRef = doc(this.firestore, `restaurantProfiles/${id}`);
-    return from(getDoc(docRef)).pipe(
-      map(docSnap => docSnap.exists() ? { id: docSnap.id, ...docSnap.data() } as AuthUser : null)
-    );
-  }
-
-  getUserById(id: string): Observable<AuthUser | null> {
-    const docRef = doc(this.firestore, `users/${id}`);
-    return from(getDoc(docRef)).pipe(
-      map(docSnap => docSnap.exists() ? { id: docSnap.id, ...docSnap.data() } as AuthUser : null)
+  getRestaurantById(id: string) {
+    return from(getDoc(doc(this.firestore, `restaurantProfiles/${id}`))).pipe(
+      switchMap(snap => of(snap.exists() ? { id: snap.id, ...snap.data() } : null))
     );
   }
 
   async postRestaurantProfile(data: AffiliateForm): Promise<void> {
-    const existingUser = await firstValueFrom(this.getByEmail(data.email));
-    if (existingUser) throw new Error('This user already exists.');
-
-    const restaurantRef = await addDoc(
-      collection(this.firestore, 'restaurants'),
-      this.buildRestaurantPayload(data)
-    );
-
-    const profilePayload = this.buildRestaurantProfilePayload(data, restaurantRef.id);
-    const profileRef = await addDoc(
-      collection(this.firestore, 'restaurantProfiles'),
-      profilePayload
-    );
-
-    this.saveSession({
-      id: profileRef.id,
+    const cred = await createUserWithEmailAndPassword(this.auth, data.email, data.password);
+    const restaurantRef = await addDoc(collection(this.firestore, 'restaurants'), this.buildRestaurantPayload(data));
+    await setDoc(doc(this.firestore, 'restaurantProfiles', cred.user.uid), {
+      name: data.name,
+      surname: data.surname,
+      accountName: data.name,
+      email: data.email,
+      phoneNumber: data.phoneNumber,
+      image: '',
       role: 'RESTAURANT',
-      image: ''
-    } as AuthUser);
+      restaurantId: restaurantRef.id,
+    });
   }
 
-  private saveSession(user: AuthUser) {
-      const session: SessionUser = { id: user.id, role: user.role, image: user.image };
-      this._currentUser.set(session);
-      if (typeof window !== 'undefined') sessionStorage.setItem("currentSession", JSON.stringify(session));
+  private async resolveSession(user: User): Promise<SessionUser | null> {
+    // Look up by UID first (new users registered after Firebase Auth migration)
+    const userDoc = await getDoc(doc(this.firestore, 'users', user.uid));
+    if (userDoc.exists()) return { id: user.uid, role: 'USER', image: userDoc.data()['image'] ?? '' };
+
+    const restDoc = await getDoc(doc(this.firestore, 'restaurantProfiles', user.uid));
+    if (restDoc.exists()) return {
+      id: user.uid, role: 'RESTAURANT',
+      image: restDoc.data()['image'] ?? '',
+      restaurantId: restDoc.data()['restaurantId'] ?? ''
+    };
+
+    return null;
   }
 
-  private buildRestaurantPayload(data: AffiliateForm): Omit<Restaurant, "id"> {
+  private buildRestaurantPayload(data: AffiliateForm): Omit<Restaurant, 'id'> {
     return {
       name: data.restaurantName,
       description: '',
       hours: { L: [], M: [], X: [], J: [], V: [], S: [], D: [] },
       url: '',
-      address: this.buildAddress(data),
-      minPrice: 0,
-      maxPrice: 0,
+      address: [data.addressLine1, data.addressLine2, data.city, data.province, data.postalCode]
+        .filter(Boolean).join(', '),
+      minPrice: 0, maxPrice: 0,
       coordinates: [0, 0],
       categories: [],
       rating: { '1': 0, '2': 0, '3': 0, '4': 0, '5': 0 },
@@ -119,33 +142,5 @@ export class AuthService {
       image: '',
       gallery: [],
     };
-  }
-
-  private buildRestaurantProfilePayload(
-    data: AffiliateForm,
-    restaurantId: string,
-  ): Omit<RestaurantProfile, "id"> {
-    return {
-      name: data.name,
-      surname: data.surname,
-      accountName: data.name,
-      email: data.email,
-      phoneNumber: data.phoneNumber,
-      image: '',
-      password: data.password,
-      role: 'RESTAURANT',
-      restaurantId: String(restaurantId),
-    };
-  }
-
-  private buildAddress(data: AffiliateForm) {
-    return [data.addressLine1, data.addressLine2, data.city, data.province, data.postalCode]
-      .filter((part) => !!part)
-      .join(', ');
-  }
-
-  updateImage(url: string) {
-    const current = this._currentUser();
-    if (current) this._currentUser.set({ ...current, image: url });
   }
 }

@@ -1,0 +1,47 @@
+<article class="overview d-flex rounded-2 p-3 shadow-sm w-100 gap-3">
+  <img class="overview__image object-fit-cover rounded-2 align-self-center flex-shrink-0"
+       [src]="(type() === 'past' || type() === 'incoming') ? booking()?.expand?.image : item().image"
+       alt="" />
+
+  <div class="d-flex flex-column w-100 gap-2">
+    <header>
+      <div class="d-flex align-items-center justify-content-between">
+        <h1 class="fs-4 fw-bold m-0">
+          {{ (type() === 'past' || type() === 'incoming') ? booking()?.expand?.name : item().name }}
+        </h1>
+        @if (booking()?.datetime) {
+          <span class="small text-muted ms-2 flex-shrink-0">{{ booking()?.datetime }}</span>
+        }
+      </div>
+    </header>
+
+    @if (booking()?.guests) {
+      <p class="text-muted small m-0 overview__description">Booking for {{ booking()?.guests }} guests</p>
+    } @else {
+      <p class="text-muted small m-0 overview__description">{{ $any(item()).description }}</p>
+    }
+
+    <div class="mt-auto d-flex justify-content-end gap-2">
+      @switch (type()) {
+        @case ('incoming') {
+          <button class="btn-custom-secondary">Cancel Reservation</button>
+          <button class="btn-custom-secondary" [routerLink]="['/reviews', booking()?.restaurantId]">Read Reviews</button>
+        }
+        @case ('past') {
+          <button class="btn-custom-secondary" (click)="showReview.set(true)">Write a Review</button>
+          <button class="btn-custom-secondary" [routerLink]="['/reviews', booking()?.restaurantId]">Read Reviews</button>
+        }
+        @case ('restaurant-incoming') {
+          <button class="btn-custom-primary">Booked tables</button>
+        }
+        @default {
+          <button class="btn-custom-secondary" [routerLink]="['/', item().id]">Go</button>
+        }
+      }
+    </div>
+  </div>
+</article>
+
+@if (type() === 'past') {
+  <app-write-review-popup [restaurant]="$any(booking()?.expand)" [open]="showReview()" (closed)="showReview.set(false)"/>
+}

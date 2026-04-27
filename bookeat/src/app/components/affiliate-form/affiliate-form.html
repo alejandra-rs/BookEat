@@ -4,85 +4,63 @@
   classname="d-flex flex-column align-items-center h-100 w-100 text-center"
   styles="background: transparent; box-shadow: none; padding: 2rem; gap: 1rem; color: var(--text-primary)"
 >
-  <form (submit)="onSubmit($event)">
+  <form [formGroup]="affiliateForm" (submit)="onSubmit($event)">
     <div class="row g-2 mb-2">
       @for (field of ['name', 'surname', 'phoneNumber']; track field) {
         <div class="col-12 col-md-4">
           <input type="text" class="form-control rounded-pill px-3"
-                 [formField]="$any(affiliateForm)[field]" [placeholder]="field | titlecase">
-          @if (submitted() || $any(affiliateForm)[field]().touched()) {
-            @for (error of $any(affiliateForm)[field]().errors(); track error.kind) {
-              @if (error.kind === 'pattern') {
-                <div class="invalid-feedback ps-3 text-start d-block">{{ error.message }}</div>
-              } @else {
-                <div class="invalid-feedback ps-3 text-start d-block">{{ error.message }}</div>
-              }
-            }
+                 [formControlName]="field" [placeholder]="field | titlecase"
+                 [class.is-invalid]="showErrors(field)">
+          @for (msg of fieldErrors(field); track msg) {
+            <div class="invalid-feedback ps-3 text-start d-block">{{ msg }}</div>
           }
         </div>
       }
     </div>
 
     <div class="mb-2">
-      <input type="email" class="form-control rounded-pill px-3" [formField]="affiliateForm.email" placeholder="Email" autocomplete="user-name">
-      @for (error of affiliateForm.email().errors(); track error.kind) {
-        @if (affiliateForm.email().touched() || submitted()) {
-          @if (error.kind === 'required') {
-            <div class="invalid-feedback ps-3 text-start d-block">{{ error.message }}</div>
-          }
-          @if (error.kind === 'email') {
-            <div class="invalid-feedback ps-3 text-start d-block">Please enter a valid email address.</div>
-          }
-        }
+      <input type="email" class="form-control rounded-pill px-3" formControlName="email"
+             placeholder="Email" autocomplete="user-name"
+             [class.is-invalid]="showErrors('email')">
+      @for (msg of fieldErrors('email'); track msg) {
+        <div class="invalid-feedback ps-3 text-start d-block">{{ msg }}</div>
       }
     </div>
 
     <div class="row g-2 mb-2">
-        @for (field of ['password', 'confirmPassword']; track field) {
-          <div class="col-12 col-md-6">
-            <input type="password" class="form-control rounded-pill px-3"
-                   [formField]="$any(affiliateForm)[field]" [placeholder]="field === 'confirmPassword' ? 'Confirm Password' : 'Password'" autocomplete="new-password">
-            @if (submitted() || $any(affiliateForm)[field]().touched()) {
-              @for (error of $any(affiliateForm)[field]().errors(); track error.kind) {
-                  @if (error.kind === 'required') {
-                  <div class="invalid-feedback ps-3 text-start d-block">{{ error.message }}</div>
-                    @if (error.kind === 'mismatch') {
-                      <div class="invalid-feedback ps-3 text-start d-block">Passwords do not match.</div>
-                    }
-                }
-              }
-            }
-          </div>
-        }
+      @for (field of ['password', 'confirmPassword']; track field) {
+        <div class="col-12 col-md-6">
+          <input type="password" class="form-control rounded-pill px-3"
+                 [formControlName]="field"
+                 [placeholder]="field === 'confirmPassword' ? 'Confirm Password' : 'Password'"
+                 autocomplete="new-password"
+                 [class.is-invalid]="showErrors(field)">
+          @for (msg of fieldErrors(field); track msg) {
+            <div class="invalid-feedback ps-3 text-start d-block">{{ msg }}</div>
+          }
+        </div>
+      }
     </div>
 
     <div class="row g-2 mb-2">
       <div class="col-12 col-md-6">
-        <input type="text" class="form-control rounded-pill px-3" [formField]="affiliateForm.restaurantName" placeholder="Restaurant Name">
-        @for (error of affiliateForm.restaurantName().errors(); track error.kind) {
-          @if (error.kind === 'required' && (affiliateForm.restaurantName().touched() || submitted())) {
-            <p class="text-danger small">{{ error.message }}</p>
-          }
+        <input type="text" class="form-control rounded-pill px-3"
+               formControlName="restaurantName" placeholder="Restaurant Name"
+               [class.is-invalid]="showErrors('restaurantName')">
+        @for (msg of fieldErrors('restaurantName'); track msg) {
+          <p class="text-danger small">{{ msg }}</p>
         }
       </div>
 
       <div class="col-12 col-md-6">
-        <input
-          #tagInput
-          type="text"
-          class="form-control rounded-pill px-3"
-          placeholder="Add a tag"
-          list="tagsList"
-          (keydown.enter)="$event.preventDefault(); onTagInput(tagInput)"
-          (blur)="onTagInput(tagInput)"
-          (change)="onTagInput(tagInput)"
-        >
-
+        <input #tagInput type="text" class="form-control rounded-pill px-3"
+               placeholder="Add a tag" list="tagsList"
+               (keydown.enter)="$event.preventDefault(); onTagInput(tagInput)"
+               (blur)="onTagInput(tagInput)"
+               (change)="onTagInput(tagInput)">
         @if (submitted()) {
-          @for (error of affiliateForm.tags().errors(); track error.kind) {
-            @if (error.kind === 'required') {
-              <div class="invalid-feedback ps-3 text-start d-block">{{ error.message }}</div>
-            }
+          @for (msg of fieldErrors('tags'); track msg) {
+            <div class="invalid-feedback ps-3 text-start d-block">{{ msg }}</div>
           }
         }
         <datalist id="tagsList">
@@ -107,40 +85,31 @@
     @for (field of ['addressLine1', 'addressLine2']; track field) {
       <div class="mb-2">
         <input type="text" class="form-control rounded-pill px-3"
-               [formField]="$any(affiliateForm)[field]" placeholder="Restaurant address (line {{ field === 'addressLine1' ? '1' : '2' }})">
-        @if (submitted() || $any(affiliateForm)[field]().touched()) {
-          @for (error of $any(affiliateForm)[field]().errors(); track error.kind) {
-            @if (error.kind === 'required') {
-              <div class="invalid-feedback ps-3 text-start d-block">{{ error.message }}</div>
-              @if (error.kind === 'mismatch') {
-                <div class="invalid-feedback ps-3 text-start d-block">Passwords do not match.</div>
-              }
-            }
-          }
+               [formControlName]="field"
+               [placeholder]="'Restaurant address (line ' + (field === 'addressLine1' ? '1' : '2') + ')'"
+               [class.is-invalid]="showErrors(field)">
+        @for (msg of fieldErrors(field); track msg) {
+          <div class="invalid-feedback ps-3 text-start d-block">{{ msg }}</div>
         }
       </div>
     }
 
     <div class="row g-2 mb-4">
-      @for (field of ['city', 'province','postalCode']; track field) {
+      @for (field of ['city', 'province', 'postalCode']; track field) {
         <div class="col-12 col-md-4">
           <input type="text" class="form-control rounded-pill px-3"
-                 [formField]="$any(affiliateForm)[field]" [placeholder]="field === 'postalCode' ? 'Postal Code' : (field | titlecase)">
-          @if (submitted() || $any(affiliateForm)[field]().touched()) {
-            @for (error of $any(affiliateForm)[field]().errors(); track error.kind) {
-              @if (error.kind === 'required' || error.kind === 'pattern') {
-                <div class="invalid-feedback ps-3 text-start d-block">{{ error.message }}</div>
-              }
-            }
+                 [formControlName]="field"
+                 [placeholder]="field === 'postalCode' ? 'Postal Code' : (field | titlecase)"
+                 [class.is-invalid]="showErrors(field)">
+          @for (msg of fieldErrors(field); track msg) {
+            <div class="invalid-feedback ps-3 text-start d-block">{{ msg }}</div>
           }
         </div>
       }
     </div>
 
     @if (error()) {
-      <div class="alert alert-danger text-start mb-3" role="alert">
-        {{ error() }}
-      </div>
+      <div class="alert alert-danger text-start mb-3" role="alert">{{ error() }}</div>
     }
 
     <div class="text-center">

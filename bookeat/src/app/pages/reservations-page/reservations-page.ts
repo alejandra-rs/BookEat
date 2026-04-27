@@ -1,13 +1,13 @@
-import { Component, inject, signal } from '@angular/core';
-import { Overview } from '../../components/overview/overview';
-import { DateRange, DateRangeValue } from '../../components/date-range/date-range';
-import { BookingsService } from '../../services/jsonserver/bookings.service';
-import { AuthService } from '../../services/firebase/auth.service';
-import { ActivatedRoute } from '@angular/router';
-import { toObservable, toSignal } from '@angular/core/rxjs-interop';
-import { UsersService } from '../../services/firebase/users.service';
-import { RestaurantsService } from '../../services/firebase/restaurants.service';
-import { combineLatest, filter, map, switchMap } from 'rxjs';
+import {Component, inject, signal} from '@angular/core';
+import {Overview} from '../../components/overview/overview';
+import {DateRange, DateRangeValue} from '../../components/date-range/date-range';
+import {BookingsService} from '../../services/firebase/bookings.service';
+import {AuthService} from '../../services/firebase/auth.service';
+import {ActivatedRoute} from '@angular/router';
+import {toObservable, toSignal} from '@angular/core/rxjs-interop';
+import {UsersService} from '../../services/firebase/users.service';
+import {RestaurantsService} from '../../services/firebase/restaurants.service';
+import {combineLatest, filter, map, switchMap} from 'rxjs';
 
 @Component({
   selector: 'app-reservations-page',
@@ -22,21 +22,23 @@ export class ReservationsPage {
   private userService = inject(UsersService);
   private restaurantsService = inject(RestaurantsService);
 
-  private user$ = this.authService.currentUser;
+  private user$ = toObservable(this.authService.currentUser).pipe(filter(u => !!u));
 
-  private itemObservable$ = toObservable(this.user$).pipe(
-    filter(user => !!user),
+  private itemObservable$ = this.user$.pipe(
     switchMap(user =>
       user!.role === 'USER'
         ? this.userService.getById(user!.id, 'USER')
-        : this.restaurantsService.getById(user!.id)
+        : this.restaurantsService.getById(user!.restaurantId!)
     )
   );
 
   private timeParam$ = this.route.queryParamMap.pipe(map(p => p.get('time')));
 
-  private bookings$ = this.timeParam$.pipe(
-    switchMap(time => this.bookingService.getReservation(time!))
+  private bookings$ = combineLatest([
+    this.timeParam$,
+    this.user$
+  ]).pipe(
+    switchMap(([time]) => this.bookingService.getReservation(time!))
   );
 
   dateRange = signal<DateRangeValue | null>(null);
@@ -51,7 +53,7 @@ export class ReservationsPage {
     })
   );
 
-  readonly type = toSignal(this.timeParam$, { initialValue: null });
-  readonly bookings = toSignal(this.filtered$, { initialValue: [] });
+  readonly type = toSignal(this.timeParam$, {initialValue: null});
+  readonly bookings = toSignal(this.filtered$, {initialValue: []});
   readonly item = toSignal(this.itemObservable$);
 }

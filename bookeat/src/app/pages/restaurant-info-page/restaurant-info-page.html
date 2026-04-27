@@ -1,0 +1,15 @@
+<div class="d-flex flex-column p-5 gap-4">
+  @if (restaurant(); as r) {
+    <app-restaurant-info [restaurant]="r" [editMode]="isEditMode()" (infoSaved)="saveInfo($event)" />
+  }
+  @if (reviews$ | async; as reviews) {
+    @for (review of reviews | sortReviews:bestComparator | slice:0:3; track review.id) {
+      <app-user-review [review]="review" />
+    }
+  }
+  <div class="d-flex justify-content-center fs-4">
+    <button [routerLink]="['/reviews', id]" class="btn-custom-secondary">
+      Read more
+    </button>
+  </div>
+</div>
