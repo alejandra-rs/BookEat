@@ -2,6 +2,7 @@ import {Component, effect, signal} from '@angular/core';
 import {SessionService} from '../../services/session.service';
 
 @Component({
+  standalone: true,
   selector: 'app-diners-selector',
   imports: [],
   templateUrl: './diners-selector.html',

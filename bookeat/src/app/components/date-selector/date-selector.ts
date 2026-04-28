@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { SessionService } from '../../services/session.service';
 
 @Component({
+  standalone: true,
   selector: 'app-date-selector',
   imports: [NgbInputDatepicker, FormsModule],
   templateUrl: './date-selector.html',

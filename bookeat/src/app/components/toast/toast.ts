@@ -18,6 +18,7 @@ export function showToast(msg: string) {
 }
 
 @Component({
+  standalone: true,
   selector: 'app-toast',
   imports: [],
   template: `

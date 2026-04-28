@@ -6,6 +6,7 @@ import { RouterLink } from '@angular/router';
 import { AverageRatingPipe } from '../../pipes/average-rating.pipe';
 
 @Component({
+  standalone: true,
   selector: 'app-restaurant-item',
   imports: [UserScore, PriceLabel, RouterLink, AverageRatingPipe],
   templateUrl: './restaurant-item.html',

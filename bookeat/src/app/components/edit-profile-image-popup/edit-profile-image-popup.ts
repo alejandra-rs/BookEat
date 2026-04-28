@@ -2,9 +2,10 @@ import {Component, inject, input, output, signal} from '@angular/core';
 import {InsertImage} from '../insert-image/insert-image';
 import {UsersService} from '../../services/firebase/users.service';
 import {AuthService} from '../../services/firebase/auth.service';
-import {Storage, ref, uploadBytes, getDownloadURL} from '@angular/fire/storage';
+import {CloudinaryService} from '../../services/cloudinary.service';
 
 @Component({
+  standalone: true,
   selector: 'app-edit-profile-image-popup',
   imports: [InsertImage],
   templateUrl: './edit-profile-image-popup.html',
@@ -13,7 +14,7 @@ import {Storage, ref, uploadBytes, getDownloadURL} from '@angular/fire/storage';
 export class EditProfileImagePopup {
   private usersService = inject(UsersService);
   private authService = inject(AuthService);
-  private storage = inject(Storage);
+  private cloudinary = inject(CloudinaryService);
   private session = this.authService.currentUser;
 
   open = input(false);
@@ -33,9 +34,7 @@ export class EditProfileImagePopup {
     this.saving.set(true);
     this.saveError.set(null);
     try {
-      const storageRef = ref(this.storage, `profiles/${session.id}_${Date.now()}_${file.name}`);
-      const result = await uploadBytes(storageRef, file);
-      const url = await getDownloadURL(result.ref);
+      const url = await this.cloudinary.upload(file);
       this.usersService.patch(session.id, session.role, { image: url }).subscribe();
       this.authService.updateImage(url);
       this.close();

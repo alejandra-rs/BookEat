@@ -12,6 +12,7 @@ import {toSignal} from '@angular/core/rxjs-interop';
 import {filter, map, startWith} from 'rxjs';
 
 @Component({
+  standalone: true,
   selector: 'app-header',
   imports: [DateSelector, HourSelector, DinersSelector, RouterLink, LoginPopup, MyAccount, CreateAnAccount],
   templateUrl: './header.html',

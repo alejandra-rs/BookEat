@@ -11,6 +11,7 @@ import {
 } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
+  standalone: true,
   selector: 'app-user-menu-popup',
   imports: [RouterLink, NgbDropdownToggle, NgbDropdown, NgbDropdownMenu, NgbDropdownItem],
   templateUrl: './my-account.html',

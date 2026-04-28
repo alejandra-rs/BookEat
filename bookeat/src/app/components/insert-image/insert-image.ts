@@ -1,6 +1,7 @@
 import {Component, output, signal} from '@angular/core';
 
 @Component({
+  standalone: true,
   selector: 'app-insert-image',
   imports: [],
   templateUrl: './insert-image.html',

@@ -3,6 +3,7 @@ import {UserScore} from '../user-score/user-score';
 import {ReviewWithUser} from '../../models/review.model';
 
 @Component({
+  standalone: true,
   selector: 'app-user-review',
   imports: [UserScore],
   templateUrl: './user-review.html',

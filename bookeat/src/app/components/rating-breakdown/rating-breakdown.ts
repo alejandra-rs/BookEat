@@ -4,6 +4,7 @@ import { AverageRatingPipe } from '../../pipes/average-rating.pipe';
 import { UserScore } from '../user-score/user-score';
 
 @Component({
+  standalone: true,
   selector: 'app-rating-breakdown',
   imports: [AverageRatingPipe, UserScore],
   templateUrl: './rating-breakdown.html',

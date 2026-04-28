@@ -4,6 +4,7 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import {AuthService} from '../../services/firebase/auth.service';
 
 @Component({
+  standalone: true,
   selector: 'app-login-popup',
   imports: [FormCard, ReactiveFormsModule],
   templateUrl: './login-popup.html',

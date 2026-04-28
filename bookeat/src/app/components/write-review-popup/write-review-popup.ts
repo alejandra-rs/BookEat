@@ -5,9 +5,10 @@ import {InsertImage} from '../insert-image/insert-image';
 import {Restaurant} from '../../models/restaurant.model';
 import {ReviewsService} from '../../services/firebase/reviews.service';
 import {AuthService} from '../../services/firebase/auth.service';
-import {Storage, ref, uploadBytes, getDownloadURL} from '@angular/fire/storage';
+import {CloudinaryService} from '../../services/cloudinary.service';
 
 @Component({
+  standalone: true,
   selector: 'app-write-review-popup',
   imports: [StarSelector, ReactiveFormsModule, InsertImage],
   templateUrl: './write-review-popup.html',
@@ -16,7 +17,7 @@ import {Storage, ref, uploadBytes, getDownloadURL} from '@angular/fire/storage';
 export class WriteReviewPopup {
   private reviewsService = inject(ReviewsService);
   private auth = inject(AuthService);
-  private storage = inject(Storage);
+  private cloudinary = inject(CloudinaryService);
 
   restaurant = input.required<Restaurant>();
   open = input(false);
@@ -48,11 +49,7 @@ export class WriteReviewPopup {
     this.uploadError.set(null);
     try {
       const imageUrls = await Promise.all(
-        this.pendingFiles().map(async file => {
-          const storageRef = ref(this.storage, `reviews/${userId}/${Date.now()}_${file.name}`);
-          const result = await uploadBytes(storageRef, file);
-          return getDownloadURL(result.ref);
-        })
+        this.pendingFiles().map(file => this.cloudinary.upload(file))
       );
       await this.reviewsService.create({
         ...this.form.value as any,

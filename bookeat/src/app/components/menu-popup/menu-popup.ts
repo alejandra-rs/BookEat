@@ -3,6 +3,7 @@ import {MenuSection as MenuSectionComponent} from '../menu-section/menu-section'
 import {MenuSection} from '../../models/restaurant.model';
 
 @Component({
+  standalone: true,
   selector: 'app-menu-popup',
   imports: [MenuSectionComponent],
   templateUrl: './menu-popup.html',

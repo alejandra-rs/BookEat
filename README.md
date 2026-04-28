@@ -1,7 +1,8 @@
 # *BookEat* - Sprint 3
 **Subgrupo 42.2:** José Marcial Galván, Alejandra Rodríguez, Cristina Santana
 
-> [!NOTE] ***BookEat*** es una solución web ideada para el sector de la restauración, con el fin de facilitar una conexión fluida
+> [!NOTE] 
+> ***BookEat*** es una solución web ideada para el sector de la restauración, con el fin de facilitar una conexión fluida
 > y eficiente entre comensales y establecimientos. Para lograrlo, el proyecto se apoya en tres ejes funcionales:
 > - **Descubrimiento y Búsqueda**: Consulta detallada de perfiles de restaurantes con filtros avanzados para encontrar el lugar ideal.
 > - **Gestión Inteligente de Reservas**: Control de disponibilidad de mesas en tiempo real y confirmaciones online, eliminando las esperas telefónicas.
@@ -85,14 +86,32 @@ se ha habilitado el inicio de sesión con Google, pues Firebase permite su confi
 Una vez configurada la autenticación desde Firebase, se pueden utilizar las funciones de `@angular/fire` para permitir
 el inicio de sesión a los usuarios de la aplicación. 
 
+(foto de login/create an account)
+
 ### Carga de Datos desde Firebase
 
 Los datos, anteriormente obtenidos mediante solicitudes a un JSON Server, ahora están almacenados en la base de datos
 de Firebase, **Firestore**. Es por ello que en este sprint se han modificado los servicios (punto de acceso a los
 datos) para utilizar colecciones y documentos, de acuerdo con las especificaciones de la nueva base de datos en Firebase.
+<br></br>
+Las colecciones implementadas coinciden con las entidades definidas en el sprint anterior:
+
+
 
 ### Subida de Imágenes
-(...)
+
+En la aplicación se permite la subida de ficheros (en este caso imágenes) para, por ejemplo, acompañar a una reseña o
+cambiar la foto de perfil. Esto se ha realizado de forma eficiente, almacenando en Firestore el enlace a las imágenes,
+y recuperándolas en un segundo _fetch_ en caso de ser necesarias.
+
+(foto de subida de imágenes en review/foto de perfil)
+
+> [!WARNING]
+> Esta funcionalidad estaba diseñada, en un principio, para utilizar el _Cloud Storage_ proporcionado
+> por Firebase. No obstante, dados los cambios en los planes ofrecidos por esta aplicación, se ha optado por utilizar
+> otro _Object Storage_: **Cloudinary**. Para ello, se ha creado un nuevo servicio,
+> en [`cloudinary.service.ts`](bookeat/src/app/services/cloudinary.service.ts), que gestiona la
+> subida de imágenes a esta plataforma.
 
 ## Tech Stack - Otros
 - Se debe usar `npm install` para instalar las dependencias de la aplicación.

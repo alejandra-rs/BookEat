@@ -6,6 +6,7 @@ import {AuthService} from '../../services/firebase/auth.service';
 import { showToast } from '../toast/toast';
 
 @Component({
+  standalone: true,
   selector: 'app-edit-property',
   imports: [EditButton],
   templateUrl: './edit-property.html',

@@ -12,6 +12,7 @@ function toIso(d: NgbDateStruct): string {
 }
 
 @Component({
+  standalone: true,
   selector: 'app-date-range',
   imports: [NgbInputDatepicker, FormsModule],
   templateUrl: './date-range.html',

@@ -7,5 +7,9 @@ export const environment = {
     storageBucket: "bookeat-pwm.firebasestorage.app",
     messagingSenderId: "508321219986",
     appId: "1:508321219986:web:d9fa9aec44652dc7beed4b"
+  },
+  cloudinary: {
+    cloudName: 'dzjubokik',
+    uploadPreset: 'ml_default',
   }
 };

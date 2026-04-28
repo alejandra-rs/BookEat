@@ -1,6 +1,7 @@
 import { Component, input } from '@angular/core';
 
 @Component({
+  standalone: true,
   selector: 'app-user-score',
   imports: [],
   templateUrl: './user-score.html',

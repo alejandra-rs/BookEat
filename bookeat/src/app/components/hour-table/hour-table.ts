@@ -3,6 +3,7 @@ import {OpeningHours, Restaurant} from '../../models/restaurant.model';
 import {NgbDate} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
+  standalone: true,
   selector: 'app-hour-table',
   imports: [],
   templateUrl: './hour-table.html',

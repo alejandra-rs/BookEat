@@ -2,6 +2,7 @@ import {Component, input, output} from '@angular/core';
 import {SafeResourceUrl} from '@angular/platform-browser';
 
 @Component({
+  standalone: true,
   selector: 'app-booking-confirmation',
   imports: [],
   templateUrl: './booking-confirmation.html',

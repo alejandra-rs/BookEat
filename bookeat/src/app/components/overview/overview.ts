@@ -6,6 +6,7 @@ import {BookingExpanded} from '../../models/booking.model';
 import {WriteReviewPopup} from '../write-review-popup/write-review-popup';
 
 @Component({
+  standalone: true,
   selector: 'app-overview',
   imports: [
     RouterLink,

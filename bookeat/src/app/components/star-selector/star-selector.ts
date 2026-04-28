@@ -1,6 +1,7 @@
 import { Component, model } from '@angular/core';
 
 @Component({
+  standalone: true,
   selector: 'app-star-selector',
   imports: [],
   templateUrl: './star-selector.html',

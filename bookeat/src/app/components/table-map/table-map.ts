@@ -5,6 +5,7 @@ import { TableMap as TableMapModel } from '../../models/restaurant.model';
 import { AuthService } from '../../services/firebase/auth.service';
 
 @Component({
+  standalone: true,
   selector: 'app-table-map',
   imports: [],
   templateUrl: './table-map.html',

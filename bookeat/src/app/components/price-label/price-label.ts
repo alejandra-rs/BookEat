@@ -1,6 +1,7 @@
 import {Component, input, Input} from '@angular/core';
 
 @Component({
+  standalone: true,
   selector: 'app-price-label',
   imports: [],
   templateUrl: './price-label.html',

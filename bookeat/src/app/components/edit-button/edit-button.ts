@@ -1,6 +1,7 @@
 import {Component, input, output} from '@angular/core';
 
 @Component({
+  standalone: true,
   selector: 'app-edit-button',
   imports: [],
   templateUrl: './edit-button.html',

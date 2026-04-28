@@ -5,6 +5,7 @@ import { RestaurantsService } from '../../services/firebase/restaurants.service'
 import { ShufflePipe } from '../../pipes/shuffle.pipe';
 
 @Component({
+  standalone: true,
   selector: 'app-restaurant-carousel',
   imports: [RestaurantItem, AsyncPipe, ShufflePipe, SlicePipe],
   templateUrl: './restaurant-carousel.html',

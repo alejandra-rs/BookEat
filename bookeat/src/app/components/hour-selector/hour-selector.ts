@@ -3,6 +3,7 @@ import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
 import {SessionService} from '../../services/session.service';
 
 @Component({
+  standalone: true,
   selector: 'app-hour-selector',
   imports: [NgbDropdownModule],
   templateUrl: './hour-selector.html',

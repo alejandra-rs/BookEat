@@ -8,6 +8,7 @@ import {AverageRatingPipe} from '../../pipes/average-rating.pipe';
 import {CategoriesService} from '../../services/firebase/categories.service';
 
 @Component({
+  standalone: true,
   selector: 'app-restaurant-info',
   imports: [RouterLink, UserScore, MenuPopup, AverageRatingPipe],
   templateUrl: './restaurant-info.html',
