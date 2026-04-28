@@ -17,6 +17,29 @@ se ha migrado la aplicación a **Angular** en el _frontend_, y a **Firebase** en
 
 ---
 
+## Estructura del proyecto
+
+```
+bookeat/src/
+├── app/
+│   ├── components/
+│   ├── models/
+│   ├── pages/              # Componentes "rutables" de la aplicación
+│   ├── pipes/              # Transformaciones de datos reutilizables 
+│   ├── services/           # Punto de acceso a los datos...
+│   │   ├── firebase/           # en Firebase
+│   │   ├── jsonserver/         # en JSON Server
+│   │   └── ...
+│   ├── validators/         # Validaciones de datos personalizadas
+│   ├── app.config.ts       # Configuraciones de la aplicación
+│   ├── app.routes.ts       # Endpoints, rutas a las páginas de la web
+│   └── ...  
+├── environments/           # Variables de entorno (clave de acceso a Firebase)
+└── ...
+```
+
+---
+
 ## Migración a Angular
 
 En esta primera parte del _sprint_, se ha adaptado la web implementada en _sprints_ anteriores usando **Angular** como
