@@ -17,6 +17,8 @@ export class EditProperty {
   private session = inject(AuthService).currentUser;
   iconClass = input<string>();
   propertyTitle = input<string>();
+  inputType = input<string>('text');
+  placeholder = input<string>('');
   propertyName = input.required<string>();
   user = input.required<User>();
   onEdit = input<(value: string) => void>();

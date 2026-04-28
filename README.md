@@ -55,6 +55,10 @@ Concretamente, se han utilizado formularios reactivos (_Reactive Forms_) para de
 Además, se han utilizado _Validators_, tanto nativos de Angular (como Validators.required) como personalizados, para
 verificar que el formato de los datos es el correcto.
 
+| ![Validaciones](doc/sprint-3/images/validaciones.png) |
+|-------------------------------------------------------|
+| Ejemplo de validación nativa de Angular               |
+
 ### Integración con Bootstrap
 
 Para simplificar la aplicación de estilos a los componentes de la web, se han utilizado clases e iconos de Bootstrap. De
@@ -86,7 +90,9 @@ se ha habilitado el inicio de sesión con Google, pues Firebase permite su confi
 Una vez configurada la autenticación desde Firebase, se pueden utilizar las funciones de `@angular/fire` para permitir
 el inicio de sesión a los usuarios de la aplicación. 
 
-(foto de login/create an account)
+| ![Login](doc/sprint-3/images/login.png) | ![Create an Account](doc/sprint-3/images/create-account.png) |
+|-----------------------------------------|--------------------------------------------------------------|
+| Autenticación en _Login_                | Autenticación en _Create an Account_                         |
 
 ### Carga de Datos desde Firebase
 
@@ -96,7 +102,14 @@ datos) para utilizar colecciones y documentos, de acuerdo con las especificacion
 <br></br>
 Las colecciones implementadas coinciden con las entidades definidas en el sprint anterior:
 
-
+|        **Colección**        |                          **JSON Server**                           |                                 **Firebase**                                 |
+|:---------------------------:|:------------------------------------------------------------------:|:----------------------------------------------------------------------------:|
+|        **Reservas**         |      <img src="doc/sprint-2/images/json-files/bookings.png">       |      <img src="doc/sprint-3/images/firebase/bookings.png" width="66%">       |
+|       **Categorías**        |     <img src="doc/sprint-2/images/json-files/categories.png">      |     <img src="doc/sprint-3/images/firebase/categories.png" width="66%">      |
+| **Perfiles de restaurante** | <img src="doc/sprint-2/images/json-files/restaurant-profiles.png"> | <img src="doc/sprint-3/images/firebase/restaurant-profiles.png" width="66%"> |
+|      **Restaurantes**       |     <img src="doc/sprint-2/images/json-files/restaurants.png">     |     <img src="doc/sprint-3/images/firebase/restaurants.png" width="66%">     |
+|         **Reseñas**         |       <img src="doc/sprint-2/images/json-files/reviews.png">       |       <img src="doc/sprint-3/images/firebase/reviews.png" width="66%">       |
+|        **Usuarios**         |        <img src="doc/sprint-2/images/json-files/users.png">        |        <img src="doc/sprint-3/images/firebase/users.png" width="66%">        |
 
 ### Subida de Imágenes
 
@@ -104,7 +117,12 @@ En la aplicación se permite la subida de ficheros (en este caso imágenes) para
 cambiar la foto de perfil. Esto se ha realizado de forma eficiente, almacenando en Firestore el enlace a las imágenes,
 y recuperándolas en un segundo _fetch_ en caso de ser necesarias.
 
-(foto de subida de imágenes en review/foto de perfil)
+| Componente                  | Subida de imágenes en _Edit Profile Image Popup_                        | Subida de imágenes en _Write a Review_                        |
+|-----------------------------|-------------------------------------------------------------------------|---------------------------------------------------------------|
+| **Inserción de imágenes**   | ![Edit Profile Image Popup](doc/sprint-3/images/insertar-foto.png)      | ![Write a Review](doc/sprint-3/images/fotos-reseñas.png)      |
+| **Tras insertar la imagen** | ![Edit Profile Image Popup](doc/sprint-3/images/tras-insertar-foto.png) | ![Write a Review](doc/sprint-3/images/tras-fotos-reseñas.png) |
+
+
 
 > [!WARNING]
 > Esta funcionalidad estaba diseñada, en un principio, para utilizar el _Cloud Storage_ proporcionado

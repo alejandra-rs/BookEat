@@ -8,3 +8,9 @@
   object-fit: cover;
   border-radius: 100%;
 }
+
+.edit-profile-page__avatar-none {
+  font-size: 20rem;
+  padding: 0;
+  line-height: 1;
+}

@@ -3,8 +3,8 @@
     @if (currentUser$ | async; as currentUser) {
       <section class="col-12 d-flex flex-column align-items-center gap-4">
         <div class="position-relative">
-          @if (currentUser.image === '') {
-            <i class="edit-profile-page__avatar bi bi-person-circle"></i>
+          @if (!currentUser.image) {
+            <i class="edit-profile-page__avatar-none bi bi-person-circle"></i>
           } @else {
             <img class="edit-profile-page__avatar" [src]="profileImage() || currentUser.image" [alt]="currentUser.id">
           }
@@ -23,7 +23,7 @@
           <app-edit-property [iconClass]="'person-vcard'"
                              [propertyTitle]="'Surname'" [propertyName]="'surname'" [user]="currentUser"/>
           <app-edit-property [iconClass]="'lock'"
-                             [propertyTitle]="'Password'" [propertyName]="'password'" [user]="currentUser"/>
+                             [propertyTitle]="'Password'" [propertyName]="'password'" [inputType]="'password'" [placeholder]="'••••••••'" [user]="currentUser"/>
           <app-edit-property [iconClass]="'envelope'"
                              [propertyTitle]="'E-mail'" [propertyName]="'email'" [user]="currentUser"/>
           <app-edit-property [iconClass]="'telephone'"

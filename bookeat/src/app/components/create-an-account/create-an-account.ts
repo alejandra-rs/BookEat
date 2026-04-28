@@ -39,15 +39,16 @@ export class CreateAnAccount {
 
   errors(controlName: string): string[] {
     const ctrl = this.registerForm.get(controlName)!;
-    if (!ctrl.invalid || (!ctrl.touched && !this.submitted())) return [];
+    const hasMismatch = controlName === 'confirmPassword' && this.registerForm.hasError('mismatch');
+    if ((!ctrl.invalid && !hasMismatch) || (!ctrl.touched && !this.submitted())) return [];
     const result: string[] = [];
     const errs = ctrl.errors ?? {};
     for (const [key, val] of Object.entries(errs)) {
       if (typeof val === 'string') { result.push(val); continue; }
-      if (key === 'required') result.push('This field is required');
-      else if (key === 'minlength') result.push(`Debe tener al menos ${val.requiredLength} caracteres`);
-      else if (key === 'pattern') result.push('El telefono es obligatorio, de 9 digitos');
-      else if (key === 'email') result.push('El email tiene que ser válido');
+      if (key === 'required') result.push('This field is required.');
+      else if (key === 'minlength') result.push(`Must be at least ${val.requiredLength} characters.`);
+      else if (key === 'pattern') result.push('Phone number must have exactly 9 digits.');
+      else if (key === 'email') result.push('Please enter a valid email address.');
     }
     if (controlName === 'confirmPassword' && this.registerForm.hasError('mismatch')) {
       result.push(this.registerForm.errors!['mismatch']);

@@ -1,5 +1,5 @@
 import {AbstractControl, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
-import {PHONE_PATTERN, POSTAL_CODE_PATTERN} from '../components/affiliate-form/affiliate-form.constants';
+import {POSTAL_CODE_PATTERN} from '../components/affiliate-form/affiliate-form.constants';
 
 export function affiliatePasswordsMatchValidator(): ValidatorFn {
   return (group: AbstractControl): ValidationErrors | null => {
@@ -21,11 +21,6 @@ export function tagsRequiredValidator(): ValidatorFn {
     return null;
   };
 }
-
-export const affiliatePhoneValidators: ValidatorFn[] = [
-  Validators.required,
-  Validators.pattern(PHONE_PATTERN),
-];
 
 export const affiliatePostalCodeValidators: ValidatorFn[] = [
   Validators.required,

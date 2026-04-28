@@ -9,7 +9,8 @@
       @for (field of ['name', 'surname', 'phoneNumber']; track field) {
         <div class="col-12 col-md-4">
           <input type="text" class="form-control rounded-pill px-3"
-                 [formControlName]="field" [placeholder]="field | titlecase"
+                 [formControlName]="field"
+                 [placeholder]="field === 'phoneNumber' ? 'Phone Number' : (field | titlecase)"
                  [class.is-invalid]="showErrors(field)">
           @for (msg of fieldErrors(field); track msg) {
             <div class="invalid-feedback ps-3 text-start d-block">{{ msg }}</div>
@@ -55,13 +56,12 @@
       <div class="col-12 col-md-6">
         <input #tagInput type="text" class="form-control rounded-pill px-3"
                placeholder="Add a tag" list="tagsList"
+               [class.is-invalid]="showErrors('tags')"
                (keydown.enter)="$event.preventDefault(); onTagInput(tagInput)"
                (blur)="onTagInput(tagInput)"
                (change)="onTagInput(tagInput)">
-        @if (submitted()) {
-          @for (msg of fieldErrors('tags'); track msg) {
-            <div class="invalid-feedback ps-3 text-start d-block">{{ msg }}</div>
-          }
+        @for (msg of fieldErrors('tags'); track msg) {
+          <div class="invalid-feedback ps-3 text-start d-block">{{ msg }}</div>
         }
         <datalist id="tagsList">
           @for (cat of availableTags(); track cat.id) {

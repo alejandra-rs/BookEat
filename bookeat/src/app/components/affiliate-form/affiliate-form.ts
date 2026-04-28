@@ -31,7 +31,7 @@ export class AffiliateFormComponent {
     surname: new FormControl('', [Validators.required]),
     phoneNumber: new FormControl('', [Validators.required, Validators.pattern(PHONE_PATTERN)]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required, Validators.minLength(8)]),
     confirmPassword: new FormControl('', [Validators.required]),
     restaurantName: new FormControl('', [Validators.required]),
     addressLine1: new FormControl('', [Validators.required]),
@@ -44,14 +44,16 @@ export class AffiliateFormComponent {
 
   fieldErrors(controlName: string): string[] {
     const ctrl = this.affiliateForm.get(controlName)!;
-    if (!ctrl.invalid || (!ctrl.touched && !this.submitted())) return [];
+    const hasMismatch = controlName === 'confirmPassword' && this.affiliateForm.hasError('mismatch');
+    if ((!ctrl.invalid && !hasMismatch) || (!ctrl.touched && !this.submitted())) return [];
     const result: string[] = [];
     for (const [key, val] of Object.entries(ctrl.errors ?? {})) {
       if (typeof val === 'string') { result.push(val); continue; }
-      if (key === 'required') result.push(`${controlName.charAt(0).toUpperCase() + controlName.slice(1)} is required`);
+      if (key === 'required') result.push('This field is required.');
+      else if (key === 'minlength') result.push(`Must be at least ${val.requiredLength} characters.`);
       else if (key === 'pattern') {
-        if (controlName === 'phoneNumber') result.push('Phone number must have exactly 9 digits');
-        else if (controlName === 'postalCode') result.push('Postal Code must have exactly 5 digits');
+        if (controlName === 'phoneNumber') result.push('Phone number must have exactly 9 digits.');
+        else if (controlName === 'postalCode') result.push('Postal code must have exactly 5 digits.');
       }
       else if (key === 'email') result.push('Please enter a valid email address.');
     }
@@ -63,7 +65,9 @@ export class AffiliateFormComponent {
 
   showErrors(controlName: string): boolean {
     const ctrl = this.affiliateForm.get(controlName)!;
-    return ctrl.invalid && (ctrl.touched || this.submitted());
+    const hasMismatch = controlName === 'confirmPassword' && this.affiliateForm.hasError('mismatch');
+    const touchedOrSubmitted = controlName === 'tags' ? this.submitted() : (ctrl.touched || this.submitted());
+    return (ctrl.invalid || hasMismatch) && touchedOrSubmitted;
   }
 
   async onSubmit(event: Event) {

@@ -6,7 +6,7 @@
     </div>
   }
   <div class="edit-property d-flex align-items-center p-2 rounded-3 flex-grow-1">
-    <input #field class="border-0 p-1 bg-transparent flex-grow-1" [value]="propertyValue" [disabled]="!editing()">
+    <input #field class="border-0 p-1 bg-transparent flex-grow-1" [type]="inputType()" [value]="propertyValue" [placeholder]="placeholder()" [disabled]="!editing()">
     <app-edit-button [editing]="editing()" (clicked)="toggleEdit(field.value)" />
   </div>
 </div>

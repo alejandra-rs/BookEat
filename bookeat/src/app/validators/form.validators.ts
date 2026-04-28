@@ -24,8 +24,8 @@ export function birthdateValidator(): ValidatorFn {
     const today = new Date();
     const age18 = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
     const age99 = new Date(today.getFullYear() - 99, today.getMonth(), today.getDate());
-    if (birthdate > age18) return { underage: 'Debes ser mayor de 18 años' };
-    if (birthdate < age99) return { overage: 'La edad no puede superar los 99 años' };
+    if (birthdate > age18) return { underage: 'You must be at least 18 years old.' };
+    if (birthdate < age99) return { overage: 'Age cannot exceed 99 years.' };
     return null;
   };
 }
@@ -35,7 +35,7 @@ export function passwordsMatchValidator(): ValidatorFn {
     const pass = group.get('password')?.value;
     const confirm = group.get('confirmPassword')?.value;
     if (pass && confirm && pass !== confirm) {
-      return { mismatch: 'La contraseña debe coincidir' };
+      return { mismatch: 'Passwords do not match.' };
     }
     return null;
   };
