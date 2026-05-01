@@ -18,7 +18,4 @@ export class Overview {
   booking = input<BookingExpanded | null>(null);
   type = input<string>('default');
   showReview = signal(false);
-  isBooking(type: string): boolean {
-    return ['past', 'incoming', 'restaurant-past', 'restaurant-incoming'].includes(type);
-  }
 }
