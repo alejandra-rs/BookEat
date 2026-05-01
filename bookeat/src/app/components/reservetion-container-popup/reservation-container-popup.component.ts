@@ -27,7 +27,6 @@ export class ReservationContainerPopup {
   private dialog = viewChild.required<ElementRef<HTMLDialogElement>>('tableDialog');
 
   constructor() {
-    console.log(this.reserva);
     effect(() => {
       const el = this.dialog().nativeElement;
       if (this.open()) {
