@@ -34,13 +34,15 @@
       }
 
       <li>
-        <button ngbDropdownItem class="dropdown-item d-flex align-items-center gap-3 py-2" [routerLink]="['/reservations-page']" [queryParams]="{time: 'past'}">
+        <button ngbDropdownItem class="dropdown-item d-flex align-items-center gap-3 py-2" [routerLink]="['/reservations-page']"
+                [queryParams]="{ time: u.role === 'RESTAURANT' ? 'restaurant-incoming' : 'incoming' }">
           <i class="bi bi-calendar-check fs-5"></i> Past Reservations
         </button>
       </li>
 
       <li>
-        <button ngbDropdownItem class="dropdown-item d-flex align-items-center gap-3 py-2" [routerLink]="['/reservations-page']" [queryParams]="{time: 'incoming'}">
+        <button ngbDropdownItem class="dropdown-item d-flex align-items-center gap-3 py-2" [routerLink]="['/reservations-page']"
+                [queryParams]="{ time: u.role === 'RESTAURANT' ? 'restaurant-incoming' : 'incoming' }">
             <i class="bi bi-calendar-event fs-5"></i> Incoming Reservations
         </button>
       </li>

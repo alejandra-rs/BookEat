@@ -1,13 +1,13 @@
 <article class="overview d-flex rounded-2 p-3 shadow-sm w-100 gap-3">
   <img class="overview__image object-fit-cover rounded-2 align-self-center flex-shrink-0"
-       [src]="(type() === 'past' || type() === 'incoming') ? booking()?.expand?.image : item().image"
+       [src]="(type() === 'past' || type() === 'incoming' || type() === 'restaurant-incoming') ? booking()?.expand?.image : item().image"
        alt="" />
 
   <div class="d-flex flex-column w-100 gap-2">
     <header>
       <div class="d-flex align-items-center justify-content-between">
         <h1 class="fs-4 fw-bold m-0">
-          {{ (type() === 'past' || type() === 'incoming') ? booking()?.expand?.name : item().name }}
+          {{ (type() === 'past' || type() === 'incoming'|| type() === 'restaurant-incoming') ? booking()?.expand?.name : item().name }}
         </h1>
         @if (booking()?.datetime) {
           <span class="small text-muted ms-2 flex-shrink-0">{{ booking()?.datetime }}</span>
