@@ -34,15 +34,21 @@ export class BookingsService {
   getReservation(status: string): Observable<BookingExpanded[]> {
     const user = this.user();
     if (!user) return of([]);
-    const normalizedStatus = status.includes('incoming') ? 'incoming' : status;
+    const dbStatus = status.includes('incoming') ? 'incoming' : 'past';
 
     const ref = collection(this.firestore, 'bookings');
-    const filterField = user.role === 'USER' ? 'userId' : 'restaurantId';
-    const filterValue = user.role === 'USER' ? user.id : String(user.restaurantId ?? user.id);
-    const q = query(ref, where(filterField, '==', filterValue));
+    const isRestaurantView = status.startsWith('restaurant-');
+
+    const filterField = isRestaurantView ? 'restaurantId' : 'userId';
+    const filterValue = isRestaurantView ? String(user.restaurantId ?? user.id) : user.id;
+
+    const q = query(
+      ref,
+      where(filterField, '==', filterValue),
+      where('status', '==', dbStatus), // Usamos el estado mapeado
+    );
 
     return (collectionData(q, { idField: 'id' }) as Observable<Booking[]>).pipe(
-      map((bookings) => bookings.filter((b) => b.status === normalizedStatus)),
       switchMap((bookings) => {
         if (!bookings.length) return of([]);
         return combineLatest(bookings.map((b) => this.expandBooking(b)));

@@ -1,13 +1,13 @@
 <article class="overview d-flex rounded-2 p-3 shadow-sm w-100 gap-3">
   <img class="overview__image object-fit-cover rounded-2 align-self-center flex-shrink-0"
-       [src]="(type() === 'past' || type() === 'incoming' || type() === 'restaurant-incoming') ? booking()?.expand?.image : item().image"
+       [src]="(type() === 'past' || type() === 'incoming' || type() === 'restaurant-incoming' || type() === 'restaurant-past') ? booking()?.expand?.image : item().image"
        alt="" />
 
   <div class="d-flex flex-column w-100 gap-2">
     <header>
       <div class="d-flex align-items-center justify-content-between">
         <h1 class="fs-4 fw-bold m-0">
-          {{ (type() === 'past' || type() === 'incoming'|| type() === 'restaurant-incoming') ? booking()?.expand?.name : item().name }}
+          {{ (type() === 'past' || type() === 'incoming'|| type() === 'restaurant-incoming' || type() === 'restaurant-past') ? booking()?.expand?.name : item().name }}
         </h1>
         @if (booking()?.datetime) {
           <span class="small text-muted ms-2 flex-shrink-0">{{ booking()?.datetime }}</span>
@@ -32,7 +32,10 @@
           <button class="btn-custom-secondary" [routerLink]="['/reviews', booking()?.restaurantId]">Read Reviews</button>
         }
         @case ('restaurant-incoming') {
-          <button class="btn-custom-primary">Booked tables</button>
+          <button class="btn-custom-primary" (click)="showReview.set(true)">Booked tables</button>
+        }
+        @case ('restaurant-past') {
+          <button class="btn-custom-primary" (click)="showReview.set(true)">Booked tables</button>
         }
         @default {
           <button class="btn-custom-secondary" [routerLink]="['/', item().id]">Go</button>
@@ -44,4 +47,10 @@
 
 @if (type() === 'past') {
   <app-write-review-popup [restaurant]="$any(booking()?.expand)" [open]="showReview()" (closed)="showReview.set(false)"/>
+}
+@if (type() === 'restaurant-incoming' || type() === 'restaurant-past') {
+  <app-reservation-container-popup
+    [reserva]="booking()!"
+    [open]="showReview()"
+    (closed)="showReview.set(false)"/>
 }
