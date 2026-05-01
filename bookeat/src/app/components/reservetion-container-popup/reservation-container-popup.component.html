@@ -1,0 +1,30 @@
+<dialog #tableDialog id="table-map-popup" class="shadow" (cancel)="close()">
+  <div class="p-4">
+    <header class="d-flex justify-content-between align-items-center mb-3">
+      <h2 class="m-0 fs-5 fw-bold">Booked Tables</h2>
+      <button type="button" class="btn-close" (click)="close()"></button>
+    </header>
+    <div class="table-list-container">
+      <div class="list-group list-group-flush">
+        @for (tableId of reserva().tables; track tableId) {
+          <div class="list-group-item d-flex align-items-center gap-3 py-3 px-0 border-0 border-bottom">
+            <div class="bg-black text-white rounded-circle d-flex align-items-center justify-content-center flex-shrink-0"
+                 style="width: 40px; height: 40px; font-weight: bold;">
+              {{ tableId }}
+            </div>
+            <div class="flex-grow-1">
+              <span class="d-block fw-bold">Table {{ tableId }}</span>
+              <small class="text-muted">Assigned Table</small>
+            </div>
+          </div>
+        } @empty {
+          <p class="text-muted small my-3 text-center">No tables assigned.</p>
+        }
+      </div>
+    </div>
+
+    <button class="btn btn-custom-primary w-100 mt-4 shadow-sm" (click)="close()">
+      Got it
+    </button>
+  </div>
+</dialog>
