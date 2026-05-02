@@ -1,12 +1,12 @@
-import {Component, inject, signal} from '@angular/core';
+﻿import {Component, inject, signal} from '@angular/core';
 import {toSignal} from '@angular/core/rxjs-interop';
-import {RatingBreakdown} from '../../components/rating-breakdown/rating-breakdown';
+import {RatingBreakdown} from '../../components/rating-breakdown/rating-breakdown.component';
 import {RestaurantsService} from '../../services/firebase/restaurants.service';
 import {ReviewsService} from '../../services/firebase/reviews.service';
 import {ActivatedRoute} from '@angular/router';
 import {AsyncPipe} from '@angular/common';
-import {RestaurantInfo} from '../../components/restaurant-info/restaurant-info';
-import {UserReview} from '../../components/user-review/user-review';
+import {RestaurantInfo} from '../../components/restaurant-info/restaurant-info.component';
+import {UserReview} from '../../components/user-review/user-review.component';
 import {ReviewWithUser} from '../../models/review.model';
 import {SortReviewsPipe} from '../../pipes/sort-reviews.pipe';
 import {FilterByRatingPipe} from '../../pipes/filter-by-rating.pipe';

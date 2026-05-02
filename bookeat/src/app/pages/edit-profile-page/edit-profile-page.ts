@@ -1,10 +1,10 @@
-import {Component, computed, inject, signal} from '@angular/core';
-import {EditProperty} from '../../components/edit-property/edit-property';
-import {EditButton} from '../../components/edit-button/edit-button';
+﻿import {Component, computed, inject, signal} from '@angular/core';
+import {EditProperty} from '../../components/edit-property/edit-property.component';
+import {EditButton} from '../../components/edit-button/edit-button.component';
 import {AuthService} from '../../services/firebase/auth.service';
 import {UsersService} from '../../services/firebase/users.service';
 import {AsyncPipe} from '@angular/common';
-import {EditProfileImagePopup} from '../../components/edit-profile-image-popup/edit-profile-image-popup';
+import {EditProfileImagePopup} from '../../components/edit-profile-image-popup/edit-profile-image-popup.component';
 
 @Component({
   selector: 'app-edit-profile-page',

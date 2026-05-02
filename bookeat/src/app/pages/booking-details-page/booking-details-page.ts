@@ -1,12 +1,12 @@
-import { Component, computed, inject, signal } from '@angular/core';
+﻿import { Component, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDate, NgbDatepicker, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { RestaurantsService } from '../../services/firebase/restaurants.service';
 import { SessionService } from '../../services/session.service';
-import { DinersSelector } from '../../components/diners-selector/diners-selector';
-import { HourTable } from '../../components/hour-table/hour-table';
+import { DinersSelector } from '../../components/diners-selector/diners-selector.component';
+import { HourTable } from '../../components/hour-table/hour-table.component';
 import { OpeningHours, Restaurant } from '../../models/restaurant.model';
 
 @Component({

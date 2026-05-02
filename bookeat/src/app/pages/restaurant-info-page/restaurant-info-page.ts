@@ -1,16 +1,16 @@
-import { Component, inject, signal } from '@angular/core';
+﻿import { Component, inject, signal } from '@angular/core';
 import { AsyncPipe, SlicePipe } from '@angular/common';
-import { RestaurantInfo } from '../../components/restaurant-info/restaurant-info';
+import { RestaurantInfo } from '../../components/restaurant-info/restaurant-info.component';
 import { RestaurantsService } from '../../services/firebase/restaurants.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ReviewsService } from '../../services/firebase/reviews.service';
-import { UserReview } from '../../components/user-review/user-review';
+import { UserReview } from '../../components/user-review/user-review.component';
 import { SortReviewsPipe } from '../../pipes/sort-reviews.pipe';
 import { ReviewWithUser } from '../../models/review.model';
 import { AuthService } from '../../services/firebase/auth.service';
 import { RestaurantProfile } from '../../models/auth.model';
 import { Restaurant } from '../../models/restaurant.model';
-import { showToast } from '../../components/toast/toast';
+import { showToast } from '../../components/toast/toast.component';
 import { firstValueFrom } from 'rxjs';
 
 @Component({

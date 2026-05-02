@@ -1,13 +1,13 @@
-import {Component, inject, signal} from '@angular/core';
+﻿import {Component, inject, signal} from '@angular/core';
 import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 import {RestaurantsService} from '../../services/firebase/restaurants.service';
 import {BookingsService} from '../../services/firebase/bookings.service';
 import {AuthService} from '../../services/firebase/auth.service';
 import {SessionService} from '../../services/session.service';
-import {TableMapComponent} from '../../components/table-map/table-map';
-import {LoginPopup} from '../../components/login-popup/login-popup';
-import {BookingConfirmation} from '../../components/booking-confirmation/booking-confirmation';
+import {TableMapComponent} from '../../components/table-map/table-map.component';
+import {LoginPopup} from '../../components/login-popup/login-popup.component';
+import {BookingConfirmation} from '../../components/booking-confirmation/booking-confirmation.component';
 import {Restaurant} from '../../models/restaurant.model';
 import {firstValueFrom} from 'rxjs';
 import {Booking} from '../../models/booking.model';

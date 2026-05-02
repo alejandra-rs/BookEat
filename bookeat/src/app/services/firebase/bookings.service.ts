@@ -51,7 +51,11 @@ export class BookingsService {
     return (collectionData(q, { idField: 'id' }) as Observable<Booking[]>).pipe(
       switchMap((bookings) => {
         if (!bookings.length) return of([]);
-        return combineLatest(bookings.map((b) => this.expandBooking(b)));
+        const valid = bookings.filter((b) =>
+          isRestaurantView ? !!b.userId : !!b.restaurantId
+        );
+        if (!valid.length) return of([]);
+        return combineLatest(valid.map((b) => this.expandBooking(b)));
       }),
     );
   }

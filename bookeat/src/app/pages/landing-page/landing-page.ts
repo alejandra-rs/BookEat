@@ -1,5 +1,5 @@
-import {Component, inject} from '@angular/core';
-import {RestaurantCarousel} from '../../components/restaurant-carousel/restaurant-carousel';
+﻿import {Component, inject} from '@angular/core';
+import {RestaurantCarousel} from '../../components/restaurant-carousel/restaurant-carousel.component';
 import {RestaurantsService} from '../../services/firebase/restaurants.service';
 
 @Component({

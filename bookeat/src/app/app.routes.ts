@@ -1,10 +1,10 @@
-import { Routes } from '@angular/router';
+﻿import { Routes } from '@angular/router';
 import {LandingPage} from './pages/landing-page/landing-page';
 import {RestaurantInfoPage} from './pages/restaurant-info-page/restaurant-info-page';
 import {BookingDetailsPage} from './pages/booking-details-page/booking-details-page';
 import {RestaurantReviewsPage} from './pages/restaurant-reviews-page/restaurant-reviews-page';
-import {AffiliateFormComponent} from './components/affiliate-form/affiliate-form';
-import {CreateAnAccount} from './components/create-an-account/create-an-account';
+import {AffiliateFormComponent} from './components/affiliate-form/affiliate-form.component';
+import {CreateAnAccount} from './components/create-an-account/create-an-account.component';
 import {EditProfilePage} from './pages/edit-profile-page/edit-profile-page';
 import {BookTablePage} from './pages/book-table-page/book-table-page';
 import {ReservationsPage} from './pages/reservations-page/reservations-page';

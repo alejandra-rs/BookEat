@@ -1,11 +1,11 @@
-import {Component, computed, inject, signal} from '@angular/core';
+﻿import {Component, computed, inject, signal} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {toSignal} from '@angular/core/rxjs-interop';
 import {map} from 'rxjs';
 import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
 import {RestaurantsService} from '../../services/firebase/restaurants.service';
 import {CategoriesService} from '../../services/firebase/categories.service';
-import {Overview} from '../../components/overview/overview';
+import {Overview} from '../../components/overview/overview.component';
 
 @Component({
   selector: 'app-search-page',

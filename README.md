@@ -19,7 +19,7 @@ se ha migrado la aplicación a **Angular** en el _frontend_, y a **Firebase** en
 
 ## Estructura del proyecto
 
-```
+```bash
 bookeat/src/
 ├── app/
 │   ├── components/
@@ -40,49 +40,46 @@ bookeat/src/
 
 ---
 
----
-
 ## Estructura de los componentes
 
 ```bash
 bookeat/src/
 ├── app/
 │   ├── componnets/
-│   │   ├── affiliate-form/           # Crear un usuario restaurante
-│   │   ├── booking-confirmation/     # Información de una reserva completada
-│   │   ├── create-an-account/        # Crear una cuenta de cliente
-│   │   ├── date-range/               # Seleccionar un rango de fechas (inicio y fin)
-│   │   ├── date-selector/            # Seleccionar un día específico para la reserva
-│   │   ├── dinner-selector/          # Seleccionar el número de comensales
-│   │   ├── edit-button/              # Botón genérico para activar la edición de un elemento
-│   │   ├── edit-profile-image-popup/ # Ventana emergente para cambiar la foto de perfil
-│   │   ├── edit-profile/             # Formulario para actualizar los datos personales
-│   │   ├── footer/                   # Pie de página de la aplicación
-│   │   ├── form-card/                # Contenedor con estilos predefinidos para envolver formularios
-│   │   ├── header/                   # Cabecera principal con navegación y logo
-│   │   ├── hour-selector/            # Desplegable o lista para elegir la hora de la reserva
-│   │   ├── hour-table/               # Cuadrícula visual que muestra la disponibilidad por horas
-│   │   ├── insert-image/             # Componente para cargar o subir archivos de imagen
-│   │   ├── login-popup/              # Ventana emergente para iniciar sesión
-│   │   ├── menu-item/                # Tarjeta individual con la información de un plato
-│   │   ├── menu-popup/               # Ventana emergente con los detalles extendidos de un plato o carta
-│   │   ├── menu-section/             # Categoría que agrupa varios menu-item
-│   │   ├── my-account/               # Panel principal de configuración e información del usuario
-│   │   ├── overview/                 # Componente genérico que muestra datos de restaurantes/usuarios
-│   │   ├── price-label/              # Etiqueta visual para indicar precio o rango de precios
-│   │   ├── rating-breakdown/         # Gráfico que desglosa las distintas puntuaciones recibidas
-│   │   ├── restaruant-carousel/      # Carrusel deslizable de tarjetas de restaurantes
-│   │   ├── restaruant-info/          # Detalles generales de un restaurante (dirección, contacto)
-│   │   ├── restaurant-item/          # Tarjeta de vista previa de un restaurante en listas
-│   │   ├── star-selector/            # Selector interactivo de estrellas para puntuar
-│   │   ├── table-map/                # Representación gráfica o plano de las mesas del local
-│   │   ├── toast/                    # Notificación breve y emergente para avisos del sistema
-│   │   ├── user-review/              # Comentario y valoración individual dejada por un cliente
-│   │   ├── user-score/               # Puntuación global del restaurante o del usuario
-│   │   ├── write-review-popup/       # Ventana emergente con el formulario para escribir una reseña
+│   │   ├── affiliate-form/             # Crear un usuario restaurante
+│   │   ├── booking-confirmation/       # Información de una reserva completada
+│   │   ├── create-an-account/          # Crear una cuenta de cliente
+│   │   ├── date-range/                 # Seleccionar un rango de fechas (inicio y fin)
+│   │   ├── date-selector/              # Seleccionar un día específico para la reserva
+│   │   ├── dinner-selector/            # Seleccionar el número de comensales
+│   │   ├── edit-button/                # Botón genérico para activar la edición de un elemento
+│   │   ├── edit-profile-image-popup/   # Ventana emergente para cambiar la foto de perfil
+│   │   ├── edit-profile/               # Formulario para actualizar los datos personales
+│   │   ├── footer/                     # Pie de página de la aplicación
+│   │   ├── form-card/                  # Contenedor con estilos predefinidos para envolver formularios
+│   │   ├── header/                     # Cabecera principal con navegación y logo
+│   │   ├── hour-selector/              # Desplegable o lista para elegir la hora de la reserva
+│   │   ├── hour-table/                 # Cuadrícula visual que muestra la disponibilidad por horas
+│   │   ├── insert-image/               # Componente para cargar o subir archivos de imagen
+│   │   ├── login-popup/                # Ventana emergente para iniciar sesión
+│   │   ├── menu-item/                  # Tarjeta individual con la información de un plato
+│   │   ├── menu-popup/                 # Ventana emergente con los detalles extendidos de un plato o carta
+│   │   ├── menu-section/               # Categoría que agrupa varios menu-item
+│   │   ├── my-account/                 # Panel principal de configuración e información del usuario
+│   │   ├── overview/                   # Componente genérico que muestra datos de restaurantes/usuarios
+│   │   ├── price-label/                # Etiqueta visual para indicar precio o rango de precios
+│   │   ├── rating-breakdown/           # Gráfico que desglosa las distintas puntuaciones recibidas
+│   │   ├── restaruant-carousel/        # Carrusel deslizable de tarjetas de restaurantes
+│   │   ├── restaruant-info/            # Detalles generales de un restaurante (dirección, contacto)
+│   │   ├── restaurant-item/            # Tarjeta de vista previa de un restaurante en listas
+│   │   ├── star-selector/              # Selector interactivo de estrellas para puntuar
+│   │   ├── table-map/                  # Representación gráfica o plano de las mesas del local
+│   │   ├── toast/                      # Notificación breve y emergente para avisos del sistema
+│   │   ├── user-review/                # Comentario y valoración individual dejada por un cliente
+│   │   ├── user-score/                 # Puntuación global del restaurante o del usuario
+│   │   ├── write-review-popup/         # Ventana emergente con el formulario para escribir una reseña
 │   └── ...
 └── ...  
-
 ```
 
 ---
